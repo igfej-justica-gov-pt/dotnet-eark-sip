@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-  <xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
-	
-  <xsd:annotation>
-
-    <xsd:documentation xml:lang="en">
+<xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS" xmlns:sip="https://DILCIS.eu/XML/METS/SIPExtensionMETS" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
+	<xsd:import namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS" schemaLocation="DILCISExtensionMETS.xsd" />
+	<xsd:import namespace="https://DILCIS.eu/XML/METS/SIPExtensionMETS" schemaLocation="DILCISExtensionSIPMETS.xsd" />
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">
       METS: Metadata Encoding and Transmission Standard
 
       This document is available under the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/).
@@ -27,8 +26,7 @@
       October, 2019
       Version 1.12.1
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       Change History
 
       April 23, 2001: Alpha Draft completed
@@ -65,8 +63,7 @@
       25. Change mdSec model to ALL, to enable differing order of mdRef/mdWrap elements.
       26. Extend documentation on &lt;par&gt; and &lt;seq&gt; elements.
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       October 22, 2001: Gamma completed
 
       10/22/2001 Gamma changes:
@@ -83,8 +80,7 @@
         W3C schema recommendations.
         6. Cleaned up annotations/documentation.
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
        December 19, 2001: Epsilon and PROTOFINAL completed
 
        12/19/2001 Epsilon changes:
@@ -99,8 +95,7 @@
        7. Change attribute name DMD for div element to DMDID for consistency's sake.
        8. Added new behaviorSec for support of referencing executable code from METS object
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
        February 8, 2002: Zeta bug fix to final
 
        2/8/2002 Zeta changes
@@ -109,8 +104,7 @@
        2. Changed mdWrap content model, adding xmlData element to eliminate
          ambiguous content model
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       June 3, 2002: Version 1.1
 
       6/3/2002 v1.1 changes:
@@ -118,8 +112,7 @@
       1. Add new structLink section for recording hyperlinks between media represented by structMap nodes.
       2. Allow a &lt;par&gt; element to contain a &lt;seq&gt;
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       Dec. 27, 2002: Version 1.2
 
       12/27/2002 v1.2 changes:
@@ -136,8 +129,7 @@
       11. clean up documentation in elements to reflect reality.
 
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       May 8, 2003: Version 1.3
 
       05/05/2003 v1.3 changes:
@@ -148,8 +140,7 @@
       HAVAL, MD5, SHA-1, SHA-256, SHA-384, SHA-512, TIGER, WHIRLPOOL
       4.Alter BehaviorSec to make it recursive, and add a new behavior element to wrap mechanism and interfaceDef elements.
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       May 1, 2004: Version 1.4
 
       05/01/2003 v1.4 changes:
@@ -164,8 +155,7 @@
       6. ID Attribute added to smLink.
       7. "LOM" added as metadata type.
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       April 12, 2005: Version 1.5
 
       04/12/2005 v1.5 changes:
@@ -177,8 +167,7 @@
       3. Modify structLink TO and FROM attributes to put them in XLink namespace.
       4. Make processContents "lax" for all xsd:any elements.
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       October 18, 2006: Version 1.6
 
       10/18/2006 v1.6 changes:
@@ -187,8 +176,7 @@
       2. add ADMID to metsHdr
       3. make smLink/@xlink:to and smLink/@xlink:from required
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       October 16, 2007/ Jan 20, 2008: Version 1.7
 
       10/16/2007 01/30/2008  v 1.7 changes:
@@ -201,8 +189,7 @@
       2a. CREATED added to FILECORE
       3. PREMIS:OBJECT PREMIS:AGENT PREMIS:RIGHTS PREMIS:EVENT added to MDTYPE value enumeration
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       April 2009: Version 1.8
 
       Version 1.8 changes:
@@ -214,8 +201,7 @@
       6. xml:lang="en" atttribute value added to every &lt;documentation&gt; element
       7. xlink:extendedLink support added to the &lt;structLink&gt; element by means of a new &lt;smLinkGrp&gt; element, and its child &lt;smLocatorLink&gt; and &lt;smArcLink&gt; elements.
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       2010: Version 1.9
 
       Version 1.9 Changes:
@@ -224,8 +210,7 @@
       3. Added "XPTR" to the enumerated values for the BETYPE attribute on the areaType data type
       4. Added BEGIN, END and BETYPE attributes to the &lt;file&gt; and &lt;stream&gt; elements for specifying the location of a nested file or a stream within it's parent file.
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
       March 2012: Version 1.9.1
 
       Version 1.9.1 Changes:
@@ -233,8 +218,7 @@
       EAC-CPF = Encoded Archival Context - Corporate Bodies, Persons, and Families
       http://eac.staatsbibliothek-berlin.de/eac-cpf-schema.html
     </xsd:documentation>
-
-    <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
        July 2013: Version 1.10
 
        Version 1.10 Changes:
@@ -259,16 +243,14 @@
                behaviorSec
            This will allow arbitrary new attributes to be added to these elements to support local needs.
       </xsd:documentation>
-
-      <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
        January 2015: Version 1.10.1
 
        Version 1.10.1 Changes:
          1. Fixed bug:  The anyAttribute declaration was inadvertently added to the FLocat element when it should have been on the file element.  This
             has been corrected in this version.
       </xsd:documentation>
-
-      <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
        May 2015: Version 1.11
 
        Version 1.11 Changes:
@@ -278,8 +260,7 @@
              area
          2.	Also added xsd:anyAttribute with namespace ##other and processContents lax to these elements.  This will allow arbitrary new attributes to be added to these elements to support local needs.
       </xsd:documentation>
-
-      <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
        May 2018: Version 1.12
 
         Version 1.12 Changes:
@@ -289,7 +270,7 @@
 
         This will allow arbitrary new attributes to be added to this element to support local needs.  The original use case was to identify the type of the note.
       </xsd:documentation>
-      <xsd:documentation xml:lang="en">
+		<xsd:documentation xml:lang="en">
 	October 2019: Version 1.12.1
 
 	Version 1.12.1 Changes:
@@ -298,7 +279,21 @@
 
 	This allows tools that generate documentation from schemas to include the change history in the generated documentation.
       </xsd:documentation>
-  </xsd:annotation>
+		<xsd:documentation xml:lang="en">
+			January 2025: Version 1.12.1 with changes to be CSIP and SIP compliant
+
+			1. Added csip namespace declaration as well as imported respectively schema
+			2. Added mets/@csip:OTHERTYPE
+			3. Added mets/@csip:CONTENTINFORMATIONTYPE
+			4. Added mets/@csip:OTHERCONTENTINFORMATIONTYPE
+			5. Added mets/metsHdr/@csip:OAISPACKAGETYPE
+			6. Added mets/metsHdr/agent/note/@csip:NOTETYPE
+			7. Added mets/fileSec/fileGrp/file/@sip:FILEFORMATNAME
+			8. Added mets/fileSec/fileGrp/file/@sip:FILEFORMATVERSION
+			9. Added mets/fileSec/fileGrp/file/@sip:FORMATREGISTRY
+			10. Added mets/fileSec/fileGrp/file/@sip:FORMATREGISTRYKEY
+			</xsd:documentation>
+	</xsd:annotation>
 	<xsd:element name="mets">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">METS: Metadata Encoding and Transmission Standard.
@@ -350,6 +345,7 @@
 										<xsd:complexType>
 											<xsd:simpleContent>
 												<xsd:extension base="xsd:string">
+													<xsd:attribute ref="csip:NOTETYPE" use="required" />
 													<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 												</xsd:extension>
 											</xsd:simpleContent>
@@ -467,7 +463,7 @@ OTHER: Use OTHER if none of the preceding values pertain and clarify the type of
 									</xsd:extension>
 								</xsd:simpleContent>
 							</xsd:complexType>
-						</xsd:element>						
+						</xsd:element>
 					</xsd:sequence>
 					<xsd:attribute name="ID" type="xsd:ID" use="optional">
 						<xsd:annotation>
@@ -499,6 +495,7 @@ OTHER: Use OTHER if none of the preceding values pertain and clarify the type of
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
+					<xsd:attribute ref="csip:OAISPACKAGETYPE" use="required" />
 					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
@@ -609,6 +606,9 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 			</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:attribute ref="csip:OTHERTYPE" />
+		<xsd:attribute ref="csip:CONTENTINFORMATIONTYPE" />
+		<xsd:attribute ref="csip:OTHERCONTENTINFORMATIONTYPE" />
 		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:complexType name="amdSecType">
@@ -662,7 +662,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 				</xsd:documentation>
 		</xsd:annotation>
 		<xsd:choice>
-			<xsd:element name="fileGrp" type="fileGrpType" minOccurs="0" maxOccurs="unbounded"/>			
+			<xsd:element name="fileGrp" type="fileGrpType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="file" minOccurs="0" maxOccurs="unbounded" type="fileType" >
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
@@ -733,7 +733,6 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:complexType name="divType">
-		
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">divType: Complex Type for Divisions
 					The METS standard represents a document structurally as a series of nested div elements, that is, as a hierarchy (e.g., a book, which is composed of chapters, which are composed of subchapters, which are composed of text).  Every div node in the structural map hierarchy may be connected (via subsidiary mptr or fptr elements) to content files which represent that div's portion of the whole document.
@@ -758,12 +757,12 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 					</xsd:attribute>
 					<xsd:attributeGroup ref="LOCATION"/>
 					<xsd:attributeGroup ref="xlink:simpleLink"/>
-				    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
-			            <xsd:annotation>
-			            	<xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;mptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
+					<xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;mptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
 				            </xsd:documentation>
-			            </xsd:annotation>
-               	    </xsd:attribute>
+						</xsd:annotation>
+					</xsd:attribute>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="fptr" minOccurs="0" maxOccurs="unbounded">
@@ -808,12 +807,12 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-				    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
-			            <xsd:annotation>
-			            	<xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;fptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
+					<xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;fptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
 				            </xsd:documentation>
-			            </xsd:annotation>
-               	    </xsd:attribute>
+						</xsd:annotation>
+					</xsd:attribute>
 					<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 				</xsd:complexType>
 			</xsd:element>
@@ -825,7 +824,7 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attributeGroup ref="ORDERLABELS"/>		
+		<xsd:attributeGroup ref="ORDERLABELS"/>
 		<xsd:attribute name="DMDID" type="xsd:IDREFS" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">DMDID (IDREFS/O): Contains the ID attribute values identifying the &lt;dmdSec&gt;, elements in the METS document that contain or link to descriptive metadata pertaining to the structural division represented by the current &lt;div&gt; element.  For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
@@ -844,12 +843,12 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-	    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
+		<xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;div&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
 				</xsd:documentation>
 			</xsd:annotation>
-	    </xsd:attribute>
+		</xsd:attribute>
 		<xsd:attribute ref="xlink:label">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">xlink:label - an xlink label to be referred to by an smLink element</xsd:documentation>
@@ -872,7 +871,7 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attributeGroup ref="ORDERLABELS"/>		
+		<xsd:attributeGroup ref="ORDERLABELS"/>
 		<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 	</xsd:complexType>
 	<xsd:complexType name="seqType">
@@ -891,7 +890,7 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attributeGroup ref="ORDERLABELS"/>		
+		<xsd:attributeGroup ref="ORDERLABELS"/>
 		<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 	</xsd:complexType>
 	<xsd:complexType name="areaType">
@@ -1027,13 +1026,13 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-	    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
+		<xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;area&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
 				</xsd:documentation>
 			</xsd:annotation>
-	    </xsd:attribute>
-		<xsd:attributeGroup ref="ORDERLABELS"/>		
+		</xsd:attribute>
+		<xsd:attributeGroup ref="ORDERLABELS"/>
 		<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 	</xsd:complexType>
 	<xsd:complexType name="structLinkType">
@@ -1119,7 +1118,7 @@ TCF.
 									<xsd:annotation>
 										<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</xsd:documentation>
 									</xsd:annotation>
-								</xsd:attribute>									
+								</xsd:attribute>
 								<xsd:attributeGroup ref="xlink:locatorLink"/>
 							</xsd:complexType>
 						</xsd:element>
@@ -1130,10 +1129,10 @@ TCF.
 										The structMap arc link element &lt;smArcLink&gt; is of xlink:type &quot;arc&quot; It can be used to establish a traversal link between two &lt;div&gt; elements as identified by &lt;smLocatorLink&gt; elements within the same smLinkGrp element. The associated xlink:from and xlink:to attributes identify the from and to sides of the arc link by referencing the xlink:label attribute values on the participating smLocatorLink elements.
 									</xsd:documentation>
 								</xsd:annotation>
-								<xsd:attribute name="ID" type="xsd:ID">									
+								<xsd:attribute name="ID" type="xsd:ID">
 									<xsd:annotation>
 										<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</xsd:documentation>
-									</xsd:annotation>								
+									</xsd:annotation>
 								</xsd:attribute>
 								<xsd:attributeGroup ref="xlink:arcLink"/>
 								<xsd:attribute name="ARCTYPE" type="xsd:string">
@@ -1147,7 +1146,7 @@ TCF.
 										<xsd:documentation xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values identifying the &lt;sourceMD&gt;, &lt;techMD&gt;, &lt;digiprovMD&gt; and/or &lt;rightsMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain or link to administrative metadata pertaining to &lt;smArcLink&gt;. Typically the &lt;smArcLink&gt; ADMID attribute would be used to identify one or more &lt;sourceMD&gt; and/or &lt;techMD&gt; elements that refine or clarify the relationship between the xlink:from and xlink:to sides of the arc. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
 										</xsd:documentation>
 									</xsd:annotation>
-								</xsd:attribute>								
+								</xsd:attribute>
 							</xsd:complexType>
 						</xsd:element>
 					</xsd:sequence>
@@ -1165,7 +1164,7 @@ TCF.
 					</xsd:attribute>
 					<xsd:attributeGroup ref="xlink:extendedLink"/>
 				</xsd:complexType>
-			</xsd:element>						
+			</xsd:element>
 		</xsd:choice>
 		<xsd:attribute name="ID" type="xsd:ID" use="optional">
 			<xsd:annotation>
@@ -1280,7 +1279,7 @@ TCF.
 			<xsd:documentation xml:lang="en">objectType: complexType for interfaceDef and mechanism elements
 				The mechanism and behavior elements point to external objects--an interface definition object or an executable code object respectively--which together constitute a behavior that can be applied to one or more &lt;div&gt; elements in a &lt;structMap&gt;.
 			</xsd:documentation>
-		</xsd:annotation>		
+		</xsd:annotation>
 		<xsd:attribute name="ID" type="xsd:ID" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
@@ -1408,7 +1407,7 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:anyAttribute namespace="##other" processContents="lax" /> 
+		<xsd:anyAttribute namespace="##other" processContents="lax" />
 	</xsd:complexType>
 	<xsd:complexType name="fileType">
 		<xsd:annotation>
@@ -1416,7 +1415,6 @@ TCF.
 				The file element provides access to content files for a METS object.  A file element may contain one or more FLocat elements, which provide pointers to a content file, and/or an FContent element, which wraps an encoded version of the file. Note that ALL FLocat and FContent elements underneath a single file element should identify/contain identical copies of a single file.
 			</xsd:documentation>
 		</xsd:annotation>
-		
 		<xsd:sequence>
 			<xsd:element name="FLocat" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
@@ -1482,7 +1480,7 @@ TCF.
 						</xsd:annotation>
 					</xsd:attribute>
 				</xsd:complexType>
-			</xsd:element>			
+			</xsd:element>
 			<xsd:element name="stream" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en"> 
@@ -1543,10 +1541,10 @@ TCF.
 										<xsd:enumeration value="BYTE"/>
 									</xsd:restriction>
 								</xsd:simpleType>
-							</xsd:attribute>									
+							</xsd:attribute>
 						</xsd:restriction>
 					</xsd:complexContent>
-				</xsd:complexType>				
+				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="transformFile" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
@@ -1665,14 +1663,16 @@ TCF.
 					<xsd:enumeration value="BYTE"/>
 				</xsd:restriction>
 			</xsd:simpleType>
-		</xsd:attribute>		
+		</xsd:attribute>
+		<xsd:attribute ref="sip:FILEFORMATNAME" />
+		<xsd:attribute ref="sip:FILEFORMATVERSION" />
+		<xsd:attribute ref="sip:FORMATREGISTRY" />
+		<xsd:attribute ref="sip:FORMATREGISTRYKEY" />
 		<xsd:anyAttribute namespace="##other" processContents="lax"/>
-	</xsd:complexType>	
-	
+	</xsd:complexType>
 	<xsd:simpleType name="URIs">
-	    <xsd:list itemType="xsd:anyURI"/>
+		<xsd:list itemType="xsd:anyURI"/>
 	</xsd:simpleType>
-
 	<xsd:attributeGroup name="ORDERLABELS">
 		<xsd:attribute name="ORDER" type="xsd:integer" use="optional">
 			<xsd:annotation>
@@ -1691,9 +1691,8 @@ TCF.
 				<xsd:documentation xml:lang="en">LABEL (string/O): An attribute used, for example, to identify a &lt;div&gt; to an end user viewing the document. Thus a hierarchical arrangement of the &lt;div&gt; LABEL values could provide a table of contents to the digital content represented by a METS document and facilitate the users’ navigation of the digital object. Note that a &lt;div&gt; LABEL should be specific to its level in the structural map. In the case of a book with chapters, the book &lt;div&gt; LABEL should have the book title and the chapter &lt;div&gt;; LABELs should have the individual chapter titles, rather than having the chapter &lt;div&gt; LABELs combine both book title and chapter title . For further of the distinction between LABEL and ORDERLABEL see the description of the ORDERLABEL attribute.
 				</xsd:documentation>
 			</xsd:annotation>
-		</xsd:attribute>		
+		</xsd:attribute>
 	</xsd:attributeGroup>
-
 	<xsd:attributeGroup name="METADATA">
 		<xsd:attribute name="MDTYPE" use="required">
 			<xsd:annotation>
@@ -1734,7 +1733,7 @@ OTHER: metadata in a format not specified above
 					<xsd:enumeration value="TEIHDR"/>
 					<xsd:enumeration value="DDI"/>
 					<xsd:enumeration value="FGDC"/>
-				    <xsd:enumeration value="LOM"/>
+					<xsd:enumeration value="LOM"/>
 					<xsd:enumeration value="PREMIS"/>
 					<xsd:enumeration value="PREMIS:OBJECT"/>
 					<xsd:enumeration value="PREMIS:AGENT"/>
