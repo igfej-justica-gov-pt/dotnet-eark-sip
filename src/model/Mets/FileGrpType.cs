@@ -159,13 +159,16 @@ namespace Mets
         public string Use { get; set; }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
+        private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute = null;
         
         [System.Xml.Serialization.XmlAnyAttributeAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> AnyAttribute
         {
             get
             {
+                if (_anyAttribute == null)
+                    _anyAttribute = new System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute>();
+
                 return _anyAttribute;
             }
             private set
@@ -184,6 +187,14 @@ namespace Mets
             {
                 return (this.AnyAttribute.Count != 0);
             }
+        }
+
+        public void AddCustomAttribute(string name, string value)
+        {
+            System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+            System.Xml.XmlAttribute newAttribute = doc.CreateAttribute(name);
+            newAttribute.Value = value;
+            AnyAttribute.Add(newAttribute);
         }
     }
 }

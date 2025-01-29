@@ -40,7 +40,7 @@ namespace IP {
       objectID = representationID;
     }
 
-    public string ObjectID() {
+    public string GetObjectID() {
       return objectID;
     }
 

@@ -1,32 +1,29 @@
 using System.Text;
+using Xml.Mets.CsipExtensionMets;
 
 namespace IP {
   [Serializable]
   public class IPContentInformationType {
 
-    public enum IPContentInformationTypeEnum {
-      ERMS, citserms_v2_1, SIARD1, SIARD2, SIARDDK, GEODATA, MIXED, OTHER, Dataset, citssiard_v1_0
-    }
-
-    private readonly IPContentInformationTypeEnum type;
+    private readonly Contentinformationtype type;
     private string otherType;
 
     public IPContentInformationType(string type) {
       try {
-        this.type = (IPContentInformationTypeEnum)Enum.Parse(typeof(IPContentInformationTypeEnum), type);
+        this.type = (Contentinformationtype)Enum.Parse(typeof(Contentinformationtype), type);
         otherType = "";
       } catch {
-        this.type = IPContentInformationTypeEnum.OTHER;
+        this.type = Contentinformationtype.OTHER;
         otherType = type;
       }
     }
 
-    public IPContentInformationType(IPContentInformationTypeEnum type) {
+    public IPContentInformationType(Contentinformationtype type) {
       this.type = type;
       otherType = "";
     }
 
-    public IPContentInformationTypeEnum GetContentInformationType() {
+    public Contentinformationtype GetContentInformationType() {
       return type;
     }
 
@@ -40,11 +37,11 @@ namespace IP {
     }
 
     public bool IsOtherAndOtherTypeIsDefined() {
-      return type == IPContentInformationTypeEnum.OTHER && !string.IsNullOrEmpty(otherType);
+      return type == Contentinformationtype.OTHER && !string.IsNullOrEmpty(otherType);
     }
 
     public static IPContentInformationType GetMIXED() {
-      return new IPContentInformationType(IPContentInformationTypeEnum.MIXED);
+      return new IPContentInformationType(Contentinformationtype.MIXED);
     }
 
     public override string ToString()

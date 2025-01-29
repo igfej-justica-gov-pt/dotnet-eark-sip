@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS" xmlns:sip="https://DILCIS.eu/XML/METS/SIPExtensionMETS" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
-	<xsd:import namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS" schemaLocation="DILCISExtensionMETS.xsd" />
-	<xsd:import namespace="https://DILCIS.eu/XML/METS/SIPExtensionMETS" schemaLocation="DILCISExtensionSIPMETS.xsd" />
 	<xsd:annotation>
 		<xsd:documentation xml:lang="en">
       METS: Metadata Encoding and Transmission Standard
@@ -279,20 +277,6 @@
 
 	This allows tools that generate documentation from schemas to include the change history in the generated documentation.
       </xsd:documentation>
-		<xsd:documentation xml:lang="en">
-			January 2025: Version 1.12.1 with changes to be CSIP and SIP compliant
-
-			1. Added csip namespace declaration as well as imported respectively schema
-			2. Added mets/@csip:OTHERTYPE
-			3. Added mets/@csip:CONTENTINFORMATIONTYPE
-			4. Added mets/@csip:OTHERCONTENTINFORMATIONTYPE
-			5. Added mets/metsHdr/@csip:OAISPACKAGETYPE
-			6. Added mets/metsHdr/agent/note/@csip:NOTETYPE
-			7. Added mets/fileSec/fileGrp/file/@sip:FILEFORMATNAME
-			8. Added mets/fileSec/fileGrp/file/@sip:FILEFORMATVERSION
-			9. Added mets/fileSec/fileGrp/file/@sip:FORMATREGISTRY
-			10. Added mets/fileSec/fileGrp/file/@sip:FORMATREGISTRYKEY
-			</xsd:documentation>
 	</xsd:annotation>
 	<xsd:element name="mets">
 		<xsd:annotation>
@@ -345,7 +329,6 @@
 										<xsd:complexType>
 											<xsd:simpleContent>
 												<xsd:extension base="xsd:string">
-													<xsd:attribute ref="csip:NOTETYPE" use="required" />
 													<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 												</xsd:extension>
 											</xsd:simpleContent>
@@ -495,7 +478,6 @@ OTHER: Use OTHER if none of the preceding values pertain and clarify the type of
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute ref="csip:OAISPACKAGETYPE" use="required" />
 					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
@@ -606,9 +588,6 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 			</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute ref="csip:OTHERTYPE" />
-		<xsd:attribute ref="csip:CONTENTINFORMATIONTYPE" />
-		<xsd:attribute ref="csip:OTHERCONTENTINFORMATIONTYPE" />
 		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:complexType name="amdSecType">
@@ -1664,10 +1643,6 @@ TCF.
 				</xsd:restriction>
 			</xsd:simpleType>
 		</xsd:attribute>
-		<xsd:attribute ref="sip:FILEFORMATNAME" />
-		<xsd:attribute ref="sip:FILEFORMATVERSION" />
-		<xsd:attribute ref="sip:FORMATREGISTRY" />
-		<xsd:attribute ref="sip:FORMATREGISTRYKEY" />
 		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:simpleType name="URIs">

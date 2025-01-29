@@ -4,24 +4,24 @@ namespace IP {
   [Serializable]
   public class IPAgent {
     private string name;
-    private string role;
+    private MetsTypeMetsHdrAgentRole role;
     private MetsTypeMetsHdrAgentType type;
     private string otherRole;
     private string otherType;
     private string note;
-    private IPAgentNoteTypeEnum noteType;
+    private Xml.Mets.CsipExtensionMets.Notetype? noteType;
 
     public IPAgent() {
       name = "";
-      role = "";
-      type = MetsTypeMetsHdrAgentType.Other;
+      role = MetsTypeMetsHdrAgentRole.OTHER;
+      type = MetsTypeMetsHdrAgentType.OTHER;
       otherRole = "";
       otherType = "";
       note = "";
-      noteType = IPAgentNoteTypeEnum.NOT_SET;
+      noteType = null;
     }
 
-    public IPAgent(string name, string role, string otherRole, MetsTypeMetsHdrAgentType type, string otherType, string note, IPAgentNoteTypeEnum noteType) {
+    public IPAgent(string name, MetsTypeMetsHdrAgentRole role, string otherRole, MetsTypeMetsHdrAgentType type, string otherType, string note, Xml.Mets.CsipExtensionMets.Notetype noteType) {
       this.name = name;
       this.role = role;
       this.type = type;
@@ -40,11 +40,11 @@ namespace IP {
       return this;
     }
 
-    public string GetRole() {
+    public MetsTypeMetsHdrAgentRole GetRole() {
       return role;
     }
 
-    public IPAgent SetRole(string role) {
+    public IPAgent SetRole(MetsTypeMetsHdrAgentRole role) {
       this.role = role;
       return this;
     }
@@ -85,11 +85,11 @@ namespace IP {
       return this;
     }
 
-    public IPAgentNoteTypeEnum GetNoteType() {
+    public Xml.Mets.CsipExtensionMets.Notetype? GetNoteType() {
       return noteType;
     }
 
-    public IPAgent SetNoteType(IPAgentNoteTypeEnum noteType) {
+    public IPAgent SetNoteType(Xml.Mets.CsipExtensionMets.Notetype? noteType) {
       this.noteType = noteType;
       return this;
     }

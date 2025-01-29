@@ -6,4 +6,8 @@ namespace IPEnums {
   public enum IPStatus {
     NEW, UPDATE, REPLACEMENT, TEST
   }
+
+  public enum SIPType {
+    EARK2S, EARK2, SIARD, ERMS
+  }
 }

@@ -130,6 +130,16 @@ namespace IP {
       return new IPContentType(IPContentTypeEnum.DATABASES);
     }
 
+    public string AsString() {
+      string res = type.ToString();
+
+      if (type == IPContentTypeEnum.OTHER && !string.IsNullOrEmpty(otherType)) {
+        res = otherType;
+      }
+
+      return res;
+    }
+
     public override string ToString()
     {
       StringBuilder sb = new StringBuilder();

@@ -290,7 +290,7 @@ namespace IP {
       return this;
     }
 
-    public List<IIPFile> getDocumentation() {
+    public List<IIPFile> GetDocumentation() {
       return new List<IIPFile>(documentation);
     }
 
@@ -328,11 +328,11 @@ namespace IP {
     }
 
     private IPAgent GetSubmitterDefaultAgent() {
-      return new IPAgent("Default submitter agent", "CREATOR", null, MetsTypeMetsHdrAgentType.Individual, null, "1", IPAgentNoteTypeEnum.IDENTIFICATIONCODE);
+      return new IPAgent("Default submitter agent", "CREATOR", null, MetsTypeMetsHdrAgentType.INDIVIDUAL, null, "1", IPAgentNoteTypeEnum.IDENTIFICATIONCODE);
     }
 
     public IPAgent AddCreatorSoftwareAgent(string name, string version) {
-      IPAgent creatorAgent = new IPAgent(name, "CREATOR", null, MetsTypeMetsHdrAgentType.Other, "SOFTWARE", version, IPAgentNoteTypeEnum.SOFTWARE_VERSION);
+      IPAgent creatorAgent = new IPAgent(name, "CREATOR", null, MetsTypeMetsHdrAgentType.OTHER, "SOFTWARE", version, IPAgentNoteTypeEnum.SOFTWARE_VERSION);
       header.AddAgent(creatorAgent);
       return creatorAgent;
     }
