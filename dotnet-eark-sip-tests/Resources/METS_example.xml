@@ -1,0 +1,137 @@
+<METS:mets
+xmlns:METS="http://www.loc.gov/METS/" 
+xmlns:mods="http://www.loc.gov/mods/v3" 
+xmlns:xlink="http://www.w3.org/1999/xlink" 
+xmlns:mix="http://www.loc.gov/standards/mix10/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:amd="http://www.loc.gov/AMD/"
+xmlns:rights="http://cosimo.stanford.edu/sdr/metsrights/" 
+xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd 
+http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-0.xsd 
+http://www.loc.gov/standards/mix/mix10/ http://www.loc.gov/standards/mix/mix10/mix10.xsd 
+http://cosimo.stanford.edu/sdr/metsrights/ http://cosimo.stanford.edu/sdr/metsrights.xsd
+http://www.loc.gov/AMD/ http://lcweb2.loc.gov/mets/Schemas/AMD.xsd" 
+LABEL="Bill Berkson reading four poems" OBJID="1161292246579751" TYPE="audio.dramatic readings">
+  <METS:metsHdr CREATEDATE="2006-10-19T00:00:00.001" LASTMODDATE="2006-10-19T00:00:00.001">
+    <METS:agent ROLE="CREATOR">
+      <METS:name>Brown University Library, Center for Digital Initiatives</METS:name>
+    </METS:agent>
+  </METS:metsHdr>
+  <METS:dmdSec ID="DM1">
+    <METS:mdWrap MDTYPE="MODS">
+      <METS:xmlData>
+        <mods:mods ID="writ000073">
+          <mods:titleInfo>
+            <mods:title>Bill Berkson reading four poems</mods:title>
+          </mods:titleInfo>
+          <mods:titleInfo type="alternative" displayLabel="Distinctive Title:">
+            <mods:title>Compass points</mods:title>
+          </mods:titleInfo>
+          <mods:titleInfo type="alternative" displayLabel="Distinctive Title:">
+            <mods:title>Cuban fires</mods:title>
+          </mods:titleInfo>
+          <mods:titleInfo type="alternative" displayLabel="Distinctive Title:">
+            <mods:title>Without penalty</mods:title>
+          </mods:titleInfo>
+          <mods:titleInfo type="alternative" displayLabel="Distinctive Title:">
+            <mods:title>recording device</mods:title>
+            <mods:nonSort>A</mods:nonSort>
+          </mods:titleInfo>
+          <mods:name type="personal">
+            <mods:namePart>Berkson, Bill</mods:namePart>
+            <mods:role>
+              <mods:roleTerm type="text">creator</mods:roleTerm>
+            </mods:role>
+          </mods:name>
+          <mods:name type="conference">
+            <mods:namePart>Downcity Poetry Series</mods:namePart>
+            <mods:role>
+              <mods:roleTerm type="text">creator</mods:roleTerm>
+            </mods:role>
+          </mods:name>
+          <mods:genre authority="aat">dramatic readings</mods:genre>
+          <mods:originInfo>
+            <mods:dateCreated encoding="w3cdtf" keyDate="yes">2005-11</mods:dateCreated>
+          </mods:originInfo>
+          <mods:language>
+            <mods:languageTerm authority="iso639-2b" type="code">eng</mods:languageTerm>
+          </mods:language>
+          <mods:physicalDescription>
+            <mods:extent>1 mp3; 11:20</mods:extent>
+            <mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
+          </mods:physicalDescription>
+          <mods:abstract>Bill Berkson reading four poems at the Downcity Poetry Series Nov. 2005.</mods:abstract>
+          <mods:tableOfContents>Compass points -- Cuban fires -- Without penalty -- A recording device.</mods:tableOfContents>
+          <mods:relatedItem type="host" displayLabel="Collection:">
+            <mods:titleInfo>
+              <mods:title>Writers Online</mods:title>
+            </mods:titleInfo>
+            <mods:identifier type="COLID">27</mods:identifier>
+            <mods:identifier type="URI">http://dl.lib.brown.edu/writersonline</mods:identifier>
+          </mods:relatedItem>
+        </mods:mods>
+      </METS:xmlData>
+    </METS:mdWrap>
+  </METS:dmdSec>
+  <METS:amdSec>
+    <METS:techMD ID="ADM1">
+      <METS:mdWrap MDTYPE="OTHER" LABEL="AMD">
+        <METS:xmlData>
+          <amd:AUDIOMD ANALOGDIGITALFLAG="FileDigital">
+            <amd:file_data>
+              <amd:audio_block_size>640</amd:audio_block_size>
+              <amd:data_rate>196</amd:data_rate>
+              <amd:data_rate_mode>Fixed</amd:data_rate_mode>
+              <amd:first_sample_offset>2263</amd:first_sample_offset>
+              <amd:format_name>mpeg</amd:format_name>
+              <amd:format_note>mpeg 1, Layer 3</amd:format_note>
+              <amd:format_version>1</amd:format_version>
+              <amd:sampling_frequency>44.1</amd:sampling_frequency>
+            </amd:file_data>
+            <amd:audio_info>
+              <amd:duration>11:20</amd:duration>
+              <amd:sound_field>Joint Stereo</amd:sound_field>
+            </amd:audio_info>
+          </amd:AUDIOMD>
+        </METS:xmlData>
+      </METS:mdWrap>
+    </METS:techMD>
+    <METS:rightsMD ID="RMD1">
+      <METS:mdWrap MDTYPE="OTHER" LABEL="RIGHTSMD">
+        <METS:xmlData>
+          <rights:RightsDeclarationMD RIGHTSCATEGORY="PUBLIC DOMAIN">
+            <rights:RightsDeclaration>
+This object is available for public use. Individuals interested in reproducing this object in a publication, web site or for any commercial purpose must first receive written permission from the Brown University Library. 
+</rights:RightsDeclaration>
+            <rights:RightsHolder>
+              <rights:RightsHolderName>Brown University</rights:RightsHolderName>
+              <rights:RightsHolderContact>
+                <rights:RightsHolderContactDesignation>Center for Digital  Initiatives</rights:RightsHolderContactDesignation>
+                <rights:RightsHolderContactAddress>Box A, Brown University, Providence, RI 02912</rights:RightsHolderContactAddress>
+                <rights:RightsHolderContactEmail>cdi@brown.edu</rights:RightsHolderContactEmail>
+              </rights:RightsHolderContact>
+            </rights:RightsHolder>
+          </rights:RightsDeclarationMD>
+        </METS:xmlData>
+      </METS:mdWrap>
+    </METS:rightsMD>
+  </METS:amdSec>
+  <METS:fileSec>
+    <METS:fileGrp ID="GID1" USE="thumbnail">
+      <METS:file ID="FID1" MIMETYPE="image/jpeg" SEQ="1" GROUPID="GRP1"  CHECKSUMTYPE="MD5" CHECKSUM="D57A55AAC407AE9200B18E7927001704">
+        <METS:FLocat LOCTYPE="URL" xlink:href="http://dl.lib.brown.edu/jpegs/1161292247453139.jpg"/>
+      </METS:file>
+    </METS:fileGrp>
+    <METS:fileGrp ID="GID2" USE="streaming_audio">
+      <METS:file ID="FID2" MIMETYPE="audio/mpeg" SEQ="1" GROUPID="GRP1" CHECKSUMTYPE="MD5" CHECKSUM="29A8618C669B343A1D3F6405A1DF6A6F">
+        <METS:FLocat LOCTYPE="URL" xlink:href="1161292246899129.mp3"/>
+      </METS:file>
+    </METS:fileGrp>
+  </METS:fileSec>
+  <METS:structMap TYPE="physical" ID="structMap1">
+    <METS:div TYPE="Issue" DMDID="DM1" LABEL="Bill Berkson reading four poems">
+      <METS:fptr FILEID="FID2"/>
+    </METS:div>
+  </METS:structMap>
+</METS:mets>
