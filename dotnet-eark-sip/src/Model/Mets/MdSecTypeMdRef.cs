@@ -54,15 +54,14 @@ namespace Mets
         public string Otherloctype { get; set; }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        private string _type = "simple";
-        
-        [System.ComponentModel.DefaultValueAttribute("simple")]
+        private string _type = null;
+
         [System.Xml.Serialization.XmlAttributeAttribute("type", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Type
         {
             get
             {
-                return _type;
+                return _type ?? "simple";
             }
             set
             {

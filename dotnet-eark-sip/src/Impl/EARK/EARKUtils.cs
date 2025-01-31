@@ -343,8 +343,8 @@ public class EARKUtils {
     AddFileToZipAndMETS(zipEntries, metsWrapper, documentation, representationId, IPConstants.REPRESENTATIONS_FOLDER, metsCreator.AddDocumentationFileToMETS);
   }
 
-  // TODO: Create Logger type
-  public void AddDefaultSchemas(Logger logger, List<IIPFile> schemas, string buildDir, bool _override) {
+  // TODO: Add logger
+  public void AddDefaultSchemas(List<IIPFile> schemas, string buildDir, bool _override) {
     try {
       string tempSchema = string.Empty;
       if (schemas.Count > 0) {
@@ -393,7 +393,7 @@ public class EARKUtils {
         schemas.Add(new IPFile(xlinkSchema, IPConstants.SCHEMA_XLINK_FILENAME));
       }
     } catch (IOException e) {
-      logger.Error("Error while trying to add default schemas", e);
+      // logger.Error("Error while trying to add default schemas", e);
     }
   }
 }

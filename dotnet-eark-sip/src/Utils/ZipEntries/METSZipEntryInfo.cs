@@ -19,7 +19,8 @@ public class METSZipEntryInfo : FileZipEntryInfo {
     try {
       METSUtils.MarshallMETS(mets, FilePath, mainMets);
       if (!mainMets && fileType != null) {
-        METSUtils.SetFileBasicInformation(null, FilePath, fileType);
+        // TODO: Add logger
+        METSUtils.SetFileBasicInformation(FilePath, fileType);
 
         IFilecoreChecksumtype checksumType = Checksum;
         HashSet<string> checksumAlgorithms = new HashSet<string>();

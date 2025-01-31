@@ -36,7 +36,7 @@ public class IPFileShallow : IIPFile {
 
   public string GetFileName() => null;
 
-  public DirectoryInfo GetPath() {
+  public string GetPath() {
     throw new NotImplementedException("IPFileShallow does not support this method");
   }
 }

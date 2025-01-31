@@ -30,8 +30,8 @@ namespace IP {
       relatedTags = new List<string>();
     }
 
-    public DirectoryInfo GetPath() {
-      return path;
+    public string GetPath() {
+      return path.FullName;
     }
 
     public IPFile SetPath(string path) {

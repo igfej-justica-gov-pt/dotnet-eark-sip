@@ -391,7 +391,7 @@ public abstract class EARKMETSCreator {
     };
 
     // TODO: Add logger
-    METSUtils.SetFileBasicInformation(null, dataFile, file);
+    METSUtils.SetFileBasicInformation(dataFile, file);
 
     FileTypeFLocat fileLocation = METSUtils.CreateFileLocation(dataFilePath);
     file.FLocat.Add(fileLocation);
@@ -416,7 +416,7 @@ public abstract class EARKMETSCreator {
     };
 
     // TODO: Add logger
-    METSUtils.SetFileBasicInformation(null, schemaFile, file);
+    METSUtils.SetFileBasicInformation(schemaFile, file);
 
     FileTypeFLocat fileLocation = METSUtils.CreateFileLocation(filePath);
     file.FLocat.Add(fileLocation);
@@ -441,7 +441,7 @@ public abstract class EARKMETSCreator {
     };
 
     // TODO: Add logger
-    METSUtils.SetFileBasicInformation(null, documentationFile, file);
+    METSUtils.SetFileBasicInformation(documentationFile, file);
 
     FileTypeFLocat fileLocation = METSUtils.CreateFileLocation(filePath);
     file.FLocat.Add(fileLocation);

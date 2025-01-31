@@ -29,15 +29,14 @@ namespace Mets
         public string Id { get; set; }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        private string _type = "locator";
-        
-        [System.ComponentModel.DefaultValueAttribute("locator")]
+        private string _type = null;
+
         [System.Xml.Serialization.XmlAttributeAttribute("type", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Type
         {
             get
             {
-                return _type;
+                return _type ?? "locator";
             }
             set
             {

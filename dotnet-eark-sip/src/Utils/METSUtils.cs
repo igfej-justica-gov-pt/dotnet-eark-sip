@@ -104,12 +104,12 @@ public static class METSUtils {
     return mdRef;
   }
 
-  // TODO: Logger type
-  public static void SetFileBasicInformation(Logger logger, string filePath, FileType fileType) {
+  // TODO: Add logger
+  public static void SetFileBasicInformation(string filePath, FileType fileType) {
     try {
-      logger.Debug("Setting mimetype " + filePath);
+      // logger.Debug("Setting mimetype " + filePath);
       fileType.Mimetype = GetFileMimetype(filePath);
-      logger.Debug("Done setting mimetype");
+      // logger.Debug("Done setting mimetype");
     } catch (IOException e) {
       throw new IPException("Error probing content type: " + filePath, e);
     }
@@ -121,10 +121,10 @@ public static class METSUtils {
     }
 
     try {
-      logger.Debug("Setting file size " + filePath);
+      // logger.Debug("Setting file size " + filePath);
       FileInfo fileInfo = new FileInfo(filePath);
       fileType.Size = fileInfo.Length;
-      logger.Debug("Done setting file size");
+      // logger.Debug("Done setting file size");
     } catch (IOException e) {
       throw new IPException("Error getting file size: " + filePath, e);
     }

@@ -48,7 +48,8 @@ public class EARKSIP : SIP {
 
     try {
       Dictionary<string, IZipEntryInfo> zipEntries = GetZipEntries();
-      earkUtils.AddDefaultSchemas(null, GetSchemas(), buildDir.FullName, GetOverride());
+      // TODO: Add logger
+      earkUtils.AddDefaultSchemas(GetSchemas(), buildDir.FullName, GetOverride());
 
       bool isMetadataOther = GetOtherMetadata() != null && GetOtherMetadata().Count > 0;
       bool isMetadata = (GetDescriptiveMetadata() != null && GetDescriptiveMetadata().Count > 0) || (GetPreservationMetadata() != null && GetPreservationMetadata().Count > 0);
@@ -86,7 +87,7 @@ public class EARKSIP : SIP {
       return writeStrategy.Write(zipEntries, this, fileNameWithoutExtension, GetId(), true);
     } catch (Exception e) {
       // TODO: Add logger
-      ModelUtils.CleanUpUponInterrupt(null, writeStrategy.GetDestinationPath());
+      ModelUtils.CleanUpUponInterrupt(writeStrategy.GetDestinationPath());
       throw e;
     } finally {
       ModelUtils.DeleteBuildDir(buildDir.FullName);

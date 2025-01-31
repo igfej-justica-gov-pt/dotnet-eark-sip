@@ -27,11 +27,12 @@ public static class ModelUtils {
     return sb.ToString();
   }
 
-  public static void CleanUpUponInterrupt(Logger logger, string path) {
+  // TODO: Add logger
+  public static void CleanUpUponInterrupt(string path) {
     try {
       Utils.DeleteDirectory(path);
     } catch (IOException e) {
-      logger.Error("Error cleaning up unneeded files", e);
+      // logger.Error("Error cleaning up unneeded files", e);
     }
   }
 }

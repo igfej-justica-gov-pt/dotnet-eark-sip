@@ -28,7 +28,7 @@ namespace Mets
     [System.Xml.Serialization.XmlRootAttribute("mets", Namespace="http://www.loc.gov/METS/")]
     public partial class Mets : MetsType
     {
-        [XmlAttribute("xsi:schemaLocation", Namespace = "http://www.w3.org/2001/XMLSchema-instance")]
+        [XmlAttribute("schemaLocation", Namespace = "http://www.w3.org/2001/XMLSchema-instance")]
         public string SchemaLocation { get; set; }
     }
 }

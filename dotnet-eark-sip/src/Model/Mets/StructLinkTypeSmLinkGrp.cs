@@ -72,12 +72,12 @@ namespace Mets
         public string Id { get; set; }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        private StructLinkTypeSmLinkGrpArclinkorder _arclinkorder = global::Mets.StructLinkTypeSmLinkGrpArclinkorder.Unordered;
+        private StructLinkTypeSmLinkGrpArclinkorder _arclinkorder = global::Mets.StructLinkTypeSmLinkGrpArclinkorder.UNORDERED;
         
         /// <summary>
         /// <para xml:lang="en">ARCLINKORDER (enumerated string/O): ARCLINKORDER is used to indicate whether the order of the smArcLink elements aggregated by the smLinkGrp element is significant. If the order is significant, then a value of "ordered" should be supplied.  Value defaults to "unordered" Note that the ARLINKORDER attribute has no xlink specified meaning.</para>
         /// </summary>
-        [System.ComponentModel.DefaultValueAttribute(global::Mets.StructLinkTypeSmLinkGrpArclinkorder.Unordered)]
+        [System.ComponentModel.DefaultValueAttribute(global::Mets.StructLinkTypeSmLinkGrpArclinkorder.UNORDERED)]
         [System.ComponentModel.DescriptionAttribute(@"ARCLINKORDER (enumerated string/O): ARCLINKORDER is used to indicate whether the order of the smArcLink elements aggregated by the smLinkGrp element is significant. If the order is significant, then a value of ""ordered"" should be supplied. Value defaults to ""unordered"" Note that the ARLINKORDER attribute has no xlink specified meaning.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ARCLINKORDER")]
         public StructLinkTypeSmLinkGrpArclinkorder Arclinkorder
@@ -93,15 +93,14 @@ namespace Mets
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        private string _type = "extended";
-        
-        [System.ComponentModel.DefaultValueAttribute("extended")]
+        private string _type = null;
+
         [System.Xml.Serialization.XmlAttributeAttribute("type", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Type
         {
             get
             {
-                return _type;
+                return _type ?? "extended";
             }
             set
             {
