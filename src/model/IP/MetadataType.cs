@@ -12,13 +12,8 @@ namespace IP {
         this.type = (IMetadataMdtype)Enum.Parse(typeof(IMetadataMdtype), type);
         otherType = string.Empty;
       } catch {
-        if (Enum.GetNames(typeof(IMetadataMdtype)).Contains(type)) {
-          this.type = (IMetadataMdtype)Enum.Parse(typeof(IMetadataMdtype), type);
-          otherType = string.Empty;
-        } else {
-          this.type = IMetadataMdtype.OTHER;
-          otherType = type;
-        }
+        this.type = IMetadataMdtype.OTHER;
+        otherType = type;
       }
     }
 

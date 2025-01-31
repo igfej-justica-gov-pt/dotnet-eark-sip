@@ -1,27 +1,28 @@
 using Mets;
+using Xml.Mets.CsipExtensionMets;
 
 namespace IP {
   [Serializable]
   public class IPAgent {
     private string name;
     private MetsTypeMetsHdrAgentRole role;
-    private MetsTypeMetsHdrAgentType type;
     private string otherRole;
+    private MetsTypeMetsHdrAgentType type;
     private string otherType;
     private string note;
-    private Xml.Mets.CsipExtensionMets.Notetype? noteType;
+    private Notetype? noteType;
 
     public IPAgent() {
-      name = "";
+      name = string.Empty;
       role = MetsTypeMetsHdrAgentRole.OTHER;
       type = MetsTypeMetsHdrAgentType.OTHER;
-      otherRole = "";
-      otherType = "";
-      note = "";
+      otherRole = string.Empty;
+      otherType = string.Empty;
+      note = string.Empty;
       noteType = null;
     }
 
-    public IPAgent(string name, MetsTypeMetsHdrAgentRole role, string otherRole, MetsTypeMetsHdrAgentType type, string otherType, string note, Xml.Mets.CsipExtensionMets.Notetype noteType) {
+    public IPAgent(string name, MetsTypeMetsHdrAgentRole role, string otherRole, MetsTypeMetsHdrAgentType type, string otherType, string note, Notetype noteType) {
       this.name = name;
       this.role = role;
       this.type = type;
@@ -85,11 +86,11 @@ namespace IP {
       return this;
     }
 
-    public Xml.Mets.CsipExtensionMets.Notetype? GetNoteType() {
+    public Notetype? GetNoteType() {
       return noteType;
     }
 
-    public IPAgent SetNoteType(Xml.Mets.CsipExtensionMets.Notetype? noteType) {
+    public IPAgent SetNoteType(Notetype? noteType) {
       this.noteType = noteType;
       return this;
     }

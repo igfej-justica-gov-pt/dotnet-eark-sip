@@ -1,5 +1,6 @@
 using IPEnums;
 using Mets;
+using Xml.Mets.CsipExtensionMets;
 
 namespace IP {
   public abstract class IP {
@@ -39,7 +40,7 @@ namespace IP {
       contentInformationType = IPContentInformationType.GetMIXED();
       ancestors = new List<string>();
 
-      description = "";
+      description = string.Empty;
       checksumAlgorithm = "SHA-256";
 
       descriptiveMetadata = new List<IPDescriptiveMetadata>();
@@ -328,11 +329,11 @@ namespace IP {
     }
 
     private IPAgent GetSubmitterDefaultAgent() {
-      return new IPAgent("Default submitter agent", "CREATOR", null, MetsTypeMetsHdrAgentType.INDIVIDUAL, null, "1", IPAgentNoteTypeEnum.IDENTIFICATIONCODE);
+      return new IPAgent("Default submitter agent", MetsTypeMetsHdrAgentRole.CREATOR, null, MetsTypeMetsHdrAgentType.INDIVIDUAL, null, "1", Notetype.IDENTIFICATIONCODE);
     }
 
     public IPAgent AddCreatorSoftwareAgent(string name, string version) {
-      IPAgent creatorAgent = new IPAgent(name, "CREATOR", null, MetsTypeMetsHdrAgentType.OTHER, "SOFTWARE", version, IPAgentNoteTypeEnum.SOFTWARE_VERSION);
+      IPAgent creatorAgent = new IPAgent(name, MetsTypeMetsHdrAgentRole.CREATOR, null, MetsTypeMetsHdrAgentType.OTHER, "SOFTWARE", version, Notetype.SOFTWARE_VERSION);
       header.AddAgent(creatorAgent);
       return creatorAgent;
     }

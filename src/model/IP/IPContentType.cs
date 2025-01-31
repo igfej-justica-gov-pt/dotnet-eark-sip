@@ -89,7 +89,7 @@ namespace IP {
     public IPContentType(string type) {
       try {
         this.type = (IPContentTypeEnum)Enum.Parse(typeof(IPContentTypeEnum), type);
-        otherType = "";
+        otherType = string.Empty;
       } catch {
         this.type = IPContentTypeEnum.OTHER;
         otherType = type;
@@ -98,7 +98,7 @@ namespace IP {
 
     public IPContentType(IPContentTypeEnum type) {
       this.type = type;
-      otherType = "";
+      otherType = string.Empty;
     }
 
     public IPContentTypeEnum GetContentType() {

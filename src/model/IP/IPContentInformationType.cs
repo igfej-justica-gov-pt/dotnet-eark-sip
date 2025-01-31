@@ -11,7 +11,7 @@ namespace IP {
     public IPContentInformationType(string type) {
       try {
         this.type = (Contentinformationtype)Enum.Parse(typeof(Contentinformationtype), type);
-        otherType = "";
+        otherType = string.Empty;
       } catch {
         this.type = Contentinformationtype.OTHER;
         otherType = type;
@@ -20,7 +20,7 @@ namespace IP {
 
     public IPContentInformationType(Contentinformationtype type) {
       this.type = type;
-      otherType = "";
+      otherType = string.Empty;
     }
 
     public Contentinformationtype GetContentInformationType() {

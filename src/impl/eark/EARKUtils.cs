@@ -346,7 +346,7 @@ public class EARKUtils {
   // TODO: Create Logger type
   public void AddDefaultSchemas(Logger logger, List<IIPFile> schemas, string buildDir, bool _override) {
     try {
-      string tempSchema = "";
+      string tempSchema = string.Empty;
       if (schemas.Count > 0) {
         tempSchema = schemas.First().GetFileName();
 
@@ -360,7 +360,7 @@ public class EARKUtils {
 
           if (something.Contains(tempSchema)) {
             schemas.RemoveAt(0);
-            tempSchema = "";
+            tempSchema = string.Empty;
           }
         }
       }
