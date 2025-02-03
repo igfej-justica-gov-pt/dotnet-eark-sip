@@ -3,18 +3,14 @@ using System.Text;
 namespace IP {
   [Serializable]
   public class RepresentationStatus {
-    public enum RepresentationStatusEnum {
-      ORIGINAL, OTHER
-    }
-
     public RepresentationStatusEnum Status { get; private set; }
     public string OtherStatus { get; private set; }
 
     public RepresentationStatus(string status) {
-      try {
-        Status = (RepresentationStatusEnum)Enum.Parse(typeof(RepresentationStatusEnum), status);
+      if (new List<string> { "ORIGINAL", "OTHER" }.Contains(status)) {
+        Status = new RepresentationStatusEnum(status);
         OtherStatus = string.Empty;
-      } catch {
+      } else {
         Status = RepresentationStatusEnum.OTHER;
         OtherStatus = status;
       }
@@ -59,5 +55,18 @@ namespace IP {
 
       return Status == other.Status && OtherStatus.Equals(other.OtherStatus);
     }
+  }
+
+  public class RepresentationStatusEnum {
+    public static readonly RepresentationStatusEnum ORIGINAL = new RepresentationStatusEnum("ORIGINAL");
+    public static readonly RepresentationStatusEnum OTHER = new RepresentationStatusEnum("OTHER");
+
+    private string Status { get; }
+
+    public RepresentationStatusEnum(string status) {
+      Status = status;
+    }
+
+    public override string ToString() => Status;
   }
 }

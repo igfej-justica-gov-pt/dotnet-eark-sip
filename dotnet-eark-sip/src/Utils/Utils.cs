@@ -1,6 +1,11 @@
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 public static class Utils {
+  public static bool IsWindowsSystem() {
+    return RuntimeInformation.OSDescription.ToLower().Contains("windows");
+  }
+
   public static string GenerateRandomAndPrefixedUUID() {
     return METSEnums.ID_PREFIX + Guid.NewGuid().ToString().ToUpper();
   }
@@ -23,11 +28,9 @@ public static class Utils {
   public static void DeleteDirectory(string path) {
     if (path == null) return;
 
-    string[] files = Directory.GetFiles(path);
-    if (files.Length > 0) {
-      foreach (string file in files) {
-        File.Delete(file);
-      }
+    string[] files = Directory.GetFiles(path) ?? new string[0];
+    foreach (string file in files) {
+      File.Delete(file);
     }
 
     Directory.Delete(path);

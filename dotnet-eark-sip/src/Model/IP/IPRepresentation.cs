@@ -38,6 +38,18 @@ namespace IP {
     public IPRepresentation(string representationID) : base() {
       RepresentationID = representationID;
       objectID = representationID;
+      createDate = new DateTime();
+      contentType = IPContentType.GetMIXED();
+      ContentInformationType = IPContentInformationType.GetMIXED();
+      status = RepresentationStatus.GetORIGINAL();
+      description = string.Empty;
+      Agents = new List<IPAgent>();
+      DescriptiveMetadata = new List<IPDescriptiveMetadata>();
+      PreservationMetadata = new List<IPMetadata>();
+      OtherMetadata = new List<IPMetadata>();
+      Data = new List<IIPFile>();
+      Schemas = new List<IIPFile>();
+      Documentation = new List<IIPFile>();
     }
 
     public string GetObjectID() {
@@ -58,8 +70,8 @@ namespace IP {
       return this;
     }
 
-    public RepresentationStatus GetStatus() {
-      return status;
+    public string GetStatus() {
+      return status.ToString();
     }
 
     public IPRepresentation SetStatus(RepresentationStatus status) {

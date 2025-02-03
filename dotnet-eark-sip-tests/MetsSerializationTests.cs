@@ -3,8 +3,8 @@ using System.Xml.Serialization;
 
 namespace dotnet_eark_sip_tests;
 public class MetsSerializationTests : IDisposable {
-	private readonly string sampleXmlPath = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "METS_example.xml");
-	private readonly string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "Output");
+	private readonly string sampleXmlPath = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "METS", "METS_example.xml");
+	private readonly string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "serialization_tests");
 
 	public MetsSerializationTests() {
 		Directory.CreateDirectory(outputPath);
@@ -58,7 +58,13 @@ public class MetsSerializationTests : IDisposable {
 	public void Serialize_MetsObject_ShouldProduceValidXml()
 	{
 		// Generate basic METS object
-		MetsType mets = new() { MetsHdr = new MetsTypeMetsHdr { Createdate = DateTime.Parse("2024-01-29T12:00:00") } };
+		Mets.Mets mets = new()
+		{
+			MetsHdr = new MetsTypeMetsHdr { Createdate = DateTime.Parse("2024-01-29T12:00:00") },
+			SchemaLocation = "http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd" +
+				" https://DILCIS.eu/XML/METS/CSIPExtensionMETS https://earkcsip.dilcis.eu/schema/DILCISExtensionMETS.xsd" +
+				" https://DILCIS.eu/XML/METS/SIPExtensionMETS https://earkcsip.dilcis.eu/schema/DILCISExtensionSIPMETS.xsd"
+		};
 
 		mets.MetsHdr.Agent.Add(new MetsTypeMetsHdrAgent {
 			Role = MetsTypeMetsHdrAgentRole.CREATOR,
@@ -76,7 +82,7 @@ public class MetsSerializationTests : IDisposable {
 		string xmlOutputPath = Path.Combine(outputPath, "METS_serialization_test.xml");
 
 		// Serialize and write to file
-		XmlSerializer serializer = new(typeof(MetsType));
+		XmlSerializer serializer = new(typeof(Mets.Mets));
 		string xmlOutput;
 		
 		using (StringWriter writer = new())

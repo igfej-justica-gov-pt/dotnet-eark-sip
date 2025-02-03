@@ -6,7 +6,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="src\Resources\ControlledVocabularies\IANA_MEDIA_TYPES.txt" />
+    <None Remove="src\Resources\Schemas\DILCISExtensionMETS.xsd" />
+    <None Remove="src\Resources\Schemas\DILCISExtensionSIPMETS.xsd" />
+    <None Remove="src\Resources\Schemas\mets1_12_1.xsd" />
+    <None Remove="src\Resources\Schemas\xlink.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="src\Resources\ControlledVocabularies\IANA_MEDIA_TYPES.txt" />
+    <EmbeddedResource Include="src\Resources\Schemas\DILCISExtensionMETS.xsd" />
+    <EmbeddedResource Include="src\Resources\Schemas\DILCISExtensionSIPMETS.xsd" />
+    <EmbeddedResource Include="src\Resources\Schemas\mets1_12_1.xsd" />
+    <EmbeddedResource Include="src\Resources\Schemas\xlink.xsd" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MimeTypesMap" Version="1.0.9" />
+    <PackageReference Include="Mono.Options" Version="6.12.0.148" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 </Project>

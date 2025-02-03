@@ -106,10 +106,10 @@ namespace IP {
     {
       return "IPFile [path=" + path +
         ", renameTo=" + renameTo +
-        ", relativeFolders=" + relativeFolders +
+        ", relativeFolders=[" + string.Join(",", relativeFolders) + "]" +
         ", checksum=" + checksum +
         ", checksumAlgorithm=" + checksumAlgorithm +
-        ", relatedTags=" + relatedTags +
+        ", relatedTags=[" + string.Join(",", relatedTags) + "]" +
       "]";
     }
   }

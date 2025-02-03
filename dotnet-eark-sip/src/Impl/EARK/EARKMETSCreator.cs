@@ -314,9 +314,8 @@ public abstract class EARKMETSCreator {
     bool isDescriptive = false
   ) {
     MdSecType dmdSec = new MdSecType();
-    dmdSec.Status = Enum.GetName(typeof(MetadataStatus), metadata.getMetadataStatus());
+    dmdSec.Status = metadata.getMetadataStatus();
     dmdSec.Id = Utils.GenerateRandomAndPrefixedUUID();
-
     MdSecTypeMdRef mdRef = CreateMdRef(metadata.GetID(), metadataPath);
     mdRef.Mdtype = mdType;
     if (!string.IsNullOrEmpty(mdOtherType)) {
@@ -344,7 +343,7 @@ public abstract class EARKMETSCreator {
 
   public MdSecTypeMdRef AddPreservationMetadataToMETS(MetsWrapper metsWrapper, IPMetadata preservationMetadata, string preservationMetadataPath) {
     MdSecType digiprovMD = new MdSecType();
-    digiprovMD.Status = Enum.GetName(typeof(MetadataStatus), preservationMetadata.getMetadataStatus());
+    digiprovMD.Status = preservationMetadata.getMetadataStatus();
     digiprovMD.Id = Utils.GenerateRandomAndPrefixedUUID();
     MdSecTypeMdRef mdRef = CreateMdRef(preservationMetadata.GetID(), preservationMetadataPath);
     mdRef.Mdtype = preservationMetadata.GetMetadataType()._GetType();
@@ -640,6 +639,9 @@ public abstract class EARKMETSCreator {
         dataFilePath = IPConstants.DATA_FOLDER + ModelUtils.GetFoldersFromList(file.GetRelativeFolders());
       }
 
+      Console.WriteLine(dataFilePath);
+      Console.WriteLine(file);
+
       if (!dataFileGrp.ContainsKey(dataFilePath) && ((IPFileShallow)file).FileLocation != null) {
         MetsTypeFileSecFileGrp dataFileGroup = CreateFileGroup(dataFilePath);
         dataFileGrp.Add(dataFilePath, dataFileGroup);
@@ -686,6 +688,8 @@ public abstract class EARKMETSCreator {
   protected Tree<StructMapDiv> CreateTree(IPRepresentation representation) {
     Tree<StructMapDiv> divsTree = new Tree<StructMapDiv>(new StructMapDiv(IPConstants.DATA_WITH_FIRST_LETTER_CAPITAL));
     foreach (IIPFile file in representation.Data) {
+      Console.WriteLine("CreateTree");
+      Console.WriteLine(file is IPFileShallow);
       IPFileShallow shallow = (IPFileShallow)file;
       string dataFilePath;
       

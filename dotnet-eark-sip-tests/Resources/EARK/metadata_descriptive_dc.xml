@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<simpledc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../Data/dc.xsd">
+	<title>A title</title>
+	<identifier>IDf85218de-b94d-4365-9593-a5fd088a1c09</identifier>
+	<creator></creator>
+	<date></date>
+	<date></date>
+	<description></description>
+	<publisher></publisher>
+	<rights></rights>
+	<language>português</language>
+</simpledc>

@@ -1,7 +1,7 @@
 using Mets;
 
 public class METSFileTypeZipEntryInfo : FileZipEntryInfo {
-  private FileType MetsFileType { get; set; }
+  public FileType MetsFileType { get; set; }
 
   public METSFileTypeZipEntryInfo(string name, string filePath) : base(name, filePath) {}
 

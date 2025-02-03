@@ -3,7 +3,7 @@ using Mets;
 using Xml.Mets.CsipExtensionMets;
 
 namespace IP {
-  public abstract class IP {
+  public abstract class IP : IIP {
     private List<string> ids;
     private string profile;
     private IPType type;
@@ -27,7 +27,7 @@ namespace IP {
 
     private readonly Dictionary<string, IZipEntryInfo> zipEntries;
 
-    private string checksumAlgorithm;
+    private IFilecoreChecksumtype checksumAlgorithm;
     private bool _override;
 
     public IP() {
@@ -41,7 +41,7 @@ namespace IP {
       ancestors = new List<string>();
 
       description = string.Empty;
-      checksumAlgorithm = "SHA-256";
+      checksumAlgorithm = IFilecoreChecksumtype.SHA256;
 
       descriptiveMetadata = new List<IPDescriptiveMetadata>();
       preservationMetadata = new List<IPMetadata>();
@@ -69,7 +69,7 @@ namespace IP {
       return ids.First() ?? "";
     }
 
-    public IP SetId(string id) {
+    public IIP SetId(string id) {
       ids = new List<string>() { id };
       return this;
     }
@@ -78,7 +78,7 @@ namespace IP {
       return ids;
     }
 
-    public IP SetIds(List<string> ids) {
+    public IIP SetIds(List<string> ids) {
       this.ids = ids;
       return this;
     }
@@ -87,7 +87,7 @@ namespace IP {
       return profile;
     }
     
-    public IP SetProfile(string profile) {
+    public IIP SetProfile(string profile) {
       this.profile = profile;
       return this;
     }
@@ -96,7 +96,7 @@ namespace IP {
       return type.ToString();
     }
 
-    public IP SetType(IPType type) {
+    public IIP SetType(IPType type) {
       this.type = type;
       return this;
     }
@@ -105,31 +105,31 @@ namespace IP {
       return header;
     }
 
-    public IP SetHeader(IPHeader header) {
+    public IIP SetHeader(IPHeader header) {
       this.header = header;
       return this;
     }
 
     public List<IPAgent> GetAgents() => header.GetAgents();
-    public IP AddAgent(IPAgent agent) {
+    public IIP AddAgent(IPAgent agent) {
       header.AddAgent(agent);
       return this;
     }
 
     public IPStatus GetStatus() => header.GetStatus();
-    public IP SetStatus(IPStatus status) {
+    public IIP SetStatus(IPStatus status) {
       header.SetStatus(status);
       return this;
     }
 
     public DateTime? GetCreateDate() => header.GetCreateDate();
-    public IP SetCreateDate(DateTime date) {
+    public IIP SetCreateDate(DateTime date) {
       header.SetCreateDate(date);
       return this;
     }
 
     public DateTime? GetModificationDate() => header.GetModificationDate();
-    public IP SetModificationDate(DateTime date) {
+    public IIP SetModificationDate(DateTime date) {
       header.SetModificationDate(date);
       return this;
     }
@@ -138,7 +138,7 @@ namespace IP {
       return contentType;
     }
 
-    public IP SetContentType(IPContentType contentType) {
+    public IIP SetContentType(IPContentType contentType) {
       this.contentType = contentType;
       return this;
     }
@@ -147,7 +147,7 @@ namespace IP {
       return contentInformationType;
     }
 
-    public IP SetContentInformationType(IPContentInformationType contentInformationType) {
+    public IIP SetContentInformationType(IPContentInformationType contentInformationType) {
       this.contentInformationType = contentInformationType;
       return this;
     }
@@ -156,7 +156,7 @@ namespace IP {
       return ancestors;
     }
 
-    public IP SetAncestors(List<string> ancestors) {
+    public IIP SetAncestors(List<string> ancestors) {
       this.ancestors = ancestors;
       return this;
     }
@@ -165,7 +165,7 @@ namespace IP {
       return basePath;
     }
 
-    public IP SetBasePath(string basePath) {
+    public IIP SetBasePath(string basePath) {
       this.basePath = basePath;
       return this;
     }
@@ -174,7 +174,7 @@ namespace IP {
       return description;
     }
 
-    public IP SetDescription(string description) {
+    public IIP SetDescription(string description) {
       this.description = description;
       return this;
     }
@@ -183,7 +183,7 @@ namespace IP {
       return descriptiveMetadata;
     }
 
-    public IP AddDescriptiveMetadata(IPDescriptiveMetadata metadata) {
+    public IIP AddDescriptiveMetadata(IPDescriptiveMetadata metadata) {
       descriptiveMetadata.Add(metadata);
       return this;
     }
@@ -192,7 +192,7 @@ namespace IP {
       return preservationMetadata;
     }
 
-    public IP AddPreservationMetadata(IPMetadata metadata) {
+    public IIP AddPreservationMetadata(IPMetadata metadata) {
       preservationMetadata.Add(metadata);
       return this;
     }
@@ -210,7 +210,7 @@ namespace IP {
       return representationList;
     }
 
-    public IP AddRepresentation(IPRepresentation representation) {
+    public IIP AddRepresentation(IPRepresentation representation) {
       string representationID = representation.RepresentationID;
       if (representations.ContainsKey(representationID)) {
         throw new IPException("Representation already exists");
@@ -221,7 +221,7 @@ namespace IP {
       }
     }
 
-    public IP AddAgentToRepresentation(string representationID, IPAgent agent) {
+    public IIP AddAgentToRepresentation(string representationID, IPAgent agent) {
       CheckIfRepresentationExists(representationID);
       IPRepresentation rep = representations[representationID];
       rep.AddAgent(agent);
@@ -229,7 +229,7 @@ namespace IP {
       return this;
     }
 
-    public IP AddFileToRepresentation(string representationID, IIPFile file) {
+    public IIP AddFileToRepresentation(string representationID, IIPFile file) {
       CheckIfRepresentationExists(representationID);
       IPRepresentation rep = representations[representationID];
       rep.AddFile(file);
@@ -237,7 +237,7 @@ namespace IP {
       return this;
     }
 
-    public IP AddDescriptiveMetadataToRepresentation(string representationID, IPDescriptiveMetadata metadata) {
+    public IIP AddDescriptiveMetadataToRepresentation(string representationID, IPDescriptiveMetadata metadata) {
       CheckIfRepresentationExists(representationID);
       IPRepresentation rep = representations[representationID];
       rep.AddDescriptiveMetadata(metadata);
@@ -245,7 +245,7 @@ namespace IP {
       return this;
     }
 
-    public IP AddPreservationMetadataToRepresentation(string representationID, IPMetadata metadata) {
+    public IIP AddPreservationMetadataToRepresentation(string representationID, IPMetadata metadata) {
       CheckIfRepresentationExists(representationID);
       IPRepresentation rep = representations[representationID];
       rep.AddPreservationMetadata(metadata);
@@ -253,7 +253,7 @@ namespace IP {
       return this;
     }
 
-    public IP AddOtherMetadataToRepresentation(string representationID, IPMetadata metadata) {
+    public IIP AddOtherMetadataToRepresentation(string representationID, IPMetadata metadata) {
       CheckIfRepresentationExists(representationID);
       IPRepresentation rep = representations[representationID];
       rep.AddOtherMetadata(metadata);
@@ -261,7 +261,7 @@ namespace IP {
       return this;
     }
 
-    public IP AddSchemaToRepresentation(string representationID, IIPFile schema) {
+    public IIP AddSchemaToRepresentation(string representationID, IIPFile schema) {
       CheckIfRepresentationExists(representationID);
       IPRepresentation rep = representations[representationID];
       rep.AddSchema(schema);
@@ -269,7 +269,7 @@ namespace IP {
       return this;
     }
 
-    public IP AddDocumentationToRepresentation(string representationID, IIPFile documentation) {
+    public IIP AddDocumentationToRepresentation(string representationID, IIPFile documentation) {
       CheckIfRepresentationExists(representationID);
       IPRepresentation rep = representations[representationID];
       rep.AddDocumentation(documentation);
@@ -277,7 +277,7 @@ namespace IP {
       return this;
     }
 
-    public IP AddOtherMetadata(IPMetadata metadata) {
+    public IIP AddOtherMetadata(IPMetadata metadata) {
       otherMetadata.Add(metadata);
       return this;
     }
@@ -286,7 +286,7 @@ namespace IP {
       return new List<IIPFile>(schemas);
     }
 
-    public IP AddSchema(IIPFile schema) {
+    public IIP AddSchema(IIPFile schema) {
       schemas.Add(schema);
       return this;
     }
@@ -295,7 +295,7 @@ namespace IP {
       return new List<IIPFile>(documentation);
     }
 
-    public IP AddDocumentation(IIPFile documentationPath) {
+    public IIP AddDocumentation(IIPFile documentationPath) {
       documentation.Add(documentationPath);
       return this;
     }
@@ -304,11 +304,11 @@ namespace IP {
       return zipEntries;
     }
 
-    public string GetChecksumAlgorithm() {
+    public IFilecoreChecksumtype GetChecksumAlgorithm() {
       return checksumAlgorithm;
     }
 
-    public IP SetChecksumAlgorithm(string checksumAlgorithm) {
+    public IIP SetChecksumAlgorithm(IFilecoreChecksumtype checksumAlgorithm) {
       this.checksumAlgorithm = checksumAlgorithm;
       return this;
     }
@@ -317,8 +317,8 @@ namespace IP {
       return _override;
     }
 
-    public IP SetOverride(bool _override) {
-      this._override = _override;
+    public IIP SetOverride() {
+      _override = true;
       return this;
     }
 
@@ -353,7 +353,14 @@ namespace IP {
       return submitterAgent;
     }
 
-    public abstract HashSet<string> GetExtraChecksumAlgorithms();
+    public abstract HashSet<IFilecoreChecksumtype> GetExtraChecksumAlgorithms();
+
+    public abstract string Build(IWriteStrategy writeStrategy);
+    public abstract string Build(IWriteStrategy writeStrategy, bool onlyManifest);
+    public abstract string Build(IWriteStrategy writeStrategy, string fileNameWithoutExtension);
+    public abstract string Build(IWriteStrategy writeStrategy, string fileNameWithoutExtension, SIPType sipType);
+    public abstract string Build(IWriteStrategy writeStrategy, string fileNameWithoutExtension, bool onliManifest);
+    public abstract string Build(IWriteStrategy writeStrategy, string fileNameWithoutExtension, bool onliManifest, SIPType sipType);
 
     public override string ToString()
     {

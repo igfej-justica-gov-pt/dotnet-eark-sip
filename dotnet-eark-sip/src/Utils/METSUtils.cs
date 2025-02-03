@@ -29,7 +29,7 @@ public static class METSUtils {
     return tempMETSFile;
   }
 
-  public static void AddMainMETSToZip(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, string metsPath, DirectoryInfo buildDir) {
+  public static void AddMainMETSToZip(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, string metsPath, string buildDir) {
     try {
       AddMETSToZip(zipEntries, metsWrapper, metsPath, buildDir, true, null);
     } catch (Exception e) {
@@ -41,7 +41,7 @@ public static class METSUtils {
     }
   }
 
-  public static void AddMainMETSToZip(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, DirectoryInfo buildDir) {
+  public static void AddMainMETSToZip(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, string buildDir) {
     AddMainMETSToZip(zipEntries, metsWrapper, IPConstants.METS_FILE, buildDir);
   }
 
@@ -50,11 +50,11 @@ public static class METSUtils {
     IZipEntryInfo> zipEntries,
     MetsWrapper metsWrapper,
     string metsPath,
-    DirectoryInfo buildDir,
+    string buildDir,
     bool mainMets,
     FileType fileType
   ) {
-    string temp = Path.Combine(buildDir.FullName, IPConstants.METS_FILE_NAME + IPConstants.METS_FILE_EXTENSION);
+    string temp = Path.Combine(buildDir, IPConstants.METS_FILE_NAME + IPConstants.METS_FILE_EXTENSION);
     File.Create(temp).Dispose();
     ZIPUtils.AddMETSFileToZip(zipEntries, temp, metsPath, metsWrapper.Mets, mainMets, fileType);
   }

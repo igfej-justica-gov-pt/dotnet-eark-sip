@@ -1,6 +1,7 @@
+using System.Reflection;
 using System.Text;
 
-public class IanaMediaTypes {
+public static class IanaMediaTypes {
   private static HashSet<string> list = null;
 
   public static HashSet<string> List {
@@ -10,15 +11,18 @@ public class IanaMediaTypes {
     }
   }
 
-  private IanaMediaTypes() {}
-
   public static HashSet<string> LoadIanaMediaTypes() {
-    string filePath = Constants.IANA_MEDIA_TYPES_PATH;
+    var assembly = Assembly.GetExecutingAssembly();
+    string resourceName = "dotnet_eark_sip.src.Resources.ControlledVocabularies.IANA_MEDIA_TYPES.txt";
 
-    if (!File.Exists(filePath)) {
-      throw new FileNotFoundException($"File not found: {filePath}");
+    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+    using (StreamReader reader = new(stream, Encoding.UTF8)) {
+      var lines = new List<string>();
+      while (!reader.EndOfStream) {
+        lines.Add(reader.ReadLine());
+      }
+
+      return new HashSet<string>(lines);
     }
-
-    return new HashSet<string>(File.ReadLines(filePath, Encoding.UTF8));
   }
 }

@@ -106,12 +106,47 @@ public class EARKUtils {
       IPHeader header = new IPHeader(IPEnums.IPStatus.NEW).SetAgents(representation.Agents);
       MetsWrapper representationMetsWrapper;
 
-      if (new List<IPEnums.SIPType>{ IPEnums.SIPType.ERMS, IPEnums.SIPType.EARK2S, IPEnums.SIPType.SIARD }.Contains(sipType)) {
-        string profile = sipType == IPEnums.SIPType.SIARD ? "https://citssiard.dilcis.eu/profile/E-ARK-SIARD-REPRESENTATION.xml" : ip.GetProfile();
+      if (IPEnums.SIPType.ERMS == sipType) {
         representationMetsWrapper = metsCreator.GenerateMets(
           representationId,
           representation.GetDescription(),
-          profile,
+          ip.GetProfile(),
+          false,
+          null,
+          null,
+          header,
+          representation.GetContentType(),
+          representation.ContentInformationType,
+          isRepresentationMetadata,
+          isRepresentationMetadataOther,
+          isRepresentationSchemas,
+          isRepresentationDocumentation,
+          false,
+          isRepresentationsData
+        );
+      } else if (IPEnums.SIPType.SIARD == sipType) {
+        representationMetsWrapper = metsCreator.GenerateMets(
+          representationId,
+          representation.GetDescription(),
+          ip.GetProfile(),
+          false,
+          null,
+          null,
+          header,
+          representation.GetContentType(),
+          representation.ContentInformationType,
+          isRepresentationMetadata,
+          isRepresentationMetadataOther,
+          isRepresentationSchemas,
+          isRepresentationDocumentation,
+          false,
+          isRepresentationsData
+        );
+      } else if (IPEnums.SIPType.EARK2S != sipType) {
+        representationMetsWrapper = metsCreator.GenerateMets(
+          representationId,
+          representation.GetDescription(),
+          "https://citssiard.dilcis.eu/profile/E-ARK-SIARD-REPRESENTATION.xml",
           false,
           null,
           null,
@@ -142,7 +177,7 @@ public class EARKUtils {
         );
       }
 
-      representationMetsWrapper.MainDiv.Type = Enum.GetName(typeof(RepresentationStatus), representation.GetStatus());
+      representationMetsWrapper.MainDiv.Type = representation.GetStatus();
 
       // representation data
       if (sipType == IPEnums.SIPType.ERMS) {

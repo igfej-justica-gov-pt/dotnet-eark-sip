@@ -1,7 +1,7 @@
 using Mets;
 
 public class METSMdRefZipEntryInfo : FileZipEntryInfo {
-  private MdSecTypeMdRef MetsMdRef { get; set; }
+  public MdSecTypeMdRef MetsMdRef { get; set; }
 
   public METSMdRefZipEntryInfo(string name, string filePath) : base(name, filePath) {}
 
