@@ -639,9 +639,6 @@ public abstract class EARKMETSCreator {
         dataFilePath = IPConstants.DATA_FOLDER + ModelUtils.GetFoldersFromList(file.GetRelativeFolders());
       }
 
-      Console.WriteLine(dataFilePath);
-      Console.WriteLine(file);
-
       if (!dataFileGrp.ContainsKey(dataFilePath) && ((IPFileShallow)file).FileLocation != null) {
         MetsTypeFileSecFileGrp dataFileGroup = CreateFileGroup(dataFilePath);
         dataFileGrp.Add(dataFilePath, dataFileGroup);
@@ -688,11 +685,9 @@ public abstract class EARKMETSCreator {
   protected Tree<StructMapDiv> CreateTree(IPRepresentation representation) {
     Tree<StructMapDiv> divsTree = new Tree<StructMapDiv>(new StructMapDiv(IPConstants.DATA_WITH_FIRST_LETTER_CAPITAL));
     foreach (IIPFile file in representation.Data) {
-      Console.WriteLine("CreateTree");
-      Console.WriteLine(file is IPFileShallow);
       IPFileShallow shallow = (IPFileShallow)file;
       string dataFilePath;
-      
+
       if (shallow.GetRelativeFolders() == null || shallow.GetRelativeFolders().Count == 0) {
         dataFilePath = IPConstants.DATA_WITH_FIRST_LETTER_CAPITAL;
       } else {

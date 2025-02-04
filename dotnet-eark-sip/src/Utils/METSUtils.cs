@@ -8,22 +8,27 @@ public static class METSUtils {
   public static string MarshallMETS(Mets.Mets mets, string tempMETSFile, bool mainMets) {
     XmlSerializer serializer = new XmlSerializer(typeof(Mets.Mets));
     XmlWriterSettings settings = new XmlWriterSettings { Indent = true };
+    XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+    ns.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+    ns.Add("csip", "https://DILCIS.eu/XML/METS/CSIPExtensionMETS");
+    ns.Add("sip", "https://DILCIS.eu/XML/METS/SIPExtensionMETS");
+    ns.Add("xlink", "http://www.w3.org/1999/xlink");
 
     if (mainMets) {
       mets.SchemaLocation = "http://www.loc.gov/METS/ schemas/" + IPConstants.SCHEMA_METS_FILENAME_WITH_VERSION
         + " http://www.w3.org/1999/xlink schemas/" + IPConstants.SCHEMA_XLINK_FILENAME
-        + " https://dilcis.eu/XML/METS/CSIPExtensionMETS schemas/" + IPConstants.SCHEMA_EARK_CSIP_FILENAME
-        + " https://dilcis.eu/XML/METS/SIPExtensionMETS schemas/" + IPConstants.SCHEMA_EARK_SIP_FILENAME;
+        + " https://DILCIS.eu/XML/METS/CSIPExtensionMETS schemas/" + IPConstants.SCHEMA_EARK_CSIP_FILENAME
+        + " https://DILCIS.eu/XML/METS/SIPExtensionMETS schemas/" + IPConstants.SCHEMA_EARK_SIP_FILENAME;
     } else {
       mets.SchemaLocation = "http://www.loc.gov/METS/ ../../schemas/" + IPConstants.SCHEMA_METS_FILENAME_WITH_VERSION
           + " http://www.w3.org/1999/xlink ../../schemas/" + IPConstants.SCHEMA_XLINK_FILENAME
-          + " https://dilcis.eu/XML/METS/CSIPExtensionMETS ../../schemas/" + IPConstants.SCHEMA_EARK_CSIP_FILENAME
-          + " https://dilcis.eu/XML/METS/SIPExtensionMETS ../../schemas/" + IPConstants.SCHEMA_EARK_SIP_FILENAME;
+          + " https://DILCIS.eu/XML/METS/CSIPExtensionMETS ../../schemas/" + IPConstants.SCHEMA_EARK_CSIP_FILENAME
+          + " https://DILCIS.eu/XML/METS/SIPExtensionMETS ../../schemas/" + IPConstants.SCHEMA_EARK_SIP_FILENAME;
     }
 
     using (FileStream fileStream = new FileStream(tempMETSFile, FileMode.Create))
     using (XmlWriter writer = XmlWriter.Create(fileStream, settings)) {
-      serializer.Serialize(writer, mets);
+      serializer.Serialize(writer, mets, ns);
     }
 
     return tempMETSFile;
