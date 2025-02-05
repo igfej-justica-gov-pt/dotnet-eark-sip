@@ -21,7 +21,7 @@ namespace IP {
     public IPRepresentation() {
       RepresentationID = Utils.GenerateRandomAndPrefixedUUID();
       objectID = RepresentationID;
-      createDate = new DateTime();
+      createDate = DateTime.Now;
       contentType = IPContentType.GetMIXED();
       ContentInformationType = IPContentInformationType.GetMIXED();
       status = RepresentationStatus.GetORIGINAL();
@@ -38,7 +38,7 @@ namespace IP {
     public IPRepresentation(string representationID) : base() {
       RepresentationID = representationID;
       objectID = representationID;
-      createDate = new DateTime();
+      createDate = DateTime.Now;
       contentType = IPContentType.GetMIXED();
       ContentInformationType = IPContentInformationType.GetMIXED();
       status = RepresentationStatus.GetORIGINAL();

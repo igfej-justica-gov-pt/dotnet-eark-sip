@@ -15,8 +15,8 @@ namespace IP {
     public IPAgent() {
       name = string.Empty;
       role = MetsTypeMetsHdrAgentRole.OTHER;
-      type = MetsTypeMetsHdrAgentType.OTHER;
       otherRole = string.Empty;
+      type = MetsTypeMetsHdrAgentType.OTHER;
       otherType = string.Empty;
       note = string.Empty;
       noteType = null;
@@ -25,8 +25,8 @@ namespace IP {
     public IPAgent(string name, MetsTypeMetsHdrAgentRole role, string otherRole, MetsTypeMetsHdrAgentType type, string otherType, string note, Notetype noteType) {
       this.name = name;
       this.role = role;
-      this.type = type;
       this.otherRole = otherRole;
+      this.type = type;
       this.otherType = otherType;
       this.note = note;
       this.noteType = noteType;

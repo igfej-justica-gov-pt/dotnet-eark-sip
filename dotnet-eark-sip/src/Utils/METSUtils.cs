@@ -8,6 +8,7 @@ public static class METSUtils {
   public static string MarshallMETS(Mets.Mets mets, string tempMETSFile, bool mainMets) {
     XmlSerializer serializer = new XmlSerializer(typeof(Mets.Mets));
     XmlWriterSettings settings = new XmlWriterSettings { Indent = true };
+
     XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
     ns.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
     ns.Add("csip", "https://DILCIS.eu/XML/METS/CSIPExtensionMETS");
@@ -94,7 +95,8 @@ public static class METSUtils {
     }
 
     try {
-      mdRef.Created = new DateTime();
+      mdRef.Created = DateTime.Now;
+      mdRef.CreatedSpecified = true;
     } catch (InvalidOperationException e) {
       throw new IPException("Error getting current date", e);
     }
@@ -102,6 +104,7 @@ public static class METSUtils {
     try {
       FileInfo fileInfo = new FileInfo(filePath);
       mdRef.Size = fileInfo.Length;
+      mdRef.SizeSpecified = true;
     } catch (IOException e) {
       throw new IPException("Error getting file size: " + filePath, e);
     }
@@ -120,7 +123,8 @@ public static class METSUtils {
     }
 
     try {
-      fileType.Created = new DateTime();
+      fileType.Created = DateTime.Now;
+      fileType.CreatedSpecified = true;
     } catch (InvalidOperationException e) {
       throw new IPException("Error getting current date: " + filePath, e);
     }
@@ -129,6 +133,7 @@ public static class METSUtils {
       // logger.Debug("Setting file size " + filePath);
       FileInfo fileInfo = new FileInfo(filePath);
       fileType.Size = fileInfo.Length;
+      fileType.SizeSpecified = true;
       // logger.Debug("Done setting file size");
     } catch (IOException e) {
       throw new IPException("Error getting file size: " + filePath, e);

@@ -3,9 +3,6 @@ using IP;
 using Mets;
 
 public class SIPBuilderUtils {
-  private static readonly string UNDERSCORE = "_";
-  private static readonly string DOT_REGEX = @"\.";
-
   public static string GetOrGenerateID(string sipId) {
     string id = sipId;
 

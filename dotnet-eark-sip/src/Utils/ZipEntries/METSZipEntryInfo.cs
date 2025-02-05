@@ -29,6 +29,7 @@ public class METSZipEntryInfo : FileZipEntryInfo {
           string checksum = checksums[checksumType];
           fileType.Checksum = checksum;
           fileType.Checksumtype = checksumType;
+          fileType.ChecksumtypeSpecified = true;
         }
       }
     } catch (Exception e) {

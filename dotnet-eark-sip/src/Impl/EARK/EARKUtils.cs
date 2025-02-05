@@ -90,8 +90,8 @@ public class EARKUtils {
   ) {
     if (representations == null || representations.Count == 0) return;
 
-    if (ip is SIP sIP) {
-      sIP.NotifySipBuildRepresentationsProcessingStarted(representations.Count);
+    if (ip is SIP sip) {
+      sip.NotifySipBuildRepresentationsProcessingStarted(representations.Count);
     }
 
     foreach (IPRepresentation representation in representations) {
@@ -128,7 +128,7 @@ public class EARKUtils {
         representationMetsWrapper = metsCreator.GenerateMets(
           representationId,
           representation.GetDescription(),
-          ip.GetProfile(),
+          "https://citssiard.dilcis.eu/profile/E-ARK-SIARD-REPRESENTATION.xml",
           false,
           null,
           null,
@@ -146,7 +146,7 @@ public class EARKUtils {
         representationMetsWrapper = metsCreator.GenerateMets(
           representationId,
           representation.GetDescription(),
-          "https://citssiard.dilcis.eu/profile/E-ARK-SIARD-REPRESENTATION.xml",
+          ip.GetProfile(),
           false,
           null,
           null,
@@ -227,8 +227,8 @@ public class EARKUtils {
       metsCreator.CleanFileGrpStructure();
     }
 
-    if (ip is SIP sIP1) {
-      sIP1.NotifySipBuildRepresentationsProcessingEnded();
+    if (ip is SIP sip1) {
+      sip1.NotifySipBuildRepresentationsProcessingEnded();
     }
   }
 
@@ -360,12 +360,13 @@ public class EARKUtils {
     if (files == null) return;
 
     foreach (IIPFile file in files) {
-      string filePath = IPConstants.SCHEMAS_FOLDER + ModelUtils.GetFoldersFromList(file.GetRelativeFolders()) + file.GetFileName();
+      string filePath = folder + ModelUtils.GetFoldersFromList(file.GetRelativeFolders()) + file.GetFileName();
       FileType fileType = addToMetsFunc(metsWrapper, filePath, file.GetPath());
 
       if (representationId != null) {
         filePath = folder + representationId + IPConstants.ZIP_PATH_SEPARATOR + filePath;
       }
+
       ZIPUtils.AddFileTypeFileToZip(zipEntries, file.GetPath(), filePath, fileType);
     }
   }
@@ -375,7 +376,7 @@ public class EARKUtils {
   }
 
   public void AddDocumentationToZipAndMETS(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, List<IIPFile> documentation, string representationId) {
-    AddFileToZipAndMETS(zipEntries, metsWrapper, documentation, representationId, IPConstants.REPRESENTATIONS_FOLDER, metsCreator.AddDocumentationFileToMETS);
+    AddFileToZipAndMETS(zipEntries, metsWrapper, documentation, representationId, IPConstants.DOCUMENTATION_FOLDER, metsCreator.AddDocumentationFileToMETS);
   }
 
   // TODO: Add logger
@@ -386,14 +387,14 @@ public class EARKUtils {
         tempSchema = schemas.First().GetFileName();
 
         if (!_override) {
-          List<string> something = new List<string> {
+          List<string> defaultSchemas = new List<string> {
             IPConstants.SCHEMA_EARK_CSIP_FILENAME,
             IPConstants.SCHEMA_EARK_SIP_FILENAME,
             IPConstants.SCHEMA_METS_FILENAME_WITH_VERSION,
             IPConstants.SCHEMA_XLINK_FILENAME,
           };
 
-          if (something.Contains(tempSchema)) {
+          if (defaultSchemas.Contains(tempSchema)) {
             schemas.RemoveAt(0);
             tempSchema = string.Empty;
           }
@@ -428,6 +429,7 @@ public class EARKUtils {
         schemas.Add(new IPFile(xlinkSchema, IPConstants.SCHEMA_XLINK_FILENAME));
       }
     } catch (IOException e) {
+      Console.WriteLine(e.Message);
       // logger.Error("Error while trying to add default schemas", e);
     }
   }

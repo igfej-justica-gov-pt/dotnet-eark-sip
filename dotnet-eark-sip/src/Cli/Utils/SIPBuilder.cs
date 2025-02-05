@@ -101,7 +101,7 @@ public class SIPBuilder {
     sip.AddSubmitterAgent(submitterAgentName, submitterAgentId);
     sip.SetDescription("SIP created by dotnet-eark-sip cli");
 
-    if (checksumAlgorithm != null) sip.SetChecksumAlgorithm(checksumAlgorithm);
+    sip.SetChecksumAlgorithm(checksumAlgorithm);
 
     if (overrideSchema) sip.SetOverride();
 
@@ -109,14 +109,14 @@ public class SIPBuilder {
       SIPBuilderUtils.AddMetadataGroupsToSIP(sip, metadataArgs);
     } catch (IPException e) {
       // Logger.Debug("Cannot add metadata to the SIP.", e);
-      throw new SIPBuilderException("Cannot add metadata to the SIP.");
+      throw new SIPBuilderException("Cannot add metadata to the SIP.", e);
     }
 
     try {
       SIPBuilderUtils.AddRepresentationGroupsToSIP(sip, representationArgs, targetOnly);
     } catch (IPException e) {
       // Logger.Debug("Cannot add representation to the SIP.", e);
-      throw new SIPBuilderException("Cannot add representation to the SIP.");
+      throw new SIPBuilderException("Cannot add representation to the SIP.", e);
     }
 
     if (documentation != null) {
@@ -124,7 +124,7 @@ public class SIPBuilder {
         SIPBuilderUtils.AddDocumentationToSIP(sip, documentation);
       } catch (IPException e) {
         // Logger.Debug("Cannot add documentation to the SIP.", e);
-        throw new SIPBuilderException("Cannot add documentation to the SIP.");
+        throw new SIPBuilderException("Cannot add documentation to the SIP.", e);
       }
     }
 
@@ -139,7 +139,7 @@ public class SIPBuilder {
       return sip.Build(writeStrategy);
     } catch (IPException e) {
       // Logger.Debug("Unable to create the E-ARK SIP", e);
-      throw new SIPBuilderException("Unable to create the E-ARK SIP");
+      throw new SIPBuilderException("Unable to create the E-ARK SIP", e);
     }
   }
 }

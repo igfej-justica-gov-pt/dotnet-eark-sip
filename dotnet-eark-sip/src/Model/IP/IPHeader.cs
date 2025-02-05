@@ -12,7 +12,7 @@ namespace IP {
     private readonly List<IPAltRecordID> altRecordIDs;
 
     public IPHeader() {
-      createDate = new DateTime();
+      createDate = DateTime.Now;
       modificationDate = null;
       status = IPStatus.NEW;
       agents = new List<IPAgent>();
@@ -21,7 +21,7 @@ namespace IP {
 
     public IPHeader(IPStatus status) {
       this.status = status;
-      createDate = new DateTime();
+      createDate = DateTime.Now;
       modificationDate = null;
       agents = new List<IPAgent>();
       altRecordIDs = new List<IPAltRecordID>();
@@ -82,7 +82,8 @@ namespace IP {
       return "IPHeader [createDate=" + createDate +
         ", modificationDate=" + modificationDate +
         ", status=" + status +
-        ", altRecordIDs=" + altRecordIDs + ", agents=" + agents +
+        ", altRecordIDs=[" + string.Join(", ", altRecordIDs) + "]" +
+        ", agents=[" + string.Join(", ", agents) + "]" +
       "]";
     }
   }

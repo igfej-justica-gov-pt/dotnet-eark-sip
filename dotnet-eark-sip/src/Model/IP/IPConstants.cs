@@ -73,46 +73,23 @@ public class IPConstants {
   public static readonly string SIP_SPEC_PROFILE = "https://earksip.dilcis.eu/profile/E-ARK-SIP.xml";
 
   // EARK
-  public static readonly string EARK_SIP_STRUCTURAL_MAP = "EARK SIP structural map";
-  public static readonly string EARK_SIP_DIV_LABEL = "EARK SIP";
+  public static readonly string EARK_SIP_STRUCTURAL_MAP = ".NET EARK SIP structural map";
+  public static readonly string EARK_SIP_DIV_LABEL = ".NET EARK SIP";
   public static readonly string EARK_SIP_ANCESTORS_DIV_LABEL = "Ancestors";
-
-  // Bagit
-  public static readonly string BAGIT_PARENT = "parent";
-  public static readonly string BAGIT_ID = "id";
-  public static readonly string BAGIT_TITLE = "title";
-  public static readonly string BAGIT_LEVEL = "level";
-  public static readonly string BAGIT_ITEM_LEVEL = "item";
-  public static readonly string BAGIT_DATA_FOLDER = "data";
-  public static readonly string BAGIT_NAME = "name";
-  public static readonly string BAGIT_FIELD = "field";
-  public static readonly string BAGIT_METADATA = "metadata";
-  public static readonly string BAGIT_VENDOR = "vendor";
-  public static readonly string BAGIT_VENDOR_COMMONS_IP = "commons-ip";
-
-  // Hungarian
-  public static readonly string CONTENT_FOLDER = "content";
-  public static readonly string HEADER_FOLDER = "header";
-  public static readonly string METADATA_FILE = "metadata.xml";
-  public static readonly string HUNGARIAN_METADATA_FILE = HEADER_FOLDER + "/" + METADATA_FILE;
-  public static readonly string HUNGARIAN_DOCUMENTATION_TAG = "documentation";
 
   public static bool METS_ENCODE_AND_DECODE_HREF = true;
 
-  // XML SChemas
+  // XML Schemas
+  public static readonly string SCHEMAS_PATH = "dotnet_eark_sip.src.Resources.Schemas.";
   public static readonly string SCHEMA_METS_FILENAME_WITH_VERSION = "mets1_12_1.xsd";
-  public static readonly string SCHEMA_METS_RELATIVE_PATH_FROM_RESOURCES = METS_PATH_SEPARATOR + SCHEMAS + "2"
-    + METS_PATH_SEPARATOR + SCHEMA_METS_FILENAME_WITH_VERSION;
+  public static readonly string SCHEMA_METS_RELATIVE_PATH_FROM_RESOURCES = SCHEMAS_PATH + SCHEMA_METS_FILENAME_WITH_VERSION;
   public static readonly string SCHEMA_XLINK_FILENAME = "xlink.xsd";
-  public static readonly string SCHEMA_XLINK_RELATIVE_PATH_FROM_RESOURCES = METS_PATH_SEPARATOR + SCHEMAS + "2"
-    + METS_PATH_SEPARATOR + SCHEMA_XLINK_FILENAME;
+  public static readonly string SCHEMA_XLINK_RELATIVE_PATH_FROM_RESOURCES = SCHEMAS_PATH + SCHEMA_XLINK_FILENAME;
   public static readonly string SCHEMA_XLINK_URL = "http://www.loc.gov/standards/xlink/xlink.xsd";
   public static readonly string SCHEMA_EARK_CSIP_FILENAME = "DILCISExtensionMETS.xsd";
-  public static readonly string SCHEMA_EARK_CSIP_RELATIVE_PATH_FROM_RESOURCES = METS_PATH_SEPARATOR + SCHEMAS + "2"
-    + METS_PATH_SEPARATOR + SCHEMA_EARK_CSIP_FILENAME;
+  public static readonly string SCHEMA_EARK_CSIP_RELATIVE_PATH_FROM_RESOURCES = SCHEMAS_PATH + SCHEMA_EARK_CSIP_FILENAME;
   public static readonly string SCHEMA_EARK_SIP_FILENAME = "DILCISExtensionSIPMETS.xsd";
-  public static readonly string SCHEMA_EARK_SIP_RELATIVE_PATH_FROM_RESOURCES = METS_PATH_SEPARATOR + SCHEMAS + "2"
-    + METS_PATH_SEPARATOR + SCHEMA_EARK_SIP_FILENAME;
+  public static readonly string SCHEMA_EARK_SIP_RELATIVE_PATH_FROM_RESOURCES = SCHEMAS_PATH + SCHEMA_EARK_SIP_FILENAME;
 
   public static readonly string SIP_FILE_EXTENSION = ".zip";
 

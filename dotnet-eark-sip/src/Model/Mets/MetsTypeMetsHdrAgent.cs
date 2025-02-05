@@ -116,7 +116,7 @@ namespace Mets
         /// <para xml:lang="en">Gets or sets a value indicating whether the Type property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TypeSpecified { get; set; }
+        public bool TypeSpecified { get; set; } = true;
         
         /// <summary>
         /// <para xml:lang="en">OTHERTYPE (string/O): Specifies the type of agent when the value OTHER is indicated in the TYPE attribute.</para>

@@ -1,10 +1,12 @@
+using Mets;
+
 namespace IP {
   public class IPFile : IIPFile {
     private DirectoryInfo path;
     private string renameTo;
     private List<string> relativeFolders;
     private string checksum;
-    private string checksumAlgorithm;
+    private IFilecoreChecksumtype? checksumAlgorithm;
     private List<string> relatedTags;
 
     public IPFile() : base() {}
@@ -78,17 +80,17 @@ namespace IP {
       return this;
     }
 
-    public IIPFile SetChecksum(string checksum, string checksumAlgorithm) {
-      this.checksum = checksum ?? "";
-      this.checksumAlgorithm = checksumAlgorithm ?? "";
+    public IIPFile SetChecksum(string checksum, IFilecoreChecksumtype? checksumAlgorithm = null) {
+      this.checksum = checksum ?? string.Empty;
+      this.checksumAlgorithm = checksumAlgorithm;
       return this;
     }
 
-    public string GetChecksumAlgorithm() {
+    public IFilecoreChecksumtype? GetChecksumAlgorithm() {
       return checksumAlgorithm;
     }
 
-    public IIPFile SetChecksumAlgorithm(string checksumAlgorithm) {
+    public IIPFile SetChecksumAlgorithm(IFilecoreChecksumtype checksumAlgorithm) {
       this.checksumAlgorithm = checksumAlgorithm;
       return this;
     }

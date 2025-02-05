@@ -185,10 +185,7 @@ public abstract class EARKMETSCreator {
       };
 
       // create file
-      FileType fileType = new FileType
-      {
-        Id = Utils.GenerateRandomAndPrefixedUUID()
-      };
+      FileType fileType = new FileType { Id = Utils.GenerateRandomAndPrefixedUUID() };
 
       AddMetsToZip(zipEntries, representationMetsWrapper, representationMetsPath, buildDir, false, fileType);
 
@@ -313,9 +310,12 @@ public abstract class EARKMETSCreator {
     string mdTypeVersion,
     bool isDescriptive = false
   ) {
-    MdSecType dmdSec = new MdSecType();
-    dmdSec.Status = metadata.getMetadataStatus();
-    dmdSec.Id = Utils.GenerateRandomAndPrefixedUUID();
+    MdSecType dmdSec = new MdSecType
+    {
+      Id = Utils.GenerateRandomAndPrefixedUUID(),
+      Status = metadata.getMetadataStatus(),
+    };
+
     MdSecTypeMdRef mdRef = CreateMdRef(metadata.GetID(), metadataPath);
     mdRef.Mdtype = mdType;
     if (!string.IsNullOrEmpty(mdOtherType)) {
@@ -327,6 +327,7 @@ public abstract class EARKMETSCreator {
     METSUtils.SetFileBasicInformation(metadata.GetMetadata().GetPath(), mdRef);
     // also set date created in dmdSec elem
     dmdSec.Created = mdRef.Created;
+    dmdSec.CreatedSpecified = true;
 
     // structural map info.
     if (isDescriptive) {
@@ -342,9 +343,12 @@ public abstract class EARKMETSCreator {
   }
 
   public MdSecTypeMdRef AddPreservationMetadataToMETS(MetsWrapper metsWrapper, IPMetadata preservationMetadata, string preservationMetadataPath) {
-    MdSecType digiprovMD = new MdSecType();
-    digiprovMD.Status = preservationMetadata.getMetadataStatus();
-    digiprovMD.Id = Utils.GenerateRandomAndPrefixedUUID();
+    MdSecType digiprovMD = new MdSecType
+    {
+      Id = Utils.GenerateRandomAndPrefixedUUID(),
+      Status = preservationMetadata.getMetadataStatus(),
+    };
+
     MdSecTypeMdRef mdRef = CreateMdRef(preservationMetadata.GetID(), preservationMetadataPath);
     mdRef.Mdtype = preservationMetadata.GetMetadataType()._GetType();
 
@@ -507,9 +511,11 @@ public abstract class EARKMETSCreator {
   protected void AddHeaderToMets(Mets.Mets mets, IPHeader ipHeader, Oaispackagetype type) {
     MetsTypeMetsHdr header = new MetsTypeMetsHdr();
     try {
-      DateTime currentDate = new DateTime();
+      DateTime currentDate = DateTime.Now;
       header.Createdate = currentDate;
+      header.CreatedateSpecified = true;
       header.Lastmoddate = currentDate;
+      header.LastmoddateSpecified = true;
       header.Recordstatus = ipHeader.GetStatus().ToString();
       header.Oaispackagetype = type;
     } catch (Exception e) {

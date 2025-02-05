@@ -66,9 +66,11 @@ public static class ZIPUtils {
           if (file is METSFileTypeZipEntryInfo f) {
             f.MetsFileType.Checksum = checksum;
             f.MetsFileType.Checksumtype = checksumType;
+            f.MetsFileType.ChecksumtypeSpecified = true;
           } else if (file is METSMdRefZipEntryInfo md) {
             md.MetsMdRef.Checksum = checksum;
             md.MetsMdRef.Checksumtype = checksumType;
+            md.MetsMdRef.ChecksumtypeSpecified = true;
           }
         }
 

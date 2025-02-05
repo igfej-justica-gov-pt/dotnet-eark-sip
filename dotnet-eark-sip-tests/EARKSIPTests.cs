@@ -68,12 +68,12 @@ public class EARKSIPTests : IDisposable {
     // 1.8) add an agent (SIP level)
     sip.AddAgent(new IPAgent(
       "Agent Name",
-      MetsTypeMetsHdrAgentRole.CREATOR,
-      "",
+      MetsTypeMetsHdrAgentRole.OTHER,
+      "OTHER ROLE",
       MetsTypeMetsHdrAgentType.INDIVIDUAL,
       "OTHER TYPE",
       "",
-      Xml.Mets.CsipExtensionMets.Notetype.IDENTIFICATIONCODE
+      Xml.Mets.CsipExtensionMets.Notetype.SOFTWARE_VERSION
     ));
 
     // 1.9) Add a representation (status will be set to the default value, i.e. ORIGINAL)

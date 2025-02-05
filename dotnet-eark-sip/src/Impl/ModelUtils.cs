@@ -32,6 +32,7 @@ public static class ModelUtils {
     try {
       Utils.DeleteDirectory(path);
     } catch (IOException e) {
+      Console.WriteLine(e.Message);
       // logger.Error("Error cleaning up unneeded files", e);
     }
   }

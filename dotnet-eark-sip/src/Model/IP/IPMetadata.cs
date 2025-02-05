@@ -15,21 +15,21 @@ namespace IP {
 
     public IPMetadata(IIPFile metadata) {
       id = Utils.GenerateRandomAndPrefixedUUID();
-      createDate = new DateTime();
+      createDate = DateTime.Now;
       this.metadata = metadata;
       metadataType = new MetadataType(IMetadataMdtype.OTHER);
     }
 
     public IPMetadata(IIPFile metadata, MetadataType metadataType) {
       id = Utils.GenerateRandomAndPrefixedUUID();
-      createDate = new DateTime();
+      createDate = DateTime.Now;
       this.metadata = metadata;
       this.metadataType = metadataType;
     }
 
     public IPMetadata(string id, IIPFile metadata, MetadataType metadataType) {
       this.id = id;
-      createDate = new DateTime();
+      createDate = DateTime.Now;
       this.metadata = metadata;
       this.metadataType = metadataType;
     }

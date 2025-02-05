@@ -54,7 +54,7 @@ namespace IP {
       zipEntries = new Dictionary<string, IZipEntryInfo>();
     }
 
-    public IP(List<string> ids, IPType type): this() {
+    public IP(List<string> ids, IPType type) : this() {
       this.ids = new List<string>(ids);
       this.type = type;
       zipEntries = new Dictionary<string, IZipEntryInfo>();
@@ -283,7 +283,7 @@ namespace IP {
     }
 
     public List<IIPFile> GetSchemas() {
-      return new List<IIPFile>(schemas);
+      return schemas;
     }
 
     public IIP AddSchema(IIPFile schema) {
@@ -292,7 +292,7 @@ namespace IP {
     }
 
     public List<IIPFile> GetDocumentation() {
-      return new List<IIPFile>(documentation);
+      return documentation;
     }
 
     public IIP AddDocumentation(IIPFile documentationPath) {
