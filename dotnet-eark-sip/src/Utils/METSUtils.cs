@@ -131,8 +131,7 @@ public static class METSUtils {
 
     try {
       // logger.Debug("Setting file size " + filePath);
-      FileInfo fileInfo = new FileInfo(filePath);
-      fileType.Size = fileInfo.Length;
+      fileType.Size = new FileInfo(filePath).Length;
       fileType.SizeSpecified = true;
       // logger.Debug("Done setting file size");
     } catch (IOException e) {

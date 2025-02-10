@@ -13,9 +13,9 @@ public class ZipWriteStrategy : IWriteStrategy {
     string zipPath = GetZipPath(DestinationPath, fileNameWithoutExtension, fallbackName);
 
     try {
-      FileStream fileStream = new(zipPath, FileMode.Create);
-      ZIPUtils.Zip(entries, fileStream, sip, createSipIdFolder, true);
-      fileStream.Close();
+      using (FileStream fileStream = new(zipPath, FileMode.Create)) {
+        ZIPUtils.Zip(entries, fileStream, sip, createSipIdFolder, true);
+      }
     } catch (OperationCanceledException e) {
       throw new ThreadInterruptedException("Operation canceled.", e);
     } catch (IOException e) {

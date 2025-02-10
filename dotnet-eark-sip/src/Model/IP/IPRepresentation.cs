@@ -71,7 +71,7 @@ namespace IP {
     }
 
     public string GetStatus() {
-      return status.ToString();
+      return status.AsString();
     }
 
     public IPRepresentation SetStatus(RepresentationStatus status) {

@@ -81,7 +81,7 @@ public class EARKUtils {
   }
 
   public void AddRepresentationsToZipAndMETS(
-    IP.IP ip,
+    IIP ip,
     List<IPRepresentation> representations,
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper mainMetsWrapper,
@@ -233,7 +233,7 @@ public class EARKUtils {
   }
 
   private void AddRepresentationDataFilesToZipErmsAndMETS(
-    IP.IP ip,
+    IIP ip,
     Dictionary<string,
     IZipEntryInfo> zipEntries,
     MetsWrapper representationMetsWrapper,
@@ -271,7 +271,7 @@ public class EARKUtils {
   }
 
   private void AddRepresentationDataFilesToZipSiardAndMETS(
-    IP.IP ip,
+    IIP ip,
     Dictionary<string,
     IZipEntryInfo> zipEntries,
     MetsWrapper representationMetsWrapper,
@@ -313,7 +313,7 @@ public class EARKUtils {
   }
 
   public void AddRepresentationDataFilesToZipAndMETS(
-    IP.IP ip,
+    IIP ip,
     Dictionary<string,
     IZipEntryInfo> zipEntries,
     MetsWrapper representationMetsWrapper,

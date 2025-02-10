@@ -18,16 +18,17 @@ public class METSZipEntryInfo : FileZipEntryInfo {
   public override void PrepareEntryForZipping() {
     try {
       METSUtils.MarshallMETS(mets, FilePath, mainMets);
+
       if (!mainMets && fileType != null) {
         // TODO: Add logger
         METSUtils.SetFileBasicInformation(FilePath, fileType);
 
         IFilecoreChecksumtype checksumType = ChecksumAlgorithm;
         HashSet<IFilecoreChecksumtype> checksumAlgorithms = new HashSet<IFilecoreChecksumtype> { checksumType };
-        using (FileStream inputStream = File.Create(FilePath)) {
+        using (FileStream inputStream = File.Open(FilePath, FileMode.Open, FileAccess.Read)) {
           Dictionary<IFilecoreChecksumtype, string> checksums = ZIPUtils.CalculateChecksums(null, inputStream, checksumAlgorithms);
-          string checksum = checksums[checksumType];
-          fileType.Checksum = checksum;
+
+          fileType.Checksum = checksums[checksumType];
           fileType.Checksumtype = checksumType;
           fileType.ChecksumtypeSpecified = true;
         }

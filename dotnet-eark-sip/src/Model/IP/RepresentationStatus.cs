@@ -29,6 +29,16 @@ namespace IP {
       return new RepresentationStatus(RepresentationStatusEnum.OTHER);
     }
 
+    public string AsString() {
+      string result = Status.ToString();
+
+      if (Status == RepresentationStatusEnum.OTHER && !string.IsNullOrEmpty(OtherStatus)) {
+        result = OtherStatus;
+      }
+
+      return result;
+    }
+
     public override string ToString() {
       StringBuilder sb = new StringBuilder();
       sb.Append("status: ").Append(Status);

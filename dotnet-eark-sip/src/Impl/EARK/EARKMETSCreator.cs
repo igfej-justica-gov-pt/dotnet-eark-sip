@@ -202,7 +202,7 @@ public abstract class EARKMETSCreator {
       mainMetsWrapper.MainDiv.Div.Add(representationDiv);
     } catch (Exception e) {
       if (e is XmlException || e is IOException) {
-        throw new IPException("Error saving representation METS");
+        throw new IPException("Error saving representation METS", e);
       } else {
         throw e;
       }
@@ -259,7 +259,7 @@ public abstract class EARKMETSCreator {
   }
 
   protected void AddMetsToZip(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, string metsPath, string buildDir, bool mainMets, FileType fileType) {
-    string temp = Path.Combine(buildDir, IPConstants.METS_FILE_NAME + IPConstants.METS_FILE_EXTENSION);
+    string temp = Path.Combine(buildDir, Path.GetRandomFileName() + IPConstants.METS_FILE_NAME + IPConstants.METS_FILE_EXTENSION);
     File.Create(temp).Dispose();
 
     ZIPUtils.AddMETSFileToZip(zipEntries, temp, metsPath, metsWrapper.Mets, mainMets, fileType);
