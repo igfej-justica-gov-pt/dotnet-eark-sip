@@ -1,7 +1,10 @@
 using IP;
 using Mets;
+using Microsoft.Extensions.Logging;
 
 public class SIPBuilder {
+  private static readonly ILogger logger = DefaultLogger.Create<SIPBuilder>();
+
   private List<MetadataGroup> metadataArgs = new();
   private List<RepresentationGroup> representationArgs = new();
   private bool targetOnly;
@@ -108,14 +111,14 @@ public class SIPBuilder {
     try {
       SIPBuilderUtils.AddMetadataGroupsToSIP(sip, metadataArgs);
     } catch (IPException e) {
-      // Logger.Debug("Cannot add metadata to the SIP.", e);
+      logger.LogError(e, "Cannot add metadata to the SIP.");
       throw new SIPBuilderException("Cannot add metadata to the SIP.", e);
     }
 
     try {
       SIPBuilderUtils.AddRepresentationGroupsToSIP(sip, representationArgs, targetOnly);
     } catch (IPException e) {
-      // Logger.Debug("Cannot add representation to the SIP.", e);
+      logger.LogError(e, "Cannot add representation to the SIP.");
       throw new SIPBuilderException("Cannot add representation to the SIP.", e);
     }
 
@@ -123,7 +126,7 @@ public class SIPBuilder {
       try {
         SIPBuilderUtils.AddDocumentationToSIP(sip, documentation);
       } catch (IPException e) {
-        // Logger.Debug("Cannot add documentation to the SIP.", e);
+        logger.LogError(e, "Cannot add documentation to the SIP.");
         throw new SIPBuilderException("Cannot add documentation to the SIP.", e);
       }
     }
@@ -138,7 +141,7 @@ public class SIPBuilder {
       IWriteStrategy writeStrategy = SIPBuilderUtils.GetWriteStrategy(writeStrategyEnum, buildPath);
       return sip.Build(writeStrategy);
     } catch (IPException e) {
-      // Logger.Debug("Unable to create the E-ARK SIP", e);
+      logger.LogError(e, "Unable to create the E-ARK SIP");
       throw new SIPBuilderException("Unable to create the E-ARK SIP", e);
     }
   }

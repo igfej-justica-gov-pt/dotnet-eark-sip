@@ -3,6 +3,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using HeyRed.Mime;
 using Mets;
+using Microsoft.Extensions.Logging;
 
 public static class METSUtils {
   public static string MarshallMETS(Mets.Mets mets, string tempMETSFile, bool mainMets) {
@@ -112,12 +113,11 @@ public static class METSUtils {
     return mdRef;
   }
 
-  // TODO: Add logger
-  public static void SetFileBasicInformation(string filePath, FileType fileType) {
+  public static void SetFileBasicInformation(ILogger logger, string filePath, FileType fileType) {
     try {
-      // logger.Debug("Setting mimetype " + filePath);
+      logger.LogDebug("Setting mimetype for {file}", filePath);
       fileType.Mimetype = GetFileMimetype(filePath);
-      // logger.Debug("Done setting mimetype");
+      logger.LogDebug("Done setting mimetype for {file}", filePath);
     } catch (IOException e) {
       throw new IPException("Error probing content type: " + filePath, e);
     }
@@ -130,10 +130,10 @@ public static class METSUtils {
     }
 
     try {
-      // logger.Debug("Setting file size " + filePath);
+      logger.LogDebug("Setting file size for {file}", filePath);
       fileType.Size = new FileInfo(filePath).Length;
       fileType.SizeSpecified = true;
-      // logger.Debug("Done setting file size");
+      logger.LogDebug("Done setting file size for {file}", filePath);
     } catch (IOException e) {
       throw new IPException("Error getting file size: " + filePath, e);
     }

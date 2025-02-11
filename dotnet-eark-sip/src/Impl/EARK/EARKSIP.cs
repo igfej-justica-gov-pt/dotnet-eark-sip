@@ -1,8 +1,10 @@
 using IP;
 using IPEnums;
 using Mets;
+using Microsoft.Extensions.Logging;
 
 public class EARKSIP : SIP {
+  private static readonly ILogger<EARKSIP> logger = DefaultLogger.Create<EARKSIP>();
   private static readonly string SIP_TEMP_DIR = "EARKSIP";
   private static readonly string DEFAULT_SIP_VERSION = "2.1.0";
 
@@ -62,8 +64,7 @@ public class EARKSIP : SIP {
 
     try {
       Dictionary<string, IZipEntryInfo> zipEntries = GetZipEntries();
-      // TODO: Add logger
-      earkUtils.AddDefaultSchemas(GetSchemas(), buildDir, GetOverride());
+      earkUtils.AddDefaultSchemas(logger, GetSchemas(), buildDir, GetOverride());
 
       bool isMetadataOther = GetOtherMetadata() != null && GetOtherMetadata().Count > 0;
       bool isMetadata = (GetDescriptiveMetadata() != null && GetDescriptiveMetadata().Count > 0) || (GetPreservationMetadata() != null && GetPreservationMetadata().Count > 0);
@@ -100,8 +101,7 @@ public class EARKSIP : SIP {
       NotifySipBuildPackagingStarted(zipEntries.Count);
       return writeStrategy.Write(zipEntries, this, fileNameWithoutExtension, GetId(), true);
     } catch (Exception e) {
-      // TODO: Add logger
-      ModelUtils.CleanUpUponInterrupt(writeStrategy.DestinationPath);
+      ModelUtils.CleanUpUponInterrupt(logger, writeStrategy.DestinationPath);
       throw e;
     } finally {
       ModelUtils.DeleteBuildDir(buildDir);

@@ -1,6 +1,9 @@
 using Mets;
+using Microsoft.Extensions.Logging;
 
 public class METSZipEntryInfo : FileZipEntryInfo {
+  private static readonly ILogger<METSZipEntryInfo> logger = DefaultLogger.Create<METSZipEntryInfo>();
+
   private readonly Mets.Mets mets;
   private readonly bool mainMets;
   public Dictionary<IFilecoreChecksumtype, string> Checksums { get; set; }
@@ -20,8 +23,7 @@ public class METSZipEntryInfo : FileZipEntryInfo {
       METSUtils.MarshallMETS(mets, FilePath, mainMets);
 
       if (!mainMets && fileType != null) {
-        // TODO: Add logger
-        METSUtils.SetFileBasicInformation(FilePath, fileType);
+        METSUtils.SetFileBasicInformation(logger, FilePath, fileType);
 
         IFilecoreChecksumtype checksumType = ChecksumAlgorithm;
         HashSet<IFilecoreChecksumtype> checksumAlgorithms = new HashSet<IFilecoreChecksumtype> { checksumType };

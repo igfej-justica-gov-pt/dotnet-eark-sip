@@ -1,8 +1,11 @@
 using Mets;
+using Microsoft.Extensions.Logging;
 using System.IO.Compression;
 using System.Security.Cryptography;
 
 public static class ZIPUtils {
+  private static readonly ILogger logger = DefaultLogger.Create("ZipUtils");
+
   public static Dictionary<string, IZipEntryInfo> AddMdRefFileToZip(Dictionary<string, IZipEntryInfo> zipEntries, string filePath, string zipPath, MdSecTypeMdRef mdRef) {
     zipEntries.Add(zipPath, new METSMdRefZipEntryInfo(zipPath, filePath, mdRef));
     return zipEntries;
@@ -42,36 +45,42 @@ public static class ZIPUtils {
         file.ChecksumAlgorithm = sip.GetChecksumAlgorithm();
         file.PrepareEntryForZipping();
 
+        logger.LogDebug("Zipping {file}", file.FilePath);
         string entryName = createSipIdFolder ? $"{sip.GetId()}/{file.Name}" : file.Name;
         ZipArchiveEntry entry = zipArchive.CreateEntry(entryName, compressionLevel);
 
-        using (Stream entryStream = entry.Open())
-        using (FileStream inputStream = new(file.FilePath, FileMode.Open, FileAccess.Read)) {
-          Dictionary<IFilecoreChecksumtype, string> checksums;
+        try {
+          using (Stream entryStream = entry.Open())
+          using (FileStream inputStream = new(file.FilePath, FileMode.Open, FileAccess.Read)) {
+            Dictionary<IFilecoreChecksumtype, string> checksums;
 
-          if (file is METSZipEntryInfo metsEntry) {
-            checksums = CalculateChecksums(entryStream, inputStream, metsChecksumAlgorithms);
-            metsEntry.Checksums = checksums;
-            metsEntry.Size = new FileInfo(metsEntry.FilePath).Length;
-          } else {
-            checksums = CalculateChecksums(entryStream, inputStream, nonMetsChecksumAlgorithms);
+            if (file is METSZipEntryInfo metsEntry) {
+              checksums = CalculateChecksums(entryStream, inputStream, metsChecksumAlgorithms);
+              metsEntry.Checksums = checksums;
+              metsEntry.Size = new FileInfo(metsEntry.FilePath).Length;
+            } else {
+              checksums = CalculateChecksums(entryStream, inputStream, nonMetsChecksumAlgorithms);
+            }
+
+            logger.LogDebug("Done zipping {file}", file.FilePath);
+            IFilecoreChecksumtype checksumType = sip.GetChecksumAlgorithm();
+            string checksum = checksums[checksumType];
+
+            file.Checksum = checksum;
+            file.ChecksumAlgorithm = checksumType;
+
+            if (file is METSFileTypeZipEntryInfo f) {
+              f.MetsFileType.Checksum = checksum;
+              f.MetsFileType.Checksumtype = checksumType;
+              f.MetsFileType.ChecksumtypeSpecified = true;
+            } else if (file is METSMdRefZipEntryInfo md) {
+              md.MetsMdRef.Checksum = checksum;
+              md.MetsMdRef.Checksumtype = checksumType;
+              md.MetsMdRef.ChecksumtypeSpecified = true;
+            }
           }
-
-          IFilecoreChecksumtype checksumType = sip.GetChecksumAlgorithm();
-          string checksum = checksums[checksumType];
-
-          file.Checksum = checksum;
-          file.ChecksumAlgorithm = checksumType;
-
-          if (file is METSFileTypeZipEntryInfo f) {
-            f.MetsFileType.Checksum = checksum;
-            f.MetsFileType.Checksumtype = checksumType;
-            f.MetsFileType.ChecksumtypeSpecified = true;
-          } else if (file is METSMdRefZipEntryInfo md) {
-            md.MetsMdRef.Checksum = checksum;
-            md.MetsMdRef.Checksumtype = checksumType;
-            md.MetsMdRef.ChecksumtypeSpecified = true;
-          }
+        } catch (Exception e) {
+          logger.LogError(e, "Error while zipping {file}", file.FilePath);
         }
 
         i++;

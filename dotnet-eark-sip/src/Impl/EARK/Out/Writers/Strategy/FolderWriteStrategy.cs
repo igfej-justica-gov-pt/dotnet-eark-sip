@@ -1,7 +1,10 @@
 using System.Security.Cryptography;
 using Mets;
+using Microsoft.Extensions.Logging;
 
 public class FolderWriteStrategy : IWriteStrategy {
+  private static readonly ILogger logger = DefaultLogger.Create<FolderWriteStrategy>();
+
   public string DestinationPath { get; private set; }
 
   public void Setup(string destinationPath) {
@@ -27,11 +30,13 @@ public class FolderWriteStrategy : IWriteStrategy {
       foreach (IZipEntryInfo zipEntryInfo in entries.Values) {
         zipEntryInfo.ChecksumAlgorithm = checksumAlgorithm;
         zipEntryInfo.PrepareEntryForZipping();
+        logger.LogDebug("Writing to {file}", zipEntryInfo.FilePath);
 
         string outputPath = Path.Combine(path, zipEntryInfo.Name);
         WriteFileToPath(zipEntryInfo, outputPath, checksumAlgorithm);
       }
     } catch (IOException e) {
+      logger.LogDebug(e, "Error in write method");
       throw new IPException(e.Message, e);
     }
   }

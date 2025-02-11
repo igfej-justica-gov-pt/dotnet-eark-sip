@@ -1,4 +1,5 @@
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 public static class ModelUtils {
   public static void DeleteBuildDir(string buildDir) {
@@ -27,13 +28,11 @@ public static class ModelUtils {
     return sb.ToString();
   }
 
-  // TODO: Add logger
-  public static void CleanUpUponInterrupt(string path) {
+  public static void CleanUpUponInterrupt(ILogger logger, string path) {
     try {
       Utils.DeleteDirectory(path);
     } catch (IOException e) {
-      Console.WriteLine(e.Message);
-      // logger.Error("Error cleaning up unneeded files", e);
+      logger.LogError(e, "Error cleaning up unneeded files");
     }
   }
 }

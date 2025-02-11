@@ -1,9 +1,12 @@
 using System.Xml;
 using IP;
 using Mets;
+using Microsoft.Extensions.Logging;
 using Xml.Mets.CsipExtensionMets;
 
 public abstract class EARKMETSCreator {
+  private static readonly ILogger<EARKMETSCreator> logger = DefaultLogger.Create<EARKMETSCreator>();
+
   private readonly Dictionary<string, MetsTypeFileSecFileGrp> dataFileGrp = new Dictionary<string, MetsTypeFileSecFileGrp>();
 
   protected string EscapeNCName(string id) {
@@ -393,8 +396,7 @@ public abstract class EARKMETSCreator {
       Id = Utils.GenerateRandomAndPrefixedUUID()
     };
 
-    // TODO: Add logger
-    METSUtils.SetFileBasicInformation(dataFile, file);
+    METSUtils.SetFileBasicInformation(logger, dataFile, file);
 
     FileTypeFLocat fileLocation = METSUtils.CreateFileLocation(dataFilePath);
     file.FLocat.Add(fileLocation);
@@ -418,8 +420,7 @@ public abstract class EARKMETSCreator {
       Id = Utils.GenerateRandomAndPrefixedUUID()
     };
 
-    // TODO: Add logger
-    METSUtils.SetFileBasicInformation(schemaFile, file);
+    METSUtils.SetFileBasicInformation(logger, schemaFile, file);
 
     FileTypeFLocat fileLocation = METSUtils.CreateFileLocation(filePath);
     file.FLocat.Add(fileLocation);
@@ -443,8 +444,7 @@ public abstract class EARKMETSCreator {
       Id = Utils.GenerateRandomAndPrefixedUUID()
     };
 
-    // TODO: Add logger
-    METSUtils.SetFileBasicInformation(documentationFile, file);
+    METSUtils.SetFileBasicInformation(logger, documentationFile, file);
 
     FileTypeFLocat fileLocation = METSUtils.CreateFileLocation(filePath);
     file.FLocat.Add(fileLocation);

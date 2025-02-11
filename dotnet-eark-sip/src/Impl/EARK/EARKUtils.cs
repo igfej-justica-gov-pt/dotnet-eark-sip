@@ -1,5 +1,6 @@
 using IP;
 using Mets;
+using Microsoft.Extensions.Logging;
 
 public class EARKUtils {
   private readonly EARKMETSCreator metsCreator;
@@ -379,8 +380,7 @@ public class EARKUtils {
     AddFileToZipAndMETS(zipEntries, metsWrapper, documentation, representationId, IPConstants.DOCUMENTATION_FOLDER, metsCreator.AddDocumentationFileToMETS);
   }
 
-  // TODO: Add logger
-  public void AddDefaultSchemas(List<IIPFile> schemas, string buildDir, bool _override) {
+  public void AddDefaultSchemas(ILogger logger, List<IIPFile> schemas, string buildDir, bool _override) {
     try {
       string tempSchema = string.Empty;
       if (schemas.Count > 0) {
@@ -429,8 +429,7 @@ public class EARKUtils {
         schemas.Add(new IPFile(xlinkSchema, IPConstants.SCHEMA_XLINK_FILENAME));
       }
     } catch (IOException e) {
-      Console.WriteLine(e.Message);
-      // logger.Error("Error while trying to add default schemas", e);
+      logger.LogError(e, "Error while trying to add default schemas");
     }
   }
 }
