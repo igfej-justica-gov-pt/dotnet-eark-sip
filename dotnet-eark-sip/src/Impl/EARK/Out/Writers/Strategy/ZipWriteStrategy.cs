@@ -1,15 +1,15 @@
 public class ZipWriteStrategy : IWriteStrategy {
-  public string DestinationPath { get; private set; }
+  public string DestinationPath { get; private set; } = "";
 
   public void Setup(string destinationPath) {
     DestinationPath = destinationPath;
   }
 
-  public string Write(Dictionary<string, IZipEntryInfo> entries, SIP sip, string fileNameWithoutExtension, string fallbackName, bool deleteExisting) {
+  public string Write(Dictionary<string, IZipEntryInfo> entries, SIP sip, string? fileNameWithoutExtension, string fallbackName, bool deleteExisting) {
     return Write(entries, sip, fileNameWithoutExtension, fallbackName, true, deleteExisting);
   }
 
-  public string Write(Dictionary<string, IZipEntryInfo> entries, SIP sip, string fileNameWithoutExtension, string fallbackName, bool createSipIdFolder, bool deleteExisting) {
+  public string Write(Dictionary<string, IZipEntryInfo> entries, SIP sip, string? fileNameWithoutExtension, string fallbackName, bool createSipIdFolder, bool deleteExisting) {
     string zipPath = GetZipPath(DestinationPath, fileNameWithoutExtension, fallbackName);
 
     try {
@@ -25,7 +25,7 @@ public class ZipWriteStrategy : IWriteStrategy {
     return zipPath;
   }
 
-  private string GetZipPath(string destinationDirectory, string fileNameWithoutExtension, string fallbackName) {
+  private string GetZipPath(string destinationDirectory, string? fileNameWithoutExtension, string fallbackName) {
     string zipPath;
 
     if (fileNameWithoutExtension != null) {

@@ -32,11 +32,13 @@ public class EARKSIP : SIP {
     metsCreator = new METSGeneratorFactory().GetGenerator(version);
   }
 
-  public EARKSIP(string id, IPContentType contentType, IPContentInformationType contentInformationType) {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
+    public EARKSIP(string id, IPContentType contentType, IPContentInformationType contentInformationType) {
     new EARKSIP(id, contentType, contentInformationType, DEFAULT_SIP_VERSION);
   }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
 
-  public override string Build(IWriteStrategy writeStrategy) {
+    public override string Build(IWriteStrategy writeStrategy) {
     return Build(writeStrategy, false);
   }
 
@@ -52,11 +54,11 @@ public class EARKSIP : SIP {
     return Build(writeStrategy, fileNameWithoutExtension, false, sipType);
   }
 
-  public override string Build(IWriteStrategy writeStrategy, string fileNameWithoutExtension, bool onlyManifest) {
+  public override string Build(IWriteStrategy writeStrategy, string? fileNameWithoutExtension, bool onlyManifest) {
     return Build(writeStrategy, fileNameWithoutExtension, onlyManifest, SIPType.EARK2);
   }
 
-  public override string Build(IWriteStrategy writeStrategy, string fileNameWithoutExtension, bool onlyManifest, SIPType sipType) {
+  public override string Build(IWriteStrategy writeStrategy, string? fileNameWithoutExtension, bool onlyManifest, SIPType sipType) {
     IPConstants.METS_ENCODE_AND_DECODE_HREF = true;
     string buildDir = ModelUtils.CreateBuildDir(SIP_TEMP_DIR).FullName;
 

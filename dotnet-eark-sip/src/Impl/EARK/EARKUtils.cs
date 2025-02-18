@@ -13,7 +13,7 @@ public class EARKUtils {
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper metsWrapper,
     IEnumerable<IPMetadata> metadataList,
-    string representationId,
+    string? representationId,
     string folder,
     Func<MetsWrapper, IPMetadata, string, MdSecTypeMdRef> addToMetsFunc
   ) {
@@ -37,7 +37,7 @@ public class EARKUtils {
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper metsWrapper,
     List<IPDescriptiveMetadata> descriptiveMetadata,
-    string representationId
+    string? representationId
   ) {
     AddMetadataToZipAndMETS(
       zipEntries,
@@ -53,7 +53,7 @@ public class EARKUtils {
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper metsWrapper,
     List<IPMetadata> preservationMetadata,
-    string representationId
+    string? representationId
   ) {
     AddMetadataToZipAndMETS(
       zipEntries,
@@ -69,7 +69,7 @@ public class EARKUtils {
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper metsWrapper,
     List<IPMetadata> otherMetadata,
-    string representationId
+    string? representationId
   ) {
     AddMetadataToZipAndMETS(
       zipEntries,
@@ -98,12 +98,12 @@ public class EARKUtils {
     foreach (IPRepresentation representation in representations) {
       string representationId = representation.GetObjectID();
 
-      bool isRepresentationMetadataOther = representation.OtherMetadata != null && representation.OtherMetadata.Count > 0;
-      bool isRepresentationMetadata = (representation.DescriptiveMetadata != null && representation.DescriptiveMetadata.Count > 0)
-        || (representation.PreservationMetadata != null && representation.PreservationMetadata.Count > 0);
-      bool isRepresentationDocumentation = representation.Documentation != null && representation.Documentation.Count > 0;
-      bool isRepresentationSchemas = representation.Schemas != null && representation.Schemas.Count > 0;
-      bool isRepresentationsData = representation.Data != null && representation.Data.Count > 0;
+      bool isRepresentationMetadataOther = representation.OtherMetadata.Count > 0;
+      bool isRepresentationMetadata = (representation.DescriptiveMetadata.Count > 0) || (representation.PreservationMetadata.Count > 0);
+      bool isRepresentationDocumentation = representation.Documentation.Count > 0;
+      bool isRepresentationSchemas = representation.Schemas.Count > 0;
+      bool isRepresentationsData = representation.Data.Count > 0;
+
       IPHeader header = new IPHeader(IPEnums.IPStatus.NEW).SetAgents(representation.Agents);
       MetsWrapper representationMetsWrapper;
 
@@ -354,7 +354,7 @@ public class EARKUtils {
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper metsWrapper,
     List<IIPFile> files,
-    string representationId,
+    string? representationId,
     string folder,
     Func<MetsWrapper, string, string, FileType> addToMetsFunc
   ) {
@@ -372,19 +372,19 @@ public class EARKUtils {
     }
   }
 
-  public void AddSchemasToZipAndMETS(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, List<IIPFile> schemas, string representationId) {
+  public void AddSchemasToZipAndMETS(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, List<IIPFile> schemas, string? representationId) {
     AddFileToZipAndMETS(zipEntries, metsWrapper, schemas, representationId, IPConstants.SCHEMAS_FOLDER, metsCreator.AddSchemaFileToMETS);
   }
 
-  public void AddDocumentationToZipAndMETS(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, List<IIPFile> documentation, string representationId) {
+  public void AddDocumentationToZipAndMETS(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, List<IIPFile> documentation, string? representationId) {
     AddFileToZipAndMETS(zipEntries, metsWrapper, documentation, representationId, IPConstants.DOCUMENTATION_FOLDER, metsCreator.AddDocumentationFileToMETS);
   }
 
   public void AddDefaultSchemas(ILogger logger, List<IIPFile> schemas, string buildDir, bool _override) {
     try {
-      string tempSchema = string.Empty;
+      string tempSchema = "";
       if (schemas.Count > 0) {
-        tempSchema = schemas.First().GetFileName();
+        tempSchema = schemas.First().GetFileName() ?? "";
 
         if (!_override) {
           List<string> defaultSchemas = new List<string> {
@@ -396,7 +396,7 @@ public class EARKUtils {
 
           if (defaultSchemas.Contains(tempSchema)) {
             schemas.RemoveAt(0);
-            tempSchema = string.Empty;
+            tempSchema = "";
           }
         }
       }

@@ -2,9 +2,9 @@ using IP;
 using Mets;
 
 public class IPFileShallow : IIPFile {
-  public Uri FileLocation { get; set; }
-  public FileType FileType { get; set; }
-  private List<string> relativeFolders;
+  public Uri FileLocation { get; set; } = new Uri("");
+  public FileType FileType { get; set; } = new FileType();
+  private List<string> relativeFolders = new List<string>();
 
   public IPFileShallow(List<string> relativeFolders) {
     this.relativeFolders = relativeFolders;
@@ -34,7 +34,7 @@ public class IPFileShallow : IIPFile {
     return new IPFileShallow(emptyFolderPath);
   }
 
-  public string GetFileName() => null;
+  public string? GetFileName() => null;
 
   public string GetPath() {
     throw new NotImplementedException("IPFileShallow does not support this method");

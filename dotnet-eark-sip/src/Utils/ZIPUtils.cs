@@ -22,7 +22,7 @@ public static class ZIPUtils {
     string zipPath,
     Mets.Mets mets,
     bool mainMets,
-    FileType fileType
+    FileType? fileType
   ) {
     zipEntries.Add(zipPath, new METSZipEntryInfo(zipPath, filePath, mets, mainMets, fileType));
     return zipEntries;
@@ -91,7 +91,7 @@ public static class ZIPUtils {
     outputStream.Dispose();
   }
 
-  public static Dictionary<IFilecoreChecksumtype, string> CalculateChecksums(Stream zipOutputStream, Stream stream, HashSet<IFilecoreChecksumtype> checksumAlgorithms) {
+  public static Dictionary<IFilecoreChecksumtype, string> CalculateChecksums(Stream? zipOutputStream, Stream stream, HashSet<IFilecoreChecksumtype> checksumAlgorithms) {
     byte[] buffer = new byte[4096];
     Dictionary<IFilecoreChecksumtype, string> result = new();
 

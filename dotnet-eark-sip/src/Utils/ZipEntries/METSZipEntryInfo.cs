@@ -8,9 +8,9 @@ public class METSZipEntryInfo : FileZipEntryInfo {
   private readonly bool mainMets;
   public Dictionary<IFilecoreChecksumtype, string> Checksums { get; set; }
   public long Size { get; set; }
-  private readonly FileType fileType;
+  private readonly FileType? fileType;
 
-  public METSZipEntryInfo(string name, string filePath, Mets.Mets mets, bool mainMets, FileType fileType) : base(name, filePath) {
+  public METSZipEntryInfo(string name, string filePath, Mets.Mets mets, bool mainMets, FileType? fileType) : base(name, filePath) {
     this.mets = mets;
     this.mainMets = mainMets;
     Checksums = new Dictionary<IFilecoreChecksumtype, string>();

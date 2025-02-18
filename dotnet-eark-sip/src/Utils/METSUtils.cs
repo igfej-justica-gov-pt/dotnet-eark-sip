@@ -59,7 +59,7 @@ public static class METSUtils {
     string metsPath,
     string buildDir,
     bool mainMets,
-    FileType fileType
+    FileType? fileType
   ) {
     string temp = Path.Combine(buildDir, IPConstants.METS_FILE_NAME + IPConstants.METS_FILE_EXTENSION);
     File.Create(temp).Dispose();

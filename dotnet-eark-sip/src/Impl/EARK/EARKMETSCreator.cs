@@ -18,8 +18,8 @@ public abstract class EARKMETSCreator {
     string label,
     string profile,
     bool mainMets,
-    List<string> ancestors,
-    string metsPath,
+    List<string>? ancestors,
+    string? metsPath,
     IPHeader header,
     IPContentType contentType,
     IPContentInformationType contentInformationType,
@@ -88,8 +88,8 @@ public abstract class EARKMETSCreator {
     IPRepresentation representation,
     string profile,
     bool mainMets,
-    List<string> ancestors,
-    string metsPath,
+    List<string>? ancestors,
+    string? metsPath,
     IPHeader header,
     bool isMetadata,
     bool isMetadataOther,
@@ -310,7 +310,7 @@ public abstract class EARKMETSCreator {
     string metadataPath,
     IMetadataMdtype mdType,
     string mdOtherType,
-    string mdTypeVersion,
+    string? mdTypeVersion,
     bool isDescriptive = false
   ) {
     MdSecType dmdSec = new MdSecType
@@ -425,7 +425,7 @@ public abstract class EARKMETSCreator {
     FileTypeFLocat fileLocation = METSUtils.CreateFileLocation(filePath);
     file.FLocat.Add(fileLocation);
 
-    metsWrapper.SchemasFileGroup?.File.Add(file);
+    metsWrapper.SchemasFileGroup.File.Add(file);
     if (metsWrapper.SchemasDiv != null && metsWrapper.SchemasDiv.Fptr.Count == 0) {
       DivTypeFptr fptr = new DivTypeFptr
       {
@@ -449,7 +449,7 @@ public abstract class EARKMETSCreator {
     FileTypeFLocat fileLocation = METSUtils.CreateFileLocation(filePath);
     file.FLocat.Add(fileLocation);
 
-    metsWrapper.DocumentationFileGroup?.File.Add(file);
+    metsWrapper.DocumentationFileGroup.File.Add(file);
     if (metsWrapper.DocumentationDiv != null && metsWrapper.DocumentationDiv.Fptr.Count == 0) {
       DivTypeFptr fptr = new DivTypeFptr
       {
@@ -629,7 +629,7 @@ public abstract class EARKMETSCreator {
     }
   }
 
-  protected void AddAncestorsToMets(Mets.Mets mets, List<string> ancestors) {
+  protected void AddAncestorsToMets(Mets.Mets mets, List<string>? ancestors) {
     if (ancestors != null && ancestors.Count > 0) {
       StructMapType structMapParent = GenerateAncestorStructMap(ancestors);
       mets.StructMap.Add(structMapParent);
@@ -675,10 +675,7 @@ public abstract class EARKMETSCreator {
       DivType dataDiv = CreateDivForStructMap(dataDivsTree.Root.Label);
 
       if (dataDiv.Fptr.Count == 0 && dataFileGrp[dataDiv.Label] != null) {
-        DivTypeFptr fptr = new DivTypeFptr
-        {
-          Fileid = dataFileGrp[dataDiv.Label].Id
-        };
+        DivTypeFptr fptr = new DivTypeFptr { Fileid = dataFileGrp[dataDiv.Label].Id };
         dataDiv.Fptr.Add(fptr);
       }
 
@@ -713,18 +710,14 @@ public abstract class EARKMETSCreator {
       Tree<StructMapDiv> childNode = divTree.AddChild(new StructMapDiv(fileRelativeFolders.First()), divTree.Root);
       AddNodes(childNode, fileLocation, fileRelativeFolders.Skip(1).ToList());
     }
-  }
+  }  
 
   protected void CreateDataDiv(Tree<StructMapDiv> dataDivsTree, DivType dataDiv) {
     if (dataDivsTree.Children.Count > 0) {
       foreach (Tree<StructMapDiv> child in dataDivsTree.Children) {
         DivType div = CreateDivForStructMap(child.Root.Label);
-        if (div.Fptr.Count == 0 && dataFileGrp[child.Root.FileLocation] != null) {
-          DivTypeFptr fptr = new DivTypeFptr
-          {
-            Fileid = dataFileGrp[child.Root.FileLocation].Id
-          };
-
+        if (div.Fptr.Count == 0 && !string.IsNullOrEmpty(child.Root.FileLocation) && dataFileGrp.ContainsKey(child.Root.FileLocation)) {
+          DivTypeFptr fptr = new DivTypeFptr { Fileid = dataFileGrp[child.Root.FileLocation].Id };
           div.Fptr.Add(fptr);
         }
 

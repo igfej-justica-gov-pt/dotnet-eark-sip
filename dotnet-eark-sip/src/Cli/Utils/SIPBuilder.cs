@@ -5,32 +5,32 @@ using Microsoft.Extensions.Logging;
 public class SIPBuilder {
   private static readonly ILogger logger = DefaultLogger.Create<SIPBuilder>();
 
-  private List<MetadataGroup> metadataArgs = new();
-  private List<RepresentationGroup> representationArgs = new();
-  private bool targetOnly;
+  private List<Metadata> metadataArgs = new();
+  private List<Representation> representationArgs = new();
+  private bool targetOnly = false;
   private CSIPVersion version = CSIPVersion.V220;
-  private string path;
-  private string submitterAgentName;
-  private string submitterAgentId;
-  private string sipId;
-  private List<string> ancestors;
+  private string path = Directory.GetCurrentDirectory();
+  private string submitterAgentName = "";
+  private string submitterAgentId = "";
+  private string sipId = "";
+  private List<string>? ancestors;
   private IFilecoreChecksumtype checksumAlgorithm = IFilecoreChecksumtype.SHA256;
   private List<string> documentation = new();
 
-  private string softwareVersion;
-  private bool overrideSchema;
+  private string? softwareVersion;
+  private bool overrideSchema = false;
 
-  private WriteStrategyEnum writeStrategyEnum;
+  private WriteStrategyEnum writeStrategyEnum = WriteStrategyEnum.ZIP;
 
   public SIPBuilder() {}
 
-  public SIPBuilder SetMetadataArgs(List<MetadataGroup> metadataArgs) {
-    this.metadataArgs = metadataArgs;
+  public SIPBuilder SetMetadataArgs(List<Metadata>? metadataArgs) {
+    this.metadataArgs = metadataArgs ?? new List<Metadata>();
     return this;
   }
 
-  public SIPBuilder SetRepresentationArgs(List<RepresentationGroup> representationArgs) {
-    this.representationArgs = representationArgs;
+  public SIPBuilder SetRepresentationArgs(List<Representation>? representationArgs) {
+    this.representationArgs = representationArgs ?? new List<Representation>();
     return this;
   }
 
@@ -64,7 +64,7 @@ public class SIPBuilder {
     return this;
   }
 
-  public SIPBuilder SetAncestors(List<string> ancestors) {
+  public SIPBuilder SetAncestors(List<string>? ancestors) {
     this.ancestors = ancestors;
     return this;
   }
@@ -74,8 +74,8 @@ public class SIPBuilder {
     return this;
   }
 
-  public SIPBuilder SetDocumentation(List<string> documentation) {
-    this.documentation = documentation;
+  public SIPBuilder SetDocumentation(List<string>? documentation) {
+    this.documentation = documentation ?? new List<string>();
     return this;
   }
 

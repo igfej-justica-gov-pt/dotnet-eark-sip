@@ -1,44 +1,25 @@
-using Mono.Options;
+using CommandLine;
 
 public class Metadata {
-  public string MetadataFile { get; private set; }
-  public string MetadataType { get; private set; }
-  public string MetadataVersion { get; private set; }
-  public string MetadataSchema { get; private set; }
+  [Option("metadata-file", Required = true, HelpText = "Path to descriptive metadata file")]
+  public string MetadataFile { get; set; }
+  [Option("metadata-type", Required = true, HelpText = "Descriptive metadata type")]
+  public string MetadataType { get; set; }
+  [Option("metadata-version", Required = false, HelpText = "Descriptive metadata version")]
+  public string? MetadataVersion { get; set; }
+  [Option("metadata-schema", Required = false, HelpText = "Path to descriptive metadata schema file")]
+  public string? MetadataSchema { get; set; }
 
-  public Metadata() {}
+  public Metadata() {
+    MetadataFile = string.Empty;
+    MetadataType = string.Empty;
+  }
 
-  public Metadata(string metadataFile, string metadataType, string metadataVersion = null, string metadataSchema = null) {
+  public Metadata(string metadataFile, string metadataType, string? metadataVersion = null, string? metadataSchema = null) {
     MetadataFile = metadataFile;
     MetadataType = metadataType;
     MetadataVersion = metadataVersion;
     MetadataSchema = metadataSchema;
-  }
-
-  public void ParseArguments(string[] args) {
-    bool showHelp = false;
-
-    OptionSet options = new() {
-      { "metadata-file", "Path to descriptive metadata file", f => MetadataFile = f },
-      { "metadata-type=", "Descriptive metadata type", t => MetadataType = t },
-      { "metadata-version=", "Descriptive metadata version", v => MetadataVersion = v },
-      { "metadata-schema=", "Path to descriptive metadata schema file", s => MetadataSchema = s },
-      { "h|help", "Show help message", h => showHelp = h != null }
-    };
-
-    try {
-      options.Parse(args);
-    } catch (OptionException e) {
-      Console.WriteLine($"Error: {e.Message}");
-      Console.WriteLine("Use --help for usage information.");
-      return;
-    }
-
-    if (showHelp) {
-      Console.WriteLine("Usage: app --metadata-file <filePath> --metadata-type <type> --metadata-version <version> --metadata-schema <schemaPath>");
-      options.WriteOptionDescriptions(Console.Out);
-      return;
-    }
   }
 
   public void PrintDetails() {

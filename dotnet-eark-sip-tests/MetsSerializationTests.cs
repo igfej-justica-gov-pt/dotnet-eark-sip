@@ -6,8 +6,18 @@ public class MetsSerializationTests : IDisposable {
 	private readonly string sampleXmlPath = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "METS", "METS_example.xml");
 	private readonly string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "serialization_tests");
 
+	/// <summary>
+	/// Test initialization: create output directory
+	/// </summary>
 	public MetsSerializationTests() {
 		Directory.CreateDirectory(outputPath);
+	}
+
+	/// <summary>
+	/// Tests cleanup: delete temp files and directory
+	/// </summary>
+	public void Dispose() {
+		Utils.DeleteDirectory(outputPath);
 	}
 
 	/// <summary>
@@ -100,17 +110,6 @@ public class MetsSerializationTests : IDisposable {
 		Assert.Contains("CREATOR", xmlOutput);
 		Assert.Contains("images", xmlOutput);
 		Assert.Contains("image/jpeg", xmlOutput);
-	}
-
-	// Clean up
-	public void Dispose() {
-		if (Directory.Exists(outputPath)) {
-			foreach (var file in Directory.GetFiles(outputPath)) {
-				File.Delete(file);
-			}
-		}
-
-		Directory.Delete(outputPath);
 	}
 }
 

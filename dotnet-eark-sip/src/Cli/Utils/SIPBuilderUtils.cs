@@ -28,32 +28,32 @@ public class SIPBuilderUtils {
     }
   }
 
-  public static void AddRepresentationGroupsToSIP(SIP sip, List<RepresentationGroup> groups, bool targetOnly) {
+  public static void AddRepresentationGroupsToSIP(SIP sip, List<Representation> groups, bool targetOnly) {
     if (groups == null) return;
 
-    foreach (RepresentationGroup group in groups) {
+    foreach (Representation group in groups) {
       AddRepresentationToSIP(sip, group, targetOnly);
     }
   }
 
-  private static void AddRepresentationToSIP(SIP sip, RepresentationGroup group, bool targetOnly) {
-    string id = group.Representation.RepresentationId;
+  private static void AddRepresentationToSIP(SIP sip, Representation group, bool targetOnly) {
+    string? id = group.RepresentationId;
     id ??= "rep1";
 
     IPRepresentation representation = new(id);
     sip.AddRepresentation(representation);
 
-    if (group.Representation.RepresentationType != null) {
-      IPContentType ipContentType = GetIPContentType(group.Representation.RepresentationType);
+    if (group.RepresentationType != null) {
+      IPContentType ipContentType = GetIPContentType(group.RepresentationType);
       representation.SetContentType(ipContentType);
     }
 
-    foreach (string path in group.Representation.RepresentationData) {
+    foreach (string path in group.RepresentationData) {
       AddFileToRepresentation(representation, targetOnly, path, new List<string>());
     }
   }
 
-  public static void AddRepresentationGroupsToErmsSIP(SIP sip, List<RepresentationGroup> groups, bool targetOnly) {
+  public static void AddRepresentationGroupsToErmsSIP(SIP sip, List<Representation> groups, bool targetOnly) {
     AddRepresentationGroupsToSIP(sip, groups, targetOnly);
   }
 
@@ -82,21 +82,21 @@ public class SIPBuilderUtils {
     return IPContentType.GetMIXED();
   }
 
-  public static void AddMetadataGroupsToSIP(SIP sip, List<MetadataGroup> groups) {
+  public static void AddMetadataGroupsToSIP(SIP sip, List<Metadata> groups) {
     if (groups != null) {
-      foreach (MetadataGroup group in groups) {
+      foreach (Metadata group in groups) {
         AddMetadataToSIP(sip, group);
       }
     }
   }
 
-  private static void AddMetadataToSIP(SIP sip, MetadataGroup group) {
-    string metadataFile = group.Metadata.MetadataFile;
-    string metadataType = group.Metadata.MetadataType;
-    string metadataVersion = group.Metadata.MetadataVersion;
+  private static void AddMetadataToSIP(SIP sip, Metadata group) {
+    string metadataFile = group.MetadataFile;
+    string metadataType = group.MetadataType;
+    string? metadataVersion = group.MetadataVersion;
 
     MetadataType metadataTypeEnum;
-    string version = metadataVersion;
+    string? version = metadataVersion;
 
     if (metadataType == null && metadataVersion == null) {
       metadataTypeEnum = GetMetadataTypeFromMetadataFile(metadataFile);
@@ -113,7 +113,7 @@ public class SIPBuilderUtils {
     IPDescriptiveMetadata descriptiveMetadata = new IPDescriptiveMetadata(new IPFile(metadataFile), metadataTypeEnum, version);
     sip.AddDescriptiveMetadata(descriptiveMetadata);
 
-    string metadataSchema = group.Metadata.MetadataSchema;
+    string? metadataSchema = group.MetadataSchema;
     if (metadataSchema != null) sip.AddSchema(new IPFile(metadataSchema));
   }
 
@@ -129,10 +129,10 @@ public class SIPBuilderUtils {
     return metadataType;
   }
 
-  private static string GetMetadataVersionFromMetadataFile(string metadataFile) {
+  private static string? GetMetadataVersionFromMetadataFile(string metadataFile) {
     string filename = Path.GetFileNameWithoutExtension(metadataFile);
     string[] splitFilename = filename.Split('_');
-    string metadataVersion = null;
+    string? metadataVersion = null;
 
     if (splitFilename.Length == 2) metadataVersion = splitFilename[1];
     return metadataVersion;
@@ -140,16 +140,15 @@ public class SIPBuilderUtils {
 
   public static IWriteStrategy GetWriteStrategy(WriteStrategyEnum writeStrategyEnum, string buildPath) {
     switch (writeStrategyEnum.WriteStrategy) {
-      case "Zip":
-        ZipWriteStrategyFactory zipWriteStrategyFactory = new();
-        return zipWriteStrategyFactory.Create(buildPath);
 
       case "Folder":
         FolderWriteStrategyFactory folderWriteStrategyFactory = new();
         return folderWriteStrategyFactory.Create(buildPath);
 
+      case "Zip":
       default:
-        return null;
+        ZipWriteStrategyFactory zipWriteStrategyFactory = new();
+        return zipWriteStrategyFactory.Create(buildPath);
     }
   }
 

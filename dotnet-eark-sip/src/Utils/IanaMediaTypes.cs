@@ -2,7 +2,7 @@ using System.Reflection;
 using System.Text;
 
 public static class IanaMediaTypes {
-  private static HashSet<string> list = null;
+  private static HashSet<string>? list = null;
 
   public static HashSet<string> List {
     get {

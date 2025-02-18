@@ -30,7 +30,7 @@ public interface IIP {
   DateTime? GetModificationDate();
 
   IIP SetBasePath(string basePath);
-  string GetBasePath();
+  string? GetBasePath();
 
   IIP SetAncestors(List<string> ancestors);
   List<string> GetAncestors();

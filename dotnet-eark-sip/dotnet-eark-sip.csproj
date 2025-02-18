@@ -4,6 +4,7 @@
     <LangVersion>10.0</LangVersion>
     <RootNamespace>dotnet_eark_sip</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="src\Resources\ControlledVocabularies\IANA_MEDIA_TYPES.txt" />
@@ -20,10 +21,10 @@
     <EmbeddedResource Include="src\Resources\Schemas\xlink.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.1" />
     <PackageReference Include="MimeTypesMap" Version="1.0.9" />
-    <PackageReference Include="Mono.Options" Version="6.12.0.148" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 </Project>

@@ -14,7 +14,7 @@ namespace IP {
     private IPContentInformationType contentInformationType;
     private List<string> ancestors;
 
-    private string basePath;
+    private string? basePath;
     private string description;
 
     private readonly List<IPDescriptiveMetadata> descriptiveMetadata;
@@ -161,7 +161,7 @@ namespace IP {
       return this;
     }
 
-    public string GetBasePath() {
+    public string? GetBasePath() {
       return basePath;
     }
 

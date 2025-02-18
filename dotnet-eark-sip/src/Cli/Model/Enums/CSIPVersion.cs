@@ -4,7 +4,7 @@ public class CSIPVersion {
   public static readonly CSIPVersion V220 = new("2.2.0");
 
 
-  public string Version { get; }
+  private string Version { get; }
 
   private CSIPVersion(string version) {
     Version = version;

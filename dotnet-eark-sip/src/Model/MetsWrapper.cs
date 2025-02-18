@@ -22,8 +22,8 @@ public class MetsWrapper {
   public MdSecType MainDmdSec { get; set; }
   public MdSecType DocumentationDmdSec { get; set; }
 
-  public MetsWrapper(Mets.Mets mets, string metsPath) : base() {
+  public MetsWrapper(Mets.Mets mets, string? metsPath) : base() {
     Mets = mets;
-    MetsPath = metsPath;
+    MetsPath = metsPath ?? Directory.GetCurrentDirectory();
   }
 }

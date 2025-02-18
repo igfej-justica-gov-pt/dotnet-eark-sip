@@ -1,7 +1,7 @@
 public class Tree<T> {
   public T Root { get; private set; }
 
-  public Tree<T> Parent { get; private set; }
+  public Tree<T>? Parent { get; private set; }
 
   public List<Tree<T>> Children { get; private set; }
 
@@ -19,13 +19,17 @@ public class Tree<T> {
   }
 
   public int GetLevel() {
-    return IsRoot() ? 0 : (Parent.GetLevel() + 1);
+    return Parent == null ? 0 : (Parent.GetLevel() + 1);
   }
 
   public bool ChildExists(T wantedChild, T parentNode) {
+    if (Root == null || !Root.Equals(parentNode)) {
+      return false;
+    }
+
     bool exists = false;
     foreach (Tree<T> child in Children) {
-      if (child.Root.Equals(wantedChild) && Root.Equals(parentNode)) {
+      if (child.Root != null && child.Root.Equals(wantedChild)) {
         exists = true;
         break;
       }
@@ -34,9 +38,13 @@ public class Tree<T> {
     return exists;
   }
 
-  public Tree<T> GetChild(T wantedChild, T parentNode) {
+  public Tree<T>? GetChild(T wantedChild, T parentNode) {
+    if (Root == null || !Root.Equals(parentNode)) {
+      return null;
+    }
+
     foreach (Tree<T> child in Children) {
-      if (child.Root.Equals(wantedChild) && Root.Equals(parentNode)) {
+      if (child.Root != null && child.Root.Equals(wantedChild)) {
         return child;
       }
     }

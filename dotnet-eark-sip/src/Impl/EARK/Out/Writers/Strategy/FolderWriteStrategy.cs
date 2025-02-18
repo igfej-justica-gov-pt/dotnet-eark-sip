@@ -5,13 +5,13 @@ using Microsoft.Extensions.Logging;
 public class FolderWriteStrategy : IWriteStrategy {
   private static readonly ILogger logger = DefaultLogger.Create<FolderWriteStrategy>();
 
-  public string DestinationPath { get; private set; }
+  public string DestinationPath { get; private set; } = "";
 
   public void Setup(string destinationPath) {
     DestinationPath = destinationPath;
   }
 
-  public string Write(Dictionary<string, IZipEntryInfo> entries, SIP sip, string fileNameWithoutExtension, string fallbackName, bool deleteExisting) {
+  public string Write(Dictionary<string, IZipEntryInfo> entries, SIP sip, string? fileNameWithoutExtension, string fallbackName, bool deleteExisting) {
     string dirPath = GetDirPath(DestinationPath, fileNameWithoutExtension, fallbackName, deleteExisting);
 
     WriteToPath(entries, dirPath, sip.GetChecksumAlgorithm());
@@ -19,7 +19,7 @@ public class FolderWriteStrategy : IWriteStrategy {
     return dirPath;
   }
 
-  public string Write(Dictionary<string, IZipEntryInfo> entries, SIP sip, string fileNameWithoutExtension, string fallbackName, bool deleteExisting, bool createSipIdFolder) {
+  public string Write(Dictionary<string, IZipEntryInfo> entries, SIP sip, string? fileNameWithoutExtension, string fallbackName, bool deleteExisting, bool createSipIdFolder) {
     throw new NotImplementedException();
   }
 
@@ -63,7 +63,7 @@ public class FolderWriteStrategy : IWriteStrategy {
     }
   }
 
-  private string GetDirPath(string targetPath, string name, string fallbackName, bool deleteExisting) {
+  private string GetDirPath(string targetPath, string? name, string fallbackName, bool deleteExisting) {
     string path = Path.Combine(targetPath, name ?? fallbackName);
 
     try {

@@ -18,26 +18,9 @@ namespace IP {
     public List<IIPFile> Schemas { get; private set; }
     public List<IIPFile> Documentation { get; private set; }
 
-    public IPRepresentation() {
-      RepresentationID = Utils.GenerateRandomAndPrefixedUUID();
+    public IPRepresentation(string? representationID = null) : base() {
+      RepresentationID = representationID ?? Utils.GenerateRandomAndPrefixedUUID();
       objectID = RepresentationID;
-      createDate = DateTime.Now;
-      contentType = IPContentType.GetMIXED();
-      ContentInformationType = IPContentInformationType.GetMIXED();
-      status = RepresentationStatus.GetORIGINAL();
-      description = string.Empty;
-      Agents = new List<IPAgent>();
-      DescriptiveMetadata = new List<IPDescriptiveMetadata>();
-      PreservationMetadata = new List<IPMetadata>();
-      OtherMetadata = new List<IPMetadata>();
-      Data = new List<IIPFile>();
-      Schemas = new List<IIPFile>();
-      Documentation = new List<IIPFile>();
-    }
-
-    public IPRepresentation(string representationID) : base() {
-      RepresentationID = representationID;
-      objectID = representationID;
       createDate = DateTime.Now;
       contentType = IPContentType.GetMIXED();
       ContentInformationType = IPContentInformationType.GetMIXED();

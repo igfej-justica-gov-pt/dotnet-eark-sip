@@ -6,9 +6,9 @@ namespace IP {
   public class IPAgent {
     private string name;
     private MetsTypeMetsHdrAgentRole role;
-    private string otherRole;
+    private string? otherRole;
     private MetsTypeMetsHdrAgentType type;
-    private string otherType;
+    private string? otherType;
     private string note;
     private Notetype? noteType;
 
@@ -22,7 +22,7 @@ namespace IP {
       noteType = null;
     }
 
-    public IPAgent(string name, MetsTypeMetsHdrAgentRole role, string otherRole, MetsTypeMetsHdrAgentType type, string otherType, string note, Notetype noteType) {
+    public IPAgent(string name, MetsTypeMetsHdrAgentRole role, string? otherRole, MetsTypeMetsHdrAgentType type, string? otherType, string note, Notetype noteType) {
       this.name = name;
       this.role = role;
       this.otherRole = otherRole;
@@ -59,7 +59,7 @@ namespace IP {
       return this;
     }
 
-    public string GetOtherRole() {
+    public string? GetOtherRole() {
       return otherRole;
     }
 
@@ -68,7 +68,7 @@ namespace IP {
       return this;
     }
 
-    public string GetOtherType() {
+    public string? GetOtherType() {
       return otherType;
     }
 

@@ -3,33 +3,28 @@ using Mets;
 namespace IP {
   public class IPFile : IIPFile {
     private DirectoryInfo path;
-    private string renameTo;
-    private List<string> relativeFolders;
-    private string checksum;
+    private string? renameTo;
+    private List<string> relativeFolders = new List<string>();
+    private string? checksum;
     private IFilecoreChecksumtype? checksumAlgorithm;
-    private List<string> relatedTags;
+    private List<string> relatedTags = new List<string>();
 
-    public IPFile() : base() {}
+    public IPFile() : base() {
+      path = new DirectoryInfo("");
+    }
 
     public IPFile(string path) : base() {
       this.path = new DirectoryInfo(path);
-      renameTo = null;
-      relativeFolders = new List<string>();
-      relatedTags = new List<string>();
     }
 
     public IPFile(string path, List<string> relativeFolders) : base() {
       this.path = new DirectoryInfo(path);
-      renameTo = null;
       this.relativeFolders = relativeFolders;
-      relatedTags = new List<string>();
     }
 
     public IPFile(string path, string renameTo) : base() {
       this.path = new DirectoryInfo(path);
       this.renameTo = renameTo;
-      relativeFolders = new List<string>();
-      relatedTags = new List<string>();
     }
 
     public string GetPath() {
@@ -50,7 +45,7 @@ namespace IP {
       return this;
     }
 
-    public string GetRenameTo() {
+    public string? GetRenameTo() {
       return renameTo;
     }
 
@@ -71,7 +66,7 @@ namespace IP {
       return filename;
     }
 
-    public string GetChecksum() {
+    public string? GetChecksum() {
       return checksum;
     }
 
@@ -81,7 +76,7 @@ namespace IP {
     }
 
     public IIPFile SetChecksum(string checksum, IFilecoreChecksumtype? checksumAlgorithm = null) {
-      this.checksum = checksum ?? string.Empty;
+      this.checksum = checksum ?? "";
       this.checksumAlgorithm = checksumAlgorithm;
       return this;
     }
