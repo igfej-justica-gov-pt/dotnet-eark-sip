@@ -2,6 +2,8 @@ using CommandLine;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 
+namespace dotnet_eark_sip_cli;
+
 public class Create {
   private static readonly ILogger logger = DefaultLogger.Create<Create>();
 
@@ -23,8 +25,8 @@ public class Create {
             Environment.Exit(ExitCodes.EXIT_CODE_ERROR);
           }
         })
-        .WithNotParsed((errors) => {
-          foreach (var error in errors) Console.WriteLine(error);
+        .WithNotParsed(_ => {
+          // Discard errors because they are already logged by the parser
           Environment.Exit(ExitCodes.EXIT_CODE_CREATE_MISSING_ARGS);
         });
     } catch (Exception e) {

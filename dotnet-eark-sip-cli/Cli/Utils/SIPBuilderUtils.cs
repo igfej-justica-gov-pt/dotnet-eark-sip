@@ -1,6 +1,6 @@
-using System.Net;
 using IP;
 using Mets;
+using System.Net;
 
 public class SIPBuilderUtils {
   public static string GetOrGenerateID(string sipId) {
@@ -93,24 +93,16 @@ public class SIPBuilderUtils {
   private static void AddMetadataToSIP(SIP sip, Metadata group) {
     string metadataFile = group.MetadataFile;
     string metadataType = group.MetadataType;
-    string? metadataVersion = group.MetadataVersion;
+    string? metadataVersion = group.MetadataVersion ?? GetMetadataVersionFromMetadataFile(metadataFile);
 
     MetadataType metadataTypeEnum;
-    string? version = metadataVersion;
-
-    if (metadataType == null && metadataVersion == null) {
+    if (metadataType == null) {
       metadataTypeEnum = GetMetadataTypeFromMetadataFile(metadataFile);
-      version = GetMetadataVersionFromMetadataFile(metadataFile);
-    } else if (metadataVersion != null && metadataType == null) {
-      metadataTypeEnum = GetMetadataTypeFromMetadataFile(metadataFile);
-    } else if (metadataVersion == null) {
-      metadataTypeEnum = new MetadataType(metadataType);
-      version = GetMetadataVersionFromMetadataFile(metadataFile);
     } else {
       metadataTypeEnum = new MetadataType(metadataType);
     }
 
-    IPDescriptiveMetadata descriptiveMetadata = new IPDescriptiveMetadata(new IPFile(metadataFile), metadataTypeEnum, version);
+    IPDescriptiveMetadata descriptiveMetadata = new IPDescriptiveMetadata(new IPFile(metadataFile), metadataTypeEnum, metadataVersion);
     sip.AddDescriptiveMetadata(descriptiveMetadata);
 
     string? metadataSchema = group.MetadataSchema;

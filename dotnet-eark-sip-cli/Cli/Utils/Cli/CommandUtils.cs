@@ -1,7 +1,7 @@
 public static class CommandUtils {
   public static bool ValidateDocumentationPaths(IEnumerable<string>? documentationPaths) {
     if (documentationPaths != null) {
-      return documentationPaths.All(doc => File.Exists(doc));
+      return documentationPaths.All(File.Exists);
     }
 
     return true;
@@ -11,7 +11,7 @@ public static class CommandUtils {
     if (representationGroups != null) {
       bool valid = true;
       foreach (Representation group in representationGroups) {
-        valid &= group.RepresentationData.All(representation => File.Exists(representation));
+        valid &= group.RepresentationData.All(File.Exists);
       }
 
       return valid;

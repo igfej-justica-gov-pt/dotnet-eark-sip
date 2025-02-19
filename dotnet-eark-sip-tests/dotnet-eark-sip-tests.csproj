@@ -21,4 +21,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dotnet-eark-sip-cli\dotnet-eark-sip-cli.csproj" />
+  </ItemGroup>
 </Project>

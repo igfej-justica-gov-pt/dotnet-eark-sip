@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-eark-sip", "dotnet-e
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-eark-sip-tests", "dotnet-eark-sip-tests\dotnet-eark-sip-tests.csproj", "{B1D3D5A1-753F-48F1-873A-EFDBB88F92AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-eark-sip-cli", "dotnet-eark-sip-cli\dotnet-eark-sip-cli.csproj", "{CAB7458A-979E-4A86-BA0B-384A16AC42C0}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +46,17 @@ Global
 		{B1D3D5A1-753F-48F1-873A-EFDBB88F92AB}.Release|x64.Build.0 = Release|Any CPU
 		{B1D3D5A1-753F-48F1-873A-EFDBB88F92AB}.Release|x86.ActiveCfg = Release|Any CPU
 		{B1D3D5A1-753F-48F1-873A-EFDBB88F92AB}.Release|x86.Build.0 = Release|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Debug|x64.Build.0 = Debug|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Debug|x86.Build.0 = Debug|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Release|x64.ActiveCfg = Release|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Release|x64.Build.0 = Release|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Release|x86.ActiveCfg = Release|Any CPU
+		{CAB7458A-979E-4A86-BA0B-384A16AC42C0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

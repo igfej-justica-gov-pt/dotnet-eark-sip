@@ -2,8 +2,8 @@ using IP;
 using Mets;
 
 public class IPFileShallow : IIPFile {
-  public Uri FileLocation { get; set; } = new Uri("");
-  public FileType FileType { get; set; } = new FileType();
+  public Uri FileLocation { get; set; }
+  public FileType FileType { get; set; }
   private List<string> relativeFolders = new List<string>();
 
   public IPFileShallow(List<string> relativeFolders) {

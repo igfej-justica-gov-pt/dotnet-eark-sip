@@ -154,7 +154,8 @@ public class EARKSIPTests : IDisposable {
     representation2.AddFile(representationFile3);
 
     // 2) build SIP, providing an output directory
-    IWriteStrategy writeStrategy = SIPBuilderUtils.GetWriteStrategy(WriteStrategyEnum.ZIP, outputPath);
+    ZipWriteStrategyFactory zipWriteStrategyFactory = new();
+    IWriteStrategy writeStrategy = zipWriteStrategyFactory.Create(outputPath);
     string zipSIP = sip.Build(writeStrategy);
 
     return zipSIP;
@@ -287,7 +288,8 @@ public class EARKSIPTests : IDisposable {
     representation1.AddFile(representationFile4);
 
     // 2) build SIP, providing an output directory
-    IWriteStrategy writeStrategy = SIPBuilderUtils.GetWriteStrategy(WriteStrategyEnum.ZIP, outputPath);
+    ZipWriteStrategyFactory zipWriteStrategyFactory = new();
+    IWriteStrategy writeStrategy = zipWriteStrategyFactory.Create(outputPath);
     string zipSIP = sip.Build(writeStrategy, "okok", IPEnums.SIPType.EARK2S);
 
     return zipSIP;
