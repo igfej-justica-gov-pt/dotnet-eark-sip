@@ -100,7 +100,7 @@ public class SIPBuilder {
     string softVersion = "DEVELOPMENT-VERSION";
     if (softwareVersion != null) softVersion = softwareVersion;
 
-    sip.AddCreatorSoftwareAgent("KEEPS dotnet-eark-sip", softVersion);
+    sip.AddCreatorSoftwareAgent("KEEPS' dotnet-eark-sip", softVersion);
     sip.AddSubmitterAgent(submitterAgentName, submitterAgentId);
     sip.SetDescription("SIP created by dotnet-eark-sip cli");
 
