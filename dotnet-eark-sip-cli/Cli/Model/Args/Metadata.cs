@@ -1,25 +1,19 @@
-using CommandLine;
-
 public class Metadata {
-  [Option("metadata-file", Required = true, HelpText = "Path to descriptive metadata file")]
   public string MetadataFile { get; set; }
-  [Option("metadata-type", Required = true, HelpText = "Descriptive metadata type")]
   public string MetadataType { get; set; }
-  [Option("metadata-version", Required = false, HelpText = "Descriptive metadata version")]
   public string? MetadataVersion { get; set; }
-  [Option("metadata-schema", Required = false, HelpText = "Path to descriptive metadata schema file")]
   public string? MetadataSchema { get; set; }
 
   public Metadata() {
-    MetadataFile = string.Empty;
-    MetadataType = string.Empty;
+    MetadataFile = "";
+    MetadataType = "";
   }
 
   public Metadata(string metadataFile, string metadataType, string? metadataVersion = null, string? metadataSchema = null) {
     MetadataFile = metadataFile;
     MetadataType = metadataType;
-    MetadataVersion = metadataVersion;
-    MetadataSchema = metadataSchema;
+    MetadataVersion = string.IsNullOrEmpty(metadataVersion) ? null : metadataVersion;
+    MetadataSchema = string.IsNullOrEmpty(metadataSchema) ? null : metadataSchema;
   }
 
   public void PrintDetails() {

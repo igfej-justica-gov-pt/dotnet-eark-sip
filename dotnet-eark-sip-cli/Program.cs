@@ -1,27 +1,24 @@
 using CommandLine;
-using Microsoft.Extensions.Logging;
 using System.Reflection;
 
 namespace dotnet_eark_sip_cli;
 
 public class Create {
-  private static readonly ILogger logger = DefaultLogger.Create<Create>();
-
   public static void Main(string[] args) {
     try {
       Parser.Default.ParseArguments(args, LoadVerbs())
-        .WithParsed(options => {
+        .WithParsed(_args => {
           try {
-            int exitCode = Run(options);
+            int exitCode = Run(_args);
             Environment.Exit(exitCode);
           } catch (InvalidPathException e) {
-            logger.LogError(e, e.Message);
+            Console.WriteLine(e.Message + "\n" + e);
             Environment.Exit(ExitCodes.EXIT_CODE_CREATE_INVALID_PATHS);
           } catch (InvalidArgumentsException e) {
-            logger.LogError(e, e.Message);
+            Console.WriteLine(e.Message + "\n" + e);
             Environment.Exit(ExitCodes.EXIT_CODE_CREATE_INVALID_ARGS);
           } catch (Exception e) {
-            logger.LogError(e, "An unexpected error occurred");
+            Console.WriteLine("An unexpected error occurred\n" + e);
             Environment.Exit(ExitCodes.EXIT_CODE_ERROR);
           }
         })
@@ -30,7 +27,7 @@ public class Create {
           Environment.Exit(ExitCodes.EXIT_CODE_CREATE_MISSING_ARGS);
         });
     } catch (Exception e) {
-      logger.LogError(e, "An error occurred");
+      Console.WriteLine("An error occurred parsing arguments\n" + e);
       Environment.Exit(ExitCodes.EXIT_CODE_ERROR);
     }
   }
@@ -51,19 +48,26 @@ public class Create {
   }
 
   private static int Run(Options args) {
-    if (CommandUtils.ValidateRepresentationDataPaths(args.RepresentationListArgs)) {
+    List<Representation> representationListArgs = args.GetRepresentations();
+    List<Metadata> metadataListArgs = args.GetMetadataFiles();
+
+    if (representationListArgs.Count() == 0 && metadataListArgs.Count() == 0) {
+      throw new InvalidArgumentsException("At least one of representation or metadata file(s) must be provided");
+    }
+
+    if (!CommandUtils.ValidateRepresentationDataPaths(representationListArgs)) {
       throw new InvalidPathException("Make sure all the representation data paths exist");
     }
 
-    if (CommandUtils.ValidateDocumentationPaths(args.Documentation)) {
+    if (!CommandUtils.ValidateDocumentationPaths(args.Documentation ?? [])) {
       throw new InvalidPathException("Make sure all the documentation paths exist");
     }
 
-    if (CommandUtils.ValidateMetadataPaths(args.MetadataListArgs)) {
+    if (!CommandUtils.ValidateMetadataPaths(metadataListArgs)) {
       throw new InvalidPathException("Make sure all the descriptive metadata paths exist");
     }
 
-    if (CommandUtils.ValidateMetadataSchemaPaths(args.MetadataListArgs)) {
+    if (!CommandUtils.ValidateMetadataSchemaPaths(metadataListArgs)) {
       throw new InvalidPathException("Make sure all the descriptive metadata schema paths exist");
     }
 
@@ -71,9 +75,9 @@ public class Create {
 
     try {
       string sipPath = new SIPBuilder()
-        .SetMetadataArgs(args.MetadataListArgs?.ToList())
+        .SetMetadataArgs(metadataListArgs)
         .SetOverride(args.OverrideSchema)
-        .SetRepresentationArgs(args.RepresentationListArgs?.ToList())
+        .SetRepresentationArgs(representationListArgs)
         .SetTargetOnly(args.TargetOnly)
         .SetSipId(args.SIPId)
         .SetAncestors(args.Ancestors?.ToList())
@@ -87,11 +91,11 @@ public class Create {
         .SetWriteStrategy(args.Strategy)
         .Build();
 
-      logger.LogInformation("E-ARK SIP created at {sipPath}", sipPath.Normalize());
+      Console.WriteLine("E-ARK SIP created at " + sipPath.Normalize());
 
       return ExitCodes.EXIT_CODE_OK;
     } catch (Exception e) {
-      logger.LogError(e, "Failed to create the SIP");
+      Console.WriteLine("Failed to create the SIP\n" + e);
       return ExitCodes.EXIT_CODE_CREATE_CANNOT_SIP;
     }
   }

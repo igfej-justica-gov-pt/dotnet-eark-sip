@@ -1,12 +1,7 @@
-using CommandLine;
-
 public class Representation
 {
-	[Option("representation-data", HelpText = "Path to representation files (comma-separated)", Separator = ',')]
-	public List<string> RepresentationData { get; set; } = new List<string>();
-	[Option("representation-type", HelpText = "Representation type")]
+	public List<string> RepresentationData { get; set; }
 	public string? RepresentationType { get; set; }
-	[Option("representation-id", HelpText = "Representation identifier")]
 	public string? RepresentationId { get; set; }
 
 	public Representation() {
@@ -16,9 +11,9 @@ public class Representation
 	}
 
 	public Representation(List<string> data, string? type = null, string? id = null) : base() {
-		RepresentationData.AddRange(data);
-		RepresentationType = type;
-		RepresentationId = id;
+		RepresentationData = new List<string>(data);
+		RepresentationType = string.IsNullOrEmpty(type) ? null : type;
+		RepresentationId = string.IsNullOrEmpty(id) ? null : id;
 	}
 
 	public void PrintDetails() {
