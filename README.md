@@ -11,19 +11,18 @@ Providing support for E-ARK SIP formats (2.0.4, 2.1.0, 2.2.0), this project make
 ## Table of Contents
 
 - [Introduction](#introduction)
-  - [Why .NET E-ARK SIP?](#why-net-e-ark-sip)
+- [Why .NET E-ARK SIP?](#why-net-e-ark-sip)
 - [Features](#features)
-- [Installation](#installation)
-  - [Requirements](#requirements)
+- [Requirements](#requirements)
 - [Usage](#usage)
   - [Use as a Command-line Tool](#use-as-a-command-line-tool)
-    - [Available Options](#available-options)
+    - [Available options](#available-options)
     - [Example](#example)
   - [Use as a .NET Library](#use-as-a-net-library)
+    - [Example](#example-1)
 - [Contributing](#contributing)
 - [FAQ](#faq)
 - [License](#license)
-  - [Limitations and Requirements](#limitations-and-requirements)
 - [Credits](#credits)
 - [Sponsorship](#sponsorship)
 
@@ -35,7 +34,7 @@ The _E-ARK Information Package_ specifications are maintained by the [DILCIS Boa
 
 These specifications have been sponsored and are promoted by the European Commission under the [eArchiving Initiative](https://digital-strategy.ec.europa.eu/en/activities/earchiving).
 
-### Why .NET E-ARK SIP?
+## Why .NET E-ARK SIP?
 
 - **Automation**: Easily script and automate the creation of E-ARK SIPs.
 - **Integration**: Embed this library into your applications to implement powerful export and transfer processes between business applications and digital archives (OAIS). The library is open-source, but not viral!
@@ -52,9 +51,7 @@ These specifications have been sponsored and are promoted by the European Commis
 - **Documentation**: Bundle documentation files within your SIP to better describe the contents of the submission.
 - **Configurability**: Override default schemas, specify representation types, set custom IDs, and more.
 
-## Installation
-
-### Requirements
+## Requirements
 
 - .NET Standard 2.0 (or higher)
 - Windows, Linux, or macOS
@@ -75,7 +72,7 @@ You can use the **dotnet-eark-sip** as a **command-line tool** or as a **.NET li
 dotnet-eark-sip create
 ```
 
-#### Available Options
+#### Available options
 
 - **create**: Creates an E-ARK SIP (this is the default action, so it can be omitted).
 - **-d, --documentation**: Path(s) to folder(s)/file(s) to add to the SIP’s documentation section.
@@ -121,6 +118,8 @@ dotnet-eark-sip create --metadata-files metadata.xml --metadata-types ead --meta
    dotnet add package dotnet-eark-sip
    ```
 2. Use it in your C# code:
+
+#### Example
 
 ```csharp
 // Import dependencies
@@ -196,7 +195,7 @@ This project is licensed under the **European Union Public Licence (EUPL) versio
 2. **Modification**: You can modify the source code to suit your needs, and you are encouraged to contribute your improvements back to the community.
 3. **Distribution**: You can redistribute the original code or your modified version(s) to others. When you do, you **must** share it under the EUPL or a compatible licence, making the source code available under equivalent conditions.
 
-### Limitations and Requirements
+**Limitations and Requirements**
 
 - **Licence continuity**: If you distribute copies or substantial portions of this software, modified or unmodified, you must retain the original licence text and grant the same rights to the recipients.
 - **No warranty**: The software is provided "as is", without warranty of any kind. The licensor disclaims all liability for damages arising out of its use to the fullest extent permitted by law.
