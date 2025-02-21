@@ -1,210 +1,219 @@
 # .NET E-ARK SIP
 
-A .NET library for creating E-ARK SIPs
-# E-ARK IP validation and manipulation tool and library
+[![Build Status](https://img.shields.io/github/actions/workflow/status/keeps/dotnet-eark-sip/build.yml?branch=main)](https://github.com/keeps/dotnet-eark-sip/actions)  
+[![Latest Release](https://img.shields.io/github/v/release/keeps/dotnet-eark-sip)](https://github.com/keeps/dotnet-eark-sip/releases/latest)  
+[![License](https://img.shields.io/badge/license-EUPL-blue.svg)](#license)
 
-This project provides a command-line interface and .NET library to create E-ARK Submission Information Packages of different versions: 2.0.4, 2.1.0, 2.2.0.
+A .NET library and CLI tool for creating E-ARK Submission Information Packages (SIPs).
 
-The E-ARK Information Packages are maintained by the Digital Information LifeCycle Interoperability Standards Board (
-DILCIS Board). DILCIS Board is an international group of experts committed to maintaining and sustaining a set of
-interoperability specifications which allow for the transfer, long-term preservation, and reuse of digital information
-regardless of the origin or type of the information.
+Providing support for E-ARK SIP formats (2.0.4, 2.1.0, 2.2.0), this project makes it easier to create and manage valid SIPs for long-term digital preservation using the E-ARK standards.
 
-More specifically, the DILCIS Board maintains specifications initially developed within the E-ARK Project (02.2014 -
-01.2017):
+## Table of Contents
 
-- Common Specification for Information Packages
-- E-ARK Submission Information Package (SIP)
-- E-ARK Archival Information Package (AIP)
-- E-ARK Dissemination Information Package (DIP)
+- [Introduction](#introduction)
+  - [Why .NET E-ARK SIP?](#why-net-e-ark-sip)
+- [Features](#features)
+- [Installation](#installation)
+  - [Requirements](#requirements)
+- [Usage](#usage)
+  - [Use as a Command-line Tool](#use-as-a-command-line-tool)
+    - [Available Options](#available-options)
+    - [Example](#example)
+  - [Use as a .NET Library](#use-as-a-net-library)
+- [Contributing](#contributing)
+- [FAQ](#faq)
+- [License](#license)
+  - [Limitations and Requirements](#limitations-and-requirements)
+- [Credits](#credits)
+- [Sponsorship](#sponsorship)
 
-The DILCIS Board collaborates closely with the Swiss Federal Archives in regard to the maintenance of the SIARD (
-Software Independent Archiving of Relational Databases) specification.
+## Introduction
 
-For more information about the E-ARK Information Packages specifications, please visit http://www.dilcis.eu/
+This repository provides a command-line interface (CLI) and a .NET library to create E-ARK Submission Information Packages **version 2.2.0**.
+
+The _E-ARK Information Package_ specifications are maintained by the [DILCIS Board](http://www.dilcis.eu/). The DILCIS Board is an international group of experts dedicated to developing and maintaining interoperability specifications for the long-term preservation of digital content.
+
+These specifications have been sponsored and are promoted by the European Commission under the [eArchiving Initiative](https://digital-strategy.ec.europa.eu/en/activities/earchiving).
+
+### Why .NET E-ARK SIP?
+
+- **Automation**: Easily script and automate the creation of E-ARK SIPs.
+- **Integration**: Embed this library into your applications to implement powerful export and transfer processes between business applications and digital archives (OAIS). The library is open-source, but not viral!
+- **Standards-Compliant**: Ensures compliance with DILCIS Board specifications.
+- **CLI & Library**: Use it stand-alone or integrate into your .NET projects.
+- **Improvise, adapt, overcome**: You are free to modify and enhance this library to meet your needs. Just remember, forks must be open source as well.
+
+## Features
+
+- **CLI Tool**: Easily create SIPs via a command-line interface.
+- **.NET Library**: Integrate with your own projects by referencing the NuGet package or local DLL.
+- **Checksums**: Automatic creates checksums (SHA-256 by default) for SIP files.
+- **Multiple metadata files**: Add descriptive and preservation metadata, including external schemas.
+- **Documentation**: Bundle documentation files within your SIP to better describe the contents of the submission.
+- **Configurability**: Override default schemas, specify representation types, set custom IDs, and more.
 
 ## Installation
 
 ### Requirements
 
-* .NET Standard 2.0
+- .NET Standard 2.0 (or higher)
+- Windows, Linux, or macOS
 
-Download the [latest release](https://github.com/keeps/dotnet-eark-sip/releases/latest) to use as a tool or check below how
-to use it as a .NET Library.
+Download the [latest release](https://github.com/keeps/dotnet-eark-sip/releases/latest) to use as a standalone CLI tool, or reference it in your .NET project.
 
 ## Usage
 
-You can use the dotnet-eark-sip as a command-line tool or a .NET library.
+You can use the **dotnet-eark-sip** as a **command-line tool** or as a **.NET library** (by referencing it in your project).
 
-### Use as a command-line tool
+### Use as a Command-line Tool
 
-To use the dotnet-eark-sip command-line tool, need to download
-the [latest release](https://github.com/keeps/dotnet-eark-sip/releases/latest). This tool can create a
-valid EARK2 SIP.
-
-To create an EARK-2 SIP have to use the following options:
-
-* **create**, [OPTIONAL] This option is for the CLI to know that is to perform the creation of an EARK-2 SIP. It is the default option, so it can be ommitted.
-
-* **-d** or **--documentation**, [OPTIONAL] Path(s) to folders or files to add in the documentation of SIP.
-* **-p** or **--path**, [OPTIONAL] Path to save the SIP.
-* **-a** or **--ancestors**, [OPTIONAL] ID(s) of the ancestors of the SIP.
-* **-C** or **--checksum**, [OPTIONAL] Checksum algorithm (Default: SHA-256).
-* **-d** or **--documentation**, [OPTIONAL] Path(s) to documentation file(s).
-* **-T** or **--target-only**, [OPTIONAL] Adds only the files for the representations.
-* **-v** or **--version**, [OPTIONAL] E-ARK SIP specification version (Default: 2.1.0)
-* **--submitter-name**, [OPTIONAL] The name of the submitter agent.
-* **--submitter-id**, [OPTIONAL] The identification code (ID) of the submitter agent.
-* **--sip-id**, [OPTIONAL] ID of the SIP.
-* **--override-schema**, [OPTIONAL] Overrides default schema.
-* **-s** or **--strategy**, [OPTIONAL] Write strategy to be used (Default: Zip)
-
-This is the descriptive metadata section:
-* **--metadata-files** [OPTIONAL] Path(s) to descriptive metadata file(s) (comma-separated). Becomes REQUIRED if **--representation-data-lists** is not set.
-* **--metadata-types**, [OPTIONAL] Descriptive metadata type(s) (comma-separated). Becomes REQUIRED if **--metadata-files** is set.
-* **--metadata-schemas**, [OPTIONAL] Path(s) to descriptive metadata schema file(s) (comma-separated).
-* **--metadata-versions**, [OPTIONAL] Descriptive metadata version(s) (comma-separated).
-
-**NOTE:** If does not give the metadata version, the tool tries to obtain these values from the file
-name in the following formats (file: **ead_2002.xml** -> result: metadata version: **2002**)
-
-This is the representation section:
-* **--representation-data-lists**, [OPTIONAL] Path(s) to representation file(s) (comma-separated). Becomes REQUIRED if **--metadata-files** is not set.
-* **--representation-id**, [OPTIONAL] Representation identifier(s) (comma-separated). If not set a default value of rep<number> will be used.
-* **--representation-type**, [OPTIONAL] Representation type(s) (comma-separated).
-
-Examples:
-
-### Full create SIP command with long options:
+1. Download the [latest release](https://github.com/keeps/dotnet-eark-sip/releases/latest).
+2. Unzip or place the tool in a directory of your choice.
+3. Run the following command (adjusting paths accordingly):
 
 ```bash
-dotnet run -- create --metadata-file metadata.xml --metadata-type ead --metadata-schema ead2002.xsd \
+dotnet-eark-sip create
+```
+
+#### Available Options
+
+- **create**: Creates an E-ARK SIP (this is the default action, so it can be omitted).
+- **-d, --documentation**: Path(s) to folder(s)/file(s) to add to the SIP’s documentation section.
+- **-p, --path**: Path to save the SIP.
+- **-a, --ancestors**: ID(s) of the SIP’s ancestors.
+- **-C, --checksum**: Checksum algorithm (default is SHA-256).
+- **-T, --target-only**: Adds only the files for the representations.
+- **-v, --version**: E-ARK SIP specification version (default: 2.1.0).
+- **--submitter-name**: The name of the submitter agent.
+- **--submitter-id**: The identification code of the submitter agent.
+- **--sip-id**: ID of the SIP.
+- **--override-schema**: Overrides default schema.
+- **-s, --strategy**: Write strategy (default: Zip).
+
+**Descriptive Metadata Options**
+
+- **--metadata-files**: Path(s) to metadata file(s), comma-separated. _Required if_ `--representation-data-lists` _is not set_.
+- **--metadata-types**: Metadata type(s), comma-separated. _Required if_ `--metadata-files` _is set_.
+- **--metadata-schemas**: Path(s) to metadata schema file(s), comma-separated.
+- **--metadata-versions**: Metadata version(s), comma-separated.
+
+**Representation Options**
+
+- **--representation-data-lists**: Path(s) to file(s) for representation, comma-separated. _Required if_ `--metadata-files` _is not set_.
+- **--representation-id**: Representation identifier(s), comma-separated. Defaults to `rep<number>` if not provided.
+- **--representation-type**: Representation type(s), comma-separated.
+
+#### Example
+
+```bash
+dotnet-eark-sip create --metadata-files metadata.xml --metadata-types ead --metadata-schemas ead2002.xsd \
 --representation-data-lists dataFile1.pdf,dataFolder1,dataFile2.png \
---sip-id sip1 --ancestors sip2,sip3 --documentation documentation1,documentationFolder --path folder2 --submitter-name agent1 --submitter-id 123
+--sip-id sip1 --ancestors sip2,sip3 --documentation documentation1,documentationFolder \
+--path outputFolder --submitter-name agent1 --submitter-id 123
 ```
 
-<!-- ### Use as a .NET Library
+### Use as a .NET Library
 
-* Using NuGet
+> **Note**: If you do not plan to use this as a .NET library, you can skip this section.
 
-1. Add the following library to your project
+1. Install the package via NuGet:
+   ```bash
+   dotnet add package dotnet-eark-sip
+   ```
+2. Use it in your C# code:
 
-```bash
-dotnet add package dotnet-eark-sip
-```
+```csharp
+// Import dependencies
+using IP;
+using Mets;
 
-* Not using NuGet, use the GitHub packages to [download the dependency](https://github.com/keeps/dotnet-eark-sip/packages).
+// Start creating a SIP
+SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.1.0");
 
-#### Write some code
+// Set the name of the software that is creating the SIP (mandatory)
+sip.AddCreatorSoftwareAgent("KEEPS .NET E-ARK SIP", "1.0.0");
 
-* Create a full E-ARK SIP
-
-```c#
-// 1) instantiate E-ARK SIP object
-SIP sip = new EARKSIP(
-  "SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED()
-);
-sip.AddCreatorSoftwareAgent("KEEPS dotnet-eark-sip", "1.0.0");
-
-// 1.1) set optional human-readable description
+// Set optional human-readable description
 sip.SetDescription("A full E-ARK SIP");
 
-// 1.2) add descriptive metadata (SIP level)
-IPDescriptiveMetadata metadataDescriptiveDC = new IPDescriptiveMetadata(
-  new IPFile("src\\resources\\eark\\metadata_descriptive_dc.xml"),
-  new MetadataType(MetadataTypeEnum.DC),
-  null
+// Add descriptive metadata (SIP level)
+IPDescriptiveMetadata descriptiveMetadata = new(
+    new IPFile(Path.Combine(Directory.GetCurrentDirectory(), ".\\Resources\\EARK\\metadata_descriptive_dc.xml")),
+    new MetadataType(IMetadataMdtype.DC),
+    null
 );
-sip.AddDescriptiveMetadata(metadataDescriptiveDC);
+sip.AddDescriptiveMetadata(descriptiveMetadata);
 
-// 1.3) add preservation metadata (SIP level)
-IPMetadata metadataPreservation = new IPMetadata(
-new IPFile("src\\resources\\eark\\metadata_preservation_premis.xml"));
-sip.AddPreservationMetadata(metadataPreservation);
+// Add xml schema (SIP level)
+sip.AddSchema(new IPFile(Path.Combine(Directory.GetCurrentDirectory(), ".\\Resources\\EARK\\schema.xsd")));
 
-// 1.4) add other metadata (SIP level)
-IPFile metadataOtherFile = new IPFile("src\\resources\\eark\\metadata_other.txt");
-// 1.4.1) optionally one may rename file final name
-metadataOtherFile.SetRenameTo("metadata_other_renamed.txt");
-IPMetadata metadataOther = new IPMetadata(metadataOtherFile);
-sip.AddOtherMetadata(metadataOther);
 
-// 1.5) add xml schema (SIP level)
-sip.AddSchema(new IPFile("src\\resources\\eark\\schema.xsd"));
-
-// 1.6) add documentation (SIP level)
-sip.AddDocumentation(new IPFile("src\\resources\\eark\\documentation.pdf"));
-
-// 1.7) set optional RODA related information about ancestors
-sip.SetAncestors(["b6f24059-8973-4582-932d-eb0b2cb48f28"]);
-
-// 1.8) add an agent (SIP level)
-IPAgent agent = new IPAgent("Agent Name","OTHER","OTHER ROLE",CreatorType.INDIVIDUAL,"OTHER TYPE","",
-IPAgentNoteTypeEnum.SOFTWARE_VERSION);
-sip.AddAgent(agent);
-
-// 1.9) add a representation (status will be set to the default value, i.e.,
-// ORIGINAL)
-IPRepresentation representation1 = new IPRepresentation("representation 1");
+// Add a representation (status will be set to the default value, i.e. ORIGINAL)
+IPRepresentation representation1 = new("representation 1");
 sip.AddRepresentation(representation1);
 
-// 1.9.1) add a file to the representation
-IPFile representationFile = new IPFile("src\\resources\\eark\\documentation.pdf");
-representationFile.SetRenameTo("data.pdf");
+// Add a file to the representation
+IPFile representationFile = new(Path.Combine(Directory.GetCurrentDirectory(), ".\\Resources\\EARK\\documentation.pdf"));
+representationFile.SetRenameTo("data_.pdf");
 representation1.AddFile(representationFile);
 
-// 1.9.2) add a file to the representation and put it inside a folder
-// called 'def' which is inside a folder called 'abc'
-IPFile representationFile2 = new IPFile("src\\resources\\eark\\documentation.pdf");
-representationFile2.SetRelativeFolders(Arrays.asList("abc","def"));
-representation1.AddFile(representationFile2);
+// Build the SIP
+ZipWriteStrategyFactory zipWriteStrategyFactory = new();
+IWriteStrategy writeStrategy = zipWriteStrategyFactory.Create(outputPath);
+string zipSIP = sip.Build(writeStrategy);
 
-// 1.10) add a representation & define its status
-IPRepresentation representation2 = new IPRepresentation("representation 2");
-representation2.SetStatus(new RepresentationStatus(REPRESENTATION_STATUS_NORMALIZED));
-sip.AddRepresentation(representation2);
-
-// 1.10.1) add a file to the representation
-IPFile representationFile3 = new IPFile("src\\resources\\eark\\documentation.pdf");
-representationFile3.SetRenameTo("data3.pdf");
-representation2.AddFile(representationFile3);
-
-// 2) build SIP, providing an output directory
-Path zipSIP = sip.Build(tempFolder);
 ```
 
-**Note:** SIP implements the Observer Pattern. This way, if one wants to be notified of SIP build progress, one just
-needs to implement SIPObserver interface and register itself in the SIP. Something like (just presenting some of the
-events):
+3. Look into the repository’s `/dotnet-eark-sip-tests` folder for more in-depth usage patterns and advanced features.
 
-```c#
-public class WhoWantsToBuildSIPAndBeNotified : SIPObserver {
+## Contributing
 
-  public void BuildSIP() {
-    ...
-    SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED());
-    sip.AddObserver(this);
-    ...
-  }
+Contributions are welcome! Here are the basic steps:
 
-  public override void SipBuildPackagingStarted(int totalNumberOfFiles) {
-    ...
-  }
+1. **Fork** the repository and clone your fork.
+2. **Create** a new feature branch.
+3. **Commit** your changes, ensuring you follow the existing style and conventions.
+4. **Open a Pull Request (PR)** describing the changes you’ve made and why they’re needed.
 
-  public override void SipBuildPackagingCurrentStatus(int numberOfFilesAlreadyProcessed) {
-    ...
-  }
-}
-``` -->
+<!-- For more details, see our [CONTRIBUTING.md](CONTRIBUTING.md). Please also be aware of our [Code of Conduct](CODE_OF_CONDUCT.md). -->
 
-### License and Intellectual Property
+## FAQ
 
-All contributions to this project are licensed under a EUPL license, which includes an explicit grant of patent rights, meaning that the developers who created or contributed to the code relinquish their patent rights with regard to any subsequent reuse of the software.
+1. **Does this work on all platforms?**  
+   Yes, it is built for .NET Standard 2.0, so it should work on Windows, macOS, and Linux.
 
-## Credits
+2. **Are older versions of .NET supported?**  
+   .NET Standard 2.0 is compatible with .NET 5 (and higher), .NET Core 2.0 (and higher), and .NET Framework 4.6.1 (with some limitations).
 
-- José Boticas (KEEP SOLUTIONS)
+3. **What if I need an E-ARK version not listed?**  
+   Feel free to open an issue or contribute via pull request.
 
 ## License
 
-EUPL
+This project is licensed under the **European Union Public Licence (EUPL) version 1.2**. The EUPL grants you the following rights:
+
+1. **Use and access**: You are free to download and use this software, in whole or in part, for any lawful purpose, subject to the terms of the licence.
+2. **Modification**: You can modify the source code to suit your needs, and you are encouraged to contribute your improvements back to the community.
+3. **Distribution**: You can redistribute the original code or your modified version(s) to others. When you do, you **must** share it under the EUPL or a compatible licence, making the source code available under equivalent conditions.
+
+### Limitations and Requirements
+
+- **Licence continuity**: If you distribute copies or substantial portions of this software, modified or unmodified, you must retain the original licence text and grant the same rights to the recipients.
+- **No warranty**: The software is provided "as is", without warranty of any kind. The licensor disclaims all liability for damages arising out of its use to the fullest extent permitted by law.
+- **Attribution**: You must keep all copyright notices and attribution statements intact in the source files and any accompanying documentation.
+
+For full details, please refer to the [EUPL licence text](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12).
+
+## Credits
+
+- Developer: José Boticas (KEEP SOLUTIONS)
+- Project manager: Paulo Lima (KEEP SOLUTIONS)
+- Consultants: Luís Faria and Miguel Ferreira (KEEP SOLUTIONS)
+- Sponsor: Institute for the Financial Management and Infrastructures of Justice IGFEJ)
+
+## Sponsorship
+
+The sponsor of this development was the Institute for the Financial Management and Infrastructures of Justice (**IGFEJ**) a public institute, endowed with administrative and financial autonomy and its own assets, which pursues the attributions of the Ministry of Justice, under its supervision and tutelage.
+
+The funding was provided by:
+![Sponsor](BARRA_LOGOS-03.png)
