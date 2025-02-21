@@ -74,6 +74,16 @@ public class SIPBuilder {
     return this;
   }
 
+  public SIPBuilder SetChecksumAlgorithm(string checksumAlgorithm) {
+    try {
+      this.checksumAlgorithm = EnumUtils.GetEnumFromXmlAttribute<IFilecoreChecksumtype>(checksumAlgorithm);
+    } catch {
+      this.checksumAlgorithm = IFilecoreChecksumtype.SHA256;
+    }
+
+    return this;
+  }
+
   public SIPBuilder SetDocumentation(List<string>? documentation) {
     this.documentation = documentation ?? new List<string>();
     return this;
@@ -89,21 +99,33 @@ public class SIPBuilder {
     return this;
   }
 
+  public SIPBuilder SetWriteStrategy(string writeStrategyEnum) {
+    try {
+      this.writeStrategyEnum = EnumUtils.GetEnumFromXmlAttribute<WriteStrategyEnum>(writeStrategyEnum);
+    } catch {
+      this.writeStrategyEnum = WriteStrategyEnum.ZIP;
+    }
+
+    return this;
+  }
+
   public SIPBuilder SetWriteStrategy(WriteStrategyEnum writeStrategyEnum) {
     this.writeStrategyEnum = writeStrategyEnum;
     return this;
   }
 
+
   public string Build() {
     SIP sip = new EARKSIP(SIPBuilderUtils.GetOrGenerateID(sipId), IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), version.ToString());
 
     string softVersion = "DEVELOPMENT-VERSION";
-    if (softwareVersion != null) softVersion = softwareVersion;
+    if (softwareVersion != null) {
+      softVersion = softwareVersion;
+    }
 
-    sip.AddCreatorSoftwareAgent("KEEPS' dotnet-eark-sip", softVersion);
+    sip.AddCreatorSoftwareAgent("dotnet-eark-sip-cli", softVersion);
     sip.AddSubmitterAgent(submitterAgentName, submitterAgentId);
     sip.SetDescription("SIP created by dotnet-eark-sip cli");
-
     sip.SetChecksumAlgorithm(checksumAlgorithm);
 
     if (overrideSchema) sip.SetOverride();

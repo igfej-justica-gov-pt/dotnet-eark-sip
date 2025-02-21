@@ -1,3 +1,4 @@
+using System.Reflection;
 using IP;
 using IPEnums;
 using Mets;
@@ -6,20 +7,20 @@ using Microsoft.Extensions.Logging;
 public class EARKSIP : SIP {
   private static readonly ILogger<EARKSIP> logger = DefaultLogger.Create<EARKSIP>();
   private static readonly string SIP_TEMP_DIR = "EARKSIP";
-  private static readonly string DEFAULT_SIP_VERSION = "2.1.0";
+  private static readonly string DEFAULT_SIP_VERSION = "2.2.0";
+
+  private static readonly string SOFTWARE_VERSION = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "1.0.0";
 
   private readonly EARKMETSCreator metsCreator;
 
   public EARKSIP() : base() {
     SetProfile(IPConstants.SIP_SPEC_PROFILE);
-    METSGeneratorFactory factory = new METSGeneratorFactory();
-    metsCreator = factory.GetGenerator(DEFAULT_SIP_VERSION);
+    metsCreator = new METSGeneratorFactory().GetGenerator(DEFAULT_SIP_VERSION);
   }
 
   public EARKSIP(string id) : base(id) {
     SetProfile(IPConstants.SIP_SPEC_PROFILE);
-    METSGeneratorFactory factory = new METSGeneratorFactory();
-    metsCreator = factory.GetGenerator(DEFAULT_SIP_VERSION);
+    metsCreator = new METSGeneratorFactory().GetGenerator(DEFAULT_SIP_VERSION);
   }
 
   public EARKSIP(string id, IPContentType contentType, IPContentInformationType contentInformationType, string version) : base(id, contentType, contentInformationType) {
@@ -33,12 +34,12 @@ public class EARKSIP : SIP {
   }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
-    public EARKSIP(string id, IPContentType contentType, IPContentInformationType contentInformationType) {
+  public EARKSIP(string id, IPContentType contentType, IPContentInformationType contentInformationType) {
     new EARKSIP(id, contentType, contentInformationType, DEFAULT_SIP_VERSION);
   }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
 
-    public override string Build(IWriteStrategy writeStrategy) {
+  public override string Build(IWriteStrategy writeStrategy) {
     return Build(writeStrategy, false);
   }
 
@@ -65,6 +66,8 @@ public class EARKSIP : SIP {
     EARKUtils earkUtils = new EARKUtils(metsCreator);
 
     try {
+      AddCreatorSoftwareAgent("dotnet-eark-sip", SOFTWARE_VERSION);
+
       Dictionary<string, IZipEntryInfo> zipEntries = GetZipEntries();
       earkUtils.AddDefaultSchemas(logger, GetSchemas(), buildDir, GetOverride());
 

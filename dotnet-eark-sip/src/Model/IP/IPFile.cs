@@ -99,13 +99,21 @@ namespace IP {
       return this;
     }
 
+    private string GetChecksumAlgorithmString() {
+      IFilecoreChecksumtype value = checksumAlgorithm ?? IFilecoreChecksumtype.SHA256;
+
+      if (checksumAlgorithm == null) return " ";
+      else return EnumUtils.GetXmlEnumName(value);
+    }
+
     public override string ToString()
     {
-      return "IPFile [path=" + path +
-        ", renameTo=" + renameTo +
+      return "IPFile [" + 
+        "path=" + path +
+        ", renameTo=" + renameTo ?? " " +
         ", relativeFolders=[" + string.Join(",", relativeFolders) + "]" +
-        ", checksum=" + checksum +
-        ", checksumAlgorithm=" + checksumAlgorithm +
+        ", checksum=" + checksum ?? " " +
+        ", checksumAlgorithm=" + GetChecksumAlgorithmString() +
         ", relatedTags=[" + string.Join(",", relatedTags) + "]" +
       "]";
     }

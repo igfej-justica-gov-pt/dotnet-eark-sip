@@ -1,13 +1,10 @@
 namespace IP {
   [Serializable]
   public class IPAltRecordID {
-    private string value;
-    private string type;
+    private string value = "";
+    private string type = "";
 
-    public IPAltRecordID() {
-      value = string.Empty;
-      type = string.Empty;
-    }
+    public IPAltRecordID() {}
 
     public string GetValue() {
       return value;

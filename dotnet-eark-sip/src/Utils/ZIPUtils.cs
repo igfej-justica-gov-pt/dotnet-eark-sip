@@ -97,7 +97,7 @@ public static class ZIPUtils {
 
     Dictionary<IFilecoreChecksumtype, HashAlgorithm> algorithms = new();
     foreach (IFilecoreChecksumtype algorithm in checksumAlgorithms) {
-      algorithms.Add(algorithm, HashAlgorithm.Create(Enum.GetName(typeof(IFilecoreChecksumtype), algorithm)));
+      algorithms.Add(algorithm, HashAlgorithm.Create(EnumUtils.GetXmlEnumName(algorithm)));
     }
 
     int numRead;

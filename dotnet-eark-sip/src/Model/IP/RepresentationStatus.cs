@@ -1,4 +1,5 @@
 using System.Text;
+using System.Xml.Serialization;
 
 namespace IP {
   [Serializable]
@@ -6,19 +7,19 @@ namespace IP {
     public RepresentationStatusEnum Status { get; private set; }
     public string OtherStatus { get; private set; }
 
-    public RepresentationStatus(string status) {
-      if (new List<string> { "ORIGINAL", "OTHER" }.Contains(status)) {
-        Status = new RepresentationStatusEnum(status);
-        OtherStatus = string.Empty;
-      } else {
+    public RepresentationStatus(string status, string? otherStatus = null) {
+      try {
+        Status = EnumUtils.GetEnumFromXmlAttribute<RepresentationStatusEnum>(status);
+        OtherStatus = otherStatus ?? "";
+      } catch {
         Status = RepresentationStatusEnum.OTHER;
         OtherStatus = status;
       }
     }
 
-    public RepresentationStatus(RepresentationStatusEnum status) {
+    public RepresentationStatus(RepresentationStatusEnum status, string? otherStatus = null) {
       Status = status;
-      OtherStatus = string.Empty;
+      OtherStatus = otherStatus ?? "";
     }
 
     public static RepresentationStatus GetORIGINAL() {
@@ -30,7 +31,7 @@ namespace IP {
     }
 
     public string AsString() {
-      string result = Status.ToString();
+      string result = EnumUtils.GetXmlEnumName(Status);
 
       if (Status == RepresentationStatusEnum.OTHER && !string.IsNullOrEmpty(OtherStatus)) {
         result = OtherStatus;
@@ -41,7 +42,7 @@ namespace IP {
 
     public override string ToString() {
       StringBuilder sb = new StringBuilder();
-      sb.Append("status: ").Append(Status);
+      sb.Append("status: ").Append(EnumUtils.GetXmlEnumName(Status));
       if (!string.IsNullOrEmpty(OtherStatus)) {
         sb.Append("; otherStatus: ").Append(OtherStatus);
       }
@@ -67,16 +68,11 @@ namespace IP {
     }
   }
 
-  public class RepresentationStatusEnum {
-    public static readonly RepresentationStatusEnum ORIGINAL = new RepresentationStatusEnum("ORIGINAL");
-    public static readonly RepresentationStatusEnum OTHER = new RepresentationStatusEnum("OTHER");
+  public enum RepresentationStatusEnum {
+    [XmlEnum("ORIGINAL")]
+    ORIGINAL,
 
-    private string Status { get; }
-
-    public RepresentationStatusEnum(string status) {
-      Status = status;
-    }
-
-    public override string ToString() => Status;
+    [XmlEnum("OTHER")]
+    OTHER
   }
 }

@@ -31,6 +31,7 @@ namespace Xml.Mets.CsipExtensionMets
         [System.Xml.Serialization.XmlEnumAttribute("SIARDDK")]
         SIARDDK,
         
+        [System.Xml.Serialization.XmlEnumAttribute("GeoData")]
         GEODATA,
         
         [System.Xml.Serialization.XmlEnumAttribute("citcarchival_v1_0")]

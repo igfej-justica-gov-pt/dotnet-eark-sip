@@ -24,5 +24,8 @@ namespace Xml.Mets.CsipExtensionMets
         
         [System.Xml.Serialization.XmlEnumAttribute("IDENTIFICATIONCODE")]
         IDENTIFICATIONCODE,
+
+        [System.Xml.Serialization.XmlEnumAttribute("Not set")]
+        NOT_SET,
     }
 }

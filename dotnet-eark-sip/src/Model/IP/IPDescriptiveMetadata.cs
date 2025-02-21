@@ -12,7 +12,11 @@ namespace IP {
     }
 
     public override string ToString() {
-      return "IPDescriptiveMetadata [metadataVersion=" + MetadataVersion + ", getMetadata()=" + GetMetadata() + ", getMetadataType()=" + GetMetadataType() + "]";
+      return "IPDescriptiveMetadata [" +
+        "metadataVersion=" + MetadataVersion ?? " " +
+        ", getMetadata()=" + GetMetadata() +
+        ", getMetadataType()=" + GetMetadataType() +
+      "]";
     }
   }
 }

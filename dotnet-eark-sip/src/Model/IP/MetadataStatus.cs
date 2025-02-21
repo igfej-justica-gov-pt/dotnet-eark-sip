@@ -1,12 +1,9 @@
-public class MetadataStatus {
-  public static readonly MetadataStatus CURRENT = new MetadataStatus("CURRENT");
-  public static readonly MetadataStatus SUPERSEDED = new MetadataStatus("SUPERSEDED");
+using System.Xml.Serialization;
 
-  public string Status { get; }
+public enum MetadataStatus {
+  [XmlEnum("CURRENT")]
+  CURRENT,
 
-  private MetadataStatus(string status) {
-    Status = status;
-  }
-
-  public override string ToString() => Status;
+  [XmlEnum("SUPERSEDED")]
+  SUPERSEDED
 }

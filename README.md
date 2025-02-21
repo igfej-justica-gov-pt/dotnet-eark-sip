@@ -128,7 +128,7 @@ using Mets;
 SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.1.0");
 
 // Set the name of the software that is creating the SIP (mandatory)
-sip.AddCreatorSoftwareAgent("KEEPS .NET E-ARK SIP", "1.0.0");
+sip.AddCreatorSoftwareAgent("dotnet-eark-sip", "1.0.0");
 
 // Set optional human-readable description
 sip.SetDescription("A full E-ARK SIP");

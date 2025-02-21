@@ -79,8 +79,9 @@ namespace IP {
 
     public override string ToString()
     {
-      return "IPHeader [createDate=" + createDate +
-        ", modificationDate=" + modificationDate +
+      return "IPHeader [" +
+        "createDate=" + createDate ?? " " +
+        ", modificationDate=" + modificationDate ?? " " +
         ", status=" + status +
         ", altRecordIDs=[" + string.Join(", ", altRecordIDs) + "]" +
         ", agents=[" + string.Join(", ", agents) + "]" +

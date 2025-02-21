@@ -1,104 +1,25 @@
 using System.Text;
+using System.Xml.Serialization;
 
 namespace IP {
   [Serializable]
   public class IPContentType {
-    public enum IPContentTypeEnum {
-      [System.Xml.Serialization.XmlEnum("Textual works – Print")]
-      TEXTUAL_WORKS_PRINT,
-      
-      [System.Xml.Serialization.XmlEnum("Textual works – Digital")]
-      TEXTUAL_WORKS_DIGITAL,
-      
-      [System.Xml.Serialization.XmlEnum("Textual works – Electronic Serials")]
-      TEXTUAL_WORKS_ELECTRONIC_SERIALS,
-      
-      [System.Xml.Serialization.XmlEnum("Digital Musical Composition (score-based representations)")]
-      DIGITAL_MUSICAL_COMPOSITION,
-      
-      [System.Xml.Serialization.XmlEnum("Photographs – Print")]
-      PHOTOGRAPHS_PRINT,
-      
-      [System.Xml.Serialization.XmlEnum("Photographs – Digital")]
-      PHOTOGRAPHS_DIGITAL,
-      
-      [System.Xml.Serialization.XmlEnum("Other Graphic Images – Print")]
-      OTHER_GRAPHIC_IMAGES_PRINT,
-      
-      [System.Xml.Serialization.XmlEnum("Other Graphic Images – Digital")]
-      OTHER_GRAPHIC_IMAGES_DIGITAL,
-      
-      [System.Xml.Serialization.XmlEnum("Microforms")]
-      MICROFORMS,
-      
-      [System.Xml.Serialization.XmlEnum("Audio – On Tangible Medium (digital or analog)")]
-      AUDIO_ON_TANGIBLE_MEDIUM,
-      
-      [System.Xml.Serialization.XmlEnum("Audio – Media-independent (digital)")]
-      AUDIO_MEDIA_INDEPENDENT,
-      
-      [System.Xml.Serialization.XmlEnum("Motion Pictures – Digital and Physical Media")]
-      MOTION_PICTURES,
-      
-      [System.Xml.Serialization.XmlEnum("Video – File-based and Physical Media")]
-      VIDEO,
-      
-      [System.Xml.Serialization.XmlEnum("Software")]
-      SOFTWARE,
-      
-      [System.Xml.Serialization.XmlEnum("Datasets")]
-      DATASETS,
-      
-      [System.Xml.Serialization.XmlEnum("Dataset")]
-      DATASET,
-      
-      [System.Xml.Serialization.XmlEnum("Geospatial Data")]
-      GEOSPATIAL_DATA,
-      
-      [System.Xml.Serialization.XmlEnum("Databases")]
-      DATABASES,
-      
-      [System.Xml.Serialization.XmlEnum("Websites")]
-      WEBSITES,
-      
-      [System.Xml.Serialization.XmlEnum("Collection")]
-      COLLECTION,
-      
-      [System.Xml.Serialization.XmlEnum("Event")]
-      EVENT,
-      
-      [System.Xml.Serialization.XmlEnum("Interactive resource")]
-      INTERACTIVE_RESOURCE,
-      
-      [System.Xml.Serialization.XmlEnum("Physical object")]
-      PHYSICAL_OBJECT,
-      
-      [System.Xml.Serialization.XmlEnum("Service")]
-      SERVICE,
-      
-      [System.Xml.Serialization.XmlEnum("Mixed")]
-      MIXED,
-      
-      [System.Xml.Serialization.XmlEnum("Other")]
-      OTHER
-    }
-
     private readonly IPContentTypeEnum type;
     private string otherType;
 
-    public IPContentType(string type) {
+    public IPContentType(string type, string? otherType = null) {
       try {
-        this.type = (IPContentTypeEnum)Enum.Parse(typeof(IPContentTypeEnum), type);
-        otherType = string.Empty;
+        this.type = EnumUtils.GetEnumFromXmlAttribute<IPContentTypeEnum>(type);
+        this.otherType = otherType ?? "";
       } catch {
         this.type = IPContentTypeEnum.OTHER;
-        otherType = type;
+        this.otherType = type;
       }
     }
 
-    public IPContentType(IPContentTypeEnum type) {
+    public IPContentType(IPContentTypeEnum type, string? otherType = null) {
       this.type = type;
-      otherType = string.Empty;
+      this.otherType = otherType ?? "";
     }
 
     public IPContentTypeEnum GetContentType() {
@@ -131,7 +52,7 @@ namespace IP {
     }
 
     public string AsString() {
-      string res = type.ToString();
+      string res = EnumUtils.GetXmlEnumName(type);
 
       if (type == IPContentTypeEnum.OTHER && !string.IsNullOrEmpty(otherType)) {
         res = otherType;
@@ -140,10 +61,9 @@ namespace IP {
       return res;
     }
 
-    public override string ToString()
-    {
+    public override string ToString() {
       StringBuilder sb = new StringBuilder();
-      sb.Append("type: ").Append(type.ToString());
+      sb.Append("type: ").Append(EnumUtils.GetXmlEnumName(type));
 
       if (!string.IsNullOrEmpty(otherType)) {
         sb.Append("; otherType: ").Append(otherType);
@@ -151,5 +71,85 @@ namespace IP {
 
       return sb.ToString();
     }
+  }
+
+  public enum IPContentTypeEnum {
+    [XmlEnum("Textual works – Print")]
+    TEXTUAL_WORKS_PRINT,
+
+    [XmlEnum("Textual works – Digital")]
+    TEXTUAL_WORKS_DIGITAL,
+
+    [XmlEnum("Textual works – Electronic Serials")]
+    TEXTUAL_WORKS_ELECTRONIC_SERIALS,
+
+    [XmlEnum("Digital Musical Composition (score-based representations)")]
+    DIGITAL_MUSICAL_COMPOSITION,
+
+    [XmlEnum("Photographs – Print")]
+    PHOTOGRAPHS_PRINT,
+
+    [XmlEnum("Photographs – Digital")]
+    PHOTOGRAPHS_DIGITAL,
+
+    [XmlEnum("Other Graphic Images – Print")]
+    OTHER_GRAPHIC_IMAGES_PRINT,
+
+    [XmlEnum("Other Graphic Images – Digital")]
+    OTHER_GRAPHIC_IMAGES_DIGITAL,
+
+    [XmlEnum("Microforms")]
+    MICROFORMS,
+
+    [XmlEnum("Audio – On Tangible Medium (digital or analog)")]
+    AUDIO_ON_TANGIBLE_MEDIUM,
+
+    [XmlEnum("Audio – Media-independent (digital)")]
+    AUDIO_MEDIA_INDEPENDENT,
+
+    [XmlEnum("Motion Pictures – Digital and Physical Media")]
+    MOTION_PICTURES,
+
+    [XmlEnum("Video – File-based and Physical Media")]
+    VIDEO,
+
+    [XmlEnum("Software")]
+    SOFTWARE,
+
+    [XmlEnum("Datasets")]
+    DATASETS,
+
+    [XmlEnum("Dataset")]
+    DATASET,
+
+    [XmlEnum("Geospatial Data")]
+    GEOSPATIAL_DATA,
+
+    [XmlEnum("Databases")]
+    DATABASES,
+
+    [XmlEnum("Websites")]
+    WEBSITES,
+
+    [XmlEnum("Collection")]
+    COLLECTION,
+
+    [XmlEnum("Event")]
+    EVENT,
+
+    [XmlEnum("Interactive resource")]
+    INTERACTIVE_RESOURCE,
+
+    [XmlEnum("Physical object")]
+    PHYSICAL_OBJECT,
+
+    [XmlEnum("Service")]
+    SERVICE,
+
+    [XmlEnum("Mixed")]
+    MIXED,
+
+    [XmlEnum("Other")]
+    OTHER,
   }
 }

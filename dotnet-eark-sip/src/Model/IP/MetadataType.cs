@@ -7,19 +7,19 @@ namespace IP {
     private readonly IMetadataMdtype type;
     private string otherType;
 
-    public MetadataType(string type) {
+    public MetadataType(string type, string? otherType = null) {
       try {
-        this.type = (IMetadataMdtype)Enum.Parse(typeof(IMetadataMdtype), type);
-        otherType = string.Empty;
+        this.type = EnumUtils.GetEnumFromXmlAttribute<IMetadataMdtype>(type);
+        this.otherType = otherType ?? "";
       } catch {
         this.type = IMetadataMdtype.OTHER;
-        otherType = type;
+        this.otherType = otherType ?? "";
       }
     }
 
-    public MetadataType(IMetadataMdtype type) {
+    public MetadataType(IMetadataMdtype type, string? otherType = null) {
       this.type = type;
-      otherType = string.Empty;
+      this.otherType = otherType ?? "";
     }
 
     public IMetadataMdtype _GetType() {
@@ -37,7 +37,7 @@ namespace IP {
 
     public override string ToString() {
       StringBuilder sb = new StringBuilder();
-      sb.Append("type: ").Append(type);
+      sb.Append("type: ").Append(EnumUtils.GetXmlEnumName(type));
       if (string.IsNullOrEmpty(otherType)) {
         sb.Append("; othertype: ").Append(otherType);
       }

@@ -13,13 +13,10 @@ namespace IP {
     private Notetype? noteType;
 
     public IPAgent() {
-      name = string.Empty;
+      name = "";
       role = MetsTypeMetsHdrAgentRole.OTHER;
-      otherRole = string.Empty;
       type = MetsTypeMetsHdrAgentType.OTHER;
-      otherType = string.Empty;
-      note = string.Empty;
-      noteType = null;
+      note = "";
     }
 
     public IPAgent(string name, MetsTypeMetsHdrAgentRole role, string? otherRole, MetsTypeMetsHdrAgentType type, string? otherType, string note, Notetype noteType) {
@@ -95,9 +92,24 @@ namespace IP {
       return this;
     }
 
+    private string GetNoteTypeString() {
+      Notetype value = noteType ?? Notetype.IDENTIFICATIONCODE;
+
+      if (noteType == null) return "";
+      else return EnumUtils.GetXmlEnumName(value);
+    }
+
     public override string ToString()
     {
-      return "IPAgent [name=" + name + ", role=" + role + ", type=" + type.ToString() + ", otherRole=" + otherRole + ", otherType=" + otherType + ", note=" + note + "]";
+      return "IPAgent [" + 
+        "name=" + name + 
+        ", role=" + EnumUtils.GetXmlEnumName(role) + 
+        ", type=" + EnumUtils.GetXmlEnumName(type) + 
+        ", otherRole=" + otherRole ?? " " + 
+        ", otherType=" + otherType ?? " " + 
+        ", note=" + note + 
+        ", noteType=" + GetNoteTypeString() + 
+      "]";
     }
   }
 }

@@ -53,7 +53,7 @@ public class EARKSIPTests : IDisposable {
   private string CreateFullEARKSIPForTestCompliance() {
     // 1) instantiate E-ARK SIP object
     SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.1.0");
-    sip.AddCreatorSoftwareAgent("KEEPS .NET E-ARK SIP", "1.0.0");
+    sip.AddSubmitterAgent("E-ARK SIP Tests");
 
     // 1.1) set optional human-readable description
     sip.SetDescription("A full E-ARK SIP");
@@ -170,7 +170,7 @@ public class EARKSIPTests : IDisposable {
   private string CreateFullEARKSIPShallowForTestCompliance() {
     // 1) instantiate E-ARK SIP object
     SIP sip = new EARKSIP("SIP_S_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.1.0");
-    sip.AddCreatorSoftwareAgent("KEEPS .NET E-ARK SIP", "1.0.0");
+    sip.AddSubmitterAgent("E-ARK SIP Tests");
 
     // 1.1) set optional human-readable description
     sip.SetDescription("A full E-ARK SIP-Shallow");

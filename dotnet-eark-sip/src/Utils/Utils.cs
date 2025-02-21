@@ -10,6 +10,10 @@ public static class Utils {
     return METSEnums.ID_PREFIX + Guid.NewGuid().ToString().ToUpper();
   }
 
+  public static string GenerateRandomAndPrefixedFileID() {
+    return METSEnums.FILE_ID_PREFIX + Guid.NewGuid().ToString().ToUpper();
+  }
+
   public static string CopyResourceFromClasspathToDir(Type resourceType, string dir, string resourceTempSuffix, string resourcePath) {
     string resource = Path.Combine(dir, Path.GetRandomFileName() + resourceTempSuffix);
 

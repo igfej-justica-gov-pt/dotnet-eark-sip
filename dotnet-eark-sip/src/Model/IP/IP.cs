@@ -313,6 +313,16 @@ namespace IP {
       return this;
     }
 
+    public IIP SetChecksumAlgorithm(string checksumAlgorithm) {
+    try {
+      this.checksumAlgorithm = EnumUtils.GetEnumFromXmlAttribute<IFilecoreChecksumtype>(checksumAlgorithm);
+    } catch {
+      this.checksumAlgorithm = IFilecoreChecksumtype.SHA256;
+    }
+
+    return this;
+  }
+
     public bool GetOverride() {
       return _override;
     }
@@ -328,27 +338,27 @@ namespace IP {
       }
     }
 
-    private IPAgent GetSubmitterDefaultAgent() {
-      return new IPAgent("Default submitter agent", MetsTypeMetsHdrAgentRole.CREATOR, null, MetsTypeMetsHdrAgentType.INDIVIDUAL, null, "1", Notetype.IDENTIFICATIONCODE);
-    }
-
     public IPAgent AddCreatorSoftwareAgent(string name, string version) {
       IPAgent creatorAgent = new IPAgent(name, MetsTypeMetsHdrAgentRole.CREATOR, null, MetsTypeMetsHdrAgentType.OTHER, "SOFTWARE", version, Notetype.SOFTWARE_VERSION);
       header.AddAgent(creatorAgent);
       return creatorAgent;
     }
 
-    public IPAgent AddSubmitterAgent(string name, string id) {
+    private IPAgent GetSubmitterDefaultAgent() {
+      return new IPAgent("Default submitter agent", MetsTypeMetsHdrAgentRole.CREATOR, null, MetsTypeMetsHdrAgentType.INDIVIDUAL, null, "1", Notetype.IDENTIFICATIONCODE);
+    }
+
+    public IPAgent AddSubmitterAgent(string? name = null, string? id = null) {
       IPAgent submitterAgent = GetSubmitterDefaultAgent();
 
-      if (!string.IsNullOrEmpty(name)) {
+      if (name != null && name != "") {
         submitterAgent.SetName(name);
       }
-      
-      if (!string.IsNullOrEmpty(id)) {
+
+      if (id != null && name != "") {
         submitterAgent.SetNote(id);
       }
-      
+
       header.AddAgent(submitterAgent);
       return submitterAgent;
     }
@@ -364,11 +374,13 @@ namespace IP {
 
     public override string ToString()
     {
-      return "IP [ids=" + ids + ", profile=" + profile + ", type=" + type + ", header=" + header + ", contentType="
-        + contentType + ", ancestors=" + ancestors + ", basePath=" + basePath + ", description=" + description
-        + ", descriptiveMetadata=" + descriptiveMetadata + ", preservationMetadata=" + preservationMetadata
-        + ", otherMetadata=" + otherMetadata + ", representationIds=" + representationIds + ", representations="
-        + representations + ", schemas=" + schemas + ", documentation=" + documentation +
+      return "IP [" +
+        "ids=" + string.Join(", ", ids) + ", profile=" + profile + ", type=" + type + ", header=" + header + ", contentType="
+        + contentType + ", ancestors=" + ancestors + ", basePath=" + basePath ?? " " + ", description=" + description
+        + ", descriptiveMetadata=[" + string.Join(", ", descriptiveMetadata) + "], preservationMetadata=[" + string.Join(", ", preservationMetadata)
+        + "], otherMetadata=[" + string.Join(", ", otherMetadata) + "], representationIds=[" + representationIds +
+        ", representations=" + string.Join(", ", representationIds) + ", schemas=[" + string.Join(", ", schemas) +
+        "], documentation=[" + string.Join(", ", documentation) + "]" +
       "]";
     }
   }

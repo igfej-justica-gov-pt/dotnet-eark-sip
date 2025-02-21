@@ -82,12 +82,12 @@ public class Create {
         .SetSipId(args.SIPId)
         .SetAncestors(args.Ancestors?.ToList())
         .SetDocumentation(args.Documentation?.ToList())
-        .SetSoftwareVersion(VersionProvider.GetVersion())
+        .SetSoftwareVersion(VersionProvider.GetVersionComplete())
         .SetPath(args.Path)
         .SetSubmitterAgentId(args.SubmitterAgentId)
         .SetSubmitterAgentName(args.SubmitterAgentName)
         .SetChecksumAlgorithm(args.ChecksumAlgorithm)
-        .SetVersion(args.Version)
+        .SetVersion(EnumUtils.GetEnumFromXmlAttribute<CSIPVersion>(args.Version))
         .SetWriteStrategy(args.Strategy)
         .Build();
 

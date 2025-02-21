@@ -10,6 +10,8 @@ namespace IP {
     private MetadataStatus metadataStatus = MetadataStatus.CURRENT;
 
     public IPMetadata() {
+      id = "";
+      metadata = new IPFile();
       // empty constructor for serialization purposes
     }
 
@@ -75,18 +77,24 @@ namespace IP {
       return this;
     }
 
-    public string getMetadataStatus() {
-      return metadataStatus.ToString();
+    public string GetMetadataStatus() {
+      return EnumUtils.GetXmlEnumName(metadataStatus);
     }
 
-    public IPMetadata setMetadataStatus(MetadataStatus metadataStatus) {
+    public IPMetadata SetMetadataStatus(MetadataStatus metadataStatus) {
       this.metadataStatus = metadataStatus;
       return this;
     }
 
     public override string ToString()
     {
-      return "IPMetadata [id=" + id + ", createDate=" + createDate + ", metadata=" + metadata + ", metadataType=" + metadataType + ", metadataStatus=" + metadataStatus + "]";
+      return "IPMetadata [" +
+        "id=" + id +
+        ", createDate=" + createDate ?? " " +
+        ", metadata=" + metadata +
+        ", metadataType=" + metadataType +
+        ", metadataStatus=" + GetMetadataStatus() +
+      "]";
     }
   }
 }

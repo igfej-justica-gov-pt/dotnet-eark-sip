@@ -143,6 +143,18 @@ public abstract class EARKMETSCreator {
     return metsWrapper;
   }
 
+  private IPAgent GetCreatorAgent() {
+    return new IPAgent(
+      "KEEPS' .NET E-ARK SIP",
+      MetsTypeMetsHdrAgentRole.CREATOR,
+      null,
+      MetsTypeMetsHdrAgentType.OTHER,
+      "SOFTWARE",
+      "1.0.0",
+      Notetype.SOFTWARE_VERSION
+    );
+  }
+
   protected MetsTypeFileSecFileGrp CreateFileGroup(string use) {
     return new MetsTypeFileSecFileGrp
     {
@@ -188,7 +200,7 @@ public abstract class EARKMETSCreator {
       };
 
       // create file
-      FileType fileType = new FileType { Id = Utils.GenerateRandomAndPrefixedUUID() };
+      FileType fileType = new FileType { Id = Utils.GenerateRandomAndPrefixedFileID() };
 
       AddMetsToZip(zipEntries, representationMetsWrapper, representationMetsPath, buildDir, false, fileType);
 
@@ -230,10 +242,7 @@ public abstract class EARKMETSCreator {
       };
 
       // create file
-      FileType fileType = new FileType
-      {
-        Id = Utils.GenerateRandomAndPrefixedUUID()
-      };
+      FileType fileType = new FileType { Id = Utils.GenerateRandomAndPrefixedFileID() };
 
       AddMetsToZip(zipEntries, representationMetsWrapper, representationMetsPath, buildDir, false, fileType);
 
@@ -281,7 +290,7 @@ public abstract class EARKMETSCreator {
     MetsTypeMetsHdrAgentNote note = new MetsTypeMetsHdrAgentNote
     {
       Value = ipAgent.GetNote(),
-      Notetype = (Notetype)ipAgent.GetNoteType()
+      Notetype = ipAgent.GetNoteType() ?? Notetype.NOT_SET
     };
 
     agent.Note.Add(note);
@@ -316,7 +325,7 @@ public abstract class EARKMETSCreator {
     MdSecType dmdSec = new MdSecType
     {
       Id = Utils.GenerateRandomAndPrefixedUUID(),
-      Status = metadata.getMetadataStatus(),
+      Status = metadata.GetMetadataStatus(),
     };
 
     MdSecTypeMdRef mdRef = CreateMdRef(metadata.GetID(), metadataPath);
@@ -349,7 +358,7 @@ public abstract class EARKMETSCreator {
     MdSecType digiprovMD = new MdSecType
     {
       Id = Utils.GenerateRandomAndPrefixedUUID(),
-      Status = preservationMetadata.getMetadataStatus(),
+      Status = preservationMetadata.GetMetadataStatus(),
     };
 
     MdSecTypeMdRef mdRef = CreateMdRef(preservationMetadata.GetID(), preservationMetadataPath);
@@ -381,7 +390,7 @@ public abstract class EARKMETSCreator {
 
   public void AddDataFileToMets(MetsWrapper representationMets, IPFileShallow shallow) {
     FileType file = shallow.FileType;
-    file.Id = Utils.GenerateRandomAndPrefixedUUID();
+    file.Id = Utils.GenerateRandomAndPrefixedFileID();
 
     // add to file section
     FileTypeFLocat fileLocation = METSUtils.CreateShallowFileLocation(shallow.FileLocation.ToString());
@@ -393,7 +402,7 @@ public abstract class EARKMETSCreator {
   public FileType AddDataFileToMets(MetsWrapper representationMets, string dataFilePath, string dataFile) {
     FileType file = new FileType
     {
-      Id = Utils.GenerateRandomAndPrefixedUUID()
+      Id = Utils.GenerateRandomAndPrefixedFileID()
     };
 
     METSUtils.SetFileBasicInformation(logger, dataFile, file);
@@ -415,10 +424,7 @@ public abstract class EARKMETSCreator {
   }
 
   public FileType AddSchemaFileToMETS(MetsWrapper metsWrapper, string filePath, string schemaFile) {
-    FileType file = new FileType
-    {
-      Id = Utils.GenerateRandomAndPrefixedUUID()
-    };
+    FileType file = new FileType { Id = Utils.GenerateRandomAndPrefixedFileID() };
 
     METSUtils.SetFileBasicInformation(logger, schemaFile, file);
 
@@ -439,10 +445,7 @@ public abstract class EARKMETSCreator {
   }
 
   public FileType AddDocumentationFileToMETS(MetsWrapper metsWrapper, string filePath, string documentationFile) {
-    FileType file = new FileType
-    {
-      Id = Utils.GenerateRandomAndPrefixedUUID()
-    };
+    FileType file = new FileType { Id = Utils.GenerateRandomAndPrefixedFileID() };
 
     METSUtils.SetFileBasicInformation(logger, documentationFile, file);
 
@@ -494,7 +497,7 @@ public abstract class EARKMETSCreator {
     mets.Profile = profile;
     mets.Label = label;
 
-    mets.Type = contentType.GetContentType().ToString();
+    mets.Type = EnumUtils.GetXmlEnumName(contentType.GetContentType());
     if (contentType.IsOtherAndOtherTypeIsDefined()) {
       mets.Othertype = contentType.GetOtherType();
     }
@@ -510,13 +513,14 @@ public abstract class EARKMETSCreator {
 
   protected void AddHeaderToMets(Mets.Mets mets, IPHeader ipHeader, Oaispackagetype type) {
     MetsTypeMetsHdr header = new MetsTypeMetsHdr();
+
     try {
       DateTime currentDate = DateTime.Now;
       header.Createdate = currentDate;
       header.CreatedateSpecified = true;
       header.Lastmoddate = currentDate;
       header.LastmoddateSpecified = true;
-      header.Recordstatus = ipHeader.GetStatus().ToString();
+      header.Recordstatus = EnumUtils.GetXmlEnumName(ipHeader.GetStatus());
       header.Oaispackagetype = type;
     } catch (Exception e) {
       throw new IPException("Error adding header to METS", e);

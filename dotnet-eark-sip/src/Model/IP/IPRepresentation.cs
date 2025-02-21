@@ -130,12 +130,14 @@ namespace IP {
     }
 
     public override string ToString() {
-      return "IPRepresentation [representationID=" + RepresentationID + ", objectID=" + objectID + ", createDate="
-        + createDate + ", modificationDate=" + modificationDate + ", contentType=" + contentType
-        + ", contentInformationType=" + ContentInformationType + ", status=" + status + ", description=" + description
-        + ", agents=" + Agents + ", descriptiveMetadata=" + DescriptiveMetadata + ", preservationMetadata="
-        + PreservationMetadata + ", otherMetadata=" + OtherMetadata + ", data=" + Data + ", schemas=" + Schemas
-        + ", documentation=" + Documentation + "]";
+      return "IPRepresentation [" +
+        "representationID=" + RepresentationID + ", objectID=" + objectID + ", createDate=" + createDate ?? " " +
+        ", modificationDate=" + modificationDate ?? " " + ", contentType=" + contentType +
+        ", contentInformationType=" + ContentInformationType + ", status=" + status + ", description=" + description +
+        ", agents=[" + string.Join(", ", Agents) + "], descriptiveMetadata=" + string.Join(", ", DescriptiveMetadata) +
+        "], preservationMetadata=" + string.Join(", ", PreservationMetadata) + "], otherMetadata=" + string.Join(", ", OtherMetadata) +
+        "], data=" + string.Join(", ", Data) + "], schemas=" + string.Join(", ", Schemas) + "], documentation=" + string.Join(", ", Documentation) + "]" +
+      "]";
     }
   }
 }

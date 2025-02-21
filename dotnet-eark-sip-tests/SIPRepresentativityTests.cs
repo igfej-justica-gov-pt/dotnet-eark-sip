@@ -38,7 +38,7 @@ public class SIPRepresentativityTests : IDisposable {
   private string CreateFullEARKSIPWithFolders() {
     // 1) instantiate E-ARK SIP object
     SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.1.0");
-    sip.AddCreatorSoftwareAgent("KEEPS .NET E-ARK SIP", "1.0.0");
+    sip.AddSubmitterAgent("SIP Representativity Tests");
 
     // 1.1) set optional human-readable description
     sip.SetDescription("A full E-ARK SIP");

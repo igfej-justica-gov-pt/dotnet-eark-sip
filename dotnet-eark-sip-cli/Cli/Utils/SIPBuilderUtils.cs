@@ -135,16 +135,22 @@ public class SIPBuilderUtils {
   }
 
   public static IWriteStrategy GetWriteStrategy(WriteStrategyEnum writeStrategyEnum, string buildPath) {
-    switch (writeStrategyEnum.WriteStrategy) {
+    try {
+      string strategy = EnumUtils.GetXmlEnumName(writeStrategyEnum);
 
-      case "Folder":
-        FolderWriteStrategyFactory folderWriteStrategyFactory = new();
-        return folderWriteStrategyFactory.Create(buildPath);
+      switch (strategy) {
+        case "Folder":
+          FolderWriteStrategyFactory folderWriteStrategyFactory = new();
+          return folderWriteStrategyFactory.Create(buildPath);
 
-      case "Zip":
-      default:
-        ZipWriteStrategyFactory zipWriteStrategyFactory = new();
-        return zipWriteStrategyFactory.Create(buildPath);
+        case "Zip":
+        default:
+          ZipWriteStrategyFactory zipWriteStrategyFactory = new();
+          return zipWriteStrategyFactory.Create(buildPath);
+      }
+    } catch {
+      ZipWriteStrategyFactory zipWriteStrategyFactory = new();
+      return zipWriteStrategyFactory.Create(buildPath);
     }
   }
 

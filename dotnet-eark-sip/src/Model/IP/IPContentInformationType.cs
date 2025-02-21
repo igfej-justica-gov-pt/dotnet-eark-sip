@@ -4,23 +4,22 @@ using Xml.Mets.CsipExtensionMets;
 namespace IP {
   [Serializable]
   public class IPContentInformationType {
-
     private readonly Contentinformationtype type;
     private string otherType;
 
-    public IPContentInformationType(string type) {
+    public IPContentInformationType(string type, string? otherType = null) {
       try {
-        this.type = (Contentinformationtype)Enum.Parse(typeof(Contentinformationtype), type);
-        otherType = string.Empty;
+        this.type = EnumUtils.GetEnumFromXmlAttribute<Contentinformationtype>(type);
+        this.otherType = otherType ?? "";
       } catch {
         this.type = Contentinformationtype.OTHER;
-        otherType = type;
+        this.otherType = type;
       }
     }
 
-    public IPContentInformationType(Contentinformationtype type) {
+    public IPContentInformationType(Contentinformationtype type, string? otherType = null) {
       this.type = type;
-      otherType = string.Empty;
+      this.otherType = otherType ?? "";
     }
 
     public Contentinformationtype GetContentInformationType() {
@@ -44,10 +43,9 @@ namespace IP {
       return new IPContentInformationType(Contentinformationtype.MIXED);
     }
 
-    public override string ToString()
-    {
+    public override string ToString() {
       StringBuilder sb = new StringBuilder();
-      sb.Append("type: ").Append(type.ToString());
+      sb.Append("type: ").Append(EnumUtils.GetXmlEnumName(type));
 
       if (!string.IsNullOrEmpty(otherType)) {
         sb.Append("; otherType: ").Append(otherType);

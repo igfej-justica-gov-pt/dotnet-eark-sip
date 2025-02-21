@@ -31,13 +31,13 @@ public class Options {
 
 
   [Option('v', "version", HelpText = "E-ARK SIP specification version (possible values: ${COMPLETION-CANDIDATES})")]
-  public CSIPVersion Version { get; set; } = CSIPVersion.V220;
+  public string Version { get; set; } = EnumUtils.GetXmlEnumName(CSIPVersion.V220);
 
   [Option('C', "checksum", HelpText = "Checksum algorithms (possible values: ${COMPLETION-CANDIDATES})")]
-  public IFilecoreChecksumtype ChecksumAlgorithm { get; set; } = IFilecoreChecksumtype.SHA256;
+  public string ChecksumAlgorithm { get; set; } = EnumUtils.GetXmlEnumName(IFilecoreChecksumtype.SHA256);
 
   [Option('s', "strategy", HelpText = "Write strategy to be used (possible values: ${COMPLETION-CANDIDATES})")]
-  public WriteStrategyEnum Strategy { get; set; } = WriteStrategyEnum.ZIP;
+  public string Strategy { get; set; } = EnumUtils.GetXmlEnumName(WriteStrategyEnum.ZIP);
 
 
   // Metadata section

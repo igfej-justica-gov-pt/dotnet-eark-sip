@@ -1,12 +1,9 @@
-public class WriteStrategyEnum {
-  public static readonly WriteStrategyEnum ZIP = new("Zip");
-  public static readonly WriteStrategyEnum FOLDER = new("Folder");
+using System.Xml.Serialization;
 
-  public string WriteStrategy { get; }
+public enum WriteStrategyEnum {
+  [XmlEnum("Zip")]
+  ZIP,
 
-  private WriteStrategyEnum(string strategy) {
-    WriteStrategy = strategy;
-  }
-
-  public override string ToString() => WriteStrategy;
+  [XmlEnum("Folder")]
+  FOLDER
 }
