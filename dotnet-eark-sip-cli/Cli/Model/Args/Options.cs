@@ -82,7 +82,7 @@ public class Options {
 
 	[Option("representation-ids", Separator = ',', HelpText = "Representation identifier (comma-separated for different representations)")]
 	public IEnumerable<string> RepresentationIds { get; set; } = new List<string>();
-  
+
   public List<Representation> GetRepresentations() {
     List<Representation> representations = new();
 

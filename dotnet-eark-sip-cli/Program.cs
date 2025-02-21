@@ -59,7 +59,7 @@ public class Create {
       throw new InvalidPathException("Make sure all the representation data paths exist");
     }
 
-    if (!CommandUtils.ValidateDocumentationPaths(args.Documentation ?? [])) {
+    if (!CommandUtils.ValidateDocumentationPaths(args.Documentation)) {
       throw new InvalidPathException("Make sure all the documentation paths exist");
     }
 

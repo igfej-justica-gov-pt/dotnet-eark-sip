@@ -37,9 +37,7 @@ public class SIPBuilderUtils {
   }
 
   private static void AddRepresentationToSIP(SIP sip, Representation group, bool targetOnly) {
-    string? id = group.RepresentationId;
-    id ??= "rep1";
-
+    string id = group.RepresentationId ?? "rep1";
     IPRepresentation representation = new(id);
     sip.AddRepresentation(representation);
 
@@ -79,6 +77,11 @@ public class SIPBuilderUtils {
   }
 
   private static IPContentType GetIPContentType(string representationType) {
+    IPContentType ipContentType = new IPContentType(representationType);
+    if (!ipContentType.IsOtherAndOtherTypeIsDefined()) {
+      return ipContentType;
+    }
+
     return IPContentType.GetMIXED();
   }
 
@@ -124,9 +127,10 @@ public class SIPBuilderUtils {
   private static string? GetMetadataVersionFromMetadataFile(string metadataFile) {
     string filename = Path.GetFileNameWithoutExtension(metadataFile);
     string[] splitFilename = filename.Split('_');
-    string? metadataVersion = null;
 
+    string? metadataVersion = null;
     if (splitFilename.Length == 2) metadataVersion = splitFilename[1];
+
     return metadataVersion;
   }
 
