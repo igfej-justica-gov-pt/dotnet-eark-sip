@@ -4,9 +4,7 @@
 [![Latest Release](https://img.shields.io/github/v/release/keeps/dotnet-eark-sip)](https://github.com/keeps/dotnet-eark-sip/releases/latest)  
 [![License](https://img.shields.io/badge/license-EUPL-blue.svg)](#license)
 
-A .NET library and CLI tool for creating E-ARK Submission Information Packages (SIPs).
-
-Providing support for E-ARK SIP formats (2.0.4, 2.1.0, 2.2.0), this project makes it easier to create and manage valid SIPs for long-term digital preservation using the E-ARK standards.
+A .NET library and CLI tool for creating E-ARK Submission Information Packages (SIPs). Providing support for E-ARK SIP formats (2.0.4, 2.1.0, 2.2.0), this project makes it easier to create and manage valid SIPs for long-term digital preservation using the E-ARK standards.
 
 ## Table of Contents
 
@@ -69,7 +67,7 @@ You can use the **dotnet-eark-sip** as a **command-line tool** or as a **.NET li
 3. Run the following command (adjusting paths accordingly):
 
 ```bash
-dotnet-eark-sip create
+dotnet-eark-sip-cli create
 ```
 
 #### Available options
@@ -103,7 +101,7 @@ dotnet-eark-sip create
 #### Example
 
 ```bash
-dotnet-eark-sip create --metadata-files metadata.xml --metadata-types ead --metadata-schemas ead2002.xsd \
+dotnet-eark-sip-cli create --metadata-files metadata.xml --metadata-types ead --metadata-schemas ead2002.xsd \
 --representation-data-lists dataFile1.pdf,dataFolder1,dataFile2.png \
 --sip-id sip1 --ancestors sip2,sip3 --documentation documentation1,documentationFolder \
 --path outputFolder --submitter-name agent1 --submitter-id 123
@@ -215,4 +213,4 @@ For full details, please refer to the [EUPL licence text](https://joinup.ec.euro
 The sponsor of this development was the Institute for the Financial Management and Infrastructures of Justice (**IGFEJ**) a public institute, endowed with administrative and financial autonomy and its own assets, which pursues the attributions of the Ministry of Justice, under its supervision and tutelage.
 
 The funding was provided by:
-![Sponsor](BARRA_LOGOS-03.png)
+![Sponsor](prr.png)
