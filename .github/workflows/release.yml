@@ -40,15 +40,12 @@ jobs:
         run: dotnet pack dotnet-eark-sip/dotnet-eark-sip.csproj -c Release --no-build -o ./nupkgs
 
       - name: Publish to Github Package Registry
-        run: dotnet nuget push ./nupkgs/*.nupkg -k $NUGET_AUTH_TOKEN -s https://nuget.pkg.github.com/keeps/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: pwsh
+        run: dotnet nuget push "nupkgs/dotnet-eark-sip.${{ github.ref_name }}.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "https://nuget.pkg.github.com/keeps/index.json"
 
       # To publish to nuget.org (public!), would need a key
       # - name: Publish the package to nuget.org
-      #   run: dotnet nuget push ./nupkgs/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
-      #   env:
-      #     NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+      #   run: dotnet nuget push "nupkgs/dotnet-eark-sip.${{ github.ref_name }}.nupkg" --api-key "${{ secrets.NUGET_TOKEN }}" --source "https://api.nuget.org/v3/index.json"
 
       - name: Release to GitHub
         uses: softprops/action-gh-release@v2
