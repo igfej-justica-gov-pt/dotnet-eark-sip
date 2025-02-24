@@ -1,0 +1,32 @@
+name: CI
+on:
+  push:
+    branches:
+      - "**"
+    tags-ignore:
+      - "**"
+
+jobs:
+  continuous-integration:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Run Tests
+        run: dotnet test dotnet-eark-sip-tests/dotnet-eark-sip-tests.csproj --configuration Release --no-restore --logger "trx;LogFileName=test-results.trx"
+
+      - name: Build Library
+        run: dotnet build dotnet-eark-sip/dotnet-eark-sip.csproj --configuration Release --no-restore
+
+      - name: Build CLI
+        run: dotnet build dotnet-eark-sip-cli/dotnet-eark-sip-cli.csproj --configuration Release --no-restore

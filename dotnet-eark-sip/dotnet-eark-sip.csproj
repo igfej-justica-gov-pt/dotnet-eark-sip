@@ -5,6 +5,7 @@
     <RootNamespace>dotnet_eark_sip</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Version>1.0.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="src\Resources\ControlledVocabularies\IANA_MEDIA_TYPES.txt" />

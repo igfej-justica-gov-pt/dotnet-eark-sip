@@ -6,9 +6,6 @@
  * https://github.com/keeps/commons-ip
  */
 public class IPConstants {
-
-  public static readonly string SYSTEM_LINE_SEP = Path.PathSeparator.ToString();
-
   // METS related
   public static readonly string METS_FILE_NAME = "METS";
   public static readonly string METS_FILE_EXTENSION = ".xml";
@@ -56,8 +53,6 @@ public class IPConstants {
   public static readonly string DOCUMENTATION_WITH_FIRST_LETTER_CAPITAL = "Documentation";
   public static readonly string DOCUMENTATION = "documentation";
   public static readonly string DOCUMENTATION_FOLDER = DOCUMENTATION + METS_PATH_SEPARATOR;
-  public static readonly string SUBMISSION = "submission";
-  public static readonly string SUBMISSION_FOLDER = SUBMISSION + METS_PATH_SEPARATOR;
 
   // misc
   public static readonly string ZIP_PATH_SEPARATOR = "/";
@@ -73,8 +68,8 @@ public class IPConstants {
   public static readonly string SIP_SPEC_PROFILE = "https://earksip.dilcis.eu/profile/E-ARK-SIP.xml";
 
   // EARK
-  public static readonly string EARK_SIP_STRUCTURAL_MAP = ".NET EARK SIP structural map";
-  public static readonly string EARK_SIP_DIV_LABEL = ".NET EARK SIP";
+  public static readonly string EARK_SIP_STRUCTURAL_MAP = "dotnet-eark-sip structural map";
+  public static readonly string EARK_SIP_DIV_LABEL = "dotnet-eark-sip";
   public static readonly string EARK_SIP_ANCESTORS_DIV_LABEL = "Ancestors";
 
   public static bool METS_ENCODE_AND_DECODE_HREF = true;

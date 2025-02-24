@@ -1,0 +1,53 @@
+name: Release
+on:
+  push:
+    tags:
+      - "**"
+    branches-ignore:
+      - "**"
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore Dependencies
+        run: dotnet restore dotnet-eark-sip/dotnet-eark-sip.csproj
+
+      - name: Build Project
+        run: dotnet build dotnet-eark-sip/dotnet-eark-sip.csproj --configuration Release --no-restore
+
+      - name: Set NuGet Package Version
+        run: |
+          VERSION=${{ github.ref_name }}
+          sed -i "s/<Version>.*<\/Version>/<Version>$VERSION</Version>/g" dotnet-eark-sip/dotnet-eark-sip.csproj
+
+      - name: Pack NuGet Package
+        run: dotnet pack dotnet-eark-sip/dotnet-eark-sip.csproj --configuration Release --no-build --output ./nupkgs
+
+      - name: Run Tests
+        run: dotnet test dotnet-eark-sip-tests/dotnet-eark-sip-tests.csproj --configuration Release --no-build --logger trx
+
+      # Uncomment to publish to NuGet directly
+      # - name: Publish to NuGet
+      #   run: dotnet nuget push ./nupkgs/*.nupkg --source "https://api.nuget.org/v3/index.json" --api-key ${{ secrets.NUGET_API_KEY }}
+      #   env:
+      #     NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+      - name: Release to GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Version ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          draft: true
+          files: ./nupkgs/*.nupkg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,7 +1,10 @@
+using Microsoft.Extensions.Logging;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
 public static class Utils {
+  private static readonly ILogger logger = DefaultLogger.Create("Utils");
+
   public static bool IsWindowsSystem() {
     return RuntimeInformation.OSDescription.ToLower().Contains("windows");
   }
@@ -33,8 +36,11 @@ public static class Utils {
     if (path == null) return;
 
     string[] files = Directory.GetFiles(path) ?? new string[0];
-    foreach (string file in files) {
-      File.Delete(file);
+    if (files.Length > 0) {
+      logger.LogDebug("Directory {path} is not empty. Going to delete its content as well.", path);
+      foreach (string file in files) {
+        File.Delete(file);
+      }
     }
 
     Directory.Delete(path);

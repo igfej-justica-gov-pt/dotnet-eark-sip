@@ -143,18 +143,6 @@ public abstract class EARKMETSCreator {
     return metsWrapper;
   }
 
-  private IPAgent GetCreatorAgent() {
-    return new IPAgent(
-      "KEEPS' .NET E-ARK SIP",
-      MetsTypeMetsHdrAgentRole.CREATOR,
-      null,
-      MetsTypeMetsHdrAgentType.OTHER,
-      "SOFTWARE",
-      "1.0.0",
-      Notetype.SOFTWARE_VERSION
-    );
-  }
-
   protected MetsTypeFileSecFileGrp CreateFileGroup(string use) {
     return new MetsTypeFileSecFileGrp
     {
@@ -504,6 +492,7 @@ public abstract class EARKMETSCreator {
 
     if (contentInformationType != null) {
       mets.Contentinformationtype = contentInformationType.GetContentInformationType();
+      mets.ContentinformationtypeSpecified = true;
       string otherContentInformationType = contentInformationType.GetOtherType();
       if (!string.IsNullOrEmpty(otherContentInformationType)) {
         mets.Othercontentinformationtype = otherContentInformationType;

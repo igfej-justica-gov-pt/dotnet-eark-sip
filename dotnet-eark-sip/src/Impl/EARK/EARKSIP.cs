@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 public class EARKSIP : SIP {
   private static readonly ILogger<EARKSIP> logger = DefaultLogger.Create<EARKSIP>();
   private static readonly string SIP_TEMP_DIR = "EARKSIP";
-  private static readonly string DEFAULT_SIP_VERSION = "2.2.0";
+  private static readonly string DEFAULT_SIP_VERSION = "2.1.0";
 
   private static readonly string SOFTWARE_VERSION = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "1.0.0";
 
