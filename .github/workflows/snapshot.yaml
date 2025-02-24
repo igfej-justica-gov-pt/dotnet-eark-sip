@@ -24,9 +24,12 @@ jobs:
         run: dotnet build dotnet-eark-sip/dotnet-eark-sip.csproj --configuration Release --no-restore
 
       - name: Set snapshot version
+        shell: pwsh
         run: |
-          VERSION="0.1.0-SNAPSHOT"
-          sed -i "s/<Version>.*<\/Version>/<Version>$VERSION<\/Version>/g" dotnet-eark-sip/dotnet-eark-sip.csproj
+          [xml]$csproj = Get-Content dotnet-eark-sip/dotnet-eark-sip.csproj
+          $version = $csproj.Project.PropertyGroup.Version + "-SNAPSHOT"
+          $csproj.Project.PropertyGroup.Version = $version
+          $csproj.Save('dotnet-eark-sip/dotnet-eark-sip.csproj')
 
       - name: Pack NuGet Package (Snapshot)
         run: dotnet pack dotnet-eark-sip/dotnet-eark-sip.csproj --configuration Release --no-build --output ./nupkgs
