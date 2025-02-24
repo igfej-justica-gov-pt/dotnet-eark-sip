@@ -20,30 +20,35 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore Dependencies
-        run: dotnet restore dotnet-eark-sip/dotnet-eark-sip.csproj
+        run: dotnet restore
 
-      - name: Build Project
-        run: dotnet build dotnet-eark-sip/dotnet-eark-sip.csproj --configuration Release --no-restore
+      - name: Build Projects
+        run: dotnet build -c Release --no-restore
+
+      - name: Run Tests
+        run: dotnet test dotnet-eark-sip-tests/dotnet-eark-sip-tests.csproj -c Release --no-build --logger trx
 
       - name: Set NuGet Package Version
         shell: pwsh
         run: |
-          $version = ${{ github.ref_name }}
+          $version = "${{ github.ref_name }}"
           [xml]$csproj = Get-Content dotnet-eark-sip/dotnet-eark-sip.csproj
           $csproj.Project.PropertyGroup.Version = $version
           $csproj.Save('dotnet-eark-sip/dotnet-eark-sip.csproj')
 
       - name: Pack NuGet Package
-        run: dotnet pack dotnet-eark-sip/dotnet-eark-sip.csproj --configuration Release --no-build --output ./nupkgs
+        run: dotnet pack dotnet-eark-sip/dotnet-eark-sip.csproj -c Release --no-build -o ./nupkgs
 
-      - name: Run Tests
-        run: dotnet test dotnet-eark-sip-tests/dotnet-eark-sip-tests.csproj --configuration Release --no-build --logger trx
+      - name: Publish to Github Package Registry
+        run: dotnet nuget push ./nupkgs/*.nupkg -k $NUGET_AUTH_TOKEN -s https://nuget.pkg.github.com/keeps/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Uncomment to publish to NuGet directly
-      # - name: Publish to NuGet
-      #   run: dotnet nuget push ./nupkgs/*.nupkg --source "https://api.nuget.org/v3/index.json" --api-key ${{ secrets.NUGET_API_KEY }}
+      # To publish to nuget.org (public!), would need a key
+      # - name: Publish the package to nuget.org
+      #   run: dotnet nuget push ./nupkgs/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
       #   env:
-      #     NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      #     NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
 
       - name: Release to GitHub
         uses: softprops/action-gh-release@v2
