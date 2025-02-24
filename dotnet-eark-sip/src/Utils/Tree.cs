@@ -59,9 +59,13 @@ public class Tree<T> {
       childTree = new Tree<T>(child) { Parent = this };
       Children.Add(childTree);
     } else {
+      #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
       childTree = GetChild(child, parentNode);
+      #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
     }
 
+    #pragma warning disable CS8603 // Possible null reference return.
     return childTree;
+    #pragma warning restore CS8603 // Possible null reference return.
   }
 }

@@ -1,9 +1,10 @@
 public class StructMapDiv {
   public string Label { get; private set; }
-  public string? FileLocation { get; set; }
+  public string FileLocation { get; set; }
 
   public StructMapDiv(string label) {
     Label = label;
+    FileLocation = "";
   }
 
   public override int GetHashCode() {
