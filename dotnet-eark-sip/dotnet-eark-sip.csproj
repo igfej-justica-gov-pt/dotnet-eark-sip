@@ -22,7 +22,6 @@
     <EmbeddedResource Include="src\Resources\Schemas\xlink.xsd" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.1" />
     <PackageReference Include="MimeTypesMap" Version="1.0.9" />
