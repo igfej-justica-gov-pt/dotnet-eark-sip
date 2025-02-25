@@ -61,7 +61,7 @@ jobs:
           tag_name: ${{ github.ref_name }}
           draft: true
           files: |
-            "./dist/dotnet-eark-sip.${{ github.ref_name }}.nupkg"
-            "./dist/dotnet-eark-sip-cli.zip"
+            ./dist/dotnet-eark-sip.${{ github.ref_name }}.nupkg
+            ./dist/dotnet-eark-sip-cli.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
