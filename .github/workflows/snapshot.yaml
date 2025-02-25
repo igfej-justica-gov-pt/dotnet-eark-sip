@@ -24,17 +24,17 @@ jobs:
         run: dotnet build dotnet-eark-sip/dotnet-eark-sip.csproj --configuration Release --no-restore
 
       - name: Set snapshot version
+        id: snapshot_version
         shell: pwsh
         run: |
           [xml]$csproj = Get-Content dotnet-eark-sip/dotnet-eark-sip.csproj
           $version = $csproj.Project.PropertyGroup.Version + "-SNAPSHOT"
           $csproj.Project.PropertyGroup.Version = $version
           $csproj.Save('dotnet-eark-sip/dotnet-eark-sip.csproj')
+          "version=$version" >> $GITHUB_OUTPUT
 
       - name: Pack NuGet Package (Snapshot)
-        run: dotnet pack dotnet-eark-sip/dotnet-eark-sip.csproj --configuration Release --no-build --output ./nupkgs
+        run: dotnet pack dotnet-eark-sip/dotnet-eark-sip.csproj -c Release --no-build -o ./dist
 
       - name: Publish to GitHub Packages (Snapshot)
-        run: dotnet nuget push ./nupkgs/*.nupkg --source "https://nuget.pkg.github.com/keeps/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: dotnet nuget push "dist/dotnet-eark-sip.${{ steps.snapshot_version.outputs.version }}.nupkg" --source "https://nuget.pkg.github.com/keeps/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
