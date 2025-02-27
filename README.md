@@ -17,7 +17,7 @@ A .NET library and CLI tool for creating E-ARK Submission Information Packages (
     - [Available options](#available-options)
     - [Example](#example)
   - [Use as a .NET Library](#use-as-a-net-library)
-    - [Example](#example-1)
+    - [Example](#use-it-in-your-net-code)
 - [Contributing](#contributing)
 - [FAQ](#faq)
 - [License](#license)
@@ -85,14 +85,14 @@ dotnet-eark-sip-cli create
 - **--override-schema**: Overrides default schema.
 - **-s, --strategy**: Write strategy (default: Zip).
 
-**Descriptive Metadata Options**
+##### Descriptive Metadata Options
 
 - **--metadata-files**: Path(s) to metadata file(s), comma-separated. _Required if_ `--representation-data-lists` _is not set_.
 - **--metadata-types**: Metadata type(s), comma-separated. _Required if_ `--metadata-files` _is set_.
 - **--metadata-schemas**: Path(s) to metadata schema file(s), comma-separated.
 - **--metadata-versions**: Metadata version(s), comma-separated.
 
-**Representation Options**
+##### Representation Options
 
 - **--representation-data-lists**: Path(s) to file(s) for representation, comma-separated. _Required if_ `--metadata-files` _is not set_.
 - **--representation-id**: Representation identifier(s), comma-separated. Defaults to `rep<number>` if not provided.
@@ -111,13 +111,13 @@ dotnet-eark-sip-cli create --metadata-files metadata.xml --metadata-types ead --
 
 > **Note**: If you do not plan to use this as a .NET library, you can skip this section.
 
-1. Install the package via NuGet:
-   ```bash
-   dotnet add package dotnet-eark-sip
-   ```
-2. Use it in your C# code:
+#### Install the package via NuGet
 
-#### Example
+```bash
+dotnet add package dotnet-eark-sip
+```
+
+#### Use it in your .NET code
 
 ```csharp
 // Import dependencies
@@ -125,32 +125,34 @@ using IP;
 using Mets;
 
 // Start creating a SIP
-SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.1.0");
+SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.2.0");
 
-// Set the name of the software that is creating the SIP (mandatory)
-sip.AddCreatorSoftwareAgent("dotnet-eark-sip", "1.0.0");
+// Set the name of the software that is submitting the SIP (mandatory)
+sip.AddsubmitterSoftwareAgent("KEEP SOLUTIONS", "KEEPS");
 
 // Set optional human-readable description
 sip.SetDescription("A full E-ARK SIP");
 
 // Add descriptive metadata (SIP level)
+string metadataPath = ".\\Resources\\EARK\\metadata_descriptive_dc.xml";
 IPDescriptiveMetadata descriptiveMetadata = new(
-    new IPFile(Path.Combine(Directory.GetCurrentDirectory(), ".\\Resources\\EARK\\metadata_descriptive_dc.xml")),
-    new MetadataType(IMetadataMdtype.DC),
-    null
+   new IPFile(metadataPath),
+   new MetadataType(IMetadataMdtype.DC),
+   null
 );
 sip.AddDescriptiveMetadata(descriptiveMetadata);
 
 // Add xml schema (SIP level)
-sip.AddSchema(new IPFile(Path.Combine(Directory.GetCurrentDirectory(), ".\\Resources\\EARK\\schema.xsd")));
-
+string schemaPath = ".\\Resources\\EARK\\schema.xsd";
+sip.AddSchema(new IPFile(schemaPath));
 
 // Add a representation (status will be set to the default value, i.e. ORIGINAL)
 IPRepresentation representation1 = new("representation 1");
 sip.AddRepresentation(representation1);
 
 // Add a file to the representation
-IPFile representationFile = new(Path.Combine(Directory.GetCurrentDirectory(), ".\\Resources\\EARK\\documentation.pdf"));
+string representationFilePath = ".\\Resources\\EARK\\documentation.pdf";
+IPFile representationFile = new(representationFilePath);
 representationFile.SetRenameTo("data_.pdf");
 representation1.AddFile(representationFile);
 
@@ -158,10 +160,11 @@ representation1.AddFile(representationFile);
 ZipWriteStrategyFactory zipWriteStrategyFactory = new();
 IWriteStrategy writeStrategy = zipWriteStrategyFactory.Create(outputPath);
 string zipSIP = sip.Build(writeStrategy);
-
 ```
 
-3. Look into the repository’s `/dotnet-eark-sip-tests` folder for more in-depth usage patterns and advanced features.
+#### In-depth usage
+
+Look into the repository’s [dotnet-eark-sip-tests](./dotnet-eark-sip-tests) folder for more in-depth usage patterns and advanced features.
 
 ## Contributing
 
@@ -193,7 +196,7 @@ This project is licensed under the **European Union Public Licence (EUPL) versio
 2. **Modification**: You can modify the source code to suit your needs, and you are encouraged to contribute your improvements back to the community.
 3. **Distribution**: You can redistribute the original code or your modified version(s) to others. When you do, you **must** share it under the EUPL or a compatible licence, making the source code available under equivalent conditions.
 
-**Limitations and Requirements**
+### Limitations and Requirements
 
 - **Licence continuity**: If you distribute copies or substantial portions of this software, modified or unmodified, you must retain the original licence text and grant the same rights to the recipients.
 - **No warranty**: The software is provided "as is", without warranty of any kind. The licensor disclaims all liability for damages arising out of its use to the fullest extent permitted by law.
