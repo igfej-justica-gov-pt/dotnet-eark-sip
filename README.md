@@ -206,7 +206,7 @@ For full details, please refer to the [EUPL licence text](https://joinup.ec.euro
 - Developer: José Boticas (KEEP SOLUTIONS)
 - Project manager: Paulo Lima (KEEP SOLUTIONS)
 - Consultants: Luís Faria and Miguel Ferreira (KEEP SOLUTIONS)
-- Sponsor: Institute for the Financial Management and Infrastructures of Justice IGFEJ)
+- Sponsor: Institute for the Financial Management and Infrastructures of Justice (IGFEJ)
 
 ## Sponsorship
 
