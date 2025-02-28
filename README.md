@@ -164,7 +164,7 @@ string zipSIP = sip.Build(writeStrategy);
 
 #### In-depth usage
 
-Look into the repository’s [dotnet-eark-sip-tests](./dotnet-eark-sip-tests) folder for more in-depth usage patterns and advanced features.
+Look into the repository’s [dotnet-eark-sip-examples](./dotnet-eark-sip-examples) folder for more in-depth usage patterns and advanced features.
 
 ## Contributing
 
