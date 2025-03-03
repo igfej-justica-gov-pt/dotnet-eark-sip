@@ -365,7 +365,7 @@ public class EARKUtils {
       FileType fileType = addToMetsFunc(metsWrapper, filePath, file.GetPath());
 
       if (representationId != null) {
-        filePath = folder + representationId + IPConstants.ZIP_PATH_SEPARATOR + filePath;
+        filePath = IPConstants.REPRESENTATIONS_FOLDER + representationId + IPConstants.ZIP_PATH_SEPARATOR + filePath;
       }
 
       ZIPUtils.AddFileTypeFileToZip(zipEntries, file.GetPath(), filePath, fileType);
