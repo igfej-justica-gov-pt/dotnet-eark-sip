@@ -5,17 +5,16 @@ namespace dotnet_eark_sip_examples;
 
 /// <summary>
 /// This example aims to show how to create an E-ARK SIP without representations.
-/// It focus on metadata, documentation and the different options to add them.
+/// It focus on multiple options available while creating a SIP, 
+/// like adding metadata, setting ancestors and adding different agents.
 /// </summary>
 /// <remarks>
 /// The result E-ARK SIP zip folder will be written in the same location this example is run at.
 /// </remarks>
-internal static class Example4
-{
-  public static void Run()
-  {
+internal static class Example4 {
+  public static void Run() {
     // instantiate E-ARK SIP object
-    SIP sip = new EARKSIP("SIP_Example_4", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.1.0");
+    SIP sip = new EARKSIP("SIP_Example_4", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.2.0");
     sip.AddSubmitterAgent("dotnet-eark-sip-tests");
 
     // set optional human-readable description
@@ -57,7 +56,7 @@ internal static class Example4
     string documentationPath = "Resources\\documentation.txt";
     sip.AddDocumentation(new IPFile(documentationPath));
 
-    // set optional RODA related information about ancestors
+    // set optional related information about ancestors
     sip.SetAncestors(["b6f24059-8973-4582-932d-eb0b2cb48f28"]);
 
     // add an agent (SIP level)

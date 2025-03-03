@@ -3,7 +3,9 @@ using IP;
 namespace dotnet_eark_sip_examples;
 
 /// <summary>
-/// This example aims to show how to create multiple E-ARK SIPs, each with one object in a representation.
+/// This example creates multiple E-ARK SIPs, each with one object in a representation.
+/// Each representation has a defined status and documentation and metadata files associated.
+/// Similarly, preservation metadata, other metadata and schemas can be added to representations.
 /// </summary>
 /// <remarks>
 /// The result E-ARK SIP zip folder will be written in the same location this example is run at.

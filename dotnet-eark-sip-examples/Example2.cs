@@ -5,15 +5,14 @@ namespace dotnet_eark_sip_examples;
 /// <summary>
 /// This example aims to show how to create an E-ARK SIP with objects in a representation.
 /// A representation file is created and added to the representation.
+/// Another representation file is created and added to the same representation, inside a folder and subfolder.
 /// Multiple representations can be created similarly.
 /// </summary>
 /// <remarks>
 /// The result E-ARK SIP zip folder will be written in the same location this example is run at.
 /// </remarks>
-internal static class Example2
-{
-  public static void Run()
-  {
+internal static class Example2 {
+  public static void Run() {
     // instantiate E-ARK SIP object
     SIP sip = new EARKSIP("SIP_Example_2", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.2.0");
     sip.AddSubmitterAgent("dotnet-eark-sip-examples", "2");
