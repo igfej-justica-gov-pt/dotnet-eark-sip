@@ -7,6 +7,9 @@ namespace dotnet_eark_sip_tests;
 public class SIPRepresentativityTests : IDisposable {
   private readonly string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "representativity_tests");
 
+  private readonly string separator = Path.DirectorySeparatorChar.ToString();
+  private readonly string resourcesPath = "Resources" + Path.DirectorySeparatorChar.ToString() + "EARK";
+
 	/// <summary>
 	/// Test initialization: create output directory
 	/// </summary>
@@ -46,7 +49,7 @@ public class SIPRepresentativityTests : IDisposable {
     sip.SetDescription("A full E-ARK SIP");
 
     // 1.2) add descriptive metadata (SIP level)
-    string metadataFilePath = Path.Combine(currentPath, ".\\Resources\\EARK\\metadata_descriptive_dc.xml");
+    string metadataFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_descriptive_dc.xml");
     IPDescriptiveMetadata descriptiveMetadata = new(
       new IPFile(metadataFilePath),
       new MetadataType(IMetadataMdtype.DC),
@@ -55,13 +58,13 @@ public class SIPRepresentativityTests : IDisposable {
     sip.AddDescriptiveMetadata(descriptiveMetadata);
 
     // 1.3) add preservation metadata (SIP level)
-    string preservationFilePath = Path.Combine(currentPath, ".\\Resources\\EARK\\metadata_preservation_premis.xml");
+    string preservationFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_preservation_premis.xml");
     IPMetadata metadataPreservation = new(new IPFile(preservationFilePath));
     metadataPreservation.SetMetadataType(IMetadataMdtype.PREMIS);
     sip.AddPreservationMetadata(metadataPreservation);
 
     // 1.4) add other metadata (SIP level)
-    string otherMetadataFilePath = Path.Combine(currentPath, ".\\Resources\\EARK\\metadata_other.txt");
+    string otherMetadataFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_other.txt");
     IPFile metadataOtherFile = new(otherMetadataFilePath);
     // 1.4.1) optionally one may rename file final name
     metadataOtherFile.SetRenameTo("metadata_other_renamed.txt");
@@ -74,11 +77,11 @@ public class SIPRepresentativityTests : IDisposable {
     sip.AddOtherMetadata(metadataOther);
 
     // 1.5) add xml schema (SIP level)
-    string schemaPath = Path.Combine(currentPath, ".\\Resources\\EARK\\schema.xsd");
+    string schemaPath = Path.Combine(currentPath, resourcesPath + separator + "schema.xsd");
     sip.AddSchema(new IPFile(schemaPath));
 
     // 1.6) add documentation (SIP level)
-    string documentationPath = Path.Combine(currentPath, ".\\Resources\\EARK\\documentation.pdf");
+    string documentationPath = Path.Combine(currentPath, resourcesPath + separator + "documentation.pdf");
     sip.AddDocumentation(new IPFile(documentationPath));
 
     // 1.7) set optional RODA related information about ancestors
@@ -99,7 +102,7 @@ public class SIPRepresentativityTests : IDisposable {
     IPRepresentation representation1 = new("representation 1");
     sip.AddRepresentation(representation1);     
 
-    string folderPath = Path.Combine(currentPath, ".\\Resources\\Representative");
+    string folderPath = Path.Combine(currentPath, "Resources" + separator + "Representative");
     RepresentationUtils.IncludeInRepresentation(folderPath, representation1);
 
     // 2) build SIP, providing an output directory

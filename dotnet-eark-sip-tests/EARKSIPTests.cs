@@ -8,6 +8,9 @@ public class EARKSIPTests : IDisposable {
   private readonly string REPRESENTATION_STATUS_NORMALIZED = "NORMALIZED";
   private readonly string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "earksip_tests");
 
+  private readonly string separator = Path.DirectorySeparatorChar.ToString();
+  private readonly string resourcesPath = "Resources" + Path.DirectorySeparatorChar.ToString() + "EARK";
+
   /// <summary>
 	/// Test initialization: create output directory
 	/// </summary>
@@ -61,7 +64,7 @@ public class EARKSIPTests : IDisposable {
     sip.SetDescription("A full E-ARK SIP");
 
     // 1.2) add descriptive metadata (SIP level)
-    string metadataFilePath = Path.Combine(currentPath, ".\\Resources\\EARK\\metadata_descriptive_dc.xml");
+    string metadataFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_descriptive_dc.xml");
     IPDescriptiveMetadata descriptiveMetadata = new(
       new IPFile(metadataFilePath),
       new MetadataType(IMetadataMdtype.DC),
@@ -70,13 +73,13 @@ public class EARKSIPTests : IDisposable {
     sip.AddDescriptiveMetadata(descriptiveMetadata);
 
     // 1.3) add preservation metadata (SIP level)
-    string preservationFilePath = Path.Combine(currentPath, ".\\Resources\\EARK\\metadata_preservation_premis.xml");
+    string preservationFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_preservation_premis.xml");
     IPMetadata metadataPreservation = new(new IPFile(preservationFilePath));
     metadataPreservation.SetMetadataType(IMetadataMdtype.PREMIS);
     sip.AddPreservationMetadata(metadataPreservation);
 
     // 1.4) add other metadata (SIP level)
-    string otherMetadataFilePath = Path.Combine(currentPath, ".\\Resources\\EARK\\metadata_other.txt");
+    string otherMetadataFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_other.txt");
     IPFile metadataOtherFile = new(otherMetadataFilePath);
     // 1.4.1) optionally one may rename file final name
     metadataOtherFile.SetRenameTo("metadata_other_renamed.txt");
@@ -89,11 +92,11 @@ public class EARKSIPTests : IDisposable {
     sip.AddOtherMetadata(metadataOther);
 
     // 1.5) add xml schema (SIP level)
-    string schemaPath = Path.Combine(currentPath, ".\\Resources\\EARK\\schema.xsd");
+    string schemaPath = Path.Combine(currentPath, resourcesPath + separator + "schema.xsd");
     sip.AddSchema(new IPFile(schemaPath));
 
     // 1.6) add documentation (SIP level)
-    string documentationPath = Path.Combine(currentPath, ".\\Resources\\EARK\\documentation.pdf");
+    string documentationPath = Path.Combine(currentPath, resourcesPath + separator + "documentation.pdf");
     sip.AddDocumentation(new IPFile(documentationPath));
 
     // 1.7) set optional RODA related information about ancestors
@@ -115,7 +118,7 @@ public class EARKSIPTests : IDisposable {
     sip.AddRepresentation(representation1);
 
     // 1.9.1) Add a file to the representation
-    string filePath = Path.Combine(currentPath, ".\\Resources\\EARK\\documentation.pdf");
+    string filePath = Path.Combine(currentPath, resourcesPath + separator + "documentation.pdf");
     IPFile representationFile = new(filePath);
     representationFile.SetRenameTo("data_.pdf");
     representation1.AddFile(representationFile);
@@ -186,7 +189,7 @@ public class EARKSIPTests : IDisposable {
     sip.SetDescription("A full E-ARK SIP-Shallow");
 
     // 1.2) add descriptive metadata (SIP level)
-    string metadataFilePath = Path.Combine(currentPath, ".\\Resources\\EARK\\metadata_descriptive_dc.xml");
+    string metadataFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_descriptive_dc.xml");
     IPDescriptiveMetadata descriptiveMetadata = new(
       new IPFile(metadataFilePath),
       new MetadataType(IMetadataMdtype.DC),
@@ -195,13 +198,13 @@ public class EARKSIPTests : IDisposable {
     sip.AddDescriptiveMetadata(descriptiveMetadata);
 
     // 1.3) add preservation metadata (SIP level)
-    string preservationFilePath = Path.Combine(currentPath, ".\\Resources\\EARK\\metadata_preservation_premis.xml");
+    string preservationFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_preservation_premis.xml");
     IPMetadata metadataPreservation = new(new IPFile(preservationFilePath));
     metadataPreservation.SetMetadataType(IMetadataMdtype.PREMIS);
     sip.AddPreservationMetadata(metadataPreservation);
 
     // 1.4) add other metadata (SIP level)
-    string otherMetadataFilePath = Path.Combine(currentPath, ".\\Resources\\EARK\\metadata_other.txt");
+    string otherMetadataFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_other.txt");
     IPFile metadataOtherFile = new(otherMetadataFilePath);
     // 1.4.1) optionally one may rename file final name
     metadataOtherFile.SetRenameTo("metadata_other_renamed.txt");
@@ -214,11 +217,11 @@ public class EARKSIPTests : IDisposable {
     sip.AddOtherMetadata(metadataOther);
 
     // 1.5) add xml schema (SIP level)
-    string schemaPath = Path.Combine(currentPath, ".\\Resources\\EARK\\schema.xsd");
+    string schemaPath = Path.Combine(currentPath, resourcesPath + separator + "schema.xsd");
     sip.AddSchema(new IPFile(schemaPath));
 
     // 1.6) add documentation (SIP level)
-    string documentationPath = Path.Combine(currentPath, ".\\Resources\\EARK\\documentation.pdf");
+    string documentationPath = Path.Combine(currentPath, resourcesPath + separator + "documentation.pdf");
     sip.AddDocumentation(new IPFile(documentationPath));
 
     // 1.7) set optional RODA related information about ancestors
@@ -240,9 +243,9 @@ public class EARKSIPTests : IDisposable {
     sip.AddRepresentation(representation1);
 
     // 1.9.1) add a file to the representation
-    Uri url = new Uri(Path.Combine(currentPath, ".\\Resources\\EARK\\data.txt"));
-    Uri url2 = new Uri(Path.Combine(currentPath, ".\\Resources\\EARK\\descriptive.txt"));
-    Uri url3 = new Uri(Path.Combine(currentPath, ".\\Resources\\EARK\\eark.pdf"));
+    Uri url = new Uri(Path.Combine(currentPath, resourcesPath + separator + "data.txt"));
+    Uri url2 = new Uri(Path.Combine(currentPath, resourcesPath + separator + "descriptive.txt"));
+    Uri url3 = new Uri(Path.Combine(currentPath, resourcesPath + separator + "eark.pdf"));
     // setting basic information about the remote file
     FileType filetype = new FileType
     {
