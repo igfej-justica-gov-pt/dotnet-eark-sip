@@ -14,9 +14,10 @@ public static class EnumUtils {
   }
 
   public static string GetXmlEnumName<T>(T enumValue) where T : Enum {
-    FieldInfo field = typeof(T).GetField(enumValue.ToString());
+    string enumValueString = enumValue.ToString();
+    FieldInfo field = typeof(T).GetField(enumValueString);
     var attribute = field.GetCustomAttribute<XmlEnumAttribute>();
 
-    return attribute?.Name ?? enumValue.ToString();
+    return attribute?.Name ?? enumValueString;
   }
 }

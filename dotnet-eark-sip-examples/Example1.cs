@@ -10,8 +10,7 @@ namespace dotnet_eark_sip_examples;
 /// The result E-ARK SIP zip folder will be written in the same location this example is run at.
 /// </remarks>
 internal static class Example1 {
-  private readonly static string separator = Path.DirectorySeparatorChar.ToString();
-  private readonly static string resourcesPath = "Resources" + separator;
+  private readonly static string resourcesPath = "Resources";
 
   public static void Run() {
     // 1) instantiate E-ARK SIP object
@@ -22,11 +21,13 @@ internal static class Example1 {
     sip.SetDescription("An example E-ARK SIP getting all representation files from a folder");
 
     // add documentation (SIP level)
-    IIPFile documentationFile = new IPFile(resourcesPath + "documentation.txt");
+    string documentationFilePath = Path.Combine(resourcesPath, "documentation.txt");
+    IIPFile documentationFile = new IPFile(documentationFilePath);
     sip.AddDocumentation(documentationFile);
 
     // add descriptive metadata (SIP level)
-    IIPFile metadataFile = new IPFile(resourcesPath + "metadata.xml");
+    string metadataFilePath = Path.Combine(resourcesPath, "metadata.xml");
+    IIPFile metadataFile = new IPFile(metadataFilePath);
     IPDescriptiveMetadata descriptiveMetadata = new(metadataFile, new MetadataType(Mets.IMetadataMdtype.EAD), null);
     sip.AddDescriptiveMetadata(descriptiveMetadata);
 
@@ -35,7 +36,7 @@ internal static class Example1 {
     sip.AddRepresentation(representation);
 
     // add all files inside a folder to the representation
-    string path = resourcesPath + "Representation";
+    string path = Path.Combine(resourcesPath, "Representation");
     RepresentationUtils.IncludeInRepresentation(path, representation);
 
     // build SIP, providing an output directory

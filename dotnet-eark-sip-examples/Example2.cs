@@ -12,8 +12,7 @@ namespace dotnet_eark_sip_examples;
 /// The result E-ARK SIP zip folder will be written in the same location this example is run at.
 /// </remarks>
 internal static class Example2 {
-  private readonly static string separator = Path.DirectorySeparatorChar.ToString();
-  private readonly static string resourcesPath = "Resources" + separator + "Representation" + separator;
+  private readonly static string resourcesPath = Path.Combine("Resources", "Representation");
 
   public static void Run() {
     // instantiate E-ARK SIP object
@@ -28,7 +27,7 @@ internal static class Example2 {
     sip.AddRepresentation(representation);
 
     // add a file to the representation
-    string filePath = resourcesPath + "example.txt";
+    string filePath = Path.Combine(resourcesPath, "example.txt");
     IPFile representationFile = new IPFile(filePath);
     representation.AddFile(representationFile);
 

@@ -12,8 +12,7 @@ namespace dotnet_eark_sip_examples;
 /// The result E-ARK SIP zip folder will be written in the same location this example is run at.
 /// </remarks>
 internal static class Example4 {
-  private readonly static string separator = Path.DirectorySeparatorChar.ToString();
-  private readonly static string resourcesPath = "Resources" + separator;
+  private readonly static string resourcesPath = "Resources";
 
   public static void Run() {
     // instantiate E-ARK SIP object
@@ -24,7 +23,7 @@ internal static class Example4 {
     sip.SetDescription("An example E-ARK SIP without representations");
 
     // add descriptive metadata (SIP level)
-    string metadataFilePath = resourcesPath + "metadata.xml";
+    string metadataFilePath = Path.Combine(resourcesPath, "metadata.xml");
     IPDescriptiveMetadata descriptiveMetadata = new(
       new IPFile(metadataFilePath),
       new MetadataType(IMetadataMdtype.DC),
@@ -33,13 +32,13 @@ internal static class Example4 {
     sip.AddDescriptiveMetadata(descriptiveMetadata);
 
     // add preservation metadata (SIP level)
-    string preservationFilePath = resourcesPath + "metadata_preservation.xml";
+    string preservationFilePath = Path.Combine(resourcesPath, "metadata_preservation.xml");
     IPMetadata metadataPreservation = new(new IPFile(preservationFilePath));
     metadataPreservation.SetMetadataType(IMetadataMdtype.PREMIS);
     sip.AddPreservationMetadata(metadataPreservation);
 
     // add other metadata (SIP level)
-    string otherMetadataFilePath = resourcesPath + "metadata_other.txt";
+    string otherMetadataFilePath = Path.Combine(resourcesPath, "metadata_other.txt");
     IPFile metadataOtherFile = new(otherMetadataFilePath);
     // optionally one may rename file final name
     metadataOtherFile.SetRenameTo("metadata_other_renamed.txt");
@@ -52,11 +51,11 @@ internal static class Example4 {
     sip.AddOtherMetadata(metadataOther);
 
     // add xml schema (SIP level)
-    string schemaPath = resourcesPath + "schema.xsd";
+    string schemaPath = Path.Combine(resourcesPath, "schema.xsd");
     sip.AddSchema(new IPFile(schemaPath));
 
     // add documentation (SIP level)
-    string documentationPath = resourcesPath + "documentation.txt";
+    string documentationPath = Path.Combine(resourcesPath, "documentation.txt");
     sip.AddDocumentation(new IPFile(documentationPath));
 
     // set optional related information about ancestors

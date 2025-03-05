@@ -11,16 +11,16 @@ namespace dotnet_eark_sip_examples;
 /// The result E-ARK SIP zip folder will be written in the same location this example is run at.
 /// </remarks>
 internal static class Example3 {
-  private readonly static string separator = Path.DirectorySeparatorChar.ToString();
-  private readonly static string resourcesPath = "Resources" + separator;
+  private readonly static string resourcesPath = "Resources";
 
   public static void Run() {
     // Create a destination folder to create the SIPs to
-    string destination = Directory.GetCurrentDirectory() + separator + "SIPs";
+    string destination = Path.Combine(Directory.GetCurrentDirectory(), "SIPs");
     Directory.CreateDirectory(destination);
 
     // Create the SIPs
-    CreateSIPs(resourcesPath + "Representation", destination);
+    string input = Path.Combine(resourcesPath, "Representation");
+    CreateSIPs(input, destination);
     Console.WriteLine("SIPs created at {0}", destination);
   }
 
@@ -62,11 +62,13 @@ internal static class Example3 {
     representation.AddFile(representationFile);
 
     // add documentation (representation level)
-    IIPFile documentationFile = new IPFile(resourcesPath + "documentation.txt");
+    string documentationFilePath = Path.Combine(resourcesPath, "documentation.txt");
+    IIPFile documentationFile = new IPFile(documentationFilePath);
     sip.AddDocumentationToRepresentation(representation.RepresentationID, documentationFile);
 
     // add descriptive metadata (representation level)
-    IIPFile metadataFile = new IPFile(resourcesPath + "metadata.xml");
+    string metadataFilePath = Path.Combine(resourcesPath, "metadata.xml");
+    IIPFile metadataFile = new IPFile(metadataFilePath);
     IPDescriptiveMetadata descriptiveMetadata = new(metadataFile, new MetadataType(Mets.IMetadataMdtype.EAD), null);
     sip.AddDescriptiveMetadataToRepresentation(representation.RepresentationID, descriptiveMetadata);
 

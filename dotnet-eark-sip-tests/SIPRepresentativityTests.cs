@@ -1,5 +1,6 @@
 using IP;
 using Mets;
+using Xml.Mets.CsipExtensionMets;
 
 namespace dotnet_eark_sip_tests;
 
@@ -7,8 +8,7 @@ namespace dotnet_eark_sip_tests;
 public class SIPRepresentativityTests : IDisposable {
   private readonly string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "representativity_tests");
 
-  private readonly string separator = Path.DirectorySeparatorChar.ToString();
-  private readonly string resourcesPath = "Resources" + Path.DirectorySeparatorChar.ToString() + "EARK";
+  private readonly string resourcesPath = Path.Combine("Resources", "EARK");
 
 	/// <summary>
 	/// Test initialization: create output directory
@@ -42,14 +42,14 @@ public class SIPRepresentativityTests : IDisposable {
     string currentPath = Directory.GetCurrentDirectory();
 
     // 1) instantiate E-ARK SIP object
-    SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.1.0");
+    SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.2.0");
     sip.AddSubmitterAgent("SIP Representativity Tests");
 
     // 1.1) set optional human-readable description
-    sip.SetDescription("A full E-ARK SIP");
+    sip.SetDescription("A full E-ARK SIP with folders");
 
     // 1.2) add descriptive metadata (SIP level)
-    string metadataFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_descriptive_dc.xml");
+    string metadataFilePath = Path.Combine(currentPath, resourcesPath, "metadata_descriptive_dc.xml");
     IPDescriptiveMetadata descriptiveMetadata = new(
       new IPFile(metadataFilePath),
       new MetadataType(IMetadataMdtype.DC),
@@ -58,13 +58,13 @@ public class SIPRepresentativityTests : IDisposable {
     sip.AddDescriptiveMetadata(descriptiveMetadata);
 
     // 1.3) add preservation metadata (SIP level)
-    string preservationFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_preservation_premis.xml");
+    string preservationFilePath = Path.Combine(currentPath, resourcesPath, "metadata_preservation_premis.xml");
     IPMetadata metadataPreservation = new(new IPFile(preservationFilePath));
     metadataPreservation.SetMetadataType(IMetadataMdtype.PREMIS);
     sip.AddPreservationMetadata(metadataPreservation);
 
     // 1.4) add other metadata (SIP level)
-    string otherMetadataFilePath = Path.Combine(currentPath, resourcesPath + separator + "metadata_other.txt");
+    string otherMetadataFilePath = Path.Combine(currentPath, resourcesPath, "metadata_other.txt");
     IPFile metadataOtherFile = new(otherMetadataFilePath);
     // 1.4.1) optionally one may rename file final name
     metadataOtherFile.SetRenameTo("metadata_other_renamed.txt");
@@ -77,11 +77,11 @@ public class SIPRepresentativityTests : IDisposable {
     sip.AddOtherMetadata(metadataOther);
 
     // 1.5) add xml schema (SIP level)
-    string schemaPath = Path.Combine(currentPath, resourcesPath + separator + "schema.xsd");
+    string schemaPath = Path.Combine(currentPath, resourcesPath, "schema.xsd");
     sip.AddSchema(new IPFile(schemaPath));
 
     // 1.6) add documentation (SIP level)
-    string documentationPath = Path.Combine(currentPath, resourcesPath + separator + "documentation.pdf");
+    string documentationPath = Path.Combine(currentPath, resourcesPath, "documentation.pdf");
     sip.AddDocumentation(new IPFile(documentationPath));
 
     // 1.7) set optional RODA related information about ancestors
@@ -95,14 +95,14 @@ public class SIPRepresentativityTests : IDisposable {
       MetsTypeMetsHdrAgentType.INDIVIDUAL,
       "OTHER TYPE",
       "",
-      Xml.Mets.CsipExtensionMets.Notetype.SOFTWARE_VERSION
+      Notetype.SOFTWARE_VERSION
     ));
 
     // 1.9) Add a representation (status will be set to the default value, i.e. ORIGINAL)
     IPRepresentation representation1 = new("representation 1");
     sip.AddRepresentation(representation1);     
 
-    string folderPath = Path.Combine(currentPath, "Resources" + separator + "Representative");
+    string folderPath = Path.Combine(currentPath, "Resources","Representative");
     RepresentationUtils.IncludeInRepresentation(folderPath, representation1);
 
     // 2) build SIP, providing an output directory
