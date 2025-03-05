@@ -1,5 +1,7 @@
 using IP;
 using Mets;
+using System.IO.Compression;
+using System.Xml.Serialization;
 using Xml.Mets.CsipExtensionMets;
 
 namespace dotnet_eark_sip_tests;
@@ -29,7 +31,49 @@ public class SIPRepresentativityTests : IDisposable {
     string zipPath = CreateFullEARKSIPWithFolders();
     Assert.True(File.Exists(zipPath));
 
-    // TODO: Add additional verifications
+    using (ZipArchive archive = ZipFile.OpenRead(zipPath)) {
+      // Root METS file exists
+      ZipArchiveEntry? mets = archive.GetEntry("SIP_1/METS.xml");
+      Assert.NotNull(mets);
+
+      // Representation METS file exists
+      ZipArchiveEntry? representationMets = archive.GetEntry("SIP_1/representations/representation 1/METS.xml");
+      Assert.NotNull(representationMets);
+
+      // Representation files are present and in the right path
+      Assert.NotNull(archive.GetEntry("SIP_1/representations/representation 1/data/documentation.pdf"));
+      Assert.NotNull(archive.GetEntry("SIP_1/representations/representation 1/data/test/data.txt"));
+
+      if (representationMets != null) {
+        string destinationPath = Path.Combine(outputPath, "extracted-mets.xml");
+        representationMets.ExtractToFile(Path.Combine(outputPath, "extracted-mets.xml"));
+
+        XmlSerializer serializer = new(typeof(Mets.Mets));
+        Mets.Mets? metsObject;
+
+        string xmlContent = File.ReadAllText(destinationPath);
+        using (StringReader reader = new(xmlContent)) {
+          object? obj = serializer.Deserialize(reader);
+          if (obj != null) {
+            metsObject = (Mets.Mets)obj;
+          } else {
+            metsObject = null;
+          }
+        }
+
+        Assert.NotNull(metsObject);
+        Assert.Equal(Oaispackagetype.SIP, metsObject.MetsHdr.Oaispackagetype);
+        Assert.NotEmpty(metsObject.AmdSec);
+        Assert.Single(metsObject.FileSec.FileGrp);
+        Assert.Equal("Data", metsObject.FileSec.FileGrp[0].Use);
+        Assert.Equal(2, metsObject.FileSec.FileGrp[0].File.Count);
+        Assert.Single(metsObject.StructMap);
+        Assert.Equal("PHYSICAL", metsObject.StructMap[0].Type);
+        Assert.Equal("CSIP", metsObject.StructMap[0].Label);
+        Assert.Equal("representation 1", metsObject.StructMap[0].Div.Label);
+        Assert.Equal("ORIGINAL", metsObject.StructMap[0].Div.Type);
+      }
+    }
   }
 
   /// <summary>
