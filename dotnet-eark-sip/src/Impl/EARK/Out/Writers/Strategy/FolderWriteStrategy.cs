@@ -9,6 +9,7 @@ public class FolderWriteStrategy : IWriteStrategy {
 
   public void Setup(string destinationPath) {
     DestinationPath = destinationPath;
+    if (!Directory.Exists(destinationPath)) Directory.CreateDirectory(destinationPath);
   }
 
   public string Write(Dictionary<string, IZipEntryInfo> entries, SIP sip, string? fileNameWithoutExtension, string fallbackName, bool deleteExisting) {

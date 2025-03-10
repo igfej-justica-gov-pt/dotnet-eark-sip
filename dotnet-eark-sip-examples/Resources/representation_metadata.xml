@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<simpledc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schemas/dc.xsd">
+  <title>Representation</title>
+  <identifier>IDf85218de-b94d-3613-9593-a5fd088a1c09</identifier>
+  <creator>KEEP SOLUTIONS</creator>
+  <date></date>
+  <date></date>
+  <description>An example representation</description>
+  <publisher>KEEP SOLUTIONS</publisher>
+  <rights></rights>
+  <language>english</language>
+</simpledc>
