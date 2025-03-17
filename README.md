@@ -156,6 +156,19 @@ IPFile representationFile = new(representationFilePath);
 representationFile.SetRenameTo("data_.pdf");
 representation1.AddFile(representationFile);
 
+// Add another representation
+IPRepresentation representation2 = new("representation 2");
+sip.AddRepresentation(representation2);
+
+// Add a file to the representation and put it inside a folder
+// called 'abc' which has a folder inside called 'def'
+IPFile representationFile2 = new(representationFilePath);
+representationFile2.SetRelativeFolders(["abc", "def"]);
+representation.AddFile(representationFile2);
+
+// Set optional related information about ancestors
+sip.SetAncestors(["b6f24059-8973-4582-932d-eb0b2cb48f28"]);
+
 // Build the SIP
 ZipWriteStrategyFactory zipWriteStrategyFactory = new();
 IWriteStrategy writeStrategy = zipWriteStrategyFactory.Create(outputPath);
