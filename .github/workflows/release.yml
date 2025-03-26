@@ -39,15 +39,27 @@ jobs:
       - name: Pack NuGet Package
         run: dotnet pack dotnet-eark-sip/dotnet-eark-sip.csproj -c Release --no-build -o "./dist"
 
-      - name: Publish to Github Package Registry
-        shell: pwsh
-        run: dotnet nuget push "dist/dotnet-eark-sip.${{ github.ref_name }}.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "https://nuget.pkg.github.com/keeps/index.json"
+      # Validate nuget
+      - name: Install nuget validator
+        run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
+
+      # Validate metadata and content of the NuGet package
+      # https://www.nuget.org/packages/Meziantou.Framework.NuGetPackageValidation.Tool#readme-body-tab
+      # If some rules are not applicable, you can disable them
+      # using the --excluded-rules or --excluded-rule-ids option
+      - name: Validate package
+        run: meziantou.validate-nuget-package "dist/dotnet-eark-sip.${{ github.ref_name }}.nupkg"
+
+      # Publish to Github Package Registry disabled as we are going to publish to NuGet.org
+      # - name: Publish to Github Package Registry
+      #  shell: pwsh
+      #  run: dotnet nuget push "dist/dotnet-eark-sip.${{ github.ref_name }}.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "https://nuget.pkg.github.com/igfej-justica-gov-pt/index.json"
 
       # To publish to nuget.org (public!), would need a key
-      # - name: Publish the package to nuget.org
-      #   run: dotnet nuget push "dist/dotnet-eark-sip.${{ github.ref_name }}.nupkg" --api-key "${{ secrets.NUGET_TOKEN }}" --source "https://api.nuget.org/v3/index.json"
+      - name: Publish the package to nuget.org
+        run: dotnet nuget push "dist/dotnet-eark-sip.${{ github.ref_name }}.nupkg" --api-key "${{ secrets.NUGET_API_KEY }}" --source "https://api.nuget.org/v3/index.json"
 
-      - name: Publish CLI as a ZIP
+      - name: Publish CLI as a ZIP in a draft release
         run: |
           mkdir "cli_release"
           cp -r "dotnet-eark-sip-cli/bin/Release/*" "cli_release/"
