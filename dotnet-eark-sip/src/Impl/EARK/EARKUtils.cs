@@ -2,9 +2,16 @@ using IP;
 using Mets;
 using Microsoft.Extensions.Logging;
 
+/// <summary>
+/// Utility class for handling E-ARK SIP and METS-related operations.
+/// </summary>
 public class EARKUtils {
   private readonly EARKMETSCreator metsCreator;
 
+  /// <summary>
+  /// Initializes a new instance of the <see cref="EARKUtils"/> class with the specified METS creator.
+  /// </summary>
+  /// <param name="metsCreator">The METS creator used for generating METS files.</param>
   public EARKUtils(EARKMETSCreator metsCreator) {
     this.metsCreator = metsCreator;
   }
@@ -33,6 +40,13 @@ public class EARKUtils {
     }
   }
 
+  /// <summary>
+  /// Adds descriptive metadata to the ZIP archive and METS document.
+  /// </summary>
+  /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+  /// <param name="metsWrapper">The METS wrapper to update.</param>
+  /// <param name="descriptiveMetadata">The list of descriptive metadata to add.</param>
+  /// <param name="representationId">The optional representation ID.</param>
   public void AddDescriptiveMetadataToZipAndMETS(
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper metsWrapper,
@@ -49,6 +63,13 @@ public class EARKUtils {
     );
   }
 
+  /// <summary>
+  /// Adds preservation metadata to the ZIP archive and METS document.
+  /// </summary>
+  /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+  /// <param name="metsWrapper">The METS wrapper to update.</param>
+  /// <param name="preservationMetadata">The list of preservation metadata to add.</param>
+  /// <param name="representationId">The optional representation ID.</param>
   public void AddPreservationMetadataToZipAndMETS(
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper metsWrapper,
@@ -65,6 +86,13 @@ public class EARKUtils {
     );
   }
 
+  /// <summary>
+  /// Adds other metadata to the ZIP archive and METS document.
+  /// </summary>
+  /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+  /// <param name="metsWrapper">The METS wrapper to update.</param>
+  /// <param name="otherMetadata">The list of other metadata to add.</param>
+  /// <param name="representationId">The optional representation ID.</param>
   public void AddOtherMetadataToZipAndMETS(
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper metsWrapper,
@@ -81,6 +109,15 @@ public class EARKUtils {
     );
   }
 
+  /// <summary>
+  /// Adds representations to the ZIP archive and METS document.
+  /// </summary>
+  /// <param name="ip">The information package (IP) instance.</param>
+  /// <param name="representations">The list of representations to add.</param>
+  /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+  /// <param name="mainMetsWrapper">The main METS wrapper to update.</param>
+  /// <param name="buildDir">The directory where the build is taking place.</param>
+  /// <param name="sipType">The type of SIP (Submission Information Package).</param>
   public void AddRepresentationsToZipAndMETS(
     IIP ip,
     List<IPRepresentation> representations,
@@ -313,6 +350,14 @@ public class EARKUtils {
     }
   }
 
+  /// <summary>
+  /// Adds representation data files to the ZIP archive and METS document.
+  /// </summary>
+  /// <param name="ip">The information package (IP) instance.</param>
+  /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+  /// <param name="representationMetsWrapper">The METS wrapper for the representation.</param>
+  /// <param name="representation">The representation containing the data files.</param>
+  /// <param name="representationId">The ID of the representation.</param>
   public void AddRepresentationDataFilesToZipAndMETS(
     IIP ip,
     Dictionary<string,
@@ -372,14 +417,35 @@ public class EARKUtils {
     }
   }
 
+  /// <summary>
+  /// Adds schemas to the ZIP archive and METS document.
+  /// </summary>
+  /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+  /// <param name="metsWrapper">The METS wrapper to update.</param>
+  /// <param name="schemas">The list of schemas to add.</param>
+  /// <param name="representationId">The optional representation ID.</param>
   public void AddSchemasToZipAndMETS(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, List<IIPFile> schemas, string? representationId) {
     AddFileToZipAndMETS(zipEntries, metsWrapper, schemas, representationId, IPConstants.SCHEMAS_FOLDER, metsCreator.AddSchemaFileToMETS);
   }
 
+  /// <summary>
+  /// Adds documentation to the ZIP archive and METS document.
+  /// </summary>
+  /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+  /// <param name="metsWrapper">The METS wrapper to update.</param>
+  /// <param name="documentation">The list of documentation to add.</param>
+  /// <param name="representationId">The optional representation ID.</param>
   public void AddDocumentationToZipAndMETS(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, List<IIPFile> documentation, string? representationId) {
     AddFileToZipAndMETS(zipEntries, metsWrapper, documentation, representationId, IPConstants.DOCUMENTATION_FOLDER, metsCreator.AddDocumentationFileToMETS);
   }
 
+  /// <summary>
+  /// Adds default schemas to the provided list of schemas, copying them from resources if necessary.
+  /// </summary>
+  /// <param name="logger">The logger instance for logging errors or information.</param>
+  /// <param name="schemas">The list of schemas to which default schemas will be added.</param>
+  /// <param name="buildDir">The directory where the schemas will be copied.</param>
+  /// <param name="_override">Indicates whether to override existing schemas in the list.</param>
   public void AddDefaultSchemas(ILogger logger, List<IIPFile> schemas, string buildDir, bool _override) {
     try {
       string tempSchema = "";

@@ -4,15 +4,43 @@ using Mets;
 using Microsoft.Extensions.Logging;
 using Xml.Mets.CsipExtensionMets;
 
+/// <summary>
+/// Abstract class responsible for creating and managing EARK METS files.
+/// </summary>
 public abstract class EARKMETSCreator {
   private static readonly ILogger<EARKMETSCreator> logger = DefaultLogger.Create<EARKMETSCreator>();
 
   private readonly Dictionary<string, MetsTypeFileSecFileGrp> dataFileGrp = new Dictionary<string, MetsTypeFileSecFileGrp>();
 
+  /// <summary>
+  /// Escapes invalid characters in a name to make it a valid.
+  /// </summary>
+  /// <param name="id">The input string to be escaped.</param>
+  /// <returns>A string with invalid characters replaced by underscores.</returns>
   protected string EscapeNCName(string id) {
     return id.Replace("[:@$%&/+,;\\s]", "_");
   }
 
+  /// <summary>
+  /// Generates a METS (Metadata Encoding and Transmission Standard) wrapper with the specified parameters.
+  /// </summary>
+  /// <param name="id">The unique identifier for the METS object.</param>
+  /// <param name="label">The label for the METS object.</param>
+  /// <param name="profile">The profile to be used for the METS object.</param>
+  /// <param name="mainMets">Indicates whether this is the main METS file.</param>
+  /// <param name="ancestors">A list of ancestor identifiers, if any.</param>
+  /// <param name="metsPath">The file path for the METS file.</param>
+  /// <param name="header">The IPHeader containing metadata for the METS header.</param>
+  /// <param name="contentType">The content type of the METS object.</param>
+  /// <param name="contentInformationType">The content information type of the METS object.</param>
+  /// <param name="isMetadata">Indicates if metadata is included.</param>
+  /// <param name="isMetadataOther">Indicates if other metadata is included.</param>
+  /// <param name="isSchemas">Indicates if schemas are included.</param>
+  /// <param name="isDocumentation">Indicates if documentation is included.</param>
+  /// <param name="isRepresentations">Indicates if representations are included.</param>
+  /// <param name="isRepresentationsData">Indicates if representation data is included.</param>
+  /// <param name="type">The type of the OAIS package, default is SIP.</param>
+  /// <returns>A MetsWrapper object containing the generated METS structure.</returns>
   public MetsWrapper GenerateMets(
     string id,
     string label,
@@ -64,26 +92,21 @@ public abstract class EARKMETSCreator {
     return metsWrapper;
   }
 
-  /**
-   * Generates Shallow SIP Representation METS with folders represented.
-   *
-   * @param representation        IPRepresentation
-   * @param profile               string
-   * @param mainMets              boolean If is main METS file or not.
-   * @param ancestors             List<string> Nullable
-   * @param metsPath              string Path to the Mets
-   * @param ipHeader              IPHeader
-   * @param type                  string
-   * @param isMetadata            boolean If have metadata or not.
-   * @param isMetadataOther       boolean If have other metadata or not.
-   * @param isSchemas             boolean If have schemas or not.
-   * @param isDocumentation       boolean If have documentation or not.
-   * @param isSubmission          boolean If have submission or not.
-   * @param isRepresentations     boolean If have representations or not.
-   * @param isRepresentationsData boolean If have data in representations or not.
-   *
-   * @return MetsWrapper.
-   */
+  /// Generates Shallow SIP Representation METS with folders represented.
+  /// <param name="representation">The IPRepresentation object to generate the Shallow METS from.</param>
+  /// <param name="profile">The profile to be used for the METS object.</param>
+  /// <param name="mainMets">Indicates whether this is the main METS file.</param>
+  /// <param name="ancestors">A list of ancestor identifiers, if any.</param>
+  /// <param name="metsPath">The file path for the METS file.</param>
+  /// <param name="header">The IPHeader containing metadata for the METS header.</param>
+  /// <param name="isMetadata">Indicates if metadata is included.</param>
+  /// <param name="isMetadataOther">Indicates if other metadata is included.</param>
+  /// <param name="isSchemas">Indicates if schemas are included.</param>
+  /// <param name="isDocumentation">Indicates if documentation is included.</param>
+  /// <param name="isRepresentations">Indicates if representations are included.</param>
+  /// <param name="isRepresentationsData">Indicates if representation data is included.</param>
+  /// <param name="type">The type of the OAIS package, default is SIP.</param>
+  /// <returns>A MetsWrapper object containing the generated METS structure.</returns>
   public MetsWrapper GenerateMetsShallow(
     IPRepresentation representation,
     string profile,
@@ -143,6 +166,11 @@ public abstract class EARKMETSCreator {
     return metsWrapper;
   }
 
+  /// <summary>
+  /// Creates a new file group with a specified use attribute.
+  /// </summary>
+  /// <param name="use">The use attribute for the file group.</param>
+  /// <returns>A new instance of MetsTypeFileSecFileGrp with the specified use attribute.</returns>
   protected MetsTypeFileSecFileGrp CreateFileGroup(string use) {
     return new MetsTypeFileSecFileGrp
     {
@@ -151,6 +179,11 @@ public abstract class EARKMETSCreator {
     };
   }
 
+  /// <summary>
+  /// Creates a new div for a struct map with a specified label attribute.
+  /// </summary>
+  /// <param name="label">The label attribute for the div.</param>
+  /// <returns>A new instance of DivType with the specified label attribute.</returns>
   protected DivType CreateDivForStructMap(string label) {
     return new DivType
     {
@@ -159,6 +192,12 @@ public abstract class EARKMETSCreator {
     };
   }
 
+  /// <summary>
+  /// Creates a new representation div for a struct map with a specified label attribute and a mptr to add to it.
+  /// </summary>
+  /// <param name="representationId">The ID of the representation, to generate the label attribute.</param>
+  /// <param name="mptr">The DivTypeMptr to add to the div.</param>
+  /// <returns>A new instance of DivType.</returns>
   protected DivType CreateRepresentationDivForStructMap(string representationId, DivTypeMptr mptr) {
     DivType div = new DivType
     {
@@ -170,6 +209,15 @@ public abstract class EARKMETSCreator {
     return div;
   }
 
+  /// <summary>
+  /// Adds a representation METS file to the ZIP and updates the main METS file.
+  /// </summary>
+  /// <param name="zipEntries">The dictionary of ZIP entries to update.</param>
+  /// <param name="mainMetsWrapper">The main METS wrapper to update.</param>
+  /// <param name="representationId">The ID of the representation.</param>
+  /// <param name="representationMetsWrapper">The METS wrapper for the representation.</param>
+  /// <param name="representationMetsPath">The file path of the representation METS file.</param>
+  /// <param name="buildDir">The build directory for temporary files.</param>
   public void AddRepresentationMetsToZipAndToMainMets(
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper mainMetsWrapper,
@@ -212,6 +260,15 @@ public abstract class EARKMETSCreator {
     }
   }
 
+  /// <summary>
+  /// Adds a SIARD representation METS file to the ZIP and updates the main METS file.
+  /// </summary>
+  /// <param name="zipEntries">The dictionary of ZIP entries to update.</param>
+  /// <param name="mainMetsWrapper">The main METS wrapper to update.</param>
+  /// <param name="representationId">The ID of the representation.</param>
+  /// <param name="representationMetsWrapper">The METS wrapper for the representation.</param>
+  /// <param name="representationMetsPath">The file path of the representation METS file.</param>
+  /// <param name="buildDir">The build directory for temporary files.</param>
   public void AddRepresentationSiardMetsToZipAndToMainMets(
     Dictionary<string, IZipEntryInfo> zipEntries,
     MetsWrapper mainMetsWrapper,
