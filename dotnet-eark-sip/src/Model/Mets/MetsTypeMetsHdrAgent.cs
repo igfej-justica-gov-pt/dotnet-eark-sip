@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents an agent in the METS header, containing metadata about the agent's role, type, and other attributes.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdrAgent", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]

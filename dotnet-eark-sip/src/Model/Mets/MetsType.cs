@@ -239,9 +239,15 @@ namespace Mets
         [System.Xml.Serialization.XmlAttributeAttribute("PROFILE")]
         public string Profile { get; set; }
         
+        /// <summary>
+        /// Gets or sets the other type.
+        /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute("OTHERTYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Othertype { get; set; }
         
+        /// <summary>
+        /// Gets or sets the content information type.
+        /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute("CONTENTINFORMATIONTYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xml.Mets.CsipExtensionMets.Contentinformationtype Contentinformationtype { get; set; }
         
@@ -251,12 +257,18 @@ namespace Mets
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ContentinformationtypeSpecified { get; set; }
         
+        /// <summary>
+        /// Gets or sets the other content information type.
+        /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute("OTHERCONTENTINFORMATIONTYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Othercontentinformationtype { get; set; }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
         
+        /// <summary>
+        /// Gets a collection of XML attributes that are not explicitly defined in the schema.
+        /// </summary>
         [System.Xml.Serialization.XmlAnyAttributeAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> AnyAttribute
         {

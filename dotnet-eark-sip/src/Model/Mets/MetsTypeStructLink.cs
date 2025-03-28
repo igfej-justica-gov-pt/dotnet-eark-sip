@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents the MetsTypeStructLink class, which is a part of the METS schema.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("MetsTypeStructLink", Namespace="http://www.loc.gov/METS/")]

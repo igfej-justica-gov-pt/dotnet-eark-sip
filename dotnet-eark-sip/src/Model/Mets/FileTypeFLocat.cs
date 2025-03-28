@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents a file location type in the METS schema, implementing ILocation and Xlink.ISimpleLink.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("FileTypeFLocat", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]

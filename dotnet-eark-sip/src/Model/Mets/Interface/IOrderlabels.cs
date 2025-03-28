@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents an interface for order labels, providing properties for order, order label, and label attributes.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     public partial interface IOrderlabels
     {

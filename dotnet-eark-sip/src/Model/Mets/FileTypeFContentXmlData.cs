@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents the XML data content for the FileTypeFContent element in the METS schema.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("FileTypeFContentXmlData", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
@@ -23,7 +26,10 @@ namespace Mets
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlElement> _any;
-        
+
+        /// <summary>
+        /// Gets a collection of XML elements representing additional data for the FileTypeFContent element.
+        /// </summary>
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlElement> Any

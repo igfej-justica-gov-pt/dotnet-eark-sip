@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents the DivTypeFptr class, which is used to define the structure of a METS file pointer element.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("DivTypeFptr", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
@@ -100,7 +103,10 @@ namespace Mets
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
-        
+
+        /// <summary>
+        /// Gets a collection of XML attributes that are not explicitly defined in the schema.
+        /// </summary>
         [System.Xml.Serialization.XmlAnyAttributeAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> AnyAttribute
         {

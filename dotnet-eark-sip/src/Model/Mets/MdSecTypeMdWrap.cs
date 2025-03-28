@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents the metadata section type wrapper, containing metadata in binary or XML format.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("MdSecTypeMdWrap", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]

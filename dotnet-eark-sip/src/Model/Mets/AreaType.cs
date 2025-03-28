@@ -237,7 +237,10 @@ namespace Mets
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
-        
+
+        /// <summary>
+        /// Gets a collection of XML attributes that are not explicitly defined in the schema.
+        /// </summary>
         [System.Xml.Serialization.XmlAnyAttributeAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> AnyAttribute
         {

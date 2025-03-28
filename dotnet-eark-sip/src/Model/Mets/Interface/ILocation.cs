@@ -13,8 +13,11 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents a location with properties for locator type and other locator type details.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
-    public partial interface ILocation
+        public partial interface ILocation
     {
         
         /// <summary>

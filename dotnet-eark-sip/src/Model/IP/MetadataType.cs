@@ -1,51 +1,77 @@
 using System.Text;
 using Mets;
 
-namespace IP {
+namespace IP
+{
+  /// <summary>
+  /// Represents metadata with a specific type and optional other type information.
+  /// </summary>
   [Serializable]
-  public class MetadataType {
+  public class MetadataType
+  {
     private readonly IMetadataMdtype type;
     private string otherType;
 
-    public MetadataType(string type, string? otherType = null) {
-      try {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MetadataType"/> class with the specified type and optional other type information.
+    /// </summary>
+    /// <param name="type">The metadata type.</param>
+    /// <param name="otherType">The optional other type information.</param>
+    public MetadataType(string type, string? otherType = null)
+    {
+      try
+      {
         this.type = EnumUtils.GetEnumFromXmlAttribute<IMetadataMdtype>(type);
         this.otherType = otherType ?? "";
-      } catch {
+      }
+      catch
+      {
         this.type = IMetadataMdtype.OTHER;
         this.otherType = otherType ?? "";
       }
     }
 
-    public MetadataType(IMetadataMdtype type, string? otherType = null) {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MetadataType"/> class with the specified type and optional other type information.
+    /// </summary>
+    /// <param name="type">The metadata type.</param>
+    /// <param name="otherType">The optional other type information.</param>
+    public MetadataType(IMetadataMdtype type, string? otherType = null)
+    {
       this.type = type;
       this.otherType = otherType ?? "";
     }
 
-    public IMetadataMdtype _GetType() {
+    public IMetadataMdtype _GetType()
+    {
       return type;
     }
 
-    public string GetOtherType() {
+    public string GetOtherType()
+    {
       return otherType;
     }
 
-    public MetadataType SetOtherType(string otherType) {
+    public MetadataType SetOtherType(string otherType)
+    {
       this.otherType = otherType;
       return this;
     }
 
-    public override string ToString() {
+    public override string ToString()
+    {
       StringBuilder sb = new StringBuilder();
       sb.Append("type: ").Append(EnumUtils.GetXmlEnumName(type));
-      if (string.IsNullOrEmpty(otherType)) {
+      if (string.IsNullOrEmpty(otherType))
+      {
         sb.Append("; othertype: ").Append(otherType);
       }
 
       return sb.ToString();
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode()
+    {
       int prime = 31;
       int result = 1;
 
@@ -55,7 +81,8 @@ namespace IP {
       return result;
     }
 
-    public override bool Equals(object obj) {
+    public override bool Equals(object obj)
+    {
       if (this == obj) return true;
       if (obj == null) return false;
       if (!(obj is MetadataType other)) return false;

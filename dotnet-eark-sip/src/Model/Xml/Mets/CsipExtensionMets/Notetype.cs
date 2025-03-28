@@ -13,6 +13,9 @@ namespace Xml.Mets.CsipExtensionMets
 {
     
     
+    /// <summary>
+    /// Represents the type of note in the CSIPExtensionMETS namespace.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("NOTETYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", AnonymousType=true)]

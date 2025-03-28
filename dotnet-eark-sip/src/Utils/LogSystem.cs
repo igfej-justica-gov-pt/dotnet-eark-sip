@@ -1,11 +1,21 @@
 using System.Text;
 using Microsoft.Extensions.Logging;
 
-public class LogSystem {
+/// <summary>
+/// Provides logging utilities and system information logging.
+/// </summary>
+public class LogSystem
+{
+  /// <summary>
+  /// Provides a logger instance for the LogSystem class.
+  /// </summary>
   public static readonly ILogger logger = DefaultLogger.Create<LogSystem>();
+  /// <summary>
+  /// Represents the default value used when a property is unknown.
+  /// </summary>
   public static string UNKNOWN = "unknown";
 
-  private LogSystem() {}
+  private LogSystem() { }
 
   private static Dictionary<string, string> GetOperatingSystemInfo()
   {
@@ -23,18 +33,26 @@ public class LogSystem {
     return result;
   }
 
-  private static string GetProperty(string key, string defaultValue) {
+  private static string GetProperty(string key, string defaultValue)
+  {
     return Environment.GetEnvironmentVariable(key) ?? defaultValue;
   }
 
-  private static string GetDefaultCharSet() {
-    using (var dummy = new StreamWriter(new MemoryStream())) {
+  private static string GetDefaultCharSet()
+  {
+    using (var dummy = new StreamWriter(new MemoryStream()))
+    {
       return dummy.Encoding.WebName;
     }
   }
 
-  public static void LogOperatingSystemInfo() {
-    foreach (KeyValuePair<string, string> entry in GetOperatingSystemInfo()) {
+  /// <summary>
+  /// Logs detailed information about the operating system and environment.
+  /// </summary>
+  public static void LogOperatingSystemInfo()
+  {
+    foreach (KeyValuePair<string, string> entry in GetOperatingSystemInfo())
+    {
       logger.LogDebug("{0}: {1}", entry.Key, entry.Value);
     }
   }

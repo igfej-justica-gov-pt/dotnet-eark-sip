@@ -13,6 +13,9 @@ namespace Xml.Mets.CsipExtensionMets
 {
     
     
+    /// <summary>
+    /// Represents the type of content information in the CSIP extension METS.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("CONTENTINFORMATIONTYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", AnonymousType=true)]

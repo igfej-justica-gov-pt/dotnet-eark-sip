@@ -145,7 +145,10 @@ namespace Mets
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<FileType> _file;
-        
+
+        /// <summary>
+        /// Gets or sets a collection of nested <see cref="FileType"/> objects.
+        /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("file")]
         public System.Collections.ObjectModel.Collection<FileType> File
         {
@@ -395,7 +398,10 @@ namespace Mets
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute = null;
-        
+
+        /// <summary>
+        /// Gets a collection of XML attributes that are not explicitly defined in the schema.
+        /// </summary>
         [System.Xml.Serialization.XmlAnyAttributeAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> AnyAttribute
         {
@@ -425,6 +431,11 @@ namespace Mets
             }
         }
 
+        /// <summary>
+        /// Adds a custom XML attribute to the AnyAttribute collection.
+        /// </summary>
+        /// <param name="name">The name of the attribute to add.</param>
+        /// <param name="value">The value of the attribute to add.</param>
         public void AddCustomAttribute(string name, string value)
         {
             System.Xml.XmlDocument doc = new System.Xml.XmlDocument();

@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents the header information for a METS (Metadata Encoding and Transmission Standard) document.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdr", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
@@ -179,6 +182,9 @@ namespace Mets
         [System.Xml.Serialization.XmlAttributeAttribute("RECORDSTATUS")]
         public string Recordstatus { get; set; }
         
+        /// <summary>
+        /// Gets or sets the OAIS package type, which specifies the type of the package in the OAIS model.
+        /// </summary>
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
         [System.Xml.Serialization.XmlAttributeAttribute("OAISPACKAGETYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xml.Mets.CsipExtensionMets.Oaispackagetype Oaispackagetype { get; set; }
@@ -186,6 +192,9 @@ namespace Mets
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
         
+        /// <summary>
+        /// Gets a collection of XML attributes that are not explicitly defined in the schema.
+        /// </summary>
         [System.Xml.Serialization.XmlAnyAttributeAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> AnyAttribute
         {

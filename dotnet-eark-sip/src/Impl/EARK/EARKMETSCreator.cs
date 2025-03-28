@@ -7,7 +7,8 @@ using Xml.Mets.CsipExtensionMets;
 /// <summary>
 /// Abstract class responsible for creating and managing EARK METS files.
 /// </summary>
-public abstract class EARKMETSCreator {
+public abstract class EARKMETSCreator
+{
   private static readonly ILogger<EARKMETSCreator> logger = DefaultLogger.Create<EARKMETSCreator>();
 
   private readonly Dictionary<string, MetsTypeFileSecFileGrp> dataFileGrp = new Dictionary<string, MetsTypeFileSecFileGrp>();
@@ -17,7 +18,8 @@ public abstract class EARKMETSCreator {
   /// </summary>
   /// <param name="id">The input string to be escaped.</param>
   /// <returns>A string with invalid characters replaced by underscores.</returns>
-  protected string EscapeNCName(string id) {
+  protected string EscapeNCName(string id)
+  {
     return id.Replace("[:@$%&/+,;\\s]", "_");
   }
 
@@ -58,7 +60,8 @@ public abstract class EARKMETSCreator {
     bool isRepresentations,
     bool isRepresentationsData,
     Oaispackagetype type = Oaispackagetype.SIP
-  ) {
+  )
+  {
     Mets.Mets mets = new Mets.Mets();
     MetsWrapper metsWrapper = new MetsWrapper(mets, metsPath);
 
@@ -74,7 +77,8 @@ public abstract class EARKMETSCreator {
 
     AddCommonFileGrpToMets(metsWrapper, fileSec, isSchemas, isDocumentation);
 
-    if ((mainMets && isRepresentations) || fileSec.FileGrp.Count > 0) {
+    if ((mainMets && isRepresentations) || fileSec.FileGrp.Count > 0)
+    {
       mets.FileSec = fileSec;
     }
 
@@ -121,7 +125,8 @@ public abstract class EARKMETSCreator {
     bool isRepresentations,
     bool isRepresentationsData,
     Oaispackagetype type = Oaispackagetype.SIP
-  ) {
+  )
+  {
     Mets.Mets mets = new Mets.Mets();
     MetsWrapper metsWrapper = new MetsWrapper(mets, metsPath);
 
@@ -148,7 +153,8 @@ public abstract class EARKMETSCreator {
 
     AddCommonFileGrpToMets(metsWrapper, fileSec, isSchemas, isDocumentation);
 
-    if ((mainMets && isRepresentations) || fileSec.FileGrp.Count > 0) {
+    if ((mainMets && isRepresentations) || fileSec.FileGrp.Count > 0)
+    {
       mets.FileSec = fileSec;
     }
 
@@ -171,7 +177,8 @@ public abstract class EARKMETSCreator {
   /// </summary>
   /// <param name="use">The use attribute for the file group.</param>
   /// <returns>A new instance of MetsTypeFileSecFileGrp with the specified use attribute.</returns>
-  protected MetsTypeFileSecFileGrp CreateFileGroup(string use) {
+  protected MetsTypeFileSecFileGrp CreateFileGroup(string use)
+  {
     return new MetsTypeFileSecFileGrp
     {
       Id = Utils.GenerateRandomAndPrefixedUUID(),
@@ -184,7 +191,8 @@ public abstract class EARKMETSCreator {
   /// </summary>
   /// <param name="label">The label attribute for the div.</param>
   /// <returns>A new instance of DivType with the specified label attribute.</returns>
-  protected DivType CreateDivForStructMap(string label) {
+  protected DivType CreateDivForStructMap(string label)
+  {
     return new DivType
     {
       Id = Utils.GenerateRandomAndPrefixedUUID(),
@@ -198,7 +206,8 @@ public abstract class EARKMETSCreator {
   /// <param name="representationId">The ID of the representation, to generate the label attribute.</param>
   /// <param name="mptr">The DivTypeMptr to add to the div.</param>
   /// <returns>A new instance of DivType.</returns>
-  protected DivType CreateRepresentationDivForStructMap(string representationId, DivTypeMptr mptr) {
+  protected DivType CreateRepresentationDivForStructMap(string representationId, DivTypeMptr mptr)
+  {
     DivType div = new DivType
     {
       Id = Utils.GenerateRandomAndPrefixedUUID(),
@@ -225,8 +234,10 @@ public abstract class EARKMETSCreator {
     MetsWrapper representationMetsWrapper,
     string representationMetsPath,
     string buildDir
-  ) {
-    try {
+  )
+  {
+    try
+    {
       // create mets pointer
       DivTypeMptr mptr = new DivTypeMptr
       {
@@ -251,10 +262,15 @@ public abstract class EARKMETSCreator {
       DivType representationDiv = CreateRepresentationDivForStructMap(representationId, mptr);
       mptr.Title = fileGrp.Id;
       mainMetsWrapper.MainDiv.Div.Add(representationDiv);
-    } catch (Exception e) {
-      if (e is XmlException || e is IOException) {
+    }
+    catch (Exception e)
+    {
+      if (e is XmlException || e is IOException)
+      {
         throw new IPException("Error saving representation METS", e);
-      } else {
+      }
+      else
+      {
         throw e;
       }
     }
@@ -276,8 +292,10 @@ public abstract class EARKMETSCreator {
     MetsWrapper representationMetsWrapper,
     string representationMetsPath,
     string buildDir
-  ) {
-    try {
+  )
+  {
+    try
+    {
       // create mets pointer
       DivTypeMptr mptr = new DivTypeMptr
       {
@@ -306,23 +324,44 @@ public abstract class EARKMETSCreator {
       DivType representationDiv = CreateRepresentationDivForStructMap(representationId, mptr);
       mptr.Title = fileGrp.Id;
       mainMetsWrapper.MainDiv.Div.Add(representationDiv);
-    } catch (Exception e) {
-      if (e is XmlException || e is IOException) {
+    }
+    catch (Exception e)
+    {
+      if (e is XmlException || e is IOException)
+      {
         throw new IPException("Error saving representation METS");
-      } else {
+      }
+      else
+      {
         throw e;
       }
     }
   }
 
-  protected void AddMetsToZip(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, string metsPath, string buildDir, bool mainMets, FileType fileType) {
+  /// <summary>
+  /// Adds a METS file to the ZIP archive and updates the file type with basic information.
+  /// </summary>
+  /// <param name="zipEntries">The dictionary of ZIP entries to update.</param>
+  /// <param name="metsWrapper">The METS wrapper containing the METS structure.</param>
+  /// <param name="metsPath">The file path for the METS file.</param>
+  /// <param name="buildDir">The build directory for temporary files.</param>
+  /// <param name="mainMets">Indicates whether this is the main METS file.</param>
+  /// <param name="fileType">The file type to update with basic information.</param>
+  protected void AddMetsToZip(Dictionary<string, IZipEntryInfo> zipEntries, MetsWrapper metsWrapper, string metsPath, string buildDir, bool mainMets, FileType fileType)
+  {
     string temp = Path.Combine(buildDir, Path.GetRandomFileName() + IPConstants.METS_FILE_NAME + IPConstants.METS_FILE_EXTENSION);
     File.Create(temp).Dispose();
 
     ZIPUtils.AddMETSFileToZip(zipEntries, temp, metsPath, metsWrapper.Mets, mainMets, fileType);
   }
 
-  protected MetsTypeMetsHdrAgent CreateMETSAgent(IPAgent ipAgent) {
+  /// <summary>
+  /// Creates a METS agent based on the provided IPAgent.
+  /// </summary>
+  /// <param name="ipAgent">The IPAgent containing agent details.</param>
+  /// <returns>A MetsTypeMetsHdrAgent object populated with the agent's details.</returns>
+  protected MetsTypeMetsHdrAgent CreateMETSAgent(IPAgent ipAgent)
+  {
     MetsTypeMetsHdrAgent agent = new MetsTypeMetsHdrAgent
     {
       Name = ipAgent.GetName(),
@@ -342,7 +381,15 @@ public abstract class EARKMETSCreator {
     return agent;
   }
 
-  public MdSecTypeMdRef AddDescriptiveMetadataToMETS(MetsWrapper metsWrapper, IPDescriptiveMetadata descriptiveMetadata, string descriptiveMetadataPath) {
+  /// <summary>
+  /// Adds descriptive metadata to the METS wrapper.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the metadata will be added.</param>
+  /// <param name="descriptiveMetadata">The descriptive metadata to add.</param>
+  /// <param name="descriptiveMetadataPath">The file path of the descriptive metadata.</param>
+  /// <returns>An MdSecTypeMdRef object representing the added metadata reference.</returns>
+  public MdSecTypeMdRef AddDescriptiveMetadataToMETS(MetsWrapper metsWrapper, IPDescriptiveMetadata descriptiveMetadata, string descriptiveMetadataPath)
+  {
     return AddMetadataToMETS(
       metsWrapper,
       descriptiveMetadata,
@@ -354,10 +401,29 @@ public abstract class EARKMETSCreator {
     );
   }
 
-  public MdSecTypeMdRef AddOtherMetadataToMETS(MetsWrapper metsWrapper, IPMetadata otherMetadata, string otherMetadataPath) {
+  /// <summary>
+  /// Adds other metadata to the METS wrapper.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the metadata will be added.</param>
+  /// <param name="otherMetadata">The other metadata to add.</param>
+  /// <param name="otherMetadataPath">The file path of the other metadata.</param>
+  /// <returns>An MdSecTypeMdRef object representing the added metadata reference.</returns>
+  public MdSecTypeMdRef AddOtherMetadataToMETS(MetsWrapper metsWrapper, IPMetadata otherMetadata, string otherMetadataPath)
+  {
     return AddMetadataToMETS(metsWrapper, otherMetadata, otherMetadataPath, IMetadataMdtype.OTHER, otherMetadata.GetID(), null);
   }
 
+  /// <summary>
+  /// Adds metadata to the METS wrapper.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the metadata will be added.</param>
+  /// <param name="metadata">The metadata to add.</param>
+  /// <param name="metadataPath">The file path of the metadata.</param>
+  /// <param name="mdType">The type of the metadata.</param>
+  /// <param name="mdOtherType">The other type of the metadata, if applicable.</param>
+  /// <param name="mdTypeVersion">The version of the metadata type, if applicable.</param>
+  /// <param name="isDescriptive">Indicates whether the metadata is descriptive.</param>
+  /// <returns>An MdSecTypeMdRef object representing the added metadata reference.</returns>
   protected MdSecTypeMdRef AddMetadataToMETS(
     MetsWrapper metsWrapper,
     IPMetadata metadata,
@@ -366,7 +432,8 @@ public abstract class EARKMETSCreator {
     string mdOtherType,
     string? mdTypeVersion,
     bool isDescriptive = false
-  ) {
+  )
+  {
     MdSecType dmdSec = new MdSecType
     {
       Id = Utils.GenerateRandomAndPrefixedUUID(),
@@ -375,7 +442,8 @@ public abstract class EARKMETSCreator {
 
     MdSecTypeMdRef mdRef = CreateMdRef(metadata.GetID(), metadataPath);
     mdRef.Mdtype = mdType;
-    if (!string.IsNullOrEmpty(mdOtherType)) {
+    if (!string.IsNullOrEmpty(mdOtherType))
+    {
       mdRef.Othermdtype = mdOtherType;
     }
     mdRef.Mdtypeversion = mdTypeVersion;
@@ -387,9 +455,12 @@ public abstract class EARKMETSCreator {
     dmdSec.CreatedSpecified = true;
 
     // structural map info.
-    if (isDescriptive) {
+    if (isDescriptive)
+    {
       metsWrapper.MetadataDiv.Dmdid.Add(dmdSec.Id);
-    } else {
+    }
+    else
+    {
       metsWrapper.OtherMetadataDiv.Dmdid.Add(dmdSec.Id);
     }
 
@@ -399,7 +470,15 @@ public abstract class EARKMETSCreator {
     return mdRef;
   }
 
-  public MdSecTypeMdRef AddPreservationMetadataToMETS(MetsWrapper metsWrapper, IPMetadata preservationMetadata, string preservationMetadataPath) {
+  /// <summary>
+  /// Adds preservation metadata to the METS wrapper.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the metadata will be added.</param>
+  /// <param name="preservationMetadata">The preservation metadata to add.</param>
+  /// <param name="preservationMetadataPath">The file path of the preservation metadata.</param>
+  /// <returns>An MdSecTypeMdRef object representing the added metadata reference.</returns>
+  public MdSecTypeMdRef AddPreservationMetadataToMETS(MetsWrapper metsWrapper, IPMetadata preservationMetadata, string preservationMetadataPath)
+  {
     MdSecType digiprovMD = new MdSecType
     {
       Id = Utils.GenerateRandomAndPrefixedUUID(),
@@ -421,7 +500,14 @@ public abstract class EARKMETSCreator {
     return mdRef;
   }
 
-  protected MdSecTypeMdRef CreateMdRef(string id, string metadataPath) {
+  /// <summary>
+  /// Creates a metadata reference (MdRef) for a given ID and metadata path.
+  /// </summary>
+  /// <param name="id">The unique identifier for the metadata.</param>
+  /// <param name="metadataPath">The file path of the metadata.</param>
+  /// <returns>An instance of MdSecTypeMdRef representing the metadata reference.</returns>
+  protected MdSecTypeMdRef CreateMdRef(string id, string metadataPath)
+  {
     MdSecTypeMdRef mdRef = new MdSecTypeMdRef
     {
       Id = METSEnums.FILE_ID_PREFIX + EscapeNCName(id),
@@ -433,7 +519,13 @@ public abstract class EARKMETSCreator {
     return mdRef;
   }
 
-  public void AddDataFileToMets(MetsWrapper representationMets, IPFileShallow shallow) {
+  /// <summary>
+  /// Adds a data file to the METS wrapper based on the provided shallow file information.
+  /// </summary>
+  /// <param name="representationMets">The METS wrapper to which the data file will be added.</param>
+  /// <param name="shallow">The shallow file information containing details about the data file.</param>
+  public void AddDataFileToMets(MetsWrapper representationMets, IPFileShallow shallow)
+  {
     FileType file = shallow.FileType;
     file.Id = Utils.GenerateRandomAndPrefixedFileID();
 
@@ -444,7 +536,15 @@ public abstract class EARKMETSCreator {
     AddDataFileFromShallow(representationMets.DataFileGroup.FileGrp, shallow, file);
   }
 
-  public FileType AddDataFileToMets(MetsWrapper representationMets, string dataFilePath, string dataFile) {
+  /// <summary>
+  /// Adds a data file to the METS wrapper.
+  /// </summary>
+  /// <param name="representationMets">The METS wrapper to which the data file will be added.</param>
+  /// <param name="dataFilePath">The file path of the data file.</param>
+  /// <param name="dataFile">The data file to add.</param>
+  /// <returns>A FileType object representing the added data file.</returns>
+  public FileType AddDataFileToMets(MetsWrapper representationMets, string dataFilePath, string dataFile)
+  {
     FileType file = new FileType
     {
       Id = Utils.GenerateRandomAndPrefixedFileID()
@@ -456,7 +556,8 @@ public abstract class EARKMETSCreator {
     file.FLocat.Add(fileLocation);
     representationMets.DataFileGroup.File.Add(file);
 
-    if (representationMets.DataDiv.Fptr.Count == 0) {
+    if (representationMets.DataDiv.Fptr.Count == 0)
+    {
       DivTypeFptr fptr = new DivTypeFptr
       {
         Fileid = representationMets.DataFileGroup.Id
@@ -468,7 +569,15 @@ public abstract class EARKMETSCreator {
     return file;
   }
 
-  public FileType AddSchemaFileToMETS(MetsWrapper metsWrapper, string filePath, string schemaFile) {
+  /// <summary>
+  /// Adds a schema file to the METS wrapper.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the schema file will be added.</param>
+  /// <param name="filePath">The file path of the schema file.</param>
+  /// <param name="schemaFile">The schema file to add.</param>
+  /// <returns>A FileType object representing the added schema file.</returns>
+  public FileType AddSchemaFileToMETS(MetsWrapper metsWrapper, string filePath, string schemaFile)
+  {
     FileType file = new FileType { Id = Utils.GenerateRandomAndPrefixedFileID() };
 
     METSUtils.SetFileBasicInformation(logger, schemaFile, file);
@@ -477,7 +586,8 @@ public abstract class EARKMETSCreator {
     file.FLocat.Add(fileLocation);
 
     metsWrapper.SchemasFileGroup.File.Add(file);
-    if (metsWrapper.SchemasDiv != null && metsWrapper.SchemasDiv.Fptr.Count == 0) {
+    if (metsWrapper.SchemasDiv != null && metsWrapper.SchemasDiv.Fptr.Count == 0)
+    {
       DivTypeFptr fptr = new DivTypeFptr
       {
         Fileid = metsWrapper.SchemasFileGroup.Id
@@ -489,7 +599,15 @@ public abstract class EARKMETSCreator {
     return file;
   }
 
-  public FileType AddDocumentationFileToMETS(MetsWrapper metsWrapper, string filePath, string documentationFile) {
+  /// <summary>
+  /// Adds a documentation file to the METS wrapper.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the documentation file will be added.</param>
+  /// <param name="filePath">The file path of the documentation file.</param>
+  /// <param name="documentationFile">The documentation file to add.</param>
+  /// <returns>A FileType object representing the added documentation file.</returns>
+  public FileType AddDocumentationFileToMETS(MetsWrapper metsWrapper, string filePath, string documentationFile)
+  {
     FileType file = new FileType { Id = Utils.GenerateRandomAndPrefixedFileID() };
 
     METSUtils.SetFileBasicInformation(logger, documentationFile, file);
@@ -498,7 +616,8 @@ public abstract class EARKMETSCreator {
     file.FLocat.Add(fileLocation);
 
     metsWrapper.DocumentationFileGroup.File.Add(file);
-    if (metsWrapper.DocumentationDiv != null && metsWrapper.DocumentationDiv.Fptr.Count == 0) {
+    if (metsWrapper.DocumentationDiv != null && metsWrapper.DocumentationDiv.Fptr.Count == 0)
+    {
       DivTypeFptr fptr = new DivTypeFptr
       {
         Fileid = metsWrapper.DocumentationFileGroup.Id
@@ -510,7 +629,13 @@ public abstract class EARKMETSCreator {
     return file;
   }
 
-  protected StructMapType GenerateAncestorStructMap(List<string> ancestors) {
+  /// <summary>
+  /// Generates a structural map for ancestor references.
+  /// </summary>
+  /// <param name="ancestors">A list of ancestor identifiers.</param>
+  /// <returns>A StructMapType object representing the ancestor structural map.</returns>
+  protected StructMapType GenerateAncestorStructMap(List<string> ancestors)
+  {
     StructMapType structMap = new StructMapType
     {
       Id = Utils.GenerateRandomAndPrefixedUUID(),
@@ -520,7 +645,8 @@ public abstract class EARKMETSCreator {
     DivType mainDiv = CreateDivForStructMap(IPConstants.EARK_SIP_DIV_LABEL);
     DivType ancestorsDiv = CreateDivForStructMap(IPConstants.EARK_SIP_ANCESTORS_DIV_LABEL);
 
-    foreach (string ancestor in ancestors) {
+    foreach (string ancestor in ancestors)
+    {
       DivTypeMptr mptr = new DivTypeMptr
       {
         Type = IPConstants.METS_TYPE_SIMPLE,
@@ -537,30 +663,51 @@ public abstract class EARKMETSCreator {
     return structMap;
   }
 
-  protected void AddBasicAttributesToMets(Mets.Mets mets, string id, string label, string profile, IPContentType contentType, IPContentInformationType contentInformationType) {
+  /// <summary>
+  /// Adds basic attributes to the provided METS object.
+  /// </summary>
+  /// <param name="mets">The METS object to which attributes will be added.</param>
+  /// <param name="id">The unique identifier for the METS object.</param>
+  /// <param name="label">The label for the METS object.</param>
+  /// <param name="profile">The profile to be used for the METS object.</param>
+  /// <param name="contentType">The content type of the METS object.</param>
+  /// <param name="contentInformationType">The content information type of the METS object.</param>
+  protected void AddBasicAttributesToMets(Mets.Mets mets, string id, string label, string profile, IPContentType contentType, IPContentInformationType contentInformationType)
+  {
     mets.Objid = id;
     mets.Profile = profile;
     mets.Label = label;
 
     mets.Type = EnumUtils.GetXmlEnumName(contentType.GetContentType());
-    if (contentType.IsOtherAndOtherTypeIsDefined()) {
+    if (contentType.IsOtherAndOtherTypeIsDefined())
+    {
       mets.Othertype = contentType.GetOtherType();
     }
 
-    if (contentInformationType != null) {
+    if (contentInformationType != null)
+    {
       mets.Contentinformationtype = contentInformationType.GetContentInformationType();
       mets.ContentinformationtypeSpecified = true;
       string otherContentInformationType = contentInformationType.GetOtherType();
-      if (!string.IsNullOrEmpty(otherContentInformationType)) {
+      if (!string.IsNullOrEmpty(otherContentInformationType))
+      {
         mets.Othercontentinformationtype = otherContentInformationType;
       }
     }
   }
 
-  protected void AddHeaderToMets(Mets.Mets mets, IPHeader ipHeader, Oaispackagetype type) {
+  /// <summary>
+  /// Adds a header to the provided METS object based on the given IPHeader and OAIS package type.
+  /// </summary>
+  /// <param name="mets">The METS object to which the header will be added.</param>
+  /// <param name="ipHeader">The IPHeader containing metadata for the METS header.</param>
+  /// <param name="type">The type of the OAIS package.</param>
+  protected void AddHeaderToMets(Mets.Mets mets, IPHeader ipHeader, Oaispackagetype type)
+  {
     MetsTypeMetsHdr header = new MetsTypeMetsHdr();
 
-    try {
+    try
+    {
       DateTime currentDate = DateTime.Now;
       header.Createdate = currentDate;
       header.CreatedateSpecified = true;
@@ -568,17 +715,21 @@ public abstract class EARKMETSCreator {
       header.LastmoddateSpecified = true;
       header.Recordstatus = EnumUtils.GetXmlEnumName(ipHeader.GetStatus());
       header.Oaispackagetype = type;
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw new IPException("Error adding header to METS", e);
     }
 
     // header/agent
-    foreach (IPAgent agent in ipHeader.GetAgents()) {
+    foreach (IPAgent agent in ipHeader.GetAgents())
+    {
       header.Agent.Add(CreateMETSAgent(agent));
     }
 
     // records
-    foreach (IPAltRecordID record in ipHeader.GetAltRecordIDs()) {
+    foreach (IPAltRecordID record in ipHeader.GetAltRecordIDs())
+    {
       MetsTypeMetsHdrAltRecordId recordId = new MetsTypeMetsHdrAltRecordId
       {
         Type = record._GetType(),
@@ -591,7 +742,12 @@ public abstract class EARKMETSCreator {
     mets.MetsHdr = header;
   }
 
-  protected void AddAmdSecToMets(Mets.Mets mets) {
+  /// <summary>
+  /// Adds an administrative metadata section (AmdSec) to the provided METS object.
+  /// </summary>
+  /// <param name="mets">The METS object to which the administrative metadata section will be added.</param>
+  protected void AddAmdSecToMets(Mets.Mets mets)
+  {
     AmdSecType amdSec = new AmdSecType
     {
       Id = Utils.GenerateRandomAndPrefixedUUID()
@@ -600,33 +756,62 @@ public abstract class EARKMETSCreator {
     mets.AmdSec.Add(amdSec);
   }
 
-  protected void AddCommonFileGrpToMets(MetsWrapper metsWrapper, MetsTypeFileSec fileSec, bool isSchemas, bool isDocumentation) {
-    if (isSchemas) {
+  /// <summary>
+  /// Adds common file groups (schemas and documentation) to the METS wrapper and file section.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the file groups will be added.</param>
+  /// <param name="fileSec">The file section to which the file groups will be added.</param>
+  /// <param name="isSchemas">Indicates whether schema files should be added.</param>
+  /// <param name="isDocumentation">Indicates whether documentation files should be added.</param>
+  protected void AddCommonFileGrpToMets(MetsWrapper metsWrapper, MetsTypeFileSec fileSec, bool isSchemas, bool isDocumentation)
+  {
+    if (isSchemas)
+    {
       MetsTypeFileSecFileGrp schemasFileGroup = CreateFileGroup(IPConstants.SCHEMAS_WITH_FIRST_LETTER_CAPITAL);
       fileSec.FileGrp.Add(schemasFileGroup);
       metsWrapper.SchemasFileGroup = schemasFileGroup;
     }
 
-    if (isDocumentation) {
+    if (isDocumentation)
+    {
       MetsTypeFileSecFileGrp documentationFileGroup = CreateFileGroup(IPConstants.DOCUMENTATION_WITH_FIRST_LETTER_CAPITAL);
       fileSec.FileGrp.Add(documentationFileGroup);
       metsWrapper.DocumentationFileGroup = documentationFileGroup;
     }
   }
 
-  protected MetsTypeFileSec CreateFileSec() {
+  /// <summary>
+  /// Creates a new file section for the METS object.
+  /// </summary>
+  /// <returns>A new instance of MetsTypeFileSec with a unique ID.</returns>
+  protected MetsTypeFileSec CreateFileSec()
+  {
     return new MetsTypeFileSec { Id = Utils.GenerateRandomAndPrefixedUUID() };
   }
 
-  protected void AddDataFileGrpToMets(MetsWrapper metsWrapper, MetsTypeFileSec fileSec, bool mainMets, bool isRepresentationsData) {
-    if (!mainMets && isRepresentationsData) {
+  /// <summary>
+  /// Adds a data file group to the METS wrapper and file section.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the file group will be added.</param>
+  /// <param name="fileSec">The file section to which the file group will be added.</param>
+  /// <param name="mainMets">Indicates whether this is the main METS file.</param>
+  /// <param name="isRepresentationsData">Indicates if representation data is included.</param>
+  protected void AddDataFileGrpToMets(MetsWrapper metsWrapper, MetsTypeFileSec fileSec, bool mainMets, bool isRepresentationsData)
+  {
+    if (!mainMets && isRepresentationsData)
+    {
       MetsTypeFileSecFileGrp dataFileGroup = CreateFileGroup(IPConstants.DATA_WITH_FIRST_LETTER_CAPITAL);
       fileSec.FileGrp.Add(dataFileGroup);
       metsWrapper.DataFileGroup = dataFileGroup;
     }
   }
 
-  protected StructMapType CreateStructMap() {
+  /// <summary>
+  /// Creates a new structural map for the METS object.
+  /// </summary>
+  /// <returns>A new instance of StructMapType with a unique ID, type, and label.</returns>
+  protected StructMapType CreateStructMap()
+  {
     return new StructMapType
     {
       Id = Utils.GenerateRandomAndPrefixedUUID(),
@@ -635,18 +820,31 @@ public abstract class EARKMETSCreator {
     };
   }
 
-  protected DivType AddCommonDivsToMainDiv(MetsWrapper metsWrapper, string id, bool isMetadata, bool isMetadataOther, bool isSchemas, bool isDocumentation) {
+  /// <summary>
+  /// Adds common divisions (metadata, schemas, documentation) to the main division of the METS wrapper.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the divisions will be added.</param>
+  /// <param name="id">The unique identifier for the main division.</param>
+  /// <param name="isMetadata">Indicates whether metadata should be added.</param>
+  /// <param name="isMetadataOther">Indicates whether other metadata should be added.</param>
+  /// <param name="isSchemas">Indicates whether schemas should be added.</param>
+  /// <param name="isDocumentation">Indicates whether documentation should be added.</param>
+  /// <returns>The main division with the added common divisions.</returns>
+  protected DivType AddCommonDivsToMainDiv(MetsWrapper metsWrapper, string id, bool isMetadata, bool isMetadataOther, bool isSchemas, bool isDocumentation)
+  {
     DivType mainDiv = CreateDivForStructMap(id);
     metsWrapper.MainDiv = mainDiv;
 
     // metadata
-    if (isMetadata) {
+    if (isMetadata)
+    {
       DivType metadataDiv = CreateDivForStructMap(IPConstants.METADATA_WITH_FIRST_LETTER_CAPITAL);
       metsWrapper.MetadataDiv = metadataDiv;
       mainDiv.Div.Add(metadataDiv);
     }
 
-    if (isMetadataOther) {
+    if (isMetadataOther)
+    {
       DivType otherMetadataDiv = CreateDivForStructMap(
         IPConstants.METADATA_WITH_FIRST_LETTER_CAPITAL +
         IPConstants.ZIP_PATH_SEPARATOR +
@@ -656,13 +854,15 @@ public abstract class EARKMETSCreator {
       mainDiv.Div.Add(otherMetadataDiv);
     }
 
-    if (isSchemas) {
+    if (isSchemas)
+    {
       DivType schemasDiv = CreateDivForStructMap(IPConstants.SCHEMAS_WITH_FIRST_LETTER_CAPITAL);
       metsWrapper.SchemasDiv = schemasDiv;
       mainDiv.Div.Add(schemasDiv);
     }
 
-    if (isDocumentation) {
+    if (isDocumentation)
+    {
       DivType documentationDiv = CreateDivForStructMap(IPConstants.DOCUMENTATION_WITH_FIRST_LETTER_CAPITAL);
       metsWrapper.DocumentationDiv = documentationDiv;
       mainDiv.Div.Add(documentationDiv);
@@ -671,46 +871,84 @@ public abstract class EARKMETSCreator {
     return mainDiv;
   }
 
-  protected void AddDataDivToMets(MetsWrapper metsWrapper, DivType mainDiv, bool mainMets, bool isRepresentationsData) {
-    if (!mainMets && isRepresentationsData) {
+  /// <summary>
+  /// Adds a data division to the METS wrapper if it is not the main METS and representation data is included.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the data division will be added.</param>
+  /// <param name="mainDiv">The main division to which the data division will be added.</param>
+  /// <param name="mainMets">Indicates whether this is the main METS file.</param>
+  /// <param name="isRepresentationsData">Indicates if representation data is included.</param>
+  protected void AddDataDivToMets(MetsWrapper metsWrapper, DivType mainDiv, bool mainMets, bool isRepresentationsData)
+  {
+    if (!mainMets && isRepresentationsData)
+    {
       DivType dataDiv = CreateDivForStructMap(IPConstants.DATA_WITH_FIRST_LETTER_CAPITAL);
       metsWrapper.DataDiv = dataDiv;
       mainDiv.Div.Add(dataDiv);
     }
   }
 
-  protected void AddAncestorsToMets(Mets.Mets mets, List<string>? ancestors) {
-    if (ancestors != null && ancestors.Count > 0) {
+  /// <summary>
+  /// Adds ancestor references to the METS object as a structural map.
+  /// </summary>
+  /// <param name="mets">The METS object to which the ancestor references will be added.</param>
+  /// <param name="ancestors">A list of ancestor identifiers, if any.</param>
+  protected void AddAncestorsToMets(Mets.Mets mets, List<string>? ancestors)
+  {
+    if (ancestors != null && ancestors.Count > 0)
+    {
       StructMapType structMapParent = GenerateAncestorStructMap(ancestors);
       mets.StructMap.Add(structMapParent);
     }
   }
 
-  protected void AddFileGrps(IPRepresentation representation) {
-    foreach (IIPFile file in representation.Data) {
+  /// <summary>
+  /// Adds file groups to the internal data structure based on the provided representation.
+  /// </summary>
+  /// <param name="representation">The representation containing data files to be grouped.</param>
+  protected void AddFileGrps(IPRepresentation representation)
+  {
+    foreach (IIPFile file in representation.Data)
+    {
       string dataFilePath;
-      if (file.GetRelativeFolders() == null || file.GetRelativeFolders().Count == 0) {
+      if (file.GetRelativeFolders() == null || file.GetRelativeFolders().Count == 0)
+      {
         dataFilePath = IPConstants.DATA_WITH_FIRST_LETTER_CAPITAL;
-      } else {
+      }
+      else
+      {
         dataFilePath = IPConstants.DATA_FOLDER + ModelUtils.GetFoldersFromList(file.GetRelativeFolders());
       }
 
-      if (!dataFileGrp.ContainsKey(dataFilePath) && ((IPFileShallow)file).FileLocation != null) {
+      if (!dataFileGrp.ContainsKey(dataFilePath) && ((IPFileShallow)file).FileLocation != null)
+      {
         MetsTypeFileSecFileGrp dataFileGroup = CreateFileGroup(dataFilePath);
         dataFileGrp.Add(dataFilePath, dataFileGroup);
       }
     }
   }
 
-  protected void CreateShallowFileGrps(MetsWrapper metsWrapper, MetsTypeFileSec fileSec, bool mainMets, bool isRepresentationsData, IPRepresentation representation) {
-    if (!mainMets && isRepresentationsData) {
+  /// <summary>
+  /// Creates shallow file groups for the given representation and adds them to the METS wrapper and file section.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the file groups will be added.</param>
+  /// <param name="fileSec">The file section to which the file groups will be added.</param>
+  /// <param name="mainMets">Indicates whether this is the main METS file.</param>
+  /// <param name="isRepresentationsData">Indicates if representation data is included.</param>
+  /// <param name="representation">The representation containing data files to be grouped.</param>
+  protected void CreateShallowFileGrps(MetsWrapper metsWrapper, MetsTypeFileSec fileSec, bool mainMets, bool isRepresentationsData, IPRepresentation representation)
+  {
+    if (!mainMets && isRepresentationsData)
+    {
       AddFileGrps(representation);
 
-      foreach (string key in dataFileGrp.Keys) {
+      foreach (string key in dataFileGrp.Keys)
+      {
         MetsTypeFileSecFileGrp value = dataFileGrp[key];
         fileSec.FileGrp.Add(value);
 
-        if (metsWrapper.DataFileGroup == null) {
+        if (metsWrapper.DataFileGroup == null)
+        {
           metsWrapper.DataFileGroup = new FileGrpType();
         }
 
@@ -719,12 +957,23 @@ public abstract class EARKMETSCreator {
     }
   }
 
-  protected void CreateAndAddShallowDataDiv(MetsWrapper metsWrapper, IPRepresentation representation, DivType mainDiv, bool mainMets, bool isRepresentationsData) {
-    if (!mainMets && isRepresentationsData) {
+  /// <summary>
+  /// Creates and adds a shallow data division to the METS wrapper based on the provided representation.
+  /// </summary>
+  /// <param name="metsWrapper">The METS wrapper to which the data division will be added.</param>
+  /// <param name="representation">The representation containing data files to be added to the division.</param>
+  /// <param name="mainDiv">The main division to which the data division will be added.</param>
+  /// <param name="mainMets">Indicates whether this is the main METS file.</param>
+  /// <param name="isRepresentationsData">Indicates if representation data is included.</param>
+  protected void CreateAndAddShallowDataDiv(MetsWrapper metsWrapper, IPRepresentation representation, DivType mainDiv, bool mainMets, bool isRepresentationsData)
+  {
+    if (!mainMets && isRepresentationsData)
+    {
       Tree<StructMapDiv> dataDivsTree = CreateTree(representation);
       DivType dataDiv = CreateDivForStructMap(dataDivsTree.Root.Label);
 
-      if (dataDiv.Fptr.Count == 0 && dataFileGrp[dataDiv.Label] != null) {
+      if (dataDiv.Fptr.Count == 0 && dataFileGrp[dataDiv.Label] != null)
+      {
         DivTypeFptr fptr = new DivTypeFptr { Fileid = dataFileGrp[dataDiv.Label].Id };
         dataDiv.Fptr.Add(fptr);
       }
@@ -735,15 +984,25 @@ public abstract class EARKMETSCreator {
     }
   }
 
-  protected Tree<StructMapDiv> CreateTree(IPRepresentation representation) {
+  /// <summary>
+  /// Creates a tree structure of structural map divisions based on the provided representation.
+  /// </summary>
+  /// <param name="representation">The representation containing data files to be organized into a tree structure.</param>
+  /// <returns>A tree structure of structural map divisions.</returns>
+  protected Tree<StructMapDiv> CreateTree(IPRepresentation representation)
+  {
     Tree<StructMapDiv> divsTree = new Tree<StructMapDiv>(new StructMapDiv(IPConstants.DATA_WITH_FIRST_LETTER_CAPITAL));
-    foreach (IIPFile file in representation.Data) {
+    foreach (IIPFile file in representation.Data)
+    {
       IPFileShallow shallow = (IPFileShallow)file;
       string dataFilePath;
 
-      if (shallow.GetRelativeFolders() == null || shallow.GetRelativeFolders().Count == 0) {
+      if (shallow.GetRelativeFolders() == null || shallow.GetRelativeFolders().Count == 0)
+      {
         dataFilePath = IPConstants.DATA_WITH_FIRST_LETTER_CAPITAL;
-      } else {
+      }
+      else
+      {
         dataFilePath = IPConstants.DATA_FOLDER + ModelUtils.GetFoldersFromList(shallow.GetRelativeFolders());
       }
 
@@ -753,20 +1012,39 @@ public abstract class EARKMETSCreator {
     return divsTree;
   }
 
-  protected void AddNodes(Tree<StructMapDiv> divTree, string fileLocation, List<string> fileRelativeFolders) {
-    if (fileRelativeFolders == null || fileRelativeFolders.Count == 0) {
+  /// <summary>
+  /// Adds nodes to the tree structure based on the file location and relative folder hierarchy.
+  /// </summary>
+  /// <param name="divTree">The tree structure to which nodes will be added.</param>
+  /// <param name="fileLocation">The file location associated with the node.</param>
+  /// <param name="fileRelativeFolders">The list of relative folders representing the hierarchy.</param>
+  protected void AddNodes(Tree<StructMapDiv> divTree, string fileLocation, List<string> fileRelativeFolders)
+  {
+    if (fileRelativeFolders == null || fileRelativeFolders.Count == 0)
+    {
       if (fileLocation != null) divTree.Root.FileLocation = fileLocation;
-    } else {
+    }
+    else
+    {
       Tree<StructMapDiv> childNode = divTree.AddChild(new StructMapDiv(fileRelativeFolders.First()), divTree.Root);
       AddNodes(childNode, fileLocation, fileRelativeFolders.Skip(1).ToList());
     }
-  }  
+  }
 
-  protected void CreateDataDiv(Tree<StructMapDiv> dataDivsTree, DivType dataDiv) {
-    if (dataDivsTree.Children.Count > 0) {
-      foreach (Tree<StructMapDiv> child in dataDivsTree.Children) {
+  /// <summary>
+  /// Recursively creates data divisions in the METS structure based on the provided tree structure.
+  /// </summary>
+  /// <param name="dataDivsTree">The tree structure containing data divisions.</param>
+  /// <param name="dataDiv">The parent division to which child divisions will be added.</param>
+  protected void CreateDataDiv(Tree<StructMapDiv> dataDivsTree, DivType dataDiv)
+  {
+    if (dataDivsTree.Children.Count > 0)
+    {
+      foreach (Tree<StructMapDiv> child in dataDivsTree.Children)
+      {
         DivType div = CreateDivForStructMap(child.Root.Label);
-        if (div.Fptr.Count == 0 && !string.IsNullOrEmpty(child.Root.FileLocation) && dataFileGrp.ContainsKey(child.Root.FileLocation)) {
+        if (div.Fptr.Count == 0 && !string.IsNullOrEmpty(child.Root.FileLocation) && dataFileGrp.ContainsKey(child.Root.FileLocation))
+        {
           DivTypeFptr fptr = new DivTypeFptr { Fileid = dataFileGrp[child.Root.FileLocation].Id };
           div.Fptr.Add(fptr);
         }
@@ -777,26 +1055,38 @@ public abstract class EARKMETSCreator {
     }
   }
 
-  // Adds Data File to the respective MetsTypeFileSecFileGrp.
-  protected void AddDataFileFromShallow(IEnumerable<FileGrpType> fileGrpTypes, IPFileShallow shallow, FileType file) {
-    foreach (FileGrpType fileGrpType in fileGrpTypes) {
+  /// <summary>
+  /// Adds a data file to the appropriate file group based on the shallow file's relative folder structure.
+  /// </summary>
+  /// <param name="fileGrpTypes">The collection of file groups to search for a matching group.</param>
+  /// <param name="shallow">The shallow file containing relative folder information.</param>
+  /// <param name="file">The file to be added to the matching file group.</param>
+  protected void AddDataFileFromShallow(IEnumerable<FileGrpType> fileGrpTypes, IPFileShallow shallow, FileType file)
+  {
+    foreach (FileGrpType fileGrpType in fileGrpTypes)
+    {
       string dataFilePath;
-      if (shallow.GetRelativeFolders() == null || shallow.GetRelativeFolders().Count == 0) {
+      if (shallow.GetRelativeFolders() == null || shallow.GetRelativeFolders().Count == 0)
+      {
         dataFilePath = IPConstants.DATA_WITH_FIRST_LETTER_CAPITAL;
-      } else {
+      }
+      else
+      {
         dataFilePath = IPConstants.DATA_FOLDER + ModelUtils.GetFoldersFromList(shallow.GetRelativeFolders());
       }
 
-      if (fileGrpType.Use == dataFilePath) {
+      if (fileGrpType.Use == dataFilePath)
+      {
         fileGrpType.File.Add(file);
       }
     }
   }
 
-  /**
-   * Clean the Dictionary data.
-   */
-  public void CleanFileGrpStructure() {
+  /// <summary>
+  /// Clears the internal data file group structure.
+  /// </summary>
+  public void CleanFileGrpStructure()
+  {
     dataFileGrp.Clear();
   }
 }

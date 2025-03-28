@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents the MdSecTypeMdRef class, which implements ILocation, ISimpleLink, IMetadata, and IFilecore interfaces.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("MdSecTypeMdRef", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]

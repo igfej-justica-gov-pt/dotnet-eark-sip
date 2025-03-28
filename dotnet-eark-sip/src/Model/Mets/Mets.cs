@@ -13,8 +13,8 @@ using System.Xml.Serialization;
 
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// <para xml:lang="en">METS: Metadata Encoding and Transmission Standard.
     ///				METS is intended to provide a standardized XML format for transmission of complex digital library objects between systems.  As such, it can be seen as filling a role similar to that defined for the Submission Information Package (SIP), Archival Information Package (AIP) and Dissemination Information Package (DIP) in the Reference Model for an Open Archival Information System. The root element &lt;mets&gt; establishes the container for the information being stored and/or transmitted by the standard.</para>
@@ -22,12 +22,15 @@ namespace Mets
     [System.ComponentModel.DescriptionAttribute(@"METS: Metadata Encoding and Transmission Standard. METS is intended to provide a standardized XML format for transmission of complex digital library objects between systems. As such, it can be seen as filling a role similar to that defined for the Submission Information Package (SIP), Archival Information Package (AIP) and Dissemination Information Package (DIP) in the Reference Model for an Open Archival Information System. The root element &lt;mets&gt; establishes the container for the information being stored and/or transmitted by the standard.")]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("mets", Namespace="http://www.loc.gov/METS/")]
+    [System.Xml.Serialization.XmlTypeAttribute("mets", Namespace = "http://www.loc.gov/METS/")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlRootAttribute("mets", Namespace="http://www.loc.gov/METS/")]
+    [System.Xml.Serialization.XmlRootAttribute("mets", Namespace = "http://www.loc.gov/METS/")]
     public partial class Mets : MetsType
     {
+        /// <summary>
+        /// Gets or sets the schema location for the XML instance.
+        /// </summary>
         [XmlAttribute("schemaLocation", Namespace = "http://www.w3.org/2001/XMLSchema-instance")]
         public string SchemaLocation { get; set; }
     }

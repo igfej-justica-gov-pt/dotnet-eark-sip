@@ -28,7 +28,10 @@ namespace Mets
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<BehaviorSecType> _behaviorSec;
-        
+
+        /// <summary>
+        /// Gets the collection of behavior sections associated with this instance.
+        /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("behaviorSec")]
         public System.Collections.ObjectModel.Collection<BehaviorSecType> BehaviorSec
         {
@@ -126,7 +129,10 @@ namespace Mets
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
-        
+
+        /// <summary>
+        /// Gets a collection of XML attributes that are not explicitly defined in the schema.
+        /// </summary>
         [System.Xml.Serialization.XmlAnyAttributeAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> AnyAttribute
         {

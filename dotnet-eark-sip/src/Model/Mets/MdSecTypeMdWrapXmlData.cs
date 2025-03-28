@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents the metadata section type with wrapped XML data in the METS schema.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("MdSecTypeMdWrapXmlData", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
@@ -24,6 +27,9 @@ namespace Mets
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlElement> _any;
         
+        /// <summary>
+        /// Gets a collection of XML attributes that are not explicitly defined in the schema.
+        /// </summary>
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlElement> Any

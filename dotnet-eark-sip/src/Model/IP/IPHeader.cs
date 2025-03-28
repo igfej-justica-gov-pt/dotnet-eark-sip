@@ -2,16 +2,25 @@
 
 using IPEnums;
 
-namespace IP {
+namespace IP
+{
+  /// <summary>
+  /// Represents the header information for an IP, including creation and modification dates, status, agents, and alternative record IDs.
+  /// </summary>
   [Serializable]
-  public class IPHeader {
+  public class IPHeader
+  {
     private DateTime? createDate;
     private DateTime? modificationDate;
     private IPStatus status;
     private List<IPAgent> agents;
     private readonly List<IPAltRecordID> altRecordIDs;
 
-    public IPHeader() {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IPHeader"/> class with default values.
+    /// </summary>
+    public IPHeader()
+    {
       createDate = DateTime.Now;
       modificationDate = null;
       status = IPStatus.NEW;
@@ -19,7 +28,12 @@ namespace IP {
       altRecordIDs = new List<IPAltRecordID>();
     }
 
-    public IPHeader(IPStatus status) {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IPHeader"/> class with the specified status.
+    /// </summary>
+    /// <param name="status">The initial status of the IPHeader.</param>
+    public IPHeader(IPStatus status)
+    {
       this.status = status;
       createDate = DateTime.Now;
       modificationDate = null;
@@ -27,52 +41,68 @@ namespace IP {
       altRecordIDs = new List<IPAltRecordID>();
     }
 
-    public DateTime? GetCreateDate() {
+    public DateTime? GetCreateDate()
+    {
       return createDate;
     }
 
-    public IPHeader SetCreateDate(DateTime? createDate) {
+    public IPHeader SetCreateDate(DateTime? createDate)
+    {
       this.createDate = createDate;
       return this;
     }
 
-    public DateTime? GetModificationDate() {
+    public DateTime? GetModificationDate()
+    {
       return modificationDate;
     }
 
-    public IPHeader SetModificationDate(DateTime? modificationDate) {
+    public IPHeader SetModificationDate(DateTime? modificationDate)
+    {
       this.modificationDate = modificationDate;
       return this;
     }
 
-    public IPStatus GetStatus() {
+    public IPStatus GetStatus()
+    {
       return status;
     }
 
-    public IPHeader SetStatus(IPStatus status) {
+    public IPHeader SetStatus(IPStatus status)
+    {
       this.status = status;
       return this;
     }
 
-    public List<IPAltRecordID> GetAltRecordIDs() {
+    public List<IPAltRecordID> GetAltRecordIDs()
+    {
       return altRecordIDs;
     }
 
-    public IPHeader addAltRecordID(IPAltRecordID altRecordID) {
+    public IPHeader addAltRecordID(IPAltRecordID altRecordID)
+    {
       altRecordIDs.Add(altRecordID);
       return this;
     }
 
-    public List<IPAgent> GetAgents() {
+    public List<IPAgent> GetAgents()
+    {
       return agents;
     }
 
-    public IPHeader SetAgents(List<IPAgent> agents) {
+    public IPHeader SetAgents(List<IPAgent> agents)
+    {
       this.agents = agents;
       return this;
     }
 
-    public IPHeader AddAgent(IPAgent ipAgent) {
+    /// <summary>
+    /// Adds an agent to the list of agents associated with the IPHeader.
+    /// </summary>
+    /// <param name="ipAgent">The agent to add.</param>
+    /// <returns>The updated IPHeader instance.</returns>
+    public IPHeader AddAgent(IPAgent ipAgent)
+    {
       agents.Add(ipAgent);
       return this;
     }

@@ -13,6 +13,9 @@ namespace Mets
 {
     
     
+    /// <summary>
+    /// Represents a group of structural map links in the METS document.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("StructLinkTypeSmLinkGrp", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
@@ -54,6 +57,9 @@ namespace Mets
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrpSmArcLink> _smArcLink;
         
+        /// <summary>
+        /// Gets or sets the collection of structural map arc links (&lt;smArcLink&gt;) in the METS document.
+        /// </summary>
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
         [System.Xml.Serialization.XmlElementAttribute("smArcLink")]
         public System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrpSmArcLink> SmArcLink
@@ -68,6 +74,9 @@ namespace Mets
             }
         }
         
+        /// <summary>
+        /// Gets or sets the ID of the StructLinkTypeSmLinkGrp.
+        /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
         

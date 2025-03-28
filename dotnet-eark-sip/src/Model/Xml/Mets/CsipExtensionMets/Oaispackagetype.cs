@@ -13,6 +13,9 @@ namespace Xml.Mets.CsipExtensionMets
 {
     
     
+    /// <summary>
+    /// Represents the types of OAIS packages as defined in the CSIPExtensionMETS schema.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute("OAISPACKAGETYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", AnonymousType=true)]

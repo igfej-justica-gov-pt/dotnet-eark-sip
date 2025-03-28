@@ -29,6 +29,9 @@ namespace Mets
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<AreaType> _area;
         
+        /// <summary>
+        /// Gets the collection of AreaType elements.
+        /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("area")]
         public System.Collections.ObjectModel.Collection<AreaType> Area
         {
@@ -67,6 +70,9 @@ namespace Mets
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<SeqType> _seq;
         
+        /// <summary>
+        /// Gets the collection of SeqType elements.
+        /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("seq")]
         public System.Collections.ObjectModel.Collection<SeqType> Seq
         {
@@ -126,6 +132,9 @@ namespace Mets
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
         
+        /// <summary>
+        /// Gets a collection of XML attributes that are not explicitly defined in the schema.
+        /// </summary>
         [System.Xml.Serialization.XmlAnyAttributeAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> AnyAttribute
         {

@@ -30,6 +30,9 @@ namespace Mets
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<FileGrpType> _fileGrp;
         
+        /// <summary>
+        /// Gets the collection of file groups, which cluster digital files in a hierarchical arrangement.
+        /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("fileGrp")]
         public System.Collections.ObjectModel.Collection<FileGrpType> FileGrp
         {
@@ -160,7 +163,10 @@ namespace Mets
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute = null;
-        
+
+        /// <summary>
+        /// Gets a collection of XML attributes that are not explicitly defined in the schema.
+        /// </summary>
         [System.Xml.Serialization.XmlAnyAttributeAttribute()]
         public System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> AnyAttribute
         {
@@ -189,6 +195,11 @@ namespace Mets
             }
         }
 
+        /// <summary>
+        /// Adds a custom XML attribute to the AnyAttribute collection.
+        /// </summary>
+        /// <param name="name">The name of the custom attribute.</param>
+        /// <param name="value">The value of the custom attribute.</param>
         public void AddCustomAttribute(string name, string value)
         {
             System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
