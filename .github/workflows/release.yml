@@ -33,7 +33,7 @@ jobs:
         run: |
           $version = "${{ github.ref_name }}"
           [xml]$csproj = Get-Content dotnet-eark-sip/dotnet-eark-sip.csproj
-          $csproj.Project.PropertyGroup.Version = $version
+          $csproj.Project.PropertyGroup[0].Version = $version
           $csproj.Save('dotnet-eark-sip/dotnet-eark-sip.csproj')
 
       - name: Pack NuGet Package
