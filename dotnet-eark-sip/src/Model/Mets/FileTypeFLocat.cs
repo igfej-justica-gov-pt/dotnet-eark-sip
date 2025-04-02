@@ -11,26 +11,26 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents a file location type in the METS schema, implementing ILocation and Xlink.ISimpleLink.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("FileTypeFLocat", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("FileTypeFLocat", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FileTypeFLocat : ILocation, global::Xlink.ISimpleLink
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">LOCTYPE (string/R): Specifies the locator type used in the xlink:href attribute. Valid values for LOCTYPE are: 
         ///					ARK
@@ -43,10 +43,10 @@ namespace Mets
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("LOCTYPE (string/R): Specifies the locator type used in the xlink:href attribute. " +
             "Valid values for LOCTYPE are: ARK URN URL PURL HANDLE DOI OTHER")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlAttributeAttribute("LOCTYPE")]
         public ILocationLoctype Loctype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">OTHERLOCTYPE (string/O): Specifies the locator type when the value OTHER is used in the LOCTYPE attribute. Although optional, it is strongly recommended when OTHER is used.</para>
         /// </summary>
@@ -55,18 +55,18 @@ namespace Mets
             "ER is used.")]
         [System.Xml.Serialization.XmlAttributeAttribute("OTHERLOCTYPE")]
         public string Otherloctype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file  represented by the &lt;FLocat&gt; element (e.g., service master, archive master). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file represented by the &lt;FLocat&gt; element (e.g., service master, archive master). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level. A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;. A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements. A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).")]
         [System.Xml.Serialization.XmlAttributeAttribute("USE")]
         public string Use { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private string _type = null;
 
-        [System.Xml.Serialization.XmlAttributeAttribute("type", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("type", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Type
         {
             get
@@ -78,31 +78,31 @@ namespace Mets
                 _type = value;
             }
         }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("href", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("href", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Href { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("role", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("role", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Role { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("arcrole", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("arcrole", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Arcrole { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("title", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("title", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Title { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("show", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("show", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xlink.Show Show { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Show property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ShowSpecified { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("actuate", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("actuate", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xlink.Actuate Actuate { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Actuate property is specified.</para>
         /// </summary>

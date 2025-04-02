@@ -11,44 +11,44 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents a file type transform file with attributes for transformation details.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("FileTypeTransformFile", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("FileTypeTransformFile", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FileTypeTransformFile
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">TRANSFORMTYPE (string/R): Is used to indicate the type of transformation needed to render content of a file accessible. This may include unpacking a file into subsidiary files/streams. The controlled value constraints for this XML string include “decompression” and “decryption”. Decompression is defined as the action of reversing data compression, i.e., the process of encoding information using fewer bits than an unencoded representation would use by means of specific encoding schemas. Decryption is defined as the process of restoring data that has been obscured to make it unreadable without special knowledge (encrypted data) to its original form.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"TRANSFORMTYPE (string/R): Is used to indicate the type of transformation needed to render content of a file accessible. This may include unpacking a file into subsidiary files/streams. The controlled value constraints for this XML string include “decompression” and “decryption”. Decompression is defined as the action of reversing data compression, i.e., the process of encoding information using fewer bits than an unencoded representation would use by means of specific encoding schemas. Decryption is defined as the process of restoring data that has been obscured to make it unreadable without special knowledge (encrypted data) to its original form.")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlAttributeAttribute("TRANSFORMTYPE")]
         public FileTypeTransformFileTransformtype Transformtype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">TRANSFORM-ALGORITHM (string/R): Specifies the decompression or decryption routine used to access the contents of the file. Algorithms for compression can be either loss-less or lossy.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("TRANSFORM-ALGORITHM (string/R): Specifies the decompression or decryption routine" +
             " used to access the contents of the file. Algorithms for compression can be eith" +
             "er loss-less or lossy.")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlAttributeAttribute("TRANSFORMALGORITHM")]
         public string Transformalgorithm { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">TRANSFORMKEY (string/O): A key to be used with the transform algorithm for accessing the file’s contents.</para>
         /// </summary>
@@ -56,7 +56,7 @@ namespace Mets
             "ing the file’s contents.")]
         [System.Xml.Serialization.XmlAttributeAttribute("TRANSFORMKEY")]
         public string Transformkey { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">TRANSFORMBEHAVIOR (string/O): An IDREF to a behavior element for this transformation.</para>
         /// </summary>
@@ -64,13 +64,13 @@ namespace Mets
             "ion.")]
         [System.Xml.Serialization.XmlAttributeAttribute("TRANSFORMBEHAVIOR")]
         public string Transformbehavior { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">TRANSFORMORDER (postive-integer/R): The order in which the instructions must be followed in order to unpack or transform the container file.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("TRANSFORMORDER (postive-integer/R): The order in which the instructions must be f" +
             "ollowed in order to unpack or transform the container file.")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlAttributeAttribute("TRANSFORMORDER")]
         public string Transformorder { get; set; }
     }

@@ -11,23 +11,23 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the shape types for an area in the METS schema.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("AreaTypeShape", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
-        public enum AreaTypeShape
+    [System.Xml.Serialization.XmlTypeAttribute("AreaTypeShape", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
+    public enum AreaTypeShape
     {
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("RECT")]
         RECT,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CIRCLE")]
         CIRCLE,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("POLY")]
         POLY,
     }

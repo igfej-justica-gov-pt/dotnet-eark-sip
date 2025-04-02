@@ -11,8 +11,8 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// <para xml:lang="en">structLinkType: Complex Type for Structural Map Linking
     ///				The Structural Map Linking section allows for the specification of hyperlinks between different components of a METS structure delineated in a structural map.  structLink contains a single, repeatable element, smLink.  Each smLink element indicates a hyperlink between two nodes in the structMap.  The structMap nodes recorded in smLink are identified using their XML ID attribute	values.</para>
@@ -20,16 +20,16 @@ namespace Mets
     [System.ComponentModel.DescriptionAttribute(@"structLinkType: Complex Type for Structural Map Linking The Structural Map Linking section allows for the specification of hyperlinks between different components of a METS structure delineated in a structural map. structLink contains a single, repeatable element, smLink. Each smLink element indicates a hyperlink between two nodes in the structMap. The structMap nodes recorded in smLink are identified using their XML ID attribute values.")]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("structLinkType", Namespace="http://www.loc.gov/METS/")]
+    [System.Xml.Serialization.XmlTypeAttribute("structLinkType", Namespace = "http://www.loc.gov/METS/")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(MetsTypeStructLink))]
     public partial class StructLinkType
     {
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<StructLinkTypeSmLink> _smLink;
-        
+
         /// <summary>
         /// <para xml:lang="en">The Structural Map Link element &lt;smLink&gt; identifies a hyperlink between two nodes in the structural map. You would use &lt;smLink&gt;, for instance, to note the existence of hypertext links between web pages, if you wished to record those links within METS. NOTE: &lt;smLink&gt; is an empty element. The location of the &lt;smLink&gt; element to which the &lt;smLink&gt; element is pointing MUST be stored in the xlink:href attribute.</para>
         /// </summary>
@@ -46,7 +46,7 @@ namespace Mets
                 _smLink = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the SmLink collection is empty.</para>
         /// </summary>
@@ -58,7 +58,7 @@ namespace Mets
                 return (this.SmLink.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Initializes a new instance of the <see cref="StructLinkType" /> class.</para>
         /// </summary>
@@ -68,10 +68,10 @@ namespace Mets
             this._smLinkGrp = new System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrp>();
             this._anyAttribute = new System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute>();
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrp> _smLinkGrp;
-        
+
         /// <summary>
         /// <para xml:lang="en">The structMap link group element &lt;smLinkGrp&gt; provides an implementation of xlink:extendLink, and provides xlink compliant mechanisms for establishing xlink:arcLink type links between 2 or more &lt;div&gt; elements in &lt;structMap&gt; element(s) occurring within the same METS document or different METS documents.  The smLinkGrp could be used as an alternative to the &lt;smLink&gt; element to establish a one-to-one link between &lt;div&gt; elements in the same METS document in a fully xlink compliant manner.  However, it can also be used to establish one-to-many or many-to-many links between &lt;div&gt; elements. For example, if a METS document contains two &lt;structMap&gt; elements, one of which represents a purely logical structure and one of which represents a purely physical structure, the &lt;smLinkGrp&gt; element would provide a means of mapping a &lt;div&gt; representing a logical entity (for example, a newspaper article) with multiple &lt;div&gt; elements in the physical &lt;structMap&gt; representing the physical areas that  together comprise the logical entity (for example, the &lt;div&gt; elements representing the page areas that together comprise the newspaper article).</para>
         /// </summary>
@@ -88,7 +88,7 @@ namespace Mets
                 _smLinkGrp = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the SmLinkGrp collection is empty.</para>
         /// </summary>
@@ -100,17 +100,17 @@ namespace Mets
                 return (this.SmLinkGrp.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
-        
+
         /// <summary>
         /// Gets a collection of XML attributes that are not explicitly defined in the schema.
         /// </summary>
@@ -126,7 +126,7 @@ namespace Mets
                 _anyAttribute = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the AnyAttribute collection is empty.</para>
         /// </summary>

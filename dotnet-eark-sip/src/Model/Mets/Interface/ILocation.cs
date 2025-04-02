@@ -11,15 +11,15 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents a location with properties for locator type and other locator type details.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
-        public partial interface ILocation
+    public partial interface ILocation
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">LOCTYPE (string/R): Specifies the locator type used in the xlink:href attribute. Valid values for LOCTYPE are: 
         ///					ARK
@@ -37,7 +37,7 @@ namespace Mets
             get;
             set;
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">OTHERLOCTYPE (string/O): Specifies the locator type when the value OTHER is used in the LOCTYPE attribute. Although optional, it is strongly recommended when OTHER is used.</para>
         /// </summary>

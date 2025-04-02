@@ -11,41 +11,41 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the content of a file in the METS document, including binary and XML data.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("FileTypeFContent", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("FileTypeFContent", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FileTypeFContent
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">A binary data wrapper element &lt;binData&gt; is used to contain a Base64 encoded file.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("A binary data wrapper element &lt;binData&gt; is used to contain a Base64 encoded" +
             " file.")]
-        [System.Xml.Serialization.XmlElementAttribute("binData", DataType="base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute("binData", DataType = "base64Binary")]
         public byte[] BinData { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">An xml data wrapper element &lt;xmlData&gt; is used to contain  an XML encoded file. The content of an &lt;xmlData&gt; element can be in any namespace or in no namespace. As permitted by the XML Schema Standard, the processContents attribute value for the metadata in an &lt;xmlData&gt; element is set to “lax”. Therefore, if the source schema and its location are identified by means of an xsi:schemaLocation attribute, then an XML processor will validate the elements for which it can find declarations. If a source schema is not identified, or cannot be found at the specified schemaLocation, then an XML validator will check for well-formedness, but otherwise skip over the elements appearing in the &lt;xmlData&gt; element.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"An xml data wrapper element &lt;xmlData&gt; is used to contain an XML encoded file. The content of an &lt;xmlData&gt; element can be in any namespace or in no namespace. As permitted by the XML Schema Standard, the processContents attribute value for the metadata in an &lt;xmlData&gt; element is set to “lax”. Therefore, if the source schema and its location are identified by means of an xsi:schemaLocation attribute, then an XML processor will validate the elements for which it can find declarations. If a source schema is not identified, or cannot be found at the specified schemaLocation, then an XML validator will check for well-formedness, but otherwise skip over the elements appearing in the &lt;xmlData&gt; element.")]
         [System.Xml.Serialization.XmlElementAttribute("xmlData")]
         public FileTypeFContentXmlData XmlData { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file represented by the &lt;FContent&gt; element (e.g., service master, archive master). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).</para>
         /// </summary>

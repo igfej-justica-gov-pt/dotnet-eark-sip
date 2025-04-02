@@ -11,35 +11,35 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents a note for the MetsHdrAgent in the METS schema.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdrAgentNote", Namespace="http://www.loc.gov/METS/")]
+    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdrAgentNote", Namespace = "http://www.loc.gov/METS/")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MetsTypeMetsHdrAgentNote
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets the text value.</para>
         /// </summary>
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the NOTETYPE attribute, which specifies the type of note.
         /// </summary>
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
-        [System.Xml.Serialization.XmlAttributeAttribute("NOTETYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
+        [System.Xml.Serialization.XmlAttributeAttribute("NOTETYPE", Namespace = "https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xml.Mets.CsipExtensionMets.Notetype Notetype { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
-        
+
         /// <summary>
         /// Gets a collection of XML attributes that are not explicitly defined in the schema.
         /// </summary>
@@ -55,7 +55,7 @@ namespace Mets
                 _anyAttribute = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the AnyAttribute collection is empty.</para>
         /// </summary>
@@ -67,7 +67,7 @@ namespace Mets
                 return (this.AnyAttribute.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Initializes a new instance of the <see cref="MetsTypeMetsHdrAgentNote" /> class.</para>
         /// </summary>

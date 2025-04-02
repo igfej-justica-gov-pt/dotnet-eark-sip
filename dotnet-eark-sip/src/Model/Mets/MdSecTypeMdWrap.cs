@@ -11,41 +11,41 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the metadata section type wrapper, containing metadata in binary or XML format.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("MdSecTypeMdWrap", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("MdSecTypeMdWrap", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MdSecTypeMdWrap : IMetadata, IFilecore
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">The binary data wrapper element &lt;binData&gt; is used to contain Base64 encoded metadata.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("The binary data wrapper element &lt;binData&gt; is used to contain Base64 encoded" +
             " metadata.")]
-        [System.Xml.Serialization.XmlElementAttribute("binData", DataType="base64Binary")]
+        [System.Xml.Serialization.XmlElementAttribute("binData", DataType = "base64Binary")]
         public byte[] BinData { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">The xml data wrapper element &lt;xmlData&gt; is used to contain XML encoded metadata. The content of an &lt;xmlData&gt; element can be in any namespace or in no namespace. As permitted by the XML Schema Standard, the processContents attribute value for the metadata in an &lt;xmlData&gt; is set to “lax”. Therefore, if the source schema and its location are identified by means of an XML schemaLocation attribute, then an XML processor will validate the elements for which it can find declarations. If a source schema is not identified, or cannot be found at the specified schemaLocation, then an XML validator will check for well-formedness, but otherwise skip over the elements appearing in the &lt;xmlData&gt; element.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"The xml data wrapper element &lt;xmlData&gt; is used to contain XML encoded metadata. The content of an &lt;xmlData&gt; element can be in any namespace or in no namespace. As permitted by the XML Schema Standard, the processContents attribute value for the metadata in an &lt;xmlData&gt; is set to “lax”. Therefore, if the source schema and its location are identified by means of an XML schemaLocation attribute, then an XML processor will validate the elements for which it can find declarations. If a source schema is not identified, or cannot be found at the specified schemaLocation, then an XML validator will check for well-formedness, but otherwise skip over the elements appearing in the &lt;xmlData&gt; element.")]
         [System.Xml.Serialization.XmlElementAttribute("xmlData")]
         public MdSecTypeMdWrapXmlData XmlData { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">MDTYPE (string/R): Is used to indicate the type of the associated metadata. It must have one of the following values:
         ///MARC: any form of MARC record
@@ -72,10 +72,10 @@ namespace Mets
         ///OTHER: metadata in a format not specified above</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"MDTYPE (string/R): Is used to indicate the type of the associated metadata. It must have one of the following values: MARC: any form of MARC record MODS: metadata in the Library of Congress MODS format EAD: Encoded Archival Description finding aid DC: Dublin Core NISOIMG: NISO Technical Metadata for Digital Still Images LC-AV: technical metadata specified in the Library of Congress A/V prototyping project VRA: Visual Resources Association Core TEIHDR: Text Encoding Initiative Header DDI: Data Documentation Initiative FGDC: Federal Geographic Data Committee metadata LOM: Learning Object Model PREMIS: PREservation Metadata: Implementation Strategies PREMIS:OBJECT: PREMIS Object entiry PREMIS:AGENT: PREMIS Agent entity PREMIS:RIGHTS: PREMIS Rights entity PREMIS:EVENT: PREMIS Event entity TEXTMD: textMD Technical metadata for text METSRIGHTS: Rights Declaration Schema ISO 19115:2003 NAP: North American Profile of ISO 19115:2003 descriptive metadata EAC-CPF: Encoded Archival Context - Corporate Bodies, Persons, and Families LIDO: Lightweight Information Describing Objects OTHER: metadata in a format not specified above")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlAttributeAttribute("MDTYPE")]
         public IMetadataMdtype Mdtype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">OTHERMDTYPE (string/O): Specifies the form of metadata in use when the value OTHER is indicated in the MDTYPE attribute.</para>
         /// </summary>
@@ -83,14 +83,14 @@ namespace Mets
             "R is indicated in the MDTYPE attribute.")]
         [System.Xml.Serialization.XmlAttributeAttribute("OTHERMDTYPE")]
         public string Othermdtype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">MDTYPEVERSION(string/O): Provides a means for recording the version of the type of metadata (as recorded in the MDTYPE or OTHERMDTYPE attribute) that is being used.  This may represent the version of the underlying data dictionary or metadata model rather than a schema version.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"MDTYPEVERSION(string/O): Provides a means for recording the version of the type of metadata (as recorded in the MDTYPE or OTHERMDTYPE attribute) that is being used. This may represent the version of the underlying data dictionary or metadata model rather than a schema version.")]
         [System.Xml.Serialization.XmlAttributeAttribute("MDTYPEVERSION")]
         public string Mdtypeversion { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">MIMETYPE (string/O): The IANA MIME media type for the associated file or wrapped content. Some values for this attribute can be found on the IANA website.</para>
         /// </summary>
@@ -98,7 +98,7 @@ namespace Mets
             "content. Some values for this attribute can be found on the IANA website.")]
         [System.Xml.Serialization.XmlAttributeAttribute("MIMETYPE")]
         public string Mimetype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">SIZE (long/O): Specifies the size in bytes of the associated file or wrapped content.</para>
         /// </summary>
@@ -106,27 +106,27 @@ namespace Mets
             "ent.")]
         [System.Xml.Serialization.XmlAttributeAttribute("SIZE")]
         public long Size { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Size property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool SizeSpecified { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">CREATED (dateTime/O): Specifies the date and time of creation for the associated file or wrapped content.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("CREATED (dateTime/O): Specifies the date and time of creation for the associated " +
             "file or wrapped content.")]
-        [System.Xml.Serialization.XmlAttributeAttribute("CREATED", DataType="dateTime")]
+        [System.Xml.Serialization.XmlAttributeAttribute("CREATED", DataType = "dateTime")]
         public System.DateTime Created { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Created property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CreatedSpecified { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">CHECKSUM (string/O): Provides a checksum value for the associated file or wrapped content.</para>
         /// </summary>
@@ -134,7 +134,7 @@ namespace Mets
             " content.")]
         [System.Xml.Serialization.XmlAttributeAttribute("CHECKSUM")]
         public string Checksum { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">CHECKSUMTYPE (enumerated string/O): Specifies the checksum algorithm used to produce the value contained in the CHECKSUM attribute.  CHECKSUMTYPE must contain one of the following values:
         ///					Adler-32
@@ -152,13 +152,13 @@ namespace Mets
         [System.ComponentModel.DescriptionAttribute(@"CHECKSUMTYPE (enumerated string/O): Specifies the checksum algorithm used to produce the value contained in the CHECKSUM attribute. CHECKSUMTYPE must contain one of the following values: Adler-32 CRC32 HAVAL MD5 MNP SHA-1 SHA-256 SHA-384 SHA-512 TIGER WHIRLPOOL")]
         [System.Xml.Serialization.XmlAttributeAttribute("CHECKSUMTYPE")]
         public IFilecoreChecksumtype Checksumtype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Checksumtype property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ChecksumtypeSpecified { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">LABEL: an optional string attribute providing a label to display to the viewer of the METS document identifying the metadata.</para>
         /// </summary>

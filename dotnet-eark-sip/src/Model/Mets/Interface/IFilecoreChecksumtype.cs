@@ -11,47 +11,47 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the types of file core checksums supported in the METS schema.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("IFilecoreChecksumtype", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("IFilecoreChecksumtype", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     public enum IFilecoreChecksumtype
     {
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("Adler-32")]
         ADLER32,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CRC32")]
         CRC32,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("HAVAL")]
         HAVAL,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("MD5")]
         MD5,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("MNP")]
         MNP,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("SHA-1")]
         SHA1,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("SHA-256")]
         SHA256,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("SHA-384")]
         SHA384,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("SHA-512")]
         SHA512,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("TIGER")]
         TIGER,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("WHIRLPOOL")]
         WHIRLPOOL,
     }

@@ -11,20 +11,20 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Specifies the link order type for structural links in the METS document.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("StructLinkTypeSmLinkGrpArclinkorder", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("StructLinkTypeSmLinkGrpArclinkorder", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     public enum StructLinkTypeSmLinkGrpArclinkorder
     {
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("ordered")]
         ORDERED,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("unordered")]
         UNORDERED,
     }

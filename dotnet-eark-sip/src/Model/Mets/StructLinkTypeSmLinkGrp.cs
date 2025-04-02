@@ -11,27 +11,27 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents a group of structural map links in the METS document.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("StructLinkTypeSmLinkGrp", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("StructLinkTypeSmLinkGrp", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class StructLinkTypeSmLinkGrp : global::Xlink.IExtendedLink
     {
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrpSmLocatorLink> _smLocatorLink;
-        
+
         /// <summary>
         /// <para xml:lang="en">The structMap locator link element &lt;smLocatorLink&gt; is of xlink:type "locator".  It provides a means of identifying a &lt;div&gt; element that will participate in one or more of the links specified by means of &lt;smArcLink&gt; elements within the same &lt;smLinkGrp&gt;. The participating &lt;div&gt; element that is represented by the &lt;smLocatorLink&gt; is identified by means of a URI in the associate xlink:href attribute.  The lowest level of this xlink:href URI value should be a fragment identifier that references the ID value that identifies the relevant &lt;div&gt; element.  For example, "xlink:href='#div20'" where "div20" is the ID value that identifies the pertinent &lt;div&gt; in the current METS document. Although not required by the xlink specification, an &lt;smLocatorLink&gt; element will typically include an xlink:label attribute in this context, as the &lt;smArcLink&gt; elements will reference these labels to establish the from and to sides of each arc link.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"The structMap locator link element &lt;smLocatorLink&gt; is of xlink:type ""locator"". It provides a means of identifying a &lt;div&gt; element that will participate in one or more of the links specified by means of &lt;smArcLink&gt; elements within the same &lt;smLinkGrp&gt;. The participating &lt;div&gt; element that is represented by the &lt;smLocatorLink&gt; is identified by means of a URI in the associate xlink:href attribute. The lowest level of this xlink:href URI value should be a fragment identifier that references the ID value that identifies the relevant &lt;div&gt; element. For example, ""xlink:href='#div20'"" where ""div20"" is the ID value that identifies the pertinent &lt;div&gt; in the current METS document. Although not required by the xlink specification, an &lt;smLocatorLink&gt; element will typically include an xlink:label attribute in this context, as the &lt;smArcLink&gt; elements will reference these labels to establish the from and to sides of each arc link.")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlElementAttribute("smLocatorLink")]
         public System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrpSmLocatorLink> SmLocatorLink
         {
@@ -44,7 +44,7 @@ namespace Mets
                 _smLocatorLink = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Initializes a new instance of the <see cref="StructLinkTypeSmLinkGrp" /> class.</para>
         /// </summary>
@@ -53,14 +53,14 @@ namespace Mets
             this._smLocatorLink = new System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrpSmLocatorLink>();
             this._smArcLink = new System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrpSmArcLink>();
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrpSmArcLink> _smArcLink;
-        
+
         /// <summary>
         /// Gets or sets the collection of structural map arc links (&lt;smArcLink&gt;) in the METS document.
         /// </summary>
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlElementAttribute("smArcLink")]
         public System.Collections.ObjectModel.Collection<StructLinkTypeSmLinkGrpSmArcLink> SmArcLink
         {
@@ -73,16 +73,16 @@ namespace Mets
                 _smArcLink = value;
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the ID of the StructLinkTypeSmLinkGrp.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private StructLinkTypeSmLinkGrpArclinkorder _arclinkorder = global::Mets.StructLinkTypeSmLinkGrpArclinkorder.UNORDERED;
-        
+
         /// <summary>
         /// <para xml:lang="en">ARCLINKORDER (enumerated string/O): ARCLINKORDER is used to indicate whether the order of the smArcLink elements aggregated by the smLinkGrp element is significant. If the order is significant, then a value of "ordered" should be supplied.  Value defaults to "unordered" Note that the ARLINKORDER attribute has no xlink specified meaning.</para>
         /// </summary>
@@ -100,11 +100,11 @@ namespace Mets
                 _arclinkorder = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private string _type = null;
 
-        [System.Xml.Serialization.XmlAttributeAttribute("type", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("type", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Type
         {
             get
@@ -116,11 +116,11 @@ namespace Mets
                 _type = value;
             }
         }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("role", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("role", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Role { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("title", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("title", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Title { get; set; }
     }
 }

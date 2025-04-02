@@ -11,84 +11,84 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents a structural link type in the METS document.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("StructLinkTypeSmLink", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("StructLinkTypeSmLink", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class StructLinkTypeSmLink
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">xlink:arcrole - the role of the link, as per the xlink specification.  See http://www.w3.org/TR/xlink/</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("xlink:arcrole - the role of the link, as per the xlink specification. See http://" +
             "www.w3.org/TR/xlink/")]
-        [System.Xml.Serialization.XmlAttributeAttribute("arcrole", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("arcrole", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Arcrole { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">xlink:title - a title for the link (if needed), as per the xlink specification.  See http://www.w3.org/TR/xlink/</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("xlink:title - a title for the link (if needed), as per the xlink specification. S" +
             "ee http://www.w3.org/TR/xlink/")]
-        [System.Xml.Serialization.XmlAttributeAttribute("title", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("title", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Title { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">xlink:show - see the xlink specification at http://www.w3.org/TR/xlink/</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("xlink:show - see the xlink specification at http://www.w3.org/TR/xlink/")]
-        [System.Xml.Serialization.XmlAttributeAttribute("show", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("show", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xlink.Show Show { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Show property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ShowSpecified { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">xlink:actuate - see the xlink specification at http://www.w3.org/TR/xlink/</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("xlink:actuate - see the xlink specification at http://www.w3.org/TR/xlink/")]
-        [System.Xml.Serialization.XmlAttributeAttribute("actuate", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("actuate", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xlink.Actuate Actuate { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Actuate property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ActuateSpecified { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">xlink:to - the value of the label for the element in the structMap you are linking to.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("xlink:to - the value of the label for the element in the structMap you are linkin" +
             "g to.")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
-        [System.Xml.Serialization.XmlAttributeAttribute("to", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
+        [System.Xml.Serialization.XmlAttributeAttribute("to", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string To { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">xlink:from - the value of the label for the element in the structMap you are linking from.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("xlink:from - the value of the label for the element in the structMap you are link" +
             "ing from.")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
-        [System.Xml.Serialization.XmlAttributeAttribute("from", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
+        [System.Xml.Serialization.XmlAttributeAttribute("from", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string From { get; set; }
     }
 }

@@ -11,33 +11,33 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents a stream element in the METS document, containing attributes and metadata related to the stream.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("FileTypeStream", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("FileTypeStream", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FileTypeStream
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">streamType (string/O): The IANA MIME media type for the bytestream.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("streamType (string/O): The IANA MIME media type for the bytestream.")]
         [System.Xml.Serialization.XmlAttributeAttribute("streamType")]
         public string StreamType { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">OWNERID (string/O): Used to provide a unique identifier (which could include a URI) assigned to the file. This identifier may differ from the URI used to retrieve the file.</para>
         /// </summary>
@@ -46,10 +46,10 @@ namespace Mets
             "e the file.")]
         [System.Xml.Serialization.XmlAttributeAttribute("OWNERID")]
         public string Ownerid { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<string> _admid;
-        
+
         /// <summary>
         /// <para xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values of the &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt; and/or &lt;digiprovMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain administrative metadata pertaining to the bytestream. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.</para>
         /// </summary>
@@ -66,7 +66,7 @@ namespace Mets
                 _admid = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the Admid collection is empty.</para>
         /// </summary>
@@ -78,7 +78,7 @@ namespace Mets
                 return (this.Admid.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Initializes a new instance of the <see cref="FileTypeStream" /> class.</para>
         /// </summary>
@@ -87,10 +87,10 @@ namespace Mets
             this._admid = new System.Collections.ObjectModel.Collection<string>();
             this._dmdid = new System.Collections.ObjectModel.Collection<string>();
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<string> _dmdid;
-        
+
         /// <summary>
         /// <para xml:lang="en">DMDID (IDREFS/O): Contains the ID attribute values identifying the &lt;dmdSec&gt;, elements in the METS document that contain or link to descriptive metadata pertaining to the content file stream represented by the current &lt;stream&gt; element.  For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.</para>
         /// </summary>
@@ -107,7 +107,7 @@ namespace Mets
                 _dmdid = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the Dmdid collection is empty.</para>
         /// </summary>
@@ -119,21 +119,21 @@ namespace Mets
                 return (this.Dmdid.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">BEGIN (string/O): An attribute that specifies the point in the parent &lt;file&gt; where the current &lt;stream&gt; begins. It can be used in conjunction with the END attribute as a means of defining the location of the stream within its parent file. However, the BEGIN attribute can be used with or without a companion END attribute. When no END attribute is specified, the end of the parent file is assumed also to be the end point of the stream. The BEGIN and END attributes can only be interpreted meaningfully in conjunction with a BETYPE attribute, which specifies the kind of beginning/ending point values that are being used.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"BEGIN (string/O): An attribute that specifies the point in the parent &lt;file&gt; where the current &lt;stream&gt; begins. It can be used in conjunction with the END attribute as a means of defining the location of the stream within its parent file. However, the BEGIN attribute can be used with or without a companion END attribute. When no END attribute is specified, the end of the parent file is assumed also to be the end point of the stream. The BEGIN and END attributes can only be interpreted meaningfully in conjunction with a BETYPE attribute, which specifies the kind of beginning/ending point values that are being used.")]
         [System.Xml.Serialization.XmlAttributeAttribute("BEGIN")]
         public string Begin { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">END (string/O): An attribute that specifies the point in the parent &lt;file&gt; where the &lt;stream&gt; ends. It can only be interpreted meaningfully in conjunction with the BETYPE, which specifies the kind of ending point values being used. Typically the END attribute would only appear in conjunction with a BEGIN attribute.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"END (string/O): An attribute that specifies the point in the parent &lt;file&gt; where the &lt;stream&gt; ends. It can only be interpreted meaningfully in conjunction with the BETYPE, which specifies the kind of ending point values being used. Typically the END attribute would only appear in conjunction with a BEGIN attribute.")]
         [System.Xml.Serialization.XmlAttributeAttribute("END")]
         public string End { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">BETYPE: Begin/End Type.
         ///										BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. Currently BYTE is the only valid value that can be used in conjunction with nested &lt;file&gt; or &lt;stream&gt; elements.</para>
@@ -144,7 +144,7 @@ namespace Mets
             " elements.")]
         [System.Xml.Serialization.XmlAttributeAttribute("BETYPE")]
         public FileTypeStreamBetype Betype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Betype property is specified.</para>
         /// </summary>

@@ -11,15 +11,15 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the core properties and methods for a file in the METS schema.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     public partial interface IFilecore
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">MIMETYPE (string/O): The IANA MIME media type for the associated file or wrapped content. Some values for this attribute can be found on the IANA website.</para>
         /// </summary>
@@ -30,7 +30,7 @@ namespace Mets
             get;
             set;
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">SIZE (long/O): Specifies the size in bytes of the associated file or wrapped content.</para>
         /// </summary>
@@ -41,7 +41,7 @@ namespace Mets
             get;
             set;
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">CREATED (dateTime/O): Specifies the date and time of creation for the associated file or wrapped content.</para>
         /// </summary>
@@ -52,7 +52,7 @@ namespace Mets
             get;
             set;
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">CHECKSUM (string/O): Provides a checksum value for the associated file or wrapped content.</para>
         /// </summary>
@@ -63,7 +63,7 @@ namespace Mets
             get;
             set;
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">CHECKSUMTYPE (enumerated string/O): Specifies the checksum algorithm used to produce the value contained in the CHECKSUM attribute.  CHECKSUMTYPE must contain one of the following values:
         ///					Adler-32

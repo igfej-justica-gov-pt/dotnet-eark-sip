@@ -11,31 +11,31 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents an agent in the METS header, containing metadata about the agent's role, type, and other attributes.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdrAgent", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdrAgent", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MetsTypeMetsHdrAgent
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">The element &lt;name&gt; can be used to record the full name of the document agent.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("The element &lt;name&gt; can be used to record the full name of the document agen" +
             "t.")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlElementAttribute("name")]
         public string Name { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<MetsTypeMetsHdrAgentNote> _note;
-        
+
         /// <summary>
         /// <para xml:lang="en">The &lt;note&gt; element can be used to record any additional information regarding the agent's activities with respect to the METS document.</para>
         /// </summary>
@@ -53,7 +53,7 @@ namespace Mets
                 _note = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the Note collection is empty.</para>
         /// </summary>
@@ -65,7 +65,7 @@ namespace Mets
                 return (this.Note.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Initializes a new instance of the <see cref="MetsTypeMetsHdrAgent" /> class.</para>
         /// </summary>
@@ -73,14 +73,14 @@ namespace Mets
         {
             this._note = new System.Collections.ObjectModel.Collection<MetsTypeMetsHdrAgentNote>();
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">ROLE (string/R): Specifies the function of the agent with respect to the METS record. The allowed values are:
         ///CREATOR: The person(s) or institution(s) responsible for the METS document.
@@ -93,10 +93,10 @@ namespace Mets
         ///OTHER: Use OTHER if none of the preceding values pertains and clarify the type and location specifier being used in the OTHERROLE attribute (see below).</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ROLE (string/R): Specifies the function of the agent with respect to the METS record. The allowed values are: CREATOR: The person(s) or institution(s) responsible for the METS document. EDITOR: The person(s) or institution(s) that prepares the metadata for encoding. ARCHIVIST: The person(s) or institution(s) responsible for the document/collection. PRESERVATION: The person(s) or institution(s) responsible for preservation functions. DISSEMINATOR: The person(s) or institution(s) responsible for dissemination functions. CUSTODIAN: The person(s) or institution(s) charged with the oversight of a document/collection. IPOWNER: Intellectual Property Owner: The person(s) or institution holding copyright, trade or service marks or other intellectual property rights for the object. OTHER: Use OTHER if none of the preceding values pertains and clarify the type and location specifier being used in the OTHERROLE attribute (see below).")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlAttributeAttribute("ROLE")]
         public MetsTypeMetsHdrAgentRole Role { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">OTHERROLE (string/O): Denotes a role not contained in the allowed values set if OTHER is indicated in the ROLE attribute.</para>
         /// </summary>
@@ -104,7 +104,7 @@ namespace Mets
             "THER is indicated in the ROLE attribute.")]
         [System.Xml.Serialization.XmlAttributeAttribute("OTHERROLE")]
         public string Otherrole { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">TYPE (string/O): is used to specify the type of AGENT. It must be one of the following values:
         ///INDIVIDUAL: Use if an individual has served as the agent.
@@ -114,13 +114,13 @@ namespace Mets
         [System.ComponentModel.DescriptionAttribute(@"TYPE (string/O): is used to specify the type of AGENT. It must be one of the following values: INDIVIDUAL: Use if an individual has served as the agent. ORGANIZATION: Use if an institution, corporate body, association, non-profit enterprise, government, religious body, etc. has served as the agent. OTHER: Use OTHER if none of the preceding values pertain and clarify the type of agent specifier being used in the OTHERTYPE attribute")]
         [System.Xml.Serialization.XmlAttributeAttribute("TYPE")]
         public MetsTypeMetsHdrAgentType Type { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Type property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool TypeSpecified { get; set; } = true;
-        
+
         /// <summary>
         /// <para xml:lang="en">OTHERTYPE (string/O): Specifies the type of agent when the value OTHER is indicated in the TYPE attribute.</para>
         /// </summary>

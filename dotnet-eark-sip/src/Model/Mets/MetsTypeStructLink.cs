@@ -11,14 +11,14 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the MetsTypeStructLink class, which is a part of the METS schema.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeStructLink", Namespace="http://www.loc.gov/METS/")]
+    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeStructLink", Namespace = "http://www.loc.gov/METS/")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MetsTypeStructLink : StructLinkType

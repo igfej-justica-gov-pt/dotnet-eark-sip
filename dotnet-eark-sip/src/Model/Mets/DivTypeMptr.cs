@@ -11,26 +11,26 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents a division type with metadata pointer (mptr) in the METS document.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("DivTypeMptr", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("DivTypeMptr", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DivTypeMptr : ILocation, global::Xlink.ISimpleLink
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">LOCTYPE (string/R): Specifies the locator type used in the xlink:href attribute. Valid values for LOCTYPE are: 
         ///					ARK
@@ -43,10 +43,10 @@ namespace Mets
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("LOCTYPE (string/R): Specifies the locator type used in the xlink:href attribute. " +
             "Valid values for LOCTYPE are: ARK URN URL PURL HANDLE DOI OTHER")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlAttributeAttribute("LOCTYPE")]
         public ILocationLoctype Loctype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">OTHERLOCTYPE (string/O): Specifies the locator type when the value OTHER is used in the LOCTYPE attribute. Although optional, it is strongly recommended when OTHER is used.</para>
         /// </summary>
@@ -55,11 +55,11 @@ namespace Mets
             "ER is used.")]
         [System.Xml.Serialization.XmlAttributeAttribute("OTHERLOCTYPE")]
         public string Otherloctype { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private string _type = null;
 
-        [System.Xml.Serialization.XmlAttributeAttribute("type", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("type", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Type
         {
             get
@@ -71,40 +71,40 @@ namespace Mets
                 _type = value;
             }
         }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("href", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("href", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Href { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("role", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("role", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Role { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("arcrole", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("arcrole", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Arcrole { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("title", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("title", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Title { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("show", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("show", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xlink.Show Show { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Show property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ShowSpecified { get; set; }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute("actuate", Namespace="http://www.w3.org/1999/xlink", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+
+        [System.Xml.Serialization.XmlAttributeAttribute("actuate", Namespace = "http://www.w3.org/1999/xlink", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xlink.Actuate Actuate { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Actuate property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ActuateSpecified { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<string> _contentids;
-        
+
         /// <summary>
         /// <para xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;mptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).</para>
         /// </summary>
@@ -122,7 +122,7 @@ namespace Mets
                 _contentids = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the Contentids collection is empty.</para>
         /// </summary>
@@ -134,7 +134,7 @@ namespace Mets
                 return (this.Contentids.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Initializes a new instance of the <see cref="DivTypeMptr" /> class.</para>
         /// </summary>

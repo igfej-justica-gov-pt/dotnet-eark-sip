@@ -11,38 +11,38 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the roles of agents in the METS header.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdrAgentRole", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdrAgentRole", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     public enum MetsTypeMetsHdrAgentRole
     {
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CREATOR")]
         CREATOR,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("EDITOR")]
         EDITOR,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("ARCHIVIST")]
         ARCHIVIST,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("PRESERVATION")]
         PRESERVATION,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("DISSEMINATOR")]
         DISSEMINATOR,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CUSTODIAN")]
         CUSTODIAN,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("IPOWNER")]
         IPOWNER,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("OTHER")]
         OTHER,
     }

@@ -1,0 +1,39 @@
+{
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+  },
+
+  "omnisharp.enableRoslynAnalyzers": true,
+  "omnisharp.useEditorFormattingSettings": true,
+
+  "csharp.format.enable": true,
+  "csharp.format.indentationSize": 4,
+  "csharp.format.tabSize": 4,
+  "csharp.format.insertSpaces": true,
+
+  "csharp.format.newLine.beforeMembersInObjectInitializers": true,
+  "csharp.format.newLine.beforeMembersInAnonymousTypes": true,
+  "csharp.format.newLine.beforeOpenBrace": "all",
+  "csharp.format.newLine.beforeElse": true,
+  "csharp.format.newLine.beforeCatch": true,
+  "csharp.format.newLine.beforeFinally": true,
+
+  "csharp.format.spaceAfterCast": true,
+  "csharp.format.spaceBeforeOpenSquareBracket": false,
+  "csharp.format.spaceBetweenEmptySquareBrackets": false,
+  "csharp.format.spaceAfterKeywordsInControlFlowStatements": true,
+  "csharp.format.spaceBeforeSemicolonsInForStatement": false,
+
+  "csharp.format.wrapping.keepStatementsOnSingleLine": false,
+  "csharp.format.wrapping.preserveSingleLine": true
+}

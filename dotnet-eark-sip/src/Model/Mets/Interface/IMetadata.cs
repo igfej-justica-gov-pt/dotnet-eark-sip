@@ -11,15 +11,15 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents metadata information with properties for metadata type, other metadata type, and metadata version.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     public partial interface IMetadata
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">MDTYPE (string/R): Is used to indicate the type of the associated metadata. It must have one of the following values:
         ///MARC: any form of MARC record
@@ -51,7 +51,7 @@ namespace Mets
             get;
             set;
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">OTHERMDTYPE (string/O): Specifies the form of metadata in use when the value OTHER is indicated in the MDTYPE attribute.</para>
         /// </summary>
@@ -62,7 +62,7 @@ namespace Mets
             get;
             set;
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">MDTYPEVERSION(string/O): Provides a means for recording the version of the type of metadata (as recorded in the MDTYPE or OTHERMDTYPE attribute) that is being used.  This may represent the version of the underlying data dictionary or metadata model rather than a schema version.</para>
         /// </summary>

@@ -11,35 +11,35 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the location type for the METS schema.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("ILocationLoctype", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("ILocationLoctype", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     public enum ILocationLoctype
     {
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("ARK")]
         ARK,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("URN")]
         URN,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("URL")]
         URL,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("PURL")]
         PURL,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("HANDLE")]
         HANDLE,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("DOI")]
         DOI,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("OTHER")]
         OTHER,
     }

@@ -11,8 +11,8 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// <para xml:lang="en">metsType: Complex Type for METS Sections
     ///			A METS document consists of seven possible subsidiary sections: metsHdr (METS document header), dmdSec (descriptive metadata section), amdSec (administrative metadata section), fileGrp (file inventory group), structLink (structural map linking), structMap (structural map) and behaviorSec (behaviors section).</para>
@@ -20,23 +20,23 @@ namespace Mets
     [System.ComponentModel.DescriptionAttribute(@"metsType: Complex Type for METS Sections A METS document consists of seven possible subsidiary sections: metsHdr (METS document header), dmdSec (descriptive metadata section), amdSec (administrative metadata section), fileGrp (file inventory group), structLink (structural map linking), structMap (structural map) and behaviorSec (behaviors section).")]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("metsType", Namespace="http://www.loc.gov/METS/")]
+    [System.Xml.Serialization.XmlTypeAttribute("metsType", Namespace = "http://www.loc.gov/METS/")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Mets))]
     public partial class MetsType
     {
-        
+
         /// <summary>
         /// <para xml:lang="en">The mets header element &lt;metsHdr&gt; captures metadata about the METS document itself, not the digital object the METS document encodes. Although it records a more limited set of metadata, it is very similar in function and purpose to the headers employed in other schema such as the Text Encoding Initiative (TEI) or in the Encoded Archival Description (EAD).</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"The mets header element &lt;metsHdr&gt; captures metadata about the METS document itself, not the digital object the METS document encodes. Although it records a more limited set of metadata, it is very similar in function and purpose to the headers employed in other schema such as the Text Encoding Initiative (TEI) or in the Encoded Archival Description (EAD).")]
         [System.Xml.Serialization.XmlElementAttribute("metsHdr")]
         public MetsTypeMetsHdr MetsHdr { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<MdSecType> _dmdSec;
-        
+
         /// <summary>
         /// <para xml:lang="en">A descriptive metadata section &lt;dmdSec&gt; records descriptive metadata pertaining to the METS object as a whole or one of its components. The &lt;dmdSec&gt; element conforms to same generic datatype as the &lt;techMD&gt;, &lt;rightsMD&gt;, &lt;sourceMD&gt; and &lt;digiprovMD&gt; elements, and supports the same sub-elements and attributes. A descriptive metadata element can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both.  METS allows multiple &lt;dmdSec&gt; elements; and descriptive metadata can be associated with any METS element that supports a DMDID attribute.  Descriptive metadata can be expressed according to many current description standards (i.e., MARC, MODS, Dublin Core, TEI Header, EAD, VRA, FGDC, DDI) or a locally produced XML schema.</para>
         /// </summary>
@@ -53,7 +53,7 @@ namespace Mets
                 _dmdSec = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the DmdSec collection is empty.</para>
         /// </summary>
@@ -65,7 +65,7 @@ namespace Mets
                 return (this.DmdSec.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Initializes a new instance of the <see cref="MetsType" /> class.</para>
         /// </summary>
@@ -77,10 +77,10 @@ namespace Mets
             this._behaviorSec = new System.Collections.ObjectModel.Collection<BehaviorSecType>();
             this._anyAttribute = new System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute>();
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<AmdSecType> _amdSec;
-        
+
         /// <summary>
         /// <para xml:lang="en">The administrative metadata section &lt;amdSec&gt; contains the administrative metadata pertaining to the digital object, its components and any original source material from which the digital object is derived. The &lt;amdSec&gt; is separated into four sub-sections that accommodate technical metadata (techMD), intellectual property rights (rightsMD), analog/digital source metadata (sourceMD), and digital provenance metadata (digiprovMD). Each of these subsections can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both. Multiple instances of the &lt;amdSec&gt; element can occur within a METS document and multiple instances of its subsections can occur in one &lt;amdSec&gt; element. This allows considerable flexibility in the structuring of the administrative metadata. METS does not define a vocabulary or syntax for encoding administrative metadata. Administrative metadata can be expressed within the amdSec sub-elements according to many current community defined standards, or locally produced XML schemas.</para>
         /// </summary>
@@ -97,7 +97,7 @@ namespace Mets
                 _amdSec = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the AmdSec collection is empty.</para>
         /// </summary>
@@ -109,7 +109,7 @@ namespace Mets
                 return (this.AmdSec.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">The overall purpose of the content file section element &lt;fileSec&gt; is to provide an inventory of and the location for the content files that comprise the digital object being described in the METS document.</para>
         /// </summary>
@@ -118,10 +118,10 @@ namespace Mets
             "gital object being described in the METS document.")]
         [System.Xml.Serialization.XmlElementAttribute("fileSec")]
         public MetsTypeFileSec FileSec { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<StructMapType> _structMap;
-        
+
         /// <summary>
         /// <para xml:lang="en">The structural map section &lt;structMap&gt; is the heart of a METS document. It provides a means for organizing the digital content represented by the &lt;file&gt; elements in the &lt;fileSec&gt; of the METS document into a coherent hierarchical structure. Such a hierarchical structure can be presented to users to facilitate their comprehension and navigation of the digital content. It can further be applied to any purpose requiring an understanding of the structural relationship of the content files or parts of the content files. The organization may be specified to any level of granularity (intellectual and or physical) that is desired. Since the &lt;structMap&gt; element is repeatable, more than one organization can be applied to the digital content represented by the METS document.  The hierarchical structure specified by a &lt;structMap&gt; is encoded as a tree of nested &lt;div&gt; elements. A &lt;div&gt; element may directly point to content via child file pointer &lt;fptr&gt; elements (if the content is represented in the &lt;fileSec&lt;) or child METS pointer &lt;mptr&gt; elements (if the content is represented by an external METS document). The &lt;fptr&gt; element may point to a single whole &lt;file&gt; element that manifests its parent &lt;div&lt;, or to part of a &lt;file&gt; that manifests its &lt;div&lt;. It can also point to multiple files or parts of files that must be played/displayed either in sequence or in parallel to reveal its structural division. In addition to providing a means for organizing content, the &lt;structMap&gt; provides a mechanism for linking content at any hierarchical level with relevant descriptive and administrative metadata.</para>
         /// </summary>
@@ -147,7 +147,7 @@ namespace Mets
             "a means for organizing content, the &lt;structMap&gt; provides a mechanism for l" +
             "inking content at any hierarchical level with relevant descriptive and administr" +
             "ative metadata.")]
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         [System.Xml.Serialization.XmlElementAttribute("structMap")]
         public System.Collections.ObjectModel.Collection<StructMapType> StructMap
         {
@@ -160,17 +160,17 @@ namespace Mets
                 _structMap = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">The structural link section element &lt;structLink&gt; allows for the specification of hyperlinks between the different components of a METS structure that are delineated in a structural map. This element is a container for a single, repeatable element, &lt;smLink&gt; which indicates a hyperlink between two nodes in the structural map. The &lt;structLink&gt; section in the METS document is identified using its XML ID attributes.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"The structural link section element &lt;structLink&gt; allows for the specification of hyperlinks between the different components of a METS structure that are delineated in a structural map. This element is a container for a single, repeatable element, &lt;smLink&gt; which indicates a hyperlink between two nodes in the structural map. The &lt;structLink&gt; section in the METS document is identified using its XML ID attributes.")]
         [System.Xml.Serialization.XmlElementAttribute("structLink")]
         public MetsTypeStructLink StructLink { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<BehaviorSecType> _behaviorSec;
-        
+
         /// <summary>
         /// <para xml:lang="en">A behavior section element &lt;behaviorSec&gt; associates executable behaviors with content in the METS document by means of a repeatable behavior &lt;behavior&gt; element. This element has an interface definition &lt;interfaceDef&gt; element that represents an abstract definition of the set of behaviors represented by a particular behavior section. A &lt;behavior&gt; element also has a &lt;mechanism&gt; element which is used to point to a module of executable code that implements and runs the behavior defined by the interface definition. The &lt;behaviorSec&gt; element, which is repeatable as well as nestable, can be used to group individual behaviors within the structure of the METS document. Such grouping can be useful for organizing families of behaviors together or to indicate other relationships between particular behaviors.</para>
         /// </summary>
@@ -187,7 +187,7 @@ namespace Mets
                 _behaviorSec = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the BehaviorSec collection is empty.</para>
         /// </summary>
@@ -199,21 +199,21 @@ namespace Mets
                 return (this.BehaviorSec.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">OBJID (string/O): Is the primary identifier assigned to the METS object as a whole. Although this attribute is not required, it is strongly recommended. This identifier is used to tag the entire METS object to external systems, in contrast with the ID identifier.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"OBJID (string/O): Is the primary identifier assigned to the METS object as a whole. Although this attribute is not required, it is strongly recommended. This identifier is used to tag the entire METS object to external systems, in contrast with the ID identifier.")]
         [System.Xml.Serialization.XmlAttributeAttribute("OBJID")]
         public string Objid { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">LABEL (string/O): Is a simple title string used to identify the object/entity being described in the METS document for the user.</para>
         /// </summary>
@@ -221,7 +221,7 @@ namespace Mets
             "ng described in the METS document for the user.")]
         [System.Xml.Serialization.XmlAttributeAttribute("LABEL")]
         public string Label { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">TYPE (string/O): Specifies the class or type of the object, e.g.: book, journal, stereograph, dataset, video, etc.</para>
         /// </summary>
@@ -229,7 +229,7 @@ namespace Mets
             "stereograph, dataset, video, etc.")]
         [System.Xml.Serialization.XmlAttributeAttribute("TYPE")]
         public string Type { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">PROFILE (string/O): Indicates to which of the registered profile(s) the METS document conforms. For additional information about PROFILES see Chapter 5 of the METS Primer.</para>
         /// </summary>
@@ -238,34 +238,34 @@ namespace Mets
             "TS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("PROFILE")]
         public string Profile { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the other type.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute("OTHERTYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("OTHERTYPE", Namespace = "https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Othertype { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the content information type.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute("CONTENTINFORMATIONTYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("CONTENTINFORMATIONTYPE", Namespace = "https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xml.Mets.CsipExtensionMets.Contentinformationtype Contentinformationtype { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Contentinformationtype property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ContentinformationtypeSpecified { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the other content information type.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute("OTHERCONTENTINFORMATIONTYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.Xml.Serialization.XmlAttributeAttribute("OTHERCONTENTINFORMATIONTYPE", Namespace = "https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string Othercontentinformationtype { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
-        
+
         /// <summary>
         /// Gets a collection of XML attributes that are not explicitly defined in the schema.
         /// </summary>
@@ -281,7 +281,7 @@ namespace Mets
                 _anyAttribute = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the AnyAttribute collection is empty.</para>
         /// </summary>

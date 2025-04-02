@@ -11,20 +11,20 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Specifies the type of transformation applied to a file, such as decompression or decryption.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("FileTypeTransformFileTransformtype", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("FileTypeTransformFileTransformtype", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     public enum FileTypeTransformFileTransformtype
     {
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("decompression")]
         DECOMPRESSION,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("decryption")]
         DECRYPTION,
     }

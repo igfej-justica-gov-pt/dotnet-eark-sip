@@ -11,23 +11,23 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the type of agent in the METS header.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdrAgentType", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
-        public enum MetsTypeMetsHdrAgentType
+    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdrAgentType", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
+    public enum MetsTypeMetsHdrAgentType
     {
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("INDIVIDUAL")]
         INDIVIDUAL,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("ORGANIZATION")]
         ORGANIZATION,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("OTHER")]
         OTHER,
     }

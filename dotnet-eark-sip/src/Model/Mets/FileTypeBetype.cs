@@ -11,17 +11,17 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the type of file in the METS schema.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("FileTypeBetype", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("FileTypeBetype", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     public enum FileTypeBetype
     {
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("BYTE")]
         BYTE,
     }

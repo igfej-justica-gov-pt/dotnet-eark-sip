@@ -11,22 +11,22 @@
 // xscgen --namespaceHierarchy -o .\src\model .\schemas\*.xsd
 namespace Mets
 {
-    
-    
+
+
     /// <summary>
     /// Represents the header information for a METS (Metadata Encoding and Transmission Standard) document.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1174.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdr", Namespace="http://www.loc.gov/METS/", AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute("MetsTypeMetsHdr", Namespace = "http://www.loc.gov/METS/", AnonymousType = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MetsTypeMetsHdr
     {
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<MetsTypeMetsHdrAgent> _agent;
-        
+
         /// <summary>
         /// <para xml:lang="en">agent: 
         ///								The agent element &lt;agent&gt; provides for various parties and their roles with respect to the METS record to be documented.</para>
@@ -45,7 +45,7 @@ namespace Mets
                 _agent = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the Agent collection is empty.</para>
         /// </summary>
@@ -57,7 +57,7 @@ namespace Mets
                 return (this.Agent.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Initializes a new instance of the <see cref="MetsTypeMetsHdr" /> class.</para>
         /// </summary>
@@ -68,10 +68,10 @@ namespace Mets
             this._admid = new System.Collections.ObjectModel.Collection<string>();
             this._anyAttribute = new System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute>();
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<MetsTypeMetsHdrAltRecordId> _altRecordId;
-        
+
         /// <summary>
         /// <para xml:lang="en">The alternative record identifier element &lt;altRecordID&gt; allows one to use alternative record identifier values for the digital object represented by the METS document; the primary record identifier is stored in the OBJID attribute in the root &lt;mets&gt; element.</para>
         /// </summary>
@@ -88,7 +88,7 @@ namespace Mets
                 _altRecordId = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the AltRecordId collection is empty.</para>
         /// </summary>
@@ -100,24 +100,24 @@ namespace Mets
                 return (this.AltRecordId.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">The metsDocument identifier element &lt;metsDocumentID&gt; allows a unique identifier to be assigned to the METS document itself.  This may be different from the OBJID attribute value in the root &lt;mets&gt; element, which uniquely identifies the entire digital object represented by the METS document.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"The metsDocument identifier element &lt;metsDocumentID&gt; allows a unique identifier to be assigned to the METS document itself. This may be different from the OBJID attribute value in the root &lt;mets&gt; element, which uniquely identifies the entire digital object represented by the METS document.")]
         [System.Xml.Serialization.XmlElementAttribute("metsDocumentID")]
         public MetsTypeMetsHdrMetsDocumentId MetsDocumentId { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute(@"ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.")]
         [System.Xml.Serialization.XmlAttributeAttribute("ID")]
         public string Id { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<string> _admid;
-        
+
         /// <summary>
         /// <para xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values of the &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt; and/or &lt;digiprovMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain administrative metadata pertaining to the METS document itself.  For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.</para>
         /// </summary>
@@ -134,7 +134,7 @@ namespace Mets
                 _admid = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the Admid collection is empty.</para>
         /// </summary>
@@ -146,34 +146,34 @@ namespace Mets
                 return (this.Admid.Count != 0);
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">CREATEDATE (dateTime/O): Records the date/time the METS document was created.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("CREATEDATE (dateTime/O): Records the date/time the METS document was created.")]
-        [System.Xml.Serialization.XmlAttributeAttribute("CREATEDATE", DataType="dateTime")]
+        [System.Xml.Serialization.XmlAttributeAttribute("CREATEDATE", DataType = "dateTime")]
         public System.DateTime Createdate { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Createdate property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CreatedateSpecified { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">LASTMODDATE (dateTime/O): Is used to indicate the date/time the METS document was last modified.</para>
         /// </summary>
         [System.ComponentModel.DescriptionAttribute("LASTMODDATE (dateTime/O): Is used to indicate the date/time the METS document was" +
             " last modified.")]
-        [System.Xml.Serialization.XmlAttributeAttribute("LASTMODDATE", DataType="dateTime")]
+        [System.Xml.Serialization.XmlAttributeAttribute("LASTMODDATE", DataType = "dateTime")]
         public System.DateTime Lastmoddate { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets or sets a value indicating whether the Lastmoddate property is specified.</para>
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool LastmoddateSpecified { get; set; }
-        
+
         /// <summary>
         /// <para xml:lang="en">RECORDSTATUS (string/O): Specifies the status of the METS document. It is used for internal processing purposes.</para>
         /// </summary>
@@ -181,17 +181,17 @@ namespace Mets
             "r internal processing purposes.")]
         [System.Xml.Serialization.XmlAttributeAttribute("RECORDSTATUS")]
         public string Recordstatus { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the OAIS package type, which specifies the type of the package in the OAIS model.
         /// </summary>
-        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings=true)]
-        [System.Xml.Serialization.XmlAttributeAttribute("OAISPACKAGETYPE", Namespace="https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
+        [System.Xml.Serialization.XmlAttributeAttribute("OAISPACKAGETYPE", Namespace = "https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xml.Mets.CsipExtensionMets.Oaispackagetype Oaispackagetype { get; set; }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
-        
+
         /// <summary>
         /// Gets a collection of XML attributes that are not explicitly defined in the schema.
         /// </summary>
@@ -207,7 +207,7 @@ namespace Mets
                 _anyAttribute = value;
             }
         }
-        
+
         /// <summary>
         /// <para xml:lang="en">Gets a value indicating whether the AnyAttribute collection is empty.</para>
         /// </summary>
