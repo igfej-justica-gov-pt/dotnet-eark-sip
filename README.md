@@ -229,4 +229,4 @@ For full details, please refer to the [EUPL licence text](https://joinup.ec.euro
 The sponsor of this development was the Institute for the Financial Management and Infrastructures of Justice (**IGFEJ**) a public institute, endowed with administrative and financial autonomy and its own assets, which pursues the attributions of the Ministry of Justice, under its supervision and tutelage.
 
 The funding was provided by:
-![Sponsor](prr.png)
+![Sponsor](https://raw.githubusercontent.com/igfej-justica-gov-pt/dotnet-eark-sip/main/prr.png)
