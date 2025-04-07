@@ -1,7 +1,7 @@
 # .NET E-ARK SIP
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/keeps/dotnet-eark-sip/build.yml?branch=main)](https://github.com/keeps/dotnet-eark-sip/actions)  
-[![Latest Release](https://img.shields.io/github/v/release/keeps/dotnet-eark-sip)](https://github.com/keeps/dotnet-eark-sip/releases/latest)  
+[![Build Status](https://img.shields.io/github/actions/workflow/status/igfej-justica-gov-pt/dotnet-eark-sip/build.yml?branch=main)](https://github.com/igfej-justica-gov-pt/dotnet-eark-sip/actions)  
+[![Latest Release](https://img.shields.io/github/v/release/igfej-justica-gov-pt/dotnet-eark-sip)](https://github.com/igfej-justica-gov-pt/dotnet-eark-sip/releases/latest)  
 [![License](https://img.shields.io/badge/license-EUPL-blue.svg)](#license)
 
 A .NET library and CLI tool for creating E-ARK Submission Information Packages (SIPs). Providing support for E-ARK SIP formats (2.0.4, 2.1.0, 2.2.0), this project makes it easier to create and manage valid SIPs for long-term digital preservation using the E-ARK standards.
@@ -54,7 +54,7 @@ These specifications have been sponsored and are promoted by the European Commis
 - .NET Standard 2.0 (or higher)
 - Windows, Linux, or macOS
 
-Download the [latest release](https://github.com/keeps/dotnet-eark-sip/releases/latest) to use as a standalone CLI tool, or reference it in your .NET project.
+Download the [latest release](https://github.com/igfej-justica-gov-pt/dotnet-eark-sip/releases/latest) to use as a standalone CLI tool, or reference it in your .NET project.
 
 ## Usage
 
@@ -62,7 +62,7 @@ You can use the **dotnet-eark-sip** as a **command-line tool** or as a **.NET li
 
 ### Use as a Command-line Tool
 
-1. Download the [latest release](https://github.com/keeps/dotnet-eark-sip/releases/latest).
+1. Download the [latest release](https://github.com/igfej-justica-gov-pt/dotnet-eark-sip/releases/latest).
 2. Unzip or place the tool in a directory of your choice.
 3. Run the following command (adjusting paths accordingly):
 
@@ -128,7 +128,7 @@ using Mets;
 SIP sip = new EARKSIP("SIP_1", IPContentType.GetMIXED(), IPContentInformationType.GetMIXED(), "2.2.0");
 
 // Set the name of the software that is submitting the SIP (mandatory)
-sip.AddsubmitterSoftwareAgent("KEEP SOLUTIONS", "KEEPS");
+sip.AddsubmitterSoftwareAgent("Instituto de Gestão Financeira e Equipamentos da Justiça", "IGFEJ");
 
 // Set optional human-readable description
 sip.SetDescription("A full E-ARK SIP");
