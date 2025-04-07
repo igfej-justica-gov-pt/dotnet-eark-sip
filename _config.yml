@@ -1,1 +1,4 @@
-theme: cayman
+title: dotnet-eark-sip
+description: A .NET library for creating E-ARK SIPs
+show_downloads: false
+theme: jekyll-theme-cayman
