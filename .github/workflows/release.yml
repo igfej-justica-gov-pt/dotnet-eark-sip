@@ -76,4 +76,4 @@ jobs:
             ./dist/dotnet-eark-sip.${{ github.ref_name }}.nupkg
             ./dist/dotnet-eark-sip-cli.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.IGFEJ_DOTNET_EARK_SIP_TOKEN }}
