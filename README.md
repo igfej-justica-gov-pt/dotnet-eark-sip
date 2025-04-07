@@ -1,6 +1,6 @@
 # .NET E-ARK SIP
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/igfej-justica-gov-pt/dotnet-eark-sip/build.yml?branch=main)](https://github.com/igfej-justica-gov-pt/dotnet-eark-sip/actions)  
+[![Build Status](https://img.shields.io/github/actions/workflow/status/igfej-justica-gov-pt/dotnet-eark-sip/CI.yml?branch=main)](https://github.com/igfej-justica-gov-pt/dotnet-eark-sip/actions)  
 [![Latest Release](https://img.shields.io/github/v/release/igfej-justica-gov-pt/dotnet-eark-sip)](https://github.com/igfej-justica-gov-pt/dotnet-eark-sip/releases/latest)  
 [![License](https://img.shields.io/badge/license-EUPL-blue.svg)](#license)
 
