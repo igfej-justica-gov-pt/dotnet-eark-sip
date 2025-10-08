@@ -37,6 +37,13 @@ namespace Mets
         [System.Xml.Serialization.XmlAttributeAttribute("NOTETYPE", Namespace = "https://DILCIS.eu/XML/METS/CSIPExtensionMETS", Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public global::Xml.Mets.CsipExtensionMets.Notetype Notetype { get; set; }
 
+        /// <summary>
+        /// <para xml:lang="en">Gets a value indicating whether the Notetype property is specified.</para>
+        /// <remarks>This property is true if the Notetype property is not equal to NOT_SET; otherwise, it is false.</remarks>
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool NotetypeSpecified => this.Notetype != global::Xml.Mets.CsipExtensionMets.Notetype.NOT_SET;
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         private System.Collections.ObjectModel.Collection<System.Xml.XmlAttribute> _anyAttribute;
 
