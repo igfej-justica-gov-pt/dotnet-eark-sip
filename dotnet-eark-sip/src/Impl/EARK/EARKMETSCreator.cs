@@ -371,13 +371,16 @@ public abstract class EARKMETSCreator
             Othertype = ipAgent.GetOtherType(),
         };
 
-        MetsTypeMetsHdrAgentNote note = new MetsTypeMetsHdrAgentNote
+        if (!string.IsNullOrEmpty(ipAgent.GetNote()))
         {
-            Value = ipAgent.GetNote(),
-            Notetype = ipAgent.GetNoteType() ?? Notetype.NOT_SET
-        };
+            var note = new MetsTypeMetsHdrAgentNote
+            {
+                Value = ipAgent.GetNote(),
+                Notetype = ipAgent.GetNoteType()
+            };
+            agent.Note.Add(note);
+        }
 
-        agent.Note.Add(note);
         return agent;
     }
 

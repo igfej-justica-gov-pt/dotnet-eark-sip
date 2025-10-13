@@ -15,7 +15,7 @@ namespace IP
         private MetsTypeMetsHdrAgentType type;
         private string? otherType;
         private string note;
-        private Notetype? noteType;
+        private Notetype noteType;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IPAgent"/> class with default values.
@@ -38,7 +38,7 @@ namespace IP
         /// <param name="otherType">The other type of the agent, if applicable.</param>
         /// <param name="note">The note associated with the agent.</param>
         /// <param name="noteType">The type of the note.</param>
-        public IPAgent(string name, MetsTypeMetsHdrAgentRole role, string? otherRole, MetsTypeMetsHdrAgentType type, string? otherType, string note, Notetype noteType)
+        public IPAgent(string name, MetsTypeMetsHdrAgentRole role, string? otherRole, MetsTypeMetsHdrAgentType type, string? otherType, string note, Notetype? noteType)
         {
             this.name = name;
             this.role = role;
@@ -46,7 +46,7 @@ namespace IP
             this.type = type;
             this.otherType = otherType;
             this.note = note;
-            this.noteType = noteType;
+            this.noteType = noteType ?? Notetype.NOT_SET;
         }
 
         public string GetName()
@@ -115,23 +115,20 @@ namespace IP
             return this;
         }
 
-        public Notetype? GetNoteType()
+        public Notetype GetNoteType()
         {
             return noteType;
         }
 
         public IPAgent SetNoteType(Notetype? noteType)
         {
-            this.noteType = noteType;
+            this.noteType = noteType ?? Notetype.NOT_SET;
             return this;
         }
 
         private string GetNoteTypeString()
         {
-            Notetype value = noteType ?? Notetype.IDENTIFICATIONCODE;
-
-            if (noteType == null) return "";
-            else return EnumUtils.GetXmlEnumName(value);
+            return EnumUtils.GetXmlEnumName(noteType);
         }
 
         public override string ToString()
