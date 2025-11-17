@@ -130,10 +130,10 @@ public class EARKSIPTests : IDisposable {
         Assert.Contains("Documentation", labels);
         Assert.Contains("Representations/representation 1", labels);
         Assert.Contains("Representations/representation 2", labels);
-        /// dotnet-eark-sip structural map
-        Assert.Equal("dotnet-eark-sip structural map", metsObject.StructMap[1].Label);
+        /// RODA structural map
+        Assert.Equal("RODA structural map", metsObject.StructMap[1].Label);
         Assert.Single(metsObject.StructMap[1].Div.Div);
-        Assert.Equal("dotnet-eark-sip", metsObject.StructMap[1].Div.Label);
+        Assert.Equal("RODA", metsObject.StructMap[1].Div.Label);
         Assert.Equal("Ancestors", metsObject.StructMap[1].Div.Div[0].Label);
       }
     }
