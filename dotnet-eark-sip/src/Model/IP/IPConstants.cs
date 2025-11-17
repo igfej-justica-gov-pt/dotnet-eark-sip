@@ -256,12 +256,12 @@ public class IPConstants
     /// <summary>
     /// Structural map identifier for EARK SIP.
     /// </summary>
-    public static readonly string EARK_SIP_STRUCTURAL_MAP = "dotnet-eark-sip structural map";
+    public static readonly string EARK_SIP_STRUCTURAL_MAP = "RODA structural map";
 
     /// <summary>
     /// Division label for EARK SIP.
     /// </summary>
-    public static readonly string EARK_SIP_DIV_LABEL = "dotnet-eark-sip";
+    public static readonly string EARK_SIP_DIV_LABEL = "RODA";
 
     /// <summary>
     /// Ancestors division label for EARK SIP.
