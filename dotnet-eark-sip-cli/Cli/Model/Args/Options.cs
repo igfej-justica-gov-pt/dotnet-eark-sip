@@ -26,6 +26,9 @@ public class Options {
   [Option('a', "ancestors", HelpText = "E-ARK SIP ancestors", Separator = ',')]
   public IEnumerable<string>? Ancestors { get; set; }
 
+  [Option('a', "ancestors-label", HelpText = "E-ARK SIP ancestors label")]
+  public string AncestorsLabel { get; set; } = "";
+
   [Option('d', "documentation", HelpText = "Path(s) to documentation file(s)", Separator = ',')]
   public IEnumerable<string>? Documentation { get; set; }
 

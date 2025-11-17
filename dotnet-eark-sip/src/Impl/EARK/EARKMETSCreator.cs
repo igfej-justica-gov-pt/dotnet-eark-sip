@@ -31,6 +31,7 @@ public abstract class EARKMETSCreator
     /// <param name="profile">The profile to be used for the METS object.</param>
     /// <param name="mainMets">Indicates whether this is the main METS file.</param>
     /// <param name="ancestors">A list of ancestor identifiers, if any.</param>
+    /// <param name="ancestorsLabel">The label to use in Ancestors divs.</param>
     /// <param name="metsPath">The file path for the METS file.</param>
     /// <param name="header">The IPHeader containing metadata for the METS header.</param>
     /// <param name="contentType">The content type of the METS object.</param>
@@ -49,6 +50,7 @@ public abstract class EARKMETSCreator
       string profile,
       bool mainMets,
       List<string>? ancestors,
+      string? ancestorsLabel,
       string? metsPath,
       IPHeader header,
       IPContentType contentType,
@@ -91,7 +93,7 @@ public abstract class EARKMETSCreator
         structMap.Div = mainDiv;
         mets.StructMap.Add(structMap);
 
-        AddAncestorsToMets(mets, ancestors);
+        AddAncestorsToMets(mets, ancestors, ancestorsLabel);
 
         return metsWrapper;
     }
@@ -101,6 +103,7 @@ public abstract class EARKMETSCreator
     /// <param name="profile">The profile to be used for the METS object.</param>
     /// <param name="mainMets">Indicates whether this is the main METS file.</param>
     /// <param name="ancestors">A list of ancestor identifiers, if any.</param>
+    /// <param name="ancestorsLabel">The label to use in Ancestors divs.</param>
     /// <param name="metsPath">The file path for the METS file.</param>
     /// <param name="header">The IPHeader containing metadata for the METS header.</param>
     /// <param name="isMetadata">Indicates if metadata is included.</param>
@@ -116,6 +119,7 @@ public abstract class EARKMETSCreator
       string profile,
       bool mainMets,
       List<string>? ancestors,
+      string? ancestorsLabel,
       string? metsPath,
       IPHeader header,
       bool isMetadata,
@@ -167,7 +171,7 @@ public abstract class EARKMETSCreator
         structMap.Div = mainDiv;
         mets.StructMap.Add(structMap);
 
-        AddAncestorsToMets(mets, ancestors);
+        AddAncestorsToMets(mets, ancestors, ancestorsLabel);
 
         return metsWrapper;
     }
@@ -636,16 +640,17 @@ public abstract class EARKMETSCreator
     /// Generates a structural map for ancestor references.
     /// </summary>
     /// <param name="ancestors">A list of ancestor identifiers.</param>
+    /// <param name="label">The label to use in the divs.</param>
     /// <returns>A StructMapType object representing the ancestor structural map.</returns>
-    protected StructMapType GenerateAncestorStructMap(List<string> ancestors)
+    protected StructMapType GenerateAncestorStructMap(List<string> ancestors, string? label = null)
     {
         StructMapType structMap = new StructMapType
         {
             Id = Utils.GenerateRandomAndPrefixedUUID(),
-            Label = IPConstants.EARK_SIP_STRUCTURAL_MAP
+            Label = (label ?? IPConstants.EARK_SIP_DIV_LABEL) + IPConstants.EARK_SIP_STRUCTURAL_MAP
         };
 
-        DivType mainDiv = CreateDivForStructMap(IPConstants.EARK_SIP_DIV_LABEL);
+        DivType mainDiv = CreateDivForStructMap(label ?? IPConstants.EARK_SIP_DIV_LABEL);
         DivType ancestorsDiv = CreateDivForStructMap(IPConstants.EARK_SIP_ANCESTORS_DIV_LABEL);
 
         foreach (string ancestor in ancestors)
@@ -896,11 +901,12 @@ public abstract class EARKMETSCreator
     /// </summary>
     /// <param name="mets">The METS object to which the ancestor references will be added.</param>
     /// <param name="ancestors">A list of ancestor identifiers, if any.</param>
-    protected void AddAncestorsToMets(Mets.Mets mets, List<string>? ancestors)
+    /// <param name="label">The label to use in the divs.</param>
+    protected void AddAncestorsToMets(Mets.Mets mets, List<string>? ancestors, string? label = null)
     {
         if (ancestors != null && ancestors.Count > 0)
         {
-            StructMapType structMapParent = GenerateAncestorStructMap(ancestors);
+            StructMapType structMapParent = GenerateAncestorStructMap(ancestors, label);
             mets.StructMap.Add(structMapParent);
         }
     }

@@ -81,6 +81,7 @@ public class Create {
         .SetTargetOnly(args.TargetOnly)
         .SetSipId(args.SIPId)
         .SetAncestors(args.Ancestors?.ToList())
+        .SetAncestorsLabel(args.AncestorsLabel)
         .SetDocumentation(args.Documentation?.ToList())
         .SetSoftwareVersion(VersionProvider.GetVersionComplete())
         .SetPath(args.Path)

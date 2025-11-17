@@ -18,6 +18,7 @@ namespace IP
         private IPContentType contentType;
         private IPContentInformationType contentInformationType;
         private List<string> ancestors;
+        private string ancestorsLabel;
 
         private string? basePath;
         private string description;
@@ -48,6 +49,7 @@ namespace IP
             contentType = IPContentType.GetMIXED();
             contentInformationType = IPContentInformationType.GetMIXED();
             ancestors = new List<string>();
+            ancestorsLabel = IPConstants.EARK_SIP_DIV_LABEL;
 
             description = string.Empty;
             checksumAlgorithm = IFilecoreChecksumtype.SHA256;
@@ -314,6 +316,39 @@ namespace IP
         public IIP SetAncestors(List<string> ancestors)
         {
             this.ancestors = ancestors;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the list of ancestors of the IP.
+        /// </summary>
+        /// <param name="ancestors">The list of ancestors to set.</param>
+        /// <param name="label">The label associated with the ancestors.</param>
+        /// <returns>The current instance of <see cref="IP"/>.</returns>
+        public IIP SetAncestors(List<string> ancestors, string label)
+        {
+            this.ancestors = ancestors;
+            this.ancestorsLabel = label;
+            return this;
+        }
+
+        /// <summary>
+        /// Gets the label associated with the ancestors.
+        /// </summary>
+        /// <returns>The label representing the ancestors.</returns>
+        public string GetAncestorsLabel()
+        {
+            return ancestorsLabel;
+        }
+
+        /// <summary>
+        /// Sets the label for ancestors and returns the current instance.
+        /// </summary>
+        /// <param name="label">The label to assign to ancestors. Cannot be null.</param>
+        /// <returns>The current instance with the updated ancestors label.</returns>
+        public IIP SetAncestorsLabel(string label)
+        {
+            this.ancestorsLabel = label;
             return this;
         }
 

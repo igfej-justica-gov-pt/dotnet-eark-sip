@@ -14,6 +14,7 @@ public class SIPBuilder {
   private string submitterAgentId = "";
   private string sipId = "";
   private List<string>? ancestors;
+  private string? ancestorsLabel;
   private IFilecoreChecksumtype checksumAlgorithm = IFilecoreChecksumtype.SHA256;
   private List<string> documentation = new();
 
@@ -66,6 +67,17 @@ public class SIPBuilder {
 
   public SIPBuilder SetAncestors(List<string>? ancestors) {
     this.ancestors = ancestors;
+    return this;
+  }
+
+  public SIPBuilder SetAncestors(List<string>? ancestors, string? label) {
+    this.ancestors = ancestors;
+    this.ancestorsLabel = label;
+    return this;
+  }
+
+  public SIPBuilder SetAncestorsLabel(string label) {
+    this.ancestorsLabel = label;
     return this;
   }
 
@@ -153,7 +165,10 @@ public class SIPBuilder {
       }
     }
 
-    if (ancestors != null) sip.SetAncestors(ancestors);
+    if (ancestors != null) {
+      sip.SetAncestors(ancestors);
+      if (!string.IsNullOrEmpty(ancestorsLabel)) sip.SetAncestorsLabel(ancestorsLabel);
+    }
 
     string buildPath;
     if (!string.IsNullOrEmpty(path) && Directory.Exists(path)) buildPath = path;
