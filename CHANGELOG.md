@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Fixed issue with handling of metadata `otherType` in `MetadataType` to ensure correct assignment and retrieval when type is `OTHER`.
+- Fixed CLI issue where the metadata version was not handled correctly in options.
+
+### Added
+
+- Added a unit test to ensure `MetadataType` correctly handles the 'OTHER' type and `otherType` assignment, preventing regressions in future iterations.
+
 ## [1.0.3] - 2025-11-17
 
 ### Fixed

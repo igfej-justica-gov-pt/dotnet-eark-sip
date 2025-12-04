@@ -59,7 +59,7 @@ public class Options {
     for (int i = 0; i < MetadataFiles.Count(); i++) {
       string metadataFile = MetadataFiles.ElementAt(i);
       string metadataType = MetadataTypes.ElementAt(i);
-      string? metadataVersion = MetadataVersions.Count() > 0 ? MetadataTypes.ElementAt(i) : null;
+      string? metadataVersion = MetadataVersions.Count() > 0 ? MetadataVersions.ElementAt(i) : null;
       string? metadataSchemas = MetadataSchemas.Count() > 0 ? MetadataSchemas.ElementAt(i) : null;
 
       metadataFiles.Add(new Metadata(metadataFile, metadataType, metadataVersion, metadataSchemas));
