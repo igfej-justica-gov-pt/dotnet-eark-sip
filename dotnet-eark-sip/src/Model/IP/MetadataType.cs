@@ -27,7 +27,7 @@ namespace IP
             catch
             {
                 this.type = IMetadataMdtype.OTHER;
-                this.otherType = otherType ?? "";
+                this.otherType = type;
             }
         }
 
