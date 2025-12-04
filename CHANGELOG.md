@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed issue with handling of metadata `otherType` in `MetadataType` to ensure correct assignment and retrieval when type is `OTHER`.
 - Fixed CLI issue where the metadata version was not handled correctly in options.
 
+### Added
+
+- Added a unit test to ensure `MetadataType` correctly handles the 'OTHER' type and `otherType` assignment, preventing regressions in future iterations.
+
 ## [1.0.3] - 2025-11-17
 
 ### Fixed

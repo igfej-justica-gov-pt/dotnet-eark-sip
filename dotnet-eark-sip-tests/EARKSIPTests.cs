@@ -21,6 +21,31 @@ public class EARKSIPTests : IDisposable {
   }
 
   /// <summary>
+  /// Ensures MetadataType correctly handles 'OTHER' type and otherType assignment.
+  /// </summary>
+  [Fact]
+  public void MetadataType_OtherTypeAssignment_WorksAsExpected() {
+    // Case 1: Valid type
+    var mt1 = new MetadataType("DC");
+    Assert.Equal(IMetadataMdtype.DC, mt1._GetType());
+    Assert.Equal("", mt1.GetOtherType());
+
+    // Case 2: Invalid type, should fallback to OTHER and assign otherType
+    var mt2 = new MetadataType("customType");
+    Assert.Equal(IMetadataMdtype.OTHER, mt2._GetType());
+    Assert.Equal("customType", mt2.GetOtherType());
+
+    // Case 3: Explicit OTHER type with otherType
+    var mt3 = new MetadataType(IMetadataMdtype.OTHER, "myOtherType");
+    Assert.Equal(IMetadataMdtype.OTHER, mt3._GetType());
+    Assert.Equal("myOtherType", mt3.GetOtherType());
+
+    // Case 4: SetOtherType updates value
+    mt3.SetOtherType("updatedType");
+    Assert.Equal("updatedType", mt3.GetOtherType());
+  }
+
+  /// <summary>
 	/// Tests cleanup: delete temp files and directory
 	/// </summary>
   public void Dispose() {
