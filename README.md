@@ -148,6 +148,8 @@ sip.AddSchema(new IPFile(schemaPath));
 
 // Add a representation (status will be set to the default value, i.e. ORIGINAL)
 IPRepresentation representation1 = new("representation 1");
+IPContentInformationType newContentType = new("PDF/A");
+representation.IPContentInformationType = newContentType;
 sip.AddRepresentation(representation1);
 
 // Add a file to the representation
@@ -155,6 +157,7 @@ string representationFilePath = ".\\Resources\\EARK\\documentation.pdf";
 IPFile representationFile = new(representationFilePath);
 representationFile.SetRenameTo("data_.pdf");
 representation1.AddFile(representationFile);
+
 
 // Add another representation
 IPRepresentation representation2 = new("representation 2");
