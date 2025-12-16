@@ -149,7 +149,7 @@ sip.AddSchema(new IPFile(schemaPath));
 // Add a representation (status will be set to the default value, i.e. ORIGINAL)
 IPRepresentation representation1 = new("representation 1");
 IPContentInformationType newContentType = new("PDF/A");
-representation.IPContentInformationType = newContentType;
+representation.ContentInformationType = newContentType;
 sip.AddRepresentation(representation1);
 
 // Add a file to the representation
