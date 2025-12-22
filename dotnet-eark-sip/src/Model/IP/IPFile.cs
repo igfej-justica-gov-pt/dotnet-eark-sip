@@ -19,7 +19,7 @@ namespace IP
         /// </summary>
         public IPFile() : base()
         {
-            path = new DirectoryInfo("");
+            path = new DirectoryInfo(Environment.CurrentDirectory);
         }
 
         /// <summary>

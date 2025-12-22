@@ -24,6 +24,9 @@ namespace IP
 
         private readonly List<IPDescriptiveMetadata> descriptiveMetadata;
         private readonly List<IPMetadata> preservationMetadata;
+        private readonly List<IPMetadata> technicalMetadata;
+        private readonly List<IPMetadata> sourceMetadata;
+        private readonly List<IPMetadata> rightsMetadata;
         private readonly List<IPMetadata> otherMetadata;
         private readonly List<string> representationIds;
         private readonly Dictionary<string, IPRepresentation> representations;
@@ -54,6 +57,9 @@ namespace IP
 
             descriptiveMetadata = new List<IPDescriptiveMetadata>();
             preservationMetadata = new List<IPMetadata>();
+            technicalMetadata = new List<IPMetadata>();
+            sourceMetadata = new List<IPMetadata>();
+            rightsMetadata = new List<IPMetadata>();
             otherMetadata = new List<IPMetadata>();
             representationIds = new List<string>();
             representations = new Dictionary<string, IPRepresentation>();
@@ -398,6 +404,66 @@ namespace IP
         }
 
         /// <summary>
+        /// Gets the list of technical metadata associated with the IP.
+        /// </summary>
+        /// <returns>The list of technical metadata.</returns>
+        public List<IPMetadata> GetTechnicalMetadata()
+        {
+            return technicalMetadata;
+        }
+
+        /// <summary>
+        /// Adds technical metadata to the IP.
+        /// </summary>
+        /// <param name="metadata">The technical metadata to add.</param>
+        /// <returns>The current instance of <see cref="IP"/>.</returns>
+        public IIP AddTechnicalMetadata(IPMetadata metadata)
+        {
+            technicalMetadata.Add(metadata);
+            return this;
+        }
+
+        /// <summary>
+        /// Gets the list of source metadata associated with the IP.
+        /// </summary>
+        /// <returns>The list of source metadata.</returns>
+        public List<IPMetadata> GetSourceMetadata()
+        {
+            return sourceMetadata;
+        }
+
+        /// <summary>
+        /// Adds source metadata to the IP.
+        /// </summary>
+        /// <param name="metadata">The source metadata to add.</param>
+        /// <returns>The current instance of <see cref="IP"/>.</returns>
+        public IIP AddSourceMetadata(IPMetadata metadata)
+        {
+            sourceMetadata.Add(metadata);
+            return this;
+        }
+
+        /// <summary>
+        /// Gets the list of rights metadata associated with the IP.
+        /// </summary>
+        /// <returns>The list of rights metadata.</returns>
+        public List<IPMetadata> GetRightsMetadata()
+        {
+            return rightsMetadata;
+        }
+
+        /// <summary>
+        /// Adds rights metadata to the IP.
+        /// </summary>
+        /// <param name="metadata">The rights metadata to add.</param>
+        /// <returns>The current instance of <see cref="IP"/>.</returns>
+        public IIP AddRightsMetadata(IPMetadata metadata)
+        {
+            rightsMetadata.Add(metadata);
+            return this;
+        }
+
+        /// <summary>
         /// Gets the list of other metadata associated with the IP.
         /// </summary>
         /// <returns>The list of other metadata.</returns>
@@ -498,6 +564,21 @@ namespace IP
             CheckIfRepresentationExists(representationID);
             IPRepresentation rep = representations[representationID];
             rep.AddPreservationMetadata(metadata);
+            representations[representationID] = rep;
+            return this;
+        }
+
+        /// <summary>
+        /// Adds rights metadata to a specific representation.
+        /// </summary>
+        /// <param name="representationID">The ID of the representation.</param>
+        /// <param name="metadata">The rights metadata to add.</param>
+        /// <returns>The current instance of <see cref="IP"/>.</returns>
+        public IIP AddRightsMetadataToRepresentation(string representationID, IPMetadata metadata)
+        {
+            CheckIfRepresentationExists(representationID);
+            IPRepresentation rep = representations[representationID];
+            rep.AddRightsMetadata(metadata);
             representations[representationID] = rep;
             return this;
         }

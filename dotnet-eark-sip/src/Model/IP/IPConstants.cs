@@ -139,6 +139,37 @@ public class IPConstants
     /// </summary>
     public static readonly string PRESERVATION_FOLDER = METADATA_FOLDER + PRESERVATION + METS_PATH_SEPARATOR;
 
+
+    /// <summary>
+    /// Technical metadata.
+    /// </summary>
+    public static readonly string TECHNICAL = "technical";
+
+    /// <summary>
+    /// Folder path for technical metadata.
+    /// </summary>
+    public static readonly string TECHNICAL_FOLDER = METADATA_FOLDER + TECHNICAL + METS_PATH_SEPARATOR;
+
+    /// <summary>
+    /// Folder path for source metadata.
+    /// </summary>
+    public static readonly string SOURCE = "source";
+
+    /// <summary>
+    /// Source metadata.
+    /// </summary>
+    public static readonly string SOURCE_FOLDER = METADATA_FOLDER + SOURCE + METS_PATH_SEPARATOR;
+
+    /// <summary>
+    /// Folder path for rights metadata.
+    /// </summary>
+    public static readonly string RIGHTS = "rights";
+
+    /// <summary>
+    /// Rights metadata.
+    /// </summary>
+    public static readonly string RIGHTS_FOLDER = METADATA_FOLDER + RIGHTS + METS_PATH_SEPARATOR;
+
     /// <summary>
     /// Other metadata with the first letter capitalized.
     /// </summary>
