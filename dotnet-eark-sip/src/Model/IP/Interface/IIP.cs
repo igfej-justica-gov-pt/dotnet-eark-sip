@@ -172,6 +172,27 @@ public interface IIP
     IIP AddPreservationMetadata(IPMetadata preservationMetadata);
 
     /// <summary>
+    /// Adds technical metadata to the Information Package.
+    /// </summary>
+    /// <param name="technicalMetadata">The technical metadata to add.</param>
+    /// <returns>The current instance of <see cref="IIP"/>.</returns>
+    IIP AddTechnicalMetadata(IPMetadata technicalMetadata);
+
+    /// <summary>
+    /// Adds source metadata to the Information Package.
+    /// </summary>
+    /// <param name="sourceMetadata">The source metadata to add.</param>
+    /// <returns>The current instance of <see cref="IIP"/>.</returns>
+    IIP AddSourceMetadata(IPMetadata sourceMetadata);
+
+    /// <summary>
+    /// Adds rights metadata to the Information Package.
+    /// </summary>
+    /// <param name="rightsMetadata">The rights metadata to add.</param>
+    /// <returns>The current instance of <see cref="IIP"/>.</returns>
+    IIP AddRightsMetadata(IPMetadata rightsMetadata);
+
+    /// <summary>
     /// Adds other metadata to the Information Package.
     /// </summary>
     /// <param name="otherMetadata">The other metadata to add.</param>
@@ -224,6 +245,14 @@ public interface IIP
     IIP AddPreservationMetadataToRepresentation(string representationId, IPMetadata preservationMetadata);
 
     /// <summary>
+    /// Adds rights metadata to a specific representation in the Information Package.
+    /// </summary>
+    /// <param name="representationId">The identifier of the representation.</param>
+    /// <param name="rightsMetadata">The rights metadata to add.</param>
+    /// <returns>The current instance of <see cref="IIP"/>.</returns>
+    IIP AddRightsMetadataToRepresentation(string representationId, IPMetadata rightsMetadata);
+
+    /// <summary>
     /// Adds other metadata to a specific representation in the Information Package.
     /// </summary>
     /// <param name="representationId">The identifier of the representation.</param>
@@ -272,6 +301,24 @@ public interface IIP
     /// </summary>
     /// <returns>The list of preservation metadata.</returns>
     List<IPMetadata> GetPreservationMetadata();
+
+    /// <summary>
+    /// Gets the technical metadata associated with the Information Package.
+    /// </summary>
+    /// <returns>The list of technical metadata.</returns>
+    List<IPMetadata> GetTechnicalMetadata();
+
+    /// <summary>
+    /// Gets the source metadata associated with the Information Package.
+    /// </summary>
+    /// <returns>The list of source metadata.</returns>
+    List<IPMetadata> GetSourceMetadata();
+
+    /// <summary>
+    /// Gets the rights metadata associated with the Information Package.
+    /// </summary>
+    /// <returns>The list of rights metadata.</returns>
+    List<IPMetadata> GetRightsMetadata();
 
     /// <summary>
     /// Gets the other metadata associated with the Information Package.

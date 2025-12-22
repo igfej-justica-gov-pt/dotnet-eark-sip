@@ -38,6 +38,21 @@ namespace IP
         public List<IPMetadata> PreservationMetadata { get; private set; }
 
         /// <summary>
+        /// Gets the list of technical metadata associated with the representation.
+        /// </summary>
+        public List<IPMetadata> TechnicalMetadata { get; private set; }
+
+        /// <summary>
+        /// Gets the list of source metadata associated with the representation.
+        /// </summary>
+        public List<IPMetadata> SourceMetadata { get; private set; }
+
+        /// <summary>
+        /// Gets the list of rights metadata associated with the representation.
+        /// </summary>
+        public List<IPMetadata> RightsMetadata { get; private set; }
+
+        /// <summary>
         /// Gets the list of other metadata associated with the representation.
         /// </summary>
         public List<IPMetadata> OtherMetadata { get; private set; }
@@ -73,6 +88,9 @@ namespace IP
             Agents = new List<IPAgent>();
             DescriptiveMetadata = new List<IPDescriptiveMetadata>();
             PreservationMetadata = new List<IPMetadata>();
+            TechnicalMetadata = new List<IPMetadata>();
+            SourceMetadata = new List<IPMetadata>();
+            RightsMetadata = new List<IPMetadata>();
             OtherMetadata = new List<IPMetadata>();
             Data = new List<IIPFile>();
             Schemas = new List<IIPFile>();
@@ -233,6 +251,39 @@ namespace IP
         }
 
         /// <summary>
+        /// Adds a technical metadata instance to the list associated with the representation.
+        /// </summary>
+        /// <param name="metadata">The technical metadata instance to add.</param>
+        /// <returns>The current instance of <see cref="IPRepresentation"/>.</returns>
+        public IPRepresentation AddTechnicalMetadata(IPMetadata metadata)
+        {
+            TechnicalMetadata.Add(metadata);
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a source metadata instance to the list associated with the representation.
+        /// </summary>
+        /// <param name="metadata">The source metadata instance to add.</param>
+        /// <returns>The current instance of <see cref="IPRepresentation"/>.</returns>
+        public IPRepresentation AddSourceMetadata(IPMetadata metadata)
+        {
+            SourceMetadata.Add(metadata);
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a rights metadata instance to the list associated with the representation.
+        /// </summary>
+        /// <param name="metadata">The rights metadata instance to add.</param>
+        /// <returns>The current instance of <see cref="IPRepresentation"/>.</returns>
+        public IPRepresentation AddRightsMetadata(IPMetadata metadata)
+        {
+            RightsMetadata.Add(metadata);
+            return this;
+        }
+
+        /// <summary>
         /// Adds a (other) metadata instance to the list associated with the representation.
         /// </summary>
         /// <param name="metadata">The (other) metadata instance to add.</param>
@@ -298,9 +349,10 @@ namespace IP
               "representationID=" + RepresentationID + ", objectID=" + objectID + ", createDate=" + createDate ?? " " +
               ", modificationDate=" + modificationDate ?? " " + ", contentType=" + contentType +
               ", contentInformationType=" + ContentInformationType + ", status=" + status + ", description=" + description +
-              ", agents=[" + string.Join(", ", Agents) + "], descriptiveMetadata=" + string.Join(", ", DescriptiveMetadata) +
-              "], preservationMetadata=" + string.Join(", ", PreservationMetadata) + "], otherMetadata=" + string.Join(", ", OtherMetadata) +
-              "], data=" + string.Join(", ", Data) + "], schemas=" + string.Join(", ", Schemas) + "], documentation=" + string.Join(", ", Documentation) + "]" +
+              ", agents=[" + string.Join(", ", Agents) + "], descriptiveMetadata=[" + string.Join(", ", DescriptiveMetadata) +
+              "], preservationMetadata=[" + string.Join(", ", PreservationMetadata) + "], technicalMetadata=[" + string.Join(", ", TechnicalMetadata) +
+              "], sourceMetadata=[" + string.Join(", ", SourceMetadata) + "], rightsMetadata=[" + string.Join(", ", RightsMetadata) + "], otherMetadata=[" + string.Join(", ", OtherMetadata) +
+              "], data=[" + string.Join(", ", Data) + "], schemas=[" + string.Join(", ", Schemas) + "], documentation=[" + string.Join(", ", Documentation) + "]" +
             "]";
         }
     }

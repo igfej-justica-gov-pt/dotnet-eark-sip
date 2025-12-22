@@ -154,31 +154,38 @@ public class EARKSIP : SIP
             earkUtils.AddDefaultSchemas(logger, GetSchemas(), buildDir, GetOverride());
 
             bool isMetadataOther = GetOtherMetadata() != null && GetOtherMetadata().Count > 0;
-            bool isMetadata = (GetDescriptiveMetadata() != null && GetDescriptiveMetadata().Count > 0) || (GetPreservationMetadata() != null && GetPreservationMetadata().Count > 0);
+            bool isMetadata = (GetDescriptiveMetadata() != null && GetDescriptiveMetadata().Count > 0)
+                || (GetPreservationMetadata() != null && GetPreservationMetadata().Count > 0)
+                || (GetTechnicalMetadata() != null && GetTechnicalMetadata().Count > 0)
+                || (GetSourceMetadata() != null && GetSourceMetadata().Count > 0)
+                || (GetRightsMetadata() != null && GetRightsMetadata().Count > 0);
             bool isDocumentation = GetDocumentation() != null && GetDocumentation().Count > 0;
             bool isSchemas = GetSchemas() != null && GetSchemas().Count > 0;
             bool isRepresentations = GetRepresentations() != null && GetRepresentations().Count > 0;
 
             MetsWrapper mainMETSWrapper = metsCreator.GenerateMets(
-              string.Join(" ", GetIds()),
-              GetDescription(),
-              GetProfile(),
-              true,
-              GetAncestors(),
-              null,
-              GetHeader(),
-              GetContentType(),
-              GetContentInformationType(),
-              isMetadata,
-              isMetadataOther,
-              isSchemas,
-              isDocumentation,
-              isRepresentations,
-              false
+                string.Join(" ", GetIds()),
+                GetDescription(),
+                GetProfile(),
+                true,
+                GetAncestors(),
+                null,
+                GetHeader(),
+                GetContentType(),
+                GetContentInformationType(),
+                isMetadata,
+                isMetadataOther,
+                isSchemas,
+                isDocumentation,
+                isRepresentations,
+                false
             );
 
             earkUtils.AddDescriptiveMetadataToZipAndMETS(zipEntries, mainMETSWrapper, GetDescriptiveMetadata(), null);
             earkUtils.AddPreservationMetadataToZipAndMETS(zipEntries, mainMETSWrapper, GetPreservationMetadata(), null);
+            earkUtils.AddTechnicalMetadataToZipAndMETS(zipEntries, mainMETSWrapper, GetTechnicalMetadata(), null);
+            earkUtils.AddSourceMetadataToZipAndMETS(zipEntries, mainMETSWrapper, GetSourceMetadata(), null);
+            earkUtils.AddRightsMetadataToZipAndMETS(zipEntries, mainMETSWrapper, GetRightsMetadata(), null);
             earkUtils.AddOtherMetadataToZipAndMETS(zipEntries, mainMETSWrapper, GetOtherMetadata(), null);
             earkUtils.AddRepresentationsToZipAndMETS(this, GetRepresentations(), zipEntries, mainMETSWrapper, buildDir, sipType);
             earkUtils.AddSchemasToZipAndMETS(zipEntries, mainMETSWrapper, GetSchemas(), null);

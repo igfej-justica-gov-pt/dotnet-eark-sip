@@ -445,7 +445,7 @@ public abstract class EARKMETSCreator
 
         MdSecTypeMdRef mdRef = CreateMdRef(metadata.GetID(), metadataPath);
         mdRef.Mdtype = mdType;
-        if (!string.IsNullOrEmpty(mdOtherType))
+        if (!string.IsNullOrWhiteSpace(mdOtherType))
         {
             mdRef.Othermdtype = mdOtherType;
         }
@@ -499,6 +499,108 @@ public abstract class EARKMETSCreator
 
         digiprovMD.MdRef = mdRef;
         metsWrapper.Mets.AmdSec[0].DigiprovMd.Add(digiprovMD);
+
+        return mdRef;
+    }
+
+    /// <summary>
+    /// Adds technical metadata to the METS wrapper.
+    /// </summary>
+    /// <param name="metsWrapper">The METS wrapper to which the metadata will be added.</param>
+    /// <param name="technicalMetadata">The technical metadata to add.</param>
+    /// <param name="technicalMetadataPath">The file path of the technical metadata.</param>
+    /// <returns>An MdSecTypeMdRef object representing the added metadata reference.</returns>
+    public MdSecTypeMdRef AddTechnicalMetadataToMETS(MetsWrapper metsWrapper, IPMetadata technicalMetadata, string technicalMetadataPath)
+    {
+        MdSecType techMD = new()
+        {
+            Id = Utils.GenerateRandomAndPrefixedUUID(),
+            Status = technicalMetadata.GetMetadataStatus().ToString(),
+        };
+
+        MdSecTypeMdRef mdRef = CreateMdRef(technicalMetadata.GetID(), technicalMetadataPath);
+        mdRef.Mdtype = technicalMetadata.GetMetadataType()._GetType();
+        if (!string.IsNullOrWhiteSpace(technicalMetadata.GetMetadataType().GetOtherType()))
+        {
+            mdRef.Othermdtype = technicalMetadata.GetMetadataType().GetOtherType();
+        }
+
+        // set mimetype, date creation, etc.
+        METSUtils.SetFileBasicInformation(technicalMetadata.GetMetadata().GetPath(), mdRef);
+
+        // structural map info.
+        metsWrapper.MetadataDiv?.Admid.Add(techMD.Id);
+
+        techMD.MdRef = mdRef;
+        metsWrapper.Mets.AmdSec[0].TechMd.Add(techMD);
+
+        return mdRef;
+    }
+
+    /// <summary>
+    /// Adds source metadata to the METS wrapper.
+    /// </summary>
+    /// <param name="metsWrapper">The METS wrapper to which the metadata will be added.</param>
+    /// <param name="sourceMetadata">The source metadata to add.</param>
+    /// <param name="sourceMetadataPath">The file path of the source metadata.</param>
+    /// <returns>An MdSecTypeMdRef object representing the added metadata reference.</returns>
+    public MdSecTypeMdRef AddSourceMetadataToMETS(MetsWrapper metsWrapper, IPMetadata sourceMetadata, string sourceMetadataPath)
+    {
+        MdSecType sourceMD = new()
+        {
+            Id = Utils.GenerateRandomAndPrefixedUUID(),
+            Status = sourceMetadata.GetMetadataStatus().ToString(),
+        };
+
+        MdSecTypeMdRef mdRef = CreateMdRef(sourceMetadata.GetID(), sourceMetadataPath);
+        mdRef.Mdtype = sourceMetadata.GetMetadataType()._GetType();
+        if (!string.IsNullOrWhiteSpace(sourceMetadata.GetMetadataType().GetOtherType()))
+        {
+            mdRef.Othermdtype = sourceMetadata.GetMetadataType().GetOtherType();
+        }
+
+        // set mimetype, date creation, etc.
+        METSUtils.SetFileBasicInformation(sourceMetadata.GetMetadata().GetPath(), mdRef);
+
+        // structural map info.
+        metsWrapper.MetadataDiv?.Admid.Add(sourceMD.Id);
+
+        sourceMD.MdRef = mdRef;
+        metsWrapper.Mets.AmdSec[0].SourceMd.Add(sourceMD);
+
+        return mdRef;
+    }
+
+    /// <summary>
+    /// Adds rights metadata to the METS wrapper.
+    /// </summary>
+    /// <param name="metsWrapper">The METS wrapper to which the metadata will be added.</param>
+    /// <param name="rightsMetadata">The rights metadata to add.</param>
+    /// <param name="rightsMetadataPath">The file path of the rights metadata.</param>
+    /// <returns>An MdSecTypeMdRef object representing the added metadata reference.</returns>
+    public MdSecTypeMdRef AddRightsMetadataToMETS(MetsWrapper metsWrapper, IPMetadata rightsMetadata, string rightsMetadataPath)
+    {
+        MdSecType rightsMD = new()
+        {
+            Id = Utils.GenerateRandomAndPrefixedUUID(),
+            Status = rightsMetadata.GetMetadataStatus().ToString(),
+        };
+
+        MdSecTypeMdRef mdRef = CreateMdRef(rightsMetadata.GetID(), rightsMetadataPath);
+        mdRef.Mdtype = rightsMetadata.GetMetadataType()._GetType();
+        if (!string.IsNullOrWhiteSpace(rightsMetadata.GetMetadataType().GetOtherType()))
+        {
+            mdRef.Othermdtype = rightsMetadata.GetMetadataType().GetOtherType();
+        }
+
+        // set mimetype, date creation, etc.
+        METSUtils.SetFileBasicInformation(rightsMetadata.GetMetadata().GetPath(), mdRef);
+
+        // structural map info.
+        metsWrapper.MetadataDiv?.Admid.Add(rightsMD.Id);
+
+        rightsMD.MdRef = mdRef;
+        metsWrapper.Mets.AmdSec[0].RightsMd.Add(rightsMD);
 
         return mdRef;
     }

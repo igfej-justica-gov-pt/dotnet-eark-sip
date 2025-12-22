@@ -94,6 +94,78 @@ public class EARKUtils
     }
 
     /// <summary>
+    /// Adds technical metadata to the ZIP archive and METS document.
+    /// </summary>
+    /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+    /// <param name="metsWrapper">The METS wrapper to update.</param>
+    /// <param name="technicalMetadata">The list of technical metadata to add.</param>
+    /// <param name="representationId">The optional representation ID.</param>
+    public void AddTechnicalMetadataToZipAndMETS(
+      Dictionary<string, IZipEntryInfo> zipEntries,
+      MetsWrapper metsWrapper,
+      List<IPMetadata> technicalMetadata,
+      string? representationId
+    )
+    {
+        AddMetadataToZipAndMETS(
+          zipEntries,
+          metsWrapper,
+          technicalMetadata,
+          representationId,
+          IPConstants.TECHNICAL_FOLDER,
+          metsCreator.AddTechnicalMetadataToMETS
+        );
+    }
+
+    /// <summary>
+    /// Adds source metadata to the ZIP archive and METS document.
+    /// </summary>
+    /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+    /// <param name="metsWrapper">The METS wrapper to update.</param>
+    /// <param name="sourceMetadata">The list of source metadata to add.</param>
+    /// <param name="representationId">The optional representation ID.</param>
+    public void AddSourceMetadataToZipAndMETS(
+      Dictionary<string, IZipEntryInfo> zipEntries,
+      MetsWrapper metsWrapper,
+      List<IPMetadata> sourceMetadata,
+      string? representationId
+    )
+    {
+        AddMetadataToZipAndMETS(
+          zipEntries,
+          metsWrapper,
+          sourceMetadata,
+          representationId,
+          IPConstants.SOURCE_FOLDER,
+          metsCreator.AddSourceMetadataToMETS
+        );
+    }
+
+    /// <summary>
+    /// Adds rights metadata to the ZIP archive and METS document.
+    /// </summary>
+    /// <param name="zipEntries">The dictionary of ZIP entries.</param>
+    /// <param name="metsWrapper">The METS wrapper to update.</param>
+    /// <param name="rightsMetadata">The list of rights metadata to add.</param>
+    /// <param name="representationId">The optional representation ID.</param>
+    public void AddRightsMetadataToZipAndMETS(
+      Dictionary<string, IZipEntryInfo> zipEntries,
+      MetsWrapper metsWrapper,
+      List<IPMetadata> rightsMetadata,
+      string? representationId
+    )
+    {
+        AddMetadataToZipAndMETS(
+          zipEntries,
+          metsWrapper,
+          rightsMetadata,
+          representationId,
+          IPConstants.RIGHTS_FOLDER,
+          metsCreator.AddRightsMetadataToMETS
+        );
+    }
+
+    /// <summary>
     /// Adds other metadata to the ZIP archive and METS document.
     /// </summary>
     /// <param name="zipEntries">The dictionary of ZIP entries.</param>
@@ -251,6 +323,8 @@ public class EARKUtils
 
             AddDescriptiveMetadataToZipAndMETS(zipEntries, representationMetsWrapper, representation.DescriptiveMetadata, representationId);
             AddPreservationMetadataToZipAndMETS(zipEntries, representationMetsWrapper, representation.PreservationMetadata, representationId);
+            AddTechnicalMetadataToZipAndMETS(zipEntries, representationMetsWrapper, representation.TechnicalMetadata, representationId);
+            AddSourceMetadataToZipAndMETS(zipEntries, representationMetsWrapper, representation.SourceMetadata, representationId);
             AddOtherMetadataToZipAndMETS(zipEntries, representationMetsWrapper, representation.OtherMetadata, representationId);
             AddSchemasToZipAndMETS(zipEntries, representationMetsWrapper, representation.Schemas, representationId);
             AddDocumentationToZipAndMETS(zipEntries, representationMetsWrapper, representation.Documentation, representationId);

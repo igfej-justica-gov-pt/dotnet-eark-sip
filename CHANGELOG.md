@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Improved handling of whitespace in metadata type checks.
+- Fixed `IPFile` constructor to use the current directory when no path is provided.
+
+### Added
+
+- Support for technical, source, and rights metadata in the SIP creation and METS packaging process.
+- Methods for adding and retrieving technical, source, and rights metadata at both the package and representation levels.
+- New constants and folder structure for technical, source, and rights metadata.
+
+### Tests
+
+- Added comprehensive unit tests for metadata creation, addition, and retrieval, including technical, source, and rights metadata.
+
 ## [1.0.4] - 2025-12-04
 
 ### Fixed
