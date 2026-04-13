@@ -67,7 +67,7 @@ jobs:
           rm -r "cli_release"
 
       - name: Release to GitHub
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: Version ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
